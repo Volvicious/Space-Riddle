@@ -20,8 +20,6 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	//Materialgebung
 	m_zMaterialKugel.MakeTextureDiffuse("textures\\Textur.jpg");
-	m_zMaterialBoden.MakeTextureDiffuse("textures\\Boden.JPG");
-	//m_zMaterialTube.MakeTextureDiffuse("textures\\Background1.jpg");
 	m_zMaterialBackground.MakeTextureDiffuse("textures\\neon.jpg");
 	m_zMaterialBackground.SetTextureGlowAsDiffuse();
 	m_zMaterialTube.LoadPreset("Glass");
@@ -37,46 +35,33 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zr.AddFrameHere(&m_zf);
 	m_zr.AddScene(&m_zs);
 	m_zr.AddMaterial(&m_zMaterialKugel);
-	m_zr.AddMaterial(&m_zMaterialBoden);
 	m_zr.AddMaterial(&m_zMaterialBackground);
 
 	//Frame
 	m_zf.AddViewport(&m_zv);
 	m_zf.AddDeviceKeyboard(&m_zKeyboard);
-	m_zf.AddDeviceCursor(&m_zCursor);
 
 	//Viewport
 	m_zpCamera.AddCamera(&m_zc);
 	m_zpSphere.AddGeo(&m_zgSphere);
-	m_zpBoden.AddGeo(&m_zPlane1);
 	m_zpTube.AddGeo(&m_zTube);
 	m_zv.AddBackground(&m_zBackground);
 
 	//Scene
 	m_zs.AddPlacement(&m_zpCamera);
 	m_zs.AddPlacement(&m_zpSphere);
-	m_zs.AddPlacement(&m_zpBoden);
 	m_zs.AddLightParallel(&m_zl);
 	m_zs.AddPlacement(&m_zpTube);
-	m_zs.AddAudio(&m_zHomeScreen);
 
 	//Rotieren, Translieren, Skalieren
-	m_zpBoden.Translate(CHVector(0.0F, -2.0F, -1.0F));
-	m_zpBoden.CopyRotationXDelta(UM_DEG2RAD(-89));
 	m_zpTube.RotateX(UM_DEG2RAD(90));
 	m_zpCamera.TranslateZ(15.0F);
 
 	//Keyboard sensitivity
 	m_zKeyboard.SetWASDTranslationSensitivity(5.0F);
 
-	//fGeschwindigkeitRotation = 0.0F;
-
-	m_zHomeScreen.Init("res\\Vektoria.wav");
-
-	//Meteoriten Random erstellen
-	//srand(time(0));
-
-
+	//Meteoriten der Scene hinzufügen
+	m_zMeteoriten.Init(&m_zs);
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)
@@ -87,7 +72,10 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	//Raumschiffgeschwindigkeit
 	m_zpSphere.TranslateZDelta(-2.0F * fTimeDelta); //Raumschiffgeschwindigkeit
 
-	CameraPosition(); //Cameraposition
+	//Cameraposition
+	CameraPosition(); 
+
+	m_zMeteoriten.RenewMeteorits(&m_zpSphere);
 
 	//WASD - Steuerung
 	if (m_zKeyboard.KeyPressed(DIK_W))
@@ -127,16 +115,6 @@ void CGame::Tick(float fTime, float fTimeDelta)
 		}
 	}
 
-	//Meteorit random hinzufügen
-
-	//m_zs.AddPlacement(&m_zm.getPlacement());
-
-	if (m_zKeyboard.KeyPressed(DIK_U))
-	{
-		//fGeschwindigkeitRotation = 0.001F;
-		//m_zpCamera.Translate(RotateAroundAxes('y', m_zpSphere.GetTranslation(), fGeschwindigkeitRotation, m_zpCamera.GetTranslation()));
-	}
-
 	m_zr.Tick(fTimeDelta);
 }
 
@@ -152,55 +130,12 @@ void CGame::WindowReSize(int iNewWidth, int iNewHeight)
 	m_zf.ReSize(iNewWidth, iNewHeight);
 }
 
-CHVector CGame :: RotateAroundAxes(char cAxis, CHVector Origin, float fangle, CHVector Target)
-{
-	float xnew;
-	float ynew;
-	float znew;
-
-	float s = sin(fangle);
-	float c = cos(fangle);
-
-	//Translate point back to origin
-	Target.x -= Origin.x;
-	Target.y -= Origin.y;
-	Target.z -= Origin.z;
-
-	//Rotation around axes
-	if (cAxis == 'y')
-	{
-		//rotate around y axis
-		xnew = Target.x * c + Target.z * s;
-		ynew = Target.y;
-		znew = -1.0F * s * Target.x + Target.z * c;
-	}
-	else if (cAxis == 'x')
-	{
-		//rotate around x axis
-		xnew = Target.x;
-		ynew = Target.y * c + (-1.0F * s * Target.z);
-		znew = Target.y * s + Target.z * c;
-	}
-	else if (cAxis == 'z')
-	{
-		//rotate around z axis
-		xnew = Target.x * c + (-1.0F * s * Target.y);
-		ynew = Target.x * s + Target.y * c;
-		znew = Target.z;
-	}
-
-	//translate point back
-	Target.x = xnew + Origin.x;
-	Target.y = ynew + Origin.y;
-	Target.z = znew + Origin.z;
-
-	return Target;
-}
-
 void CGame::CameraPosition()
 {
 	m_zpCamera.Translate(m_zCameraTranslation.operator = (m_zpSphere.GetTranslation()));
 
 	if (bFirstPerson == false)
 		m_zpCamera.TranslateZDelta(15.0F);
+		
+
 }

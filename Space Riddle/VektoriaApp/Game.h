@@ -74,8 +74,6 @@ public:
 
 	void WindowReSize(int iNewWidth, int iNewHeight);											// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergröße verändert hat
 
-	CHVector RotateAroundAxes(char cAxis, CHVector Origin, float angle, CHVector Target);
-
 	void CameraPosition();
 
 private:
@@ -92,44 +90,25 @@ private:
 	CPlacement m_zpSphere;
 	CPlacement m_zpBoden;
 	CPlacement m_zpTube;
-	CPlacement m_zpComet;
-	CPlacement m_zpMeteoritMain;
-	CMeteorit m_zm;
 
 	//Extras
 	CDeviceKeyboard m_zKeyboard;
-	CDeviceCursor m_zCursor;
 	CMaterial m_zMaterialKugel;
-	CMaterial m_zMaterialBoden;
 	CMaterial m_zMaterialBackground;
 	CMaterial m_zMaterialTube;
 	CBackground m_zBackground;
-	CHMat m_zMath;
 
-	CHVector m_zCameraPosition;
+	//Cameravektor
 	CHVector m_zCameraTranslation;
 
-	//Fonts
-	CWritingFont m_zFont;
-
-	//Files laden
-	CFileVektoria m_zFile;
-
-	//Audio
-	CAudio m_zHomeScreen;
-
-	//Vektoren
-	CHVector m_zVektorTube;
-
 	//Objekte
-	CGeoQuad m_zPlane1;
 	CGeoSphere m_zgSphere;
 	CGeoTube m_zTube;
-	CGeoSphere m_zComet;
+	CMeteorit m_zMeteoriten;
 
 	//Globale Variablen
-	float fGeschwindigkeitRotation;
 	bool bFirstPerson = true;
+	int iTimerMeteoriten = 0;
 };
 
 
