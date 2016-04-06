@@ -1,0 +1,1407 @@
+#line 1 "\\\\?\\C:\\Projects\\Vektoria_2015-05-22_V13withPatch4\\Vektoria\\trunk\\VektoriaApp\\shaders\\Source\\forwardShading.hlsl"
+
+
+#line 1 "constant.h"
+
+
+#line 10
+
+
+
+
+#line 16
+
+
+#line 20
+cbuffer cbPerObject : register ( b0 ) 
+{ 
+    matrix g_mWorld : packoffset ( c0 ) ; 
+} ; 
+
+cbuffer cbPerCamera : register ( b1 ) 
+{ 
+    matrix g_mViewProj : packoffset ( c0 ) ; 
+} ; 
+
+cbuffer cbPerFrame : register ( b2 ) 
+{ 
+    matrix g_mView : packoffset ( c0 ) ; 
+    matrix g_mViewInv : packoffset ( c4 ) ; 
+    matrix g_mProjection : packoffset ( c8 ) ; 
+    matrix g_mProjectionInv : packoffset ( c12 ) ; 
+    matrix g_mProjectionInvViewport : packoffset ( c16 ) ; 
+    float4 g_f4AmbientColorUp : packoffset ( c20 ) ; 
+    float4 g_f4AmbientColorDown : packoffset ( c21 ) ; 
+    float3 g_f3CameraPos : packoffset ( c22 ) ; 
+    float g_fAlphaTest : packoffset ( c22 . w ) ; 
+    uint g_uNumLights : packoffset ( c23 ) ; 
+    uint g_uNumSpotLights : packoffset ( c23 . y ) ; 
+    uint g_uWindowWidth : packoffset ( c23 . z ) ; 
+    uint g_uWindowHeight : packoffset ( c23 . w ) ; 
+    uint g_uMaxNumLightsPerTile : packoffset ( c24 ) ; 
+    uint g_uMaxNumElementsPerTile : packoffset ( c24 . y ) ; 
+    uint g_uNumTilesX : packoffset ( c24 . z ) ; 
+    uint g_uNumTilesY : packoffset ( c24 . w ) ; 
+    uint g_uMaxVPLs : packoffset ( c25 ) ; 
+    uint g_uMaxNumVPLsPerTile : packoffset ( c25 . y ) ; 
+    uint g_uMaxNumVPLElementsPerTile : packoffset ( c25 . z ) ; 
+    float g_fVPLSpotStrength : packoffset ( c25 . w ) ; 
+    float g_fVPLSpotRadius : packoffset ( c26 ) ; 
+    float g_fVPLPointStrength : packoffset ( c26 . y ) ; 
+    float g_fVPLPointRadius : packoffset ( c26 . z ) ; 
+    float g_fVPLRemoveBackFaceContrib : packoffset ( c26 . w ) ; 
+    float g_fVPLColorThreshold : packoffset ( c27 ) ; 
+    float g_fVPLBrightnessThreshold : packoffset ( c27 . y ) ; 
+    float g_fPerFramePad1 : packoffset ( c27 . z ) ; 
+    float g_fPerFramePad2 : packoffset ( c27 . w ) ; 
+} ; 
+
+cbuffer cbShadowConstants : register ( b3 ) 
+{ 
+    matrix g_mPointShadowViewProj [ 24 ] [ 6 ] ; 
+    matrix g_mSpotShadowViewProj [ 24 ] ; 
+    float4 g_f4ShadowBias ; 
+    
+} 
+
+cbuffer cbVPLConstants : register ( b4 ) 
+{ 
+    uint g_uNumVPLs ; 
+    uint g_uVPLPad [ 3 ] ; 
+} 
+
+struct SVPLData 
+{ 
+    float4 f4Direction ; 
+    float4 f4Color ; 
+    float4 f4SourceLightDirection ; 
+} ; 
+
+#line 86
+SamplerState g_Sampler : register ( s0 ) ; 
+SamplerComparisonState g_ShadowSampler : register ( s1 ) ; 
+SamplerState g_pointSampler : register ( s2 ) ; 
+
+#line 95
+float4 ConvertProjToView ( float4 p ) 
+{ 
+    p = mul ( p , g_mProjectionInv ) ; 
+    p /= p . w ; 
+    return p ; 
+} 
+
+#line 103
+float ConvertProjDepthToView ( float z ) 
+{ 
+    z = 1.f / ( z * g_mProjectionInv . _34 + g_mProjectionInv . _44 ) ; 
+    return z ; 
+} 
+
+uint GetTileIndex ( float2 ScreenPos ) 
+{ 
+    float fTileRes = ( float ) 32 ; 
+    uint nTileIdx = floor ( ScreenPos . x / fTileRes ) + floor ( ScreenPos . y / fTileRes ) * g_uNumTilesX ; 
+    return nTileIdx ; 
+} 
+
+#line 119
+void GetLightListInfo ( in Buffer < uint > PerTileLightIndexBuffer , in uint uMaxNumLightsPerTile , in uint uMaxNumElementsPerTile , 
+in float4 SVPosition , out uint uFirstLightIndex , out uint uNumLights ) 
+{ 
+    uint nTileIndex = GetTileIndex ( SVPosition . xy ) ; 
+    uint nStartIndex = uMaxNumElementsPerTile * nTileIndex ; 
+    
+#line 126
+    uint uHalfZBitsHigh = PerTileLightIndexBuffer [ nStartIndex ] ; 
+    uint uHalfZBitsLow = PerTileLightIndexBuffer [ nStartIndex + 1 ] ; 
+    uint uHalfZBits = ( uHalfZBitsHigh << 16 ) | uHalfZBitsLow ; 
+    float fHalfZ = asfloat ( uHalfZBits ) ; 
+    
+    float fViewPosZ = ConvertProjDepthToView ( SVPosition . z ) ; 
+    
+    uFirstLightIndex = ( fViewPosZ < fHalfZ ) ? ( nStartIndex + 4 ) : ( nStartIndex + 4 + uMaxNumLightsPerTile ) ; 
+    uNumLights = ( fViewPosZ < fHalfZ ) ? PerTileLightIndexBuffer [ nStartIndex + 2 ] : PerTileLightIndexBuffer [ nStartIndex + 3 ] ; 
+} 
+
+#line 139
+float HalfLambert ( float3 f3Vec1 , float3 f3Vec2 ) 
+{ 
+    float fProduct = dot ( f3Vec1 , f3Vec2 ) ; 
+    fProduct *= 0.5f ; 
+    fProduct += 0.5f ; 
+    return fProduct ; 
+} 
+
+float BlinnPhongSpec ( float3 f3Normal , float3 f3LightDir , float fSpecpower ) 
+{ 
+    float3 f3HalfAngle = normalize ( f3Normal + f3LightDir ) ; 
+    return pow ( saturate ( dot ( f3Normal , f3HalfAngle ) ) , fSpecpower ) ; 
+} 
+
+void SubsurfaceScattering ( in float4 f4CenterAndRadius , in float3 f3ToLight , in float3 f3LightColor , in float4 float4TexColor , 
+in float fThickValue , in float4 f4SSSBRDFParams , in float4 f4ColorSSS , in float4 f4VertexPos , 
+in float3 f3CamPos , in float3 f3Normal , 
+inout float3 f3LightColorSpecularResult , inout float3 f3LightDiffuseResult ) 
+{ 
+    const float fMaterialThickness = f4SSSBRDFParams . r ; 
+    const float fRimScalar = f4SSSBRDFParams . b ; 
+    const float fExtinctionCoefficientRed = f4ColorSSS . r ; 
+    const float fExtinctionCoefficientGreen = f4ColorSSS . g ; 
+    const float fExtinctionCoefficientBlue = f4ColorSSS . b ; 
+    const float fSpecPower = 1.f ; 
+    const float3 f3SpecColor = f3LightColorSpecularResult ; 
+    const float4 f4TexColor = float4TexColor ; 
+    float3 f3LightDir = normalize ( f3ToLight ) ; 
+    float4 f4LightPos ; 
+    float3 f3LightDirSSS ; 
+    float4 f4FinColor ; 
+    
+    float3 f3EyeVector = normalize ( f3CamPos - f4VertexPos . xyz ) ; 
+    f3LightDirSSS = - f3EyeVector ; 
+    f4LightPos = f4CenterAndRadius ; 
+    f4LightPos . w = 1.f ; 
+    
+    float fAttenuation = 30.f * ( 1.f / distance ( f4LightPos , f4VertexPos ) ) ; 
+    
+    const float3 f3Eye = normalize ( f3CamPos . xyz - f4VertexPos . xyz ) ; 
+    float4 f4DotLN = HalfLambert ( f3LightDirSSS , f3Normal ) * fAttenuation ; 
+    
+    float3 f3IndirectLightComponent = ( float3 ) ( fMaterialThickness * max ( 0 , dot ( - f3Normal , f3LightDirSSS ) ) ) ; 
+    f3IndirectLightComponent += HalfLambert ( - f3Eye , f3LightDirSSS ) * fMaterialThickness ; 
+    f3IndirectLightComponent *= fAttenuation ; 
+    f3IndirectLightComponent . r *= fExtinctionCoefficientRed ; 
+    f3IndirectLightComponent . g *= fExtinctionCoefficientGreen ; 
+    f3IndirectLightComponent . b *= fExtinctionCoefficientBlue ; 
+    f3IndirectLightComponent . rgb *= fThickValue ; 
+    
+    float3 f3Rim = ( float3 ) ( 1.f - max ( 0.f , dot ( f3Normal , f3Eye ) ) ) ; 
+    f3Rim *= f3Rim ; 
+    f3Rim *= max ( 0.f , dot ( f3Normal , f3LightDirSSS ) ) * f3SpecColor ; 
+    
+    f4DotLN *= f4TexColor ; 
+    
+    f4FinColor = f4DotLN + float4 ( f3IndirectLightComponent , 1.f ) ; 
+    f4FinColor . a = 1.f ; 
+    f4FinColor . rgb += ( f3Rim * fRimScalar * fAttenuation * f4FinColor . a ) ; 
+    f4FinColor . rgb += ( BlinnPhongSpec ( f3Normal , f3LightDirSSS , fSpecPower ) * fAttenuation * f3SpecColor * f4FinColor . a * .05f ) ; 
+    f4FinColor . rgb *= f3LightColor ; 
+    
+    float fEdge = max ( dot ( normalize ( f3CamPos - f4VertexPos . xyz ) , f3Normal ) , 0 ) ; 
+    [ branch ] 
+    if ( ( fEdge < 0.7f ) && ( fMaterialThickness > 2.f ) ) 
+    { 
+        f3LightDiffuseResult . rgb *= saturate ( f3IndirectLightComponent * 0.06666f ) ; 
+        f3LightColorSpecularResult . rgb *= saturate ( f3IndirectLightComponent * 0.06666f ) ; 
+    } 
+    else 
+    { 
+        f3LightDiffuseResult *= f4FinColor . xyz ; 
+        f3LightColorSpecularResult *= f4FinColor . xyz ; 
+    } 
+} 
+
+#line 216
+
+
+#line 2 "\\\\?\\C:\\Projects\\Vektoria_2015-05-22_V13withPatch4\\Vektoria\\trunk\\VektoriaApp\\shaders\\Source\\forwardShading.hlsl"
+
+
+#line 1 "lightingconstants.h"
+
+
+#line 8
+
+
+#line 1 "texandtexflags.h"
+
+
+Texture2D tex2D [ 7 ] : register ( t15 ) ; 
+Texture2D leantex : register ( t27 ) ; 
+
+#line 8
+cbuffer TexInfo : register ( b5 ) 
+{ 
+    float4 f4ColorAmbient : packoffset ( c0 ) ; 
+    float fA : packoffset ( c1 . x ) ; 
+    float fH : packoffset ( c1 . y ) ; 
+    float fBumpStrength : packoffset ( c1 . z ) ; 
+    float frTransparency : packoffset ( c1 . w ) ; 
+    float4 f4ColorSSS : packoffset ( c2 ) ; 
+    float4 f4SSSBRDFParams : packoffset ( c3 ) ; 
+    uint uImage : packoffset ( c4 . x ) ; 
+    uint uGlow : packoffset ( c4 . y ) ; 
+    uint uSpecular : packoffset ( c4 . z ) ; 
+    uint uBump : packoffset ( c4 . w ) ; 
+    uint uImageBlack : packoffset ( c5 ) ; 
+    uint uGlowAsImage : packoffset ( c5 . y ) ; 
+    uint uSpecularAsImage : packoffset ( c5 . z ) ; 
+    uint uHeightAsImage : packoffset ( c5 . w ) ; 
+    uint uImageWhite : packoffset ( c6 ) ; 
+    uint uGlowWhite : packoffset ( c6 . y ) ; 
+    uint uSpecularWhite : packoffset ( c6 . z ) ; 
+    uint uHeight : packoffset ( c6 . w ) ; 
+    uint uShadingOn : packoffset ( c7 ) ; 
+    uint uGlowAsAmbient : packoffset ( c7 . y ) ; 
+    uint uChromaKeying : packoffset ( c7 . z ) ; 
+    uint uEnvironment : packoffset ( c7 . w ) ; 
+    uint uPOM : packoffset ( c8 ) ; 
+    uint uTexBRDF : packoffset ( c8 . y ) ; 
+    uint uTexSSS : packoffset ( c8 . z ) ; 
+    uint uReflectionMap : packoffset ( c8 . w ) ; 
+    uint uixPos : packoffset ( c9 ) ; 
+    uint uiyPos : packoffset ( c9 . y ) ; 
+    uint uixPics : packoffset ( c9 . z ) ; 
+    uint uiyPics : packoffset ( c9 . w ) ; 
+    float fRoughness : packoffset ( c10 . x ) ; 
+    float fIOR : packoffset ( c10 . y ) ; 
+    float fSpecular : packoffset ( c10 . z ) ; 
+    float fMetallic : packoffset ( c10 . w ) ; 
+    float fSubSurface : packoffset ( c11 . x ) ; 
+    float fAnistropic : packoffset ( c11 . y ) ; 
+    float fSheen : packoffset ( c11 . z ) ; 
+    float fSheenTint : packoffset ( c11 . w ) ; 
+    float fClearCoat : packoffset ( c12 . x ) ; 
+    float fClearCoatGloss : packoffset ( c12 . y ) ; 
+    float fSpecularTint : packoffset ( c12 . z ) ; 
+    uint uTextureAddressMode : packoffset ( c12 . w ) ; 
+} 
+
+cbuffer ViewportArt : register ( b6 ) 
+{ 
+    float4 f4ColorViewportOutline : packoffset ( c0 ) ; 
+    float4 f4FogParams : packoffset ( c1 ) ; 
+    matrix mColorModification : packoffset ( c2 ) ; 
+    
+    uint uStyleColor : packoffset ( c6 ) ; 
+    uint uStyleHalfTransparent : packoffset ( c6 . y ) ; 
+    uint uStylePopart : packoffset ( c6 . z ) ; 
+    uint uStyleOutlining : packoffset ( c6 . w ) ; 
+    uint uStyleMonochrome : packoffset ( c7 ) ; 
+    uint uStyleOwn : packoffset ( c7 . y ) ; 
+    uint uStyleFog : packoffset ( c7 . z ) ; 
+    uint uPad0 : packoffset ( c7 . w ) ; 
+} 
+
+#line 9 "lightingconstants.h"
+
+
+#line 1 "ggxlighting.h"
+static const float fPI = 3.14159265358979323846f ; 
+
+float G1V ( in float fDotNV , in float fK ) 
+{ 
+    return 1.f / ( fDotNV * ( 1.f - fK ) + fK ) ; 
+} 
+
+float fLightingFuncGGX ( in float3 f3N , in float3 f3V , in float3 f3L , in float fRoughness , in float fF0 ) 
+{ 
+    f3N = normalize ( f3N ) ; 
+    float fAlpha = fRoughness * fRoughness ; 
+    float3 f3H = normalize ( f3V + f3L ) ; 
+    
+    float fDotNL = saturate ( dot ( f3N , f3L ) ) ; 
+    float fDotNV = saturate ( dot ( f3N , f3V ) ) ; 
+    float fDotNH = saturate ( dot ( f3N , f3H ) ) ; 
+    float fDotLH = saturate ( dot ( f3L , f3H ) ) ; 
+    
+    float fF , fD , fVis ; 
+    
+#line 22
+    float fAlphaSqr = fAlpha * fAlpha ; 
+    const float fPi = 3.14159f ; 
+    float fDenom = fDotNH * fDotNH * ( fAlphaSqr - 1.f ) + 1.f ; 
+    fD = fAlphaSqr / ( fPi * fDenom * fDenom ) ; 
+    
+#line 28
+    float fDotLH5 = pow ( 1.f - fDotLH , 5 ) ; 
+    fF = fF0 + ( 1.f - fF0 ) * ( fDotLH5 ) ; 
+    
+#line 32
+    float fK = fAlpha / 2.f ; 
+    fVis = G1V ( fDotNL , fK ) * G1V ( fDotNV , fK ) ; 
+    
+    float fSpecular = fDotNL * fD * fF * fVis ; 
+    return fSpecular ; 
+} 
+
+float SchlickFresnel ( in float fu ) 
+{ 
+    float fm = clamp ( 1.f - fu , 0 , 1 ) ; 
+    float fm2 = fm * fm ; 
+    return fm2 * fm2 * fm ; 
+} 
+
+float OrenNayar ( in float3 f3L , in float3 f3V , in float3 f3N , in float3 f3X , in float3 f3Y , in float fRoughness , in float F0 ) 
+{ 
+    float fSigma = fRoughness ; 
+    float fRho = 2.5f ; 
+    
+    float fVDotN = dot ( f3V , f3N ) ; 
+    float fLDotN = dot ( f3L , f3N ) ; 
+    
+    float f3Llength = length ( f3L ) ; 
+    float f3Vlength = length ( f3V ) ; 
+    
+    fVDotN /= f3Vlength ; 
+    fLDotN /= f3Llength ; 
+    
+    float fThetaR = acos ( fVDotN ) ; 
+    float fSigma2 = pow ( fSigma * fPI / 180.f , 2 ) ; 
+    
+    float fCosPhiDiff = dot ( normalize ( f3V - f3N * fVDotN ) , normalize ( f3L - f3N * fLDotN ) ) ; 
+    float fThetaI = acos ( fLDotN ) ; 
+    float fAlpha = max ( fThetaI , fThetaR ) ; 
+    float fBeta = min ( fThetaI , fThetaR ) ; 
+    [ branch ] 
+    if ( fAlpha > fPI / 2.f ) return float3 ( 0.f , 0.f , 0.f ) ; 
+    
+    float fC1 = 1.f - 0.5f * fSigma2 / ( fSigma2 + 0.33f ) ; 
+    float fC2 = 0.45f * fSigma2 / ( fSigma2 + 0.09f ) ; 
+    [ branch ] 
+    if ( fCosPhiDiff >= 0.f ) fC2 *= sin ( fAlpha ) ; 
+    else fC2 *= ( sin ( fAlpha ) - pow ( 2 * fBeta / fPI , 3 ) ) ; 
+    float fC3 = 0.125 * fSigma2 / ( fSigma2 + 0.09f ) * pow ( ( 4 * fAlpha * fBeta ) / ( fPI * fPI ) , 2 ) ; 
+    float fL1 = fRho / fPI * ( fC1 + fCosPhiDiff * fC2 * tan ( fBeta ) + ( 1.f - abs ( fCosPhiDiff ) ) * fC3 
+    * tan ( ( fAlpha + fBeta ) / 2.f ) ) ; 
+    float fL2 = 0.17f * fRho * fRho / fPI * fSigma2 / ( fSigma2 + 0.13f ) * ( 1.f - fCosPhiDiff * ( 4 * fBeta * fBeta ) 
+    / ( fPI * fPI ) ) ; 
+    return ( fL1 + fL2 ) ; 
+} 
+
+#line 84
+float Sqr ( in float fx ) 
+{ 
+    return fx * fx ; 
+} 
+
+float GTR1 ( in float fDotNH , in float fa ) 
+{ 
+    if ( fa >= 1.f ) return 1 / fPI ; 
+    float fa2 = fa * fa ; 
+    float fT = 1.f + ( fa2 - 1.f ) * fDotNH * fDotNH ; 
+    return ( fa2 - 1.f ) / ( fPI * log ( fa2 ) * fT ) ; 
+} 
+
+float GTR2 ( in float fDotNH , in float fa ) 
+{ 
+    float fa2 = fa * fa ; 
+    float fT = 1.f + ( fa2 - 1.f ) * fDotNH * fDotNH ; 
+    return fa2 / ( fPI * fT * fT ) ; 
+} 
+
+float GTR2Aniso ( in float fDotNH , in float fDotHX , in float fDotHY , in float fax , in float fay ) 
+{ 
+    return ( 1.f / ( fPI * fax * fay * Sqr ( Sqr ( fDotHX / fax ) + Sqr ( fDotHY / fay ) + fDotNH * fDotNH ) ) ) ; 
+} 
+
+float SmithG_GGX ( in float fDotNV , in float fAlphaG ) 
+{ 
+    float fa = fAlphaG * fAlphaG ; 
+    float fb = fDotNV * fDotNV ; 
+    return 1.f / ( fDotNV + Sqr ( fa + fb - fa * fb ) ) ; 
+} 
+
+float3 Mon2Lin ( in float3 f3Color ) 
+{ 
+    return float3 ( pow ( abs ( f3Color . x ) , 2.2f ) , pow ( abs ( f3Color . y ) , 2.2f ) , pow ( abs ( f3Color . z ) , 2.2f ) ) ; 
+} 
+
+float RoughnessToSpecPower ( in float fM ) 
+{ 
+    return 2.f / ( fM * fM ) - 2.f ; 
+} 
+
+float Beckmann_G1 ( float fm , float fDotNX ) 
+{ 
+    float fDotNX2 = fDotNX * fDotNX ; 
+    float fTanTheta = sqrt ( ( 1.f - fDotNX2 ) / fDotNX2 ) ; 
+    float fa = 1.f / ( fm * fTanTheta ) ; 
+    float fa2 = fa * fa ; 
+    float fg = 1.f ; 
+    [ branch ] 
+    if ( fa < 1.6f ) 
+    fg *= ( 3.535f * fa + 2.181f * fa2 ) / ( 1.0f + 2.276f * fa + 2.577f * fa2 ) ; 
+    return fg ; 
+} 
+
+float LeanMapping ( float2 f2LeanB , float3 f3LeanM , float3 f3Ht ) 
+{ 
+    float2 f2B = f2LeanB * 0.01f ; 
+    float3 f3M = f3LeanM . xyz * 0.0001f * 0.5f ; 
+    float fInvS = 1.f / RoughnessToSpecPower ( fRoughness / 5.f ) ; 
+    f3M . xy += ( fInvS ) ; 
+    float3 f3Sigma = f3M - float3 ( f2B * f2B , f2B . x * f2B . y ) ; 
+    float fDet = f3Sigma . x * f3Sigma . y - f3Sigma . z * f3Sigma . z ; 
+    float fD = 0.f ; 
+    float2 f2H = f3Ht . xy / f3Ht . z - f2B ; 
+    float fE = ( f2H . x * f2H . x * f3Sigma . y + f2H . y * f2H . y * f3Sigma . x - 2 * f2H . x * f2H . y * f3Sigma . z ) ; 
+    
+    [ branch ] 
+    if ( f3Ht . z > 0.f && fDet > 0.f ) 
+    fD = ( ( exp ( - 0.5f * fE / fDet ) / ( sqrt ( fDet ) * fPI * 2.f ) ) ) ; 
+    
+    return fD ; 
+} 
+
+float3 BRDF ( in float3 f3L , in float3 f3V , in float3 f3N , in float fRoughness , in float fF0 , in float3 f3Color , 
+in float3 f3X , in float3 f3Y , float2 f2LeanB , float3 f3LeanM ) 
+{ 
+    f3N = normalize ( f3N ) ; 
+    
+    float3 f3C1 = cross ( f3N , float3 ( 0.f , 0.f , 1.f ) ) ; 
+    float3 f3C2 = cross ( f3N , float3 ( 0.f , 1.f , 0.f ) ) ; 
+    float3 f3C3 = cross ( f3N , float3 ( 1.f , 0.f , 0.f ) ) ; 
+    [ branch ] 
+    if ( length ( f3C1 ) > length ( f3C2 ) || length ( f3C1 ) > length ( f3C3 ) ) 
+    { 
+        f3X = normalize ( f3C1 ) ; 
+        
+    } 
+    else if ( length ( f3C2 ) > length ( f3C1 ) || length ( f3C2 ) > length ( f3C3 ) ) 
+    { 
+        f3X = normalize ( f3C2 ) ; 
+    } 
+    else 
+    { 
+        f3X = normalize ( f3C3 ) ; 
+    } 
+    f3Y = normalize ( cross ( f3N , f3X ) ) ; 
+    
+    float3 f3H = normalize ( f3L + f3V ) ; 
+    float3x3 tangentToWorld = transpose ( float3x3 ( f3X , f3Y , f3N ) ) ; 
+    float3 f3Ht = normalize ( mul ( ( f3V + f3L ) , tangentToWorld ) ) ; 
+    f3Ht = float3 ( f3Ht . x , f3Ht . y , f3Ht . z ) ; 
+    
+    float f3Llength = length ( f3L ) ; 
+    float f3Vlength = length ( f3V ) ; 
+    
+    float fDotNL = ( dot ( f3N , f3L ) ) ; 
+    float fDotNV = ( dot ( f3N , f3V ) ) ; 
+    
+    fDotNL /= f3Llength ; 
+    fDotNV /= f3Vlength ; 
+    
+#line 197
+    float fDotNH = ( dot ( f3N , f3H ) ) ; 
+    float fDotLH = ( dot ( f3L / f3Llength , f3H ) ) ; 
+    
+    float3 f3CdLin = Mon2Lin ( f3Color ) ; 
+    float fCdLum = 0.3f * f3CdLin . r + 0.6f * f3CdLin . g + 0.1f * f3CdLin . b ; 
+    
+    [ branch ] 
+    float3 f3CTint = fCdLum > 0 ? f3CdLin / fCdLum : float3 ( 1.f , 1.f , 1.f ) ; 
+    float3 f3CSpec0 = lerp ( fSpecular * 0.08f * lerp ( float3 ( 1.f , 1.f , 1.f ) , f3CTint , fSpecularTint ) , f3CdLin , fMetallic ) ; 
+    float3 f3CSheen = lerp ( float3 ( 1.f , 1.f , 1.f ) , f3CTint , fSheenTint ) ; 
+    
+#line 210
+    float fFL = SchlickFresnel ( fDotNL ) ; 
+    float fFV = SchlickFresnel ( fDotNV ) ; 
+    float fFd90 = ( 0.5f + 2 * fDotLH * fDotLH * ( fRoughness ) ) ; 
+    
+    float fFd = OrenNayar ( f3L , f3V , f3N , f3X , f3Y , fRoughness , fF0 ) ; 
+    
+#line 219
+    float fFss90 = ( fDotLH * fDotLH * fRoughness ) ; 
+    float fFss = lerp ( 1 , fFss90 , fFL ) * lerp ( 1 , fFss90 , fFV ) ; 
+    float fss = 1.25f * ( fFss * ( 1 / ( fDotNL + fDotNV ) - 0.5f ) + 0.5f ) ; 
+    
+#line 224
+    float fAspect = sqrt ( 1.f - fAnistropic * 0.9f ) ; 
+    float fax = max ( 0.001f , Sqr ( fRoughness ) / fAspect ) ; 
+    float fay = max ( 0.001f , Sqr ( fRoughness ) * fAspect ) ; 
+    
+#line 229
+    float fD = LeanMapping ( f2LeanB , f3LeanM , f3Ht ) ; 
+    
+    float fDs = GTR2Aniso ( fDotNH , dot ( f3H , f3X ) , dot ( f3H , f3Y ) , fax , fay ) ; 
+    float fFH = SchlickFresnel ( fDotLH ) ; 
+    float3 f3Fs = lerp ( f3CSpec0 , float3 ( 1.f , 1.f , 1.f ) , fFH ) ; 
+    float fRoughG = Sqr ( fRoughness * 0.5f + 0.5f ) ; 
+    float fGs = SmithG_GGX ( fDotNL , fRoughG ) * SmithG_GGX ( fDotNV , fRoughG ) ; 
+    
+#line 246
+    float3 f3FSheen = fFH * fSheen * f3CSheen ; 
+    
+#line 249
+    float fDr = GTR1 ( fDotNH , lerp ( 0.1f , 0.001 , fClearCoatGloss ) ) ; 
+    float fFr = lerp ( fF0 , 1.f , fFH ) ; 
+    float fGr = SmithG_GGX ( fDotNL , 0.25f ) * SmithG_GGX ( fDotNV , 0.25f ) ; 
+    
+    [ branch ] 
+    if ( fDotNL < 0.f ) 
+    { 
+        fFr = 0.f ; 
+        fGs = 0.f ; 
+        float retMul = saturate ( ( smoothstep ( 1 , 0 , 1 * saturate ( dot ( f3N , - f3L ) ) ) ) ) ; 
+        return ( retMul * retMul * retMul ) * ( ( ( 1 / fPI ) * lerp ( fFd , fss , fSubSurface ) * f3CdLin + fSheen ) * ( 1.f - fMetallic ) + fGs * f3Fs * fDs + 0.25f * 
+        fClearCoat * fGr * fFr * fDr ) ; 
+    } 
+    [ branch ] 
+    if ( fDotNV < 0.f ) 
+    { 
+        fFr = 0.f ; 
+        fGs = 0.f ; 
+        float retMul = saturate ( smoothstep ( 1 , 0 , ( dot ( f3N , - f3V ) ) ) ) ; 
+        return ( retMul * retMul * retMul ) * ( ( ( 1 / fPI ) * lerp ( fFd , fss , fSubSurface ) * f3CdLin + fSheen ) * ( 1.f - fMetallic ) + fGs * f3Fs * fDs + 0.25f * 
+        fClearCoat * fGr * fFr * fDr ) ; 
+    } 
+    
+#line 276
+    return ( ( ( 1 / fPI ) * lerp ( fFd , fss , fSubSurface ) * f3CdLin + fSheen ) * ( 1.f - fMetallic ) + fGs * f3Fs * fD + 0.25f * 
+    fClearCoat * fGr * fFr * fDr ) ; 
+} 
+
+#line 13 "lightingconstants.h"
+Texture2D g_PointShadowAtlas : register ( t13 ) ; 
+Texture2D g_SpotShadowAtlas : register ( t14 ) ; 
+
+#line 18
+int Vector3ToFace ( float3 f3Vec ) 
+{ 
+    int iFace = 0 ; 
+    float fx = f3Vec . x ; 
+    float fy = f3Vec . y ; 
+    float fz = f3Vec . z ; 
+    if ( ( abs ( fx ) > abs ( fy ) ) && ( abs ( fx ) > abs ( fz ) ) ) 
+    { 
+        if ( fx >= 0 ) 
+        { 
+            iFace = 0 ; 
+        } 
+        else 
+        { 
+            iFace = 1 ; 
+        } 
+    } 
+    else if ( ( abs ( fy ) > abs ( fx ) ) && ( abs ( fy ) > abs ( fz ) ) ) 
+    { 
+        if ( fy >= 0 ) 
+        { 
+            iFace = 2 ; 
+        } 
+        else 
+        { 
+            iFace = 3 ; 
+        } 
+    } 
+    else 
+    { 
+        if ( fz >= 0 ) 
+        { 
+            iFace = 4 ; 
+        } 
+        else 
+        { 
+            iFace = 5 ; 
+        } 
+    } 
+    return iFace ; 
+} 
+
+float RandomGelfond ( float2 f2p ) 
+{ 
+    const float2 r = float2 ( 23.1406926327792690 , 
+    2.6651441426902251 ) ; 
+    return ( frac ( cos ( fmod ( 123456789. , 1e-7 + 256. * dot ( f2p , r ) ) ) ) ) ; 
+} 
+
+#line 68
+float2 TexOffset2 ( int iu , int iv , float fWidth , float fHeight , float fSampleOffset , float2 f2Pos ) 
+{ 
+    const float frand = RandomGelfond ( f2Pos ) ; 
+    return float2 ( ( iu * 1.f / ( fWidth * ( fSampleOffset + frand ) ) ) , ( iv * 1.f / ( fHeight * ( fSampleOffset + frand ) ) ) ) ; 
+} 
+
+float FilterShadow ( Texture2D atlas , float3 f3uv ) 
+{ 
+    float fShadow = 0.f ; 
+    
+    static const int iKernelLevel = 3 ; 
+    static const int iKernelWidth = 2 * iKernelLevel + 1 ; 
+    [ unroll ( iKernelWidth ) ] for ( int i = - iKernelLevel ; i <= iKernelLevel ; i ++ ) 
+    { 
+        [ unroll ( iKernelWidth ) ] for ( int j = - iKernelLevel ; j <= iKernelLevel ; j ++ ) 
+        { 
+            fShadow += atlas . SampleCmpLevelZero ( g_ShadowSampler , f3uv . xy , f3uv . z , int2 ( i , j ) ) . r ; 
+        } 
+    } 
+    
+    fShadow /= ( iKernelWidth * iKernelWidth ) ; 
+    return fShadow ; 
+} 
+
+static const uint uNumDiscSamples = 16 ; 
+static const float2 f2DiscKernel [ uNumDiscSamples ] = { 
+    float2 ( 0.2069841f , 0.2245269f ) , 
+    float2 ( 0.525808f , - 0.2310817f ) , 
+    float2 ( 0.1383943f , 0.9056122f ) , 
+    float2 ( 0.6633009f , 0.5129843f ) , 
+    float2 ( - 0.4002792f , 0.3727058f ) , 
+    float2 ( 0.07912822f , - 0.6512921f ) , 
+    float2 ( - 0.7726067f , - 0.5151217f ) , 
+    float2 ( - 0.3843193f , - 0.1494132f ) , 
+    float2 ( - 0.9107782f , 0.2500633f ) , 
+    float2 ( 0.6940153f , - 0.7098927f ) , 
+    float2 ( - 0.1964669f , - 0.379389f ) , 
+    float2 ( - 0.4769286f , 0.1840863f ) , 
+    float2 ( - 0.247328f , - 0.8798459f ) , 
+    float2 ( 0.4206541f , - 0.714772f ) , 
+    float2 ( 0.5829348f , - 0.09794202f ) , 
+    float2 ( 0.3691838f , 0.4140642f ) 
+} ; 
+
+float FilterShadowRand ( Texture2D atlas , float3 f3uv ) 
+{ 
+    float fShadow = 0.f ; 
+    static const float fDivisor = 0.0002441f ; 
+    static const int iKernelLevel = 2 ; 
+    static const int iKernelWidth = 2 * iKernelLevel + 1 ; 
+    [ unroll ( iKernelWidth ) ] for ( int i = - iKernelLevel ; i <= iKernelLevel ; i ++ ) 
+    { 
+        [ unroll ( iKernelWidth ) ] for ( int j = - iKernelLevel ; j <= iKernelLevel ; j ++ ) 
+        { 
+            float fFlatNum = i + iKernelLevel + j + iKernelLevel ; 
+            
+            fShadow += atlas . SampleCmpLevelZero ( g_ShadowSampler , 
+            f3uv . xy + f2DiscKernel [ fFlatNum ] * fDivisor , 
+            f3uv . z , int2 ( i , j ) ) . r ; 
+        } 
+    } 
+    
+    fShadow /= ( iKernelWidth * iKernelWidth ) ; 
+    return fShadow ; 
+} 
+
+float ApplyPointShadow ( uint uShadowIndex , in float3 f3Position , float3 f3LightDir , in float fDistanceTerm , in float2 f2TexCoordDiff ) 
+{ 
+    float3 f3uv = - f3LightDir ; 
+    f3uv . z = - f3uv . z ; 
+    
+    int iFace = Vector3ToFace ( f3uv . xyz ) ; 
+    
+    float4 f4ShadowTexCoord = mul ( float4 ( f3Position , 1.f ) , g_mPointShadowViewProj [ uShadowIndex ] [ iFace ] ) ; 
+    f4ShadowTexCoord . xyz = f4ShadowTexCoord . xyz / f4ShadowTexCoord . w ; 
+    
+    f4ShadowTexCoord . x = f4ShadowTexCoord . x / 2.f + 0.5f ; 
+    f4ShadowTexCoord . y = f4ShadowTexCoord . y / - 2.f + 0.5f ; 
+    
+    f4ShadowTexCoord . x += iFace ; 
+    f4ShadowTexCoord . x *= rcp ( 6 ) ; 
+    
+    f4ShadowTexCoord . y += uShadowIndex ; 
+    f4ShadowTexCoord . y *= rcp ( 24 ) ; 
+    
+    f4ShadowTexCoord . z -= lerp ( 10.f , .1f , saturate ( 5 * fDistanceTerm ) ) * g_f4ShadowBias . w ; 
+    
+    return FilterShadow ( g_PointShadowAtlas , f4ShadowTexCoord . xyz ) ; 
+} 
+
+float ApplySpotShadow ( uint uShadowIndex , in float3 f3Position ) 
+{ 
+    float4 f4ShadowTexCoord = mul ( float4 ( f3Position , 1.f ) , g_mSpotShadowViewProj [ uShadowIndex ] ) ; 
+    f4ShadowTexCoord . xyz = f4ShadowTexCoord . xyz / f4ShadowTexCoord . w ; 
+    
+    f4ShadowTexCoord . x = f4ShadowTexCoord . x / 2.f + 0.5f ; 
+    f4ShadowTexCoord . y = f4ShadowTexCoord . y / - 2.f + 0.5f ; 
+    
+    f4ShadowTexCoord . x += uShadowIndex ; 
+    f4ShadowTexCoord . x *= rcp ( 24 ) ; 
+    
+    f4ShadowTexCoord . z -= g_f4ShadowBias . w * 6 ; 
+    
+    return FilterShadow ( g_SpotShadowAtlas , f4ShadowTexCoord . xyz ) ; 
+} 
+
+#line 175
+void ApplyPointLighting ( uniform bool bShadow , in Buffer < float4 > pointLightCenterAndRadiusBuffer , 
+in Buffer < float4 > pointLightColorBuffer , 
+in uint uLightIndex , in float3 f3Position , 
+in float3 f3Norm , in float3 f3ViewDir , 
+in float2 f2TexCoord , in float4 f4SpecMapCol , 
+in float4 f4DiffMapColor , 
+in float3 f3Tangent , float3 f3Bitangent , 
+out float3 f3LightColorDiffuseResult , 
+out float3 f3LightColorSpecularResult ) 
+{ 
+    float4 f4CenterAndRadius = pointLightCenterAndRadiusBuffer [ uLightIndex ] ; 
+    
+    float3 f3ToLight = f4CenterAndRadius . xyz - f3Position ; 
+    float3 f3LightDir = normalize ( f3ToLight ) ; 
+    float fLightDistance = length ( f3ToLight ) ; 
+    
+    f3LightColorDiffuseResult = float3 ( 0.f , 0.0f , 0.f ) ; 
+    f3LightColorSpecularResult = float3 ( 0.f , 0.f , 0.f ) ; 
+    
+    float fRad = f4CenterAndRadius . w ; 
+    
+    float2 f2LeanB = leantex . Sample ( g_Sampler , float3 ( f2TexCoord , 0.f ) ) ; 
+    float3 f3LeanM = leantex . Sample ( g_Sampler , float3 ( f2TexCoord , 1.f ) ) ; 
+    
+    [ branch ] 
+    if ( fLightDistance < fRad ) 
+    { 
+        float fx = fLightDistance / fRad ; 
+        
+        float fFallOff = saturate ( ( pow ( ( 1.f - pow ( fx , 4 ) ) , 2 ) ) / ( ( fLightDistance * fLightDistance ) + 1.f ) ) ; 
+        
+        f3LightColorDiffuseResult = saturate ( pointLightColorBuffer [ uLightIndex ] . rgb * BRDF ( f3ToLight , f3ViewDir , f3Norm , fRoughness , fIOR , f4DiffMapColor . xyz , 
+        f3Tangent , f3Bitangent , f2LeanB , f3LeanM ) * fFallOff ) ; 
+        
+        if ( bShadow ) 
+        { 
+            float fShadowRes = ApplyPointShadow ( uLightIndex , f3Position , f3LightDir , fx , f2TexCoord ) ; 
+            f3LightColorDiffuseResult *= fShadowRes ; 
+            f3LightColorSpecularResult *= fShadowRes ; 
+        } 
+        
+        f3LightColorDiffuseResult *= 2.f ; 
+    } 
+} 
+
+#line 240
+void ApplySpotLighting ( uniform bool bShadow , in Buffer < float4 > spotLightCenterAndRadiusBuffer , 
+in Buffer < float4 > spotLightColorBuffer , 
+in Buffer < float4 > spotLightSpotParamsBuffer , 
+in uint uLightIndex , in float3 f3Position , 
+in float3 f3Norm , in float3 f3ViewDir , 
+in float2 f2TexCoord , in float4 f4SpecMapCol , 
+in float4 f4DiffMapColor , 
+in float3 f3Tangent , in float3 f3Bitangent , 
+out float3 f3LightColorDiffuseResult , 
+out float3 f3LightColorSpecularResult ) 
+{ 
+    float4 f4BoundingSphereCenterAndRadius = spotLightCenterAndRadiusBuffer [ uLightIndex ] ; 
+    float4 f4SpotParams = spotLightSpotParamsBuffer [ uLightIndex ] ; 
+    
+#line 255
+    float3 f3SpotLightDir ; 
+    f3SpotLightDir . xy = f4SpotParams . xy ; 
+    f3SpotLightDir . z = sqrt ( 1.f - f3SpotLightDir . x * f3SpotLightDir . x - f3SpotLightDir . y * f3SpotLightDir . y ) ; 
+    
+#line 260
+    f3SpotLightDir . z = ( f4SpotParams . z > 0 ) ? f3SpotLightDir . z : - f3SpotLightDir . z ; 
+    
+    float3 f3LightPosition = f4BoundingSphereCenterAndRadius . xyz - f4BoundingSphereCenterAndRadius . w * f3SpotLightDir ; 
+    
+    float3 f3ToLight = f3LightPosition - f3Position ; 
+    float3 f3ToLightNormalized = normalize ( f3ToLight ) ; 
+    float fLightDistance = length ( f3ToLight ) ; 
+    float fCosineOfCurrentAngle = dot ( - f3ToLightNormalized , normalize ( f3SpotLightDir ) ) ; 
+    
+    f3LightColorDiffuseResult = float3 ( 0.f , 0.f , 0.f ) ; 
+    f3LightColorSpecularResult = float3 ( 0.f , 0.f , 0.f ) ; 
+    
+    float fRad = f4SpotParams . w ; 
+    float fCosineOfConeAngle = ( f4SpotParams . z > 0.f ) ? f4SpotParams . z : - f4SpotParams . z ; 
+    
+    float2 f2LeanB = leantex . Sample ( g_Sampler , float3 ( f2TexCoord , 0.f ) ) ; 
+    float3 f3LeanM = leantex . Sample ( g_Sampler , float3 ( f2TexCoord , 1.f ) ) ; 
+    
+    [ branch ] 
+    if ( fLightDistance < fRad && fCosineOfCurrentAngle > fCosineOfConeAngle ) 
+    { 
+        float fRadialAttenuation = ( fCosineOfCurrentAngle - fCosineOfConeAngle ) / ( 1.f - fCosineOfCurrentAngle ) ; 
+        fRadialAttenuation = saturate ( fRadialAttenuation * fRadialAttenuation ) ; 
+        
+        float fx = fLightDistance / fRad ; 
+        
+        double fFallOff = saturate ( ( pow ( ( 1.f - pow ( fx , 4 ) ) , 2 ) ) / ( ( fLightDistance * fLightDistance ) + 1.f ) ) ; 
+        
+        f3LightColorDiffuseResult = saturate ( spotLightColorBuffer [ uLightIndex ] . rgb * BRDF ( f3ToLight , f3ViewDir , f3Norm , fRoughness , fIOR , f4DiffMapColor . xyz , 
+        f3Tangent , f3Bitangent , f2LeanB , f3LeanM ) * fFallOff * fRadialAttenuation ) ; 
+        
+        [ branch ] 
+        if ( bShadow ) 
+        { 
+            float fShadowRes = ApplySpotShadow ( uLightIndex , f3Position ) ; 
+            f3LightColorDiffuseResult *= fShadowRes ; 
+            f3LightColorSpecularResult *= fShadowRes ; 
+        } 
+        
+        f3LightColorDiffuseResult *= 2.f ; 
+    } 
+} 
+
+void ApplyVPLLighting ( in StructuredBuffer < float4 > vplCenterAndRadiusBuffer , in StructuredBuffer < SVPLData > vplDataBuffer , 
+in uint uLightIndex , in float3 f3Position , in float3 f3Norm , in float3 f3ViewDir , in float4 f4DiffMapColor , 
+in float3 f3Tangent , in float3 f3Bitangent , 
+out float3 f3LightColorDiffuseResult ) 
+{ 
+    float4 f4CenterAndRadius = vplCenterAndRadiusBuffer [ uLightIndex ] ; 
+    SVPLData data = vplDataBuffer [ uLightIndex ] ; 
+    
+    float3 f3ToLight = f4CenterAndRadius . xyz - f3Position ; 
+    float3 f3LightDir = normalize ( f3ToLight ) ; 
+    float fLightDistance = length ( f3ToLight ) ; 
+    
+    f3LightColorDiffuseResult = float3 ( 0.f , 0.f , 0.f ) ; 
+    
+    float fRad = f4CenterAndRadius . w ; 
+    float fVPLNormalDotDir = max ( 0.f , dot ( data . f4Direction . xyz , f3ToLight ) ) ; 
+    
+    [ branch ] 
+    if ( fLightDistance < fRad && fVPLNormalDotDir > 0.f ) 
+    { 
+        float3 f3LightColor = data . f4Color . rgb ; 
+        
+        float fx = fLightDistance / fRad ; 
+        
+        float fFallOff = saturate ( ( pow ( ( 1.f - pow ( fx , 4 ) ) , 2 ) ) / ( ( fLightDistance * fLightDistance ) + 1.f ) ) ; 
+        
+        float fSourceLightDotL = dot ( data . f4SourceLightDirection . xyz , f3Norm ) ; 
+        
+        [ branch ] 
+        if ( fSourceLightDotL < 0.f ) 
+        { 
+            fSourceLightDotL = 1.f + ( fSourceLightDotL / g_fVPLRemoveBackFaceContrib ) ; 
+        } 
+        else 
+        { 
+            fSourceLightDotL = 1.f ; 
+        } 
+        
+        f3LightColorDiffuseResult = f3LightColor * saturate ( dot ( f3LightDir , f3Norm ) ) * fFallOff * fVPLNormalDotDir * fSourceLightDotL ; 
+        
+    } 
+} 
+
+#line 6 "\\\\?\\C:\\Projects\\Vektoria_2015-05-22_V13withPatch4\\Vektoria\\trunk\\VektoriaApp\\shaders\\Source\\forwardShading.hlsl"
+Buffer < float4 > g_pointLightCenterAndRadiusBuffer : register ( t2 ) ; 
+Buffer < float4 > g_pointLightColorBuffer : register ( t3 ) ; 
+Buffer < uint > g_perTilePointLightIndexBuffer : register ( t4 ) ; 
+
+Buffer < float4 > g_spotLightCenterAndRadiusBuffer : register ( t5 ) ; 
+Buffer < float4 > g_spotLightColorBuffer : register ( t6 ) ; 
+Buffer < float4 > g_spotLightSpotParamsBuffer : register ( t7 ) ; 
+Buffer < uint > g_perTileSpotLightIndexBuffer : register ( t8 ) ; 
+
+#line 19
+
+
+#line 23
+struct VS_INPUT 
+{ 
+    float4 f4Pos : POSITION ; 
+    float3 f3Normal : NORMAL ; 
+    float2 f2TexCoord : TEXCOORD ; 
+    float3 f3Tangent : TANGENT ; 
+    float3 f3Bitangent : BITANGENT ; 
+} ; 
+
+struct VS_OUTPUT 
+{ 
+    float4 f4Pos : SV_POSITION ; 
+    float3 f3Normal : NORMAL ; 
+    float3 f3Tangent : TANGENT ; 
+    float3 f3Bitangent : BITANGENT ; 
+    float2 f2TexCoord : TEXCOORD0 ; 
+    float3 f3CamPos : TEXCOORD1 ; 
+    float4 f4VertexPos : TEXCOORD2 ; 
+} ; 
+
+#line 45
+struct VS_OUTPUT_POSITION_ONLY 
+{ 
+    float4 f4Pos : SV_POSITION ; 
+} ; 
+
+#line 52
+struct VS_OUTPUT_POSITION_AND_TEX 
+{ 
+    float4 f4Pos : SV_POSITION ; 
+    float2 f2TexCoord : TEXCOORD0 ; 
+} ; 
+
+#line 60
+VS_OUTPUT_POSITION_ONLY RenderPositionOnlyVS ( VS_INPUT input ) 
+{ 
+    VS_OUTPUT_POSITION_ONLY output ; 
+    float4 f4WorldPos = mul ( float4 ( input . f4Pos ) , g_mWorld ) ; 
+    output . f4Pos = mul ( f4WorldPos , g_mViewProj ) ; 
+    
+    return output ; 
+} 
+
+#line 71
+VS_OUTPUT_POSITION_AND_TEX RenderPositionAndTexVS ( VS_INPUT input ) 
+{ 
+    VS_OUTPUT_POSITION_AND_TEX output ; 
+    float4 f4WorldPos = mul ( float4 ( input . f4Pos ) , g_mWorld ) ; 
+    output . f4Pos = mul ( f4WorldPos , g_mViewProj ) ; 
+    output . f2TexCoord = input . f2TexCoord ; 
+    
+    return output ; 
+} 
+
+#line 83
+VS_OUTPUT RenderSceneVS ( VS_INPUT input ) 
+{ 
+    VS_OUTPUT output ; 
+    float4 f4WorldPos = mul ( input . f4Pos , g_mWorld ) ; 
+    output . f4Pos = mul ( f4WorldPos , g_mViewProj ) ; 
+    output . f4VertexPos = f4WorldPos ; 
+    output . f3Normal = mul ( input . f3Normal , ( float3x3 ) g_mWorld ) ; 
+    output . f3Tangent = mul ( input . f3Tangent , ( float3x3 ) g_mWorld ) ; 
+    output . f3Bitangent = mul ( input . f3Bitangent , ( float3x3 ) g_mWorld ) ; 
+    output . f2TexCoord = input . f2TexCoord ; 
+    
+#line 96
+    float4 f4z ; 
+    f4z . xyz = 0.f ; 
+    f4z . w = 1.f ; 
+    
+    output . f3CamPos = mul ( f4z , g_mViewInv ) . xyz ; 
+    
+    return output ; 
+} 
+
+#line 107
+float4 RenderAlphaTestOnlyPS ( VS_OUTPUT_POSITION_AND_TEX input ) : SV_TARGET 
+{ 
+    [ branch ] 
+    if ( uiyPos > 1 || uiyPics > 1 ) 
+    { 
+        float fxPic = uixPos ; 
+        float fyPic = uiyPos ; 
+        float fxPics = uixPics ; 
+        float fyPics = uiyPics ; 
+        input . f2TexCoord . x = fxPic / fxPics + input . f2TexCoord . x * ( 1.f / fxPics ) ; 
+        input . f2TexCoord . y = fyPic / fyPics + input . f2TexCoord . y * ( 1.f / fyPics ) ; 
+    } 
+    
+    float4 f4DiffTex = tex2D [ 0 ] . Sample ( g_Sampler , input . f2TexCoord ) ; 
+    
+    [ branch ] 
+    if ( uChromaKeying ) 
+    { 
+        uint iWidth ; 
+        uint iHeight ; 
+        uint iLevels ; 
+        tex2D [ 0 ] . GetDimensions ( 0 , iWidth , iHeight , iLevels ) ; 
+        
+#line 131
+        float2 f2TexCoord2 = float2 ( input . f2TexCoord . x * iWidth , input . f2TexCoord . y * iHeight ) ; 
+        int2 i2TexCoord = int2 ( input . f2TexCoord . x , input . f2TexCoord . y ) ; 
+        
+#line 135
+        int3 i3Pos = int3 ( 0 , 0 , 0 ) ; 
+        float4 f4ChromaKey = tex2D [ 0 ] . Load ( i3Pos ) ; 
+        i3Pos = int3 ( i2TexCoord . x , i2TexCoord . y , 0 ) ; 
+        float4 f4Texel = tex2D [ 0 ] . Load ( i3Pos ) ; 
+        
+#line 141
+        if ( ( f4Texel . r == f4ChromaKey . r ) && ( f4Texel . g == f4ChromaKey . g ) && ( f4Texel . b == f4ChromaKey . b ) ) 
+        f4DiffTex . a = 0 ; 
+        
+#line 145
+        float2 f2TexPos1 = float2 ( f2TexCoord2 . x - 0.5 , f2TexCoord2 . y - 0.5 ) ; 
+        float2 f2TexPos2 = float2 ( f2TexCoord2 . x + 0.5 , f2TexCoord2 . y - 0.5 ) ; 
+        float2 f2TexPos3 = float2 ( f2TexCoord2 . x - 0.5 , f2TexCoord2 . y + 0.5 ) ; 
+        float2 f2TexPos4 = float2 ( f2TexCoord2 . x + 0.5 , f2TexCoord2 . y + 0.5 ) ; 
+        float4 f4Col1 = tex2D [ 0 ] . Load ( int3 ( f2TexPos1 . x , f2TexPos1 . y , 0 ) ) ; 
+        float4 f4Col2 = tex2D [ 0 ] . Load ( int3 ( f2TexPos2 . x , f2TexPos2 . y , 0 ) ) ; 
+        float4 f4Col3 = tex2D [ 0 ] . Load ( int3 ( f2TexPos3 . x , f2TexPos3 . y , 0 ) ) ; 
+        float4 f4Col4 = tex2D [ 0 ] . Load ( int3 ( f2TexPos4 . x , f2TexPos4 . y , 0 ) ) ; 
+        [ branch ] 
+        if ( ( f4Col1 . r == f4ChromaKey . r ) && ( f4Col1 . g == f4ChromaKey . g ) && ( f4Col1 . b == f4ChromaKey . b ) ) f4Col1 = 0 ; 
+        [ branch ] 
+        if ( ( f4Col2 . r == f4ChromaKey . r ) && ( f4Col2 . g == f4ChromaKey . g ) && ( f4Col2 . b == f4ChromaKey . b ) ) f4Col2 = 0 ; 
+        [ branch ] 
+        if ( ( f4Col3 . r == f4ChromaKey . r ) && ( f4Col3 . g == f4ChromaKey . g ) && ( f4Col3 . b == f4ChromaKey . b ) ) f4Col3 = 0 ; 
+        [ branch ] 
+        if ( ( f4Col4 . r == f4ChromaKey . r ) && ( f4Col4 . g == f4ChromaKey . g ) && ( f4Col4 . b == f4ChromaKey . b ) ) f4Col4 = 0 ; 
+        f2TexPos1 = float2 ( frac ( f2TexPos1 . x ) , frac ( f2TexPos1 . y ) ) ; 
+        
+#line 164
+        float fAlpha = ( f4Col2 . a - f4Col1 . a ) * f2TexPos1 . x + f4Col1 . a ; 
+        fAlpha = ( ( ( f4Col4 . a - f4Col3 . a ) * f2TexPos1 . x + f4Col3 . a ) - fAlpha ) * f2TexPos1 . y + fAlpha ; 
+        
+#line 168
+        [ branch ] 
+        if ( fAlpha < 0.73 ) 
+        f4DiffTex . a = fAlpha - 0.40 ; 
+        
+        f4Col1 = float4 ( 
+        ( f4Col2 . r - f4Col1 . r ) * f2TexPos1 . x + f4Col1 . r , 
+        ( f4Col2 . g - f4Col1 . g ) * f2TexPos1 . x + f4Col1 . g , 
+        ( f4Col2 . b - f4Col1 . b ) * f2TexPos1 . x + f4Col1 . b , 
+        0 ) ; 
+        f4Col3 = float4 ( 
+        ( f4Col4 . r - f4Col3 . r ) * f2TexPos1 . x + f4Col3 . r , 
+        ( f4Col4 . g - f4Col3 . g ) * f2TexPos1 . x + f4Col3 . g , 
+        ( f4Col4 . b - f4Col3 . b ) * f2TexPos1 . x + f4Col3 . b , 
+        0 ) ; 
+        f4DiffTex = float4 ( 
+        ( f4Col3 . r - f4Col1 . r ) * f2TexPos1 . y + f4Col1 . r , 
+        ( f4Col3 . g - f4Col1 . g ) * f2TexPos1 . y + f4Col1 . g , 
+        ( f4Col3 . b - f4Col1 . b ) * f2TexPos1 . y + f4Col1 . b , 
+        fAlpha ) ; 
+        
+    } 
+    
+    float fAlpha = f4DiffTex . a ; 
+    [ branch ] 
+    if ( fAlpha < g_fAlphaTest ) discard ; 
+    return f4DiffTex ; 
+} 
+
+static const float pi = 3.14159265f ; 
+float2 SphericalMapping ( float3 f3 ) 
+{ 
+    float phi = 0 ; 
+    
+    if ( ( f3 . z >= 0 ) && ( f3 . x >= 0 ) ) 
+    { 
+        phi = atan ( f3 . x / f3 . z ) ; 
+    } 
+    if ( ( f3 . z < 0 ) && ( f3 . x >= 0 ) ) 
+    { 
+        phi = atan ( f3 . x / f3 . z ) ; 
+        phi += pi ; 
+    } 
+    if ( ( f3 . z < 0 ) && ( f3 . x < 0 ) ) 
+    { 
+        phi = atan ( f3 . x / f3 . z ) ; 
+        phi += pi ; 
+    } 
+    if ( ( f3 . z >= 0 ) && ( f3 . x < 0 ) ) 
+    { 
+        phi = atan ( f3 . x / f3 . z ) ; 
+        phi += 2 * pi ; 
+    } 
+    phi /= 2.f * pi ; 
+    
+    float theta = acos ( f3 . y ) ; 
+    theta /= pi ; 
+    
+    return float2 ( phi , theta ) ; 
+} 
+
+#line 230
+float4 RenderScenePS ( VS_OUTPUT input ) : SV_TARGET 
+{ 
+    [ branch ] 
+    if ( uiyPos > 1 || uiyPics > 1 ) 
+    { 
+        float fxPic = uixPos ; 
+        float fyPic = uiyPos ; 
+        float fxPics = uixPics ; 
+        float fyPics = uiyPics ; 
+        input . f2TexCoord . x = fxPic / fxPics + input . f2TexCoord . x * ( 1.f / fxPics ) ; 
+        input . f2TexCoord . y = fyPic / fyPics + input . f2TexCoord . y * ( 1.f / fyPics ) ; 
+    } 
+    
+    float3 f3VertexPos = input . f4VertexPos . xyz / input . f4VertexPos . w ; 
+    
+    float3 f3AccumDiffuse = float3 ( 0.f , 0.f , 0.f ) ; 
+    float3 f3AccumSpecular = float3 ( 0.f , 0.f , 0.f ) ; 
+    
+    float2 f2ParallaxTex = input . f2TexCoord ; 
+    
+    float3 f3PosDDx = ddx ( input . f4VertexPos . xyz ) ; 
+    float3 f3PosDDy = ddy ( input . f4VertexPos . xyz ) ; 
+    float2 f2TexPosDDx = ddx ( input . f2TexCoord ) ; 
+    float2 f2TexPosDDy = ddy ( input . f2TexCoord ) ; 
+    
+    float3 f3T = normalize ( f2TexPosDDy . y * f3PosDDx - f2TexPosDDx . y * f3PosDDy ) ; 
+    float3 f3B = normalize ( f2TexPosDDy . x * f3PosDDx - f2TexPosDDx . x * f3PosDDy ) ; 
+    
+    float3 f3N = normalize ( input . f3Normal ) ; 
+    float3 f3X = cross ( f3N , f3T ) ; 
+    f3T = cross ( f3X , f3N ) ; 
+    f3T = normalize ( f3T ) ; 
+    f3X = cross ( f3B , f3N ) ; 
+    f3B = cross ( f3X , f3N ) ; 
+    f3B = normalize ( f3B ) ; 
+    input . f3Tangent = f3T ; 
+    input . f3Bitangent = f3B ; 
+    
+#line 271
+    const float3 f3EyeVector = normalize ( input . f3CamPos . xyz - input . f4VertexPos . xyz ) ; 
+    float3 f3ViewDir = - f3EyeVector ; 
+    f3ViewDir = normalize ( g_f3CameraPos - input . f4VertexPos . xyz ) ; 
+    [ branch ] 
+    if ( uPOM == 1 ) 
+    { 
+        
+#line 280
+        const float3x3 f3x3ToTangent = transpose ( float3x3 ( input . f3Tangent , input . f3Bitangent , input . f3Normal ) ) ; 
+        const float3 f3ViewDirTS = mul ( f3ViewDir , f3x3ToTangent ) ; 
+        
+        const float2 f2MaxParallaxOffset = - f3ViewDirTS . xy * 0.02f / f3ViewDirTS . z ; 
+        
+        const int iSampleCount = ( ( int ) lerp ( 25 , 5 , dot ( - f3EyeVector , input . f3Normal ) ) ) ; 
+        
+        const float fZStep = 1.f / ( float ) iSampleCount ; 
+        const float2 f2TexStep = f2MaxParallaxOffset * fZStep ; 
+        
+        const float2 f2Dx = ddx ( f2ParallaxTex ) ; 
+        const float2 f2Dy = ddy ( f2ParallaxTex ) ; 
+        
+        int iSampleIdx = 0 ; 
+        float2 f2CurTexOffset = 0.f ; 
+        float2 f2PrevTexOffset = 0.f ; 
+        float2 f2FinalTexOffset = 0.f ; 
+        float fCurRayZ = 1.f - fZStep ; 
+        float fPrevRayZ = 1.f ; 
+        float fCurHeight = 0.f ; 
+        float fPrevHeight = 0.f ; 
+        float2 f2P1 = 0.f ; 
+        float2 f2P2 = 0.f ; 
+        
+        [ loop ] 
+        while ( iSampleIdx < iSampleCount + 1 ) 
+        { 
+            fCurHeight = tex2D [ 5 ] . SampleGrad ( g_Sampler , f2ParallaxTex + f2CurTexOffset , f2Dx , f2Dy ) . g ; 
+            fCurHeight = ( fPrevHeight + fCurHeight ) * .5f ; 
+            [ branch ] 
+            if ( fCurHeight > fCurRayZ ) 
+            { 
+                float fT = ( fPrevHeight - fPrevRayZ ) / ( fPrevHeight - fCurHeight + fCurRayZ - fPrevRayZ ) ; 
+                f2FinalTexOffset = f2PrevTexOffset + fT * f2TexStep ; 
+                
+                iSampleIdx = iSampleCount + 1 ; 
+            } 
+            else 
+            { 
+                ++ iSampleIdx ; 
+                f2PrevTexOffset = f2CurTexOffset ; 
+                fPrevRayZ = fCurRayZ ; 
+                fPrevHeight = fCurHeight ; 
+                f2CurTexOffset += f2TexStep ; 
+                fCurRayZ -= fZStep ; 
+            } 
+        } 
+        
+        f2ParallaxTex = f2ParallaxTex + f2FinalTexOffset ; 
+        
+        float fHeightX = ( tex2D [ 1 ] . Sample ( g_pointSampler , f2ParallaxTex ) . g ) ; 
+        float fHeightY = ( tex2D [ 1 ] . Sample ( g_pointSampler , f2ParallaxTex ) . g ) ; 
+        
+#line 334
+        input . f3Normal = normalize ( input . f3Normal ) ; 
+    } 
+    
+    float4 f4DiffTex = tex2D [ 0 ] . Sample ( g_Sampler , f2ParallaxTex ) ; 
+    
+#line 343
+    
+    float fSpecMasc = f4DiffTex . a ; 
+    
+    
+#line 349
+    [ branch ] 
+    if ( uBump ) 
+    { 
+        float3 f3BumpNormal = ( ( 2 * ( tex2D [ 3 ] . Sample ( g_Sampler , f2ParallaxTex ) ) ) - 1.f ) . xyz ; 
+        f3BumpNormal *= fBumpStrength ; 
+        input . f3Normal += f3BumpNormal . x * input . f3Tangent + f3BumpNormal . y * input . f3Bitangent ; 
+        input . f3Normal = normalize ( input . f3Normal ) ; 
+    } 
+    float3 f3Norm = input . f3Normal ; 
+    
+#line 361
+    float4 f4SpecMapCol = float4 ( 0.f , 0.f , 0.f , 0.f ) ; 
+    [ branch ] 
+    if ( uSpecular ) 
+    f4SpecMapCol = tex2D [ 0 ] . Sample ( g_Sampler , f2ParallaxTex ) ; 
+    
+#line 369
+    float fAmbientBlend = 0.5f * f3Norm . y + 0.5f ; 
+    float3 f3Ambient = g_f4AmbientColorUp . rgb * fAmbientBlend + g_f4AmbientColorDown . rgb * ( 1.f - fAmbientBlend ) ; 
+    
+#line 374
+    { 
+        uint uStartIndex , uLightCount ; 
+        GetLightListInfo ( g_perTilePointLightIndexBuffer , g_uMaxNumLightsPerTile , g_uMaxNumElementsPerTile , input . f4Pos , 
+        uStartIndex , uLightCount ) ; 
+        
+        [ loop ] 
+        for ( uint i = uStartIndex ; i < uStartIndex + uLightCount ; i ++ ) 
+        { 
+            uint uLightIndex = g_perTilePointLightIndexBuffer [ i ] ; 
+            
+            float3 f3LightColorDiffuseResult = float3 ( 0.f , 0.f , 0.f ) ; 
+            float3 f3LightColorSpecularResult = float3 ( 0.f , 0.f , 0.f ) ; 
+            
+#line 390
+            
+            ApplyPointLighting ( false , g_pointLightCenterAndRadiusBuffer , g_pointLightColorBuffer , uLightIndex , f3VertexPos , 
+            f3Norm , f3ViewDir , f2ParallaxTex , f4SpecMapCol , f4DiffTex , input . f3Tangent , input . f3Bitangent , 
+            f3LightColorDiffuseResult , f3LightColorSpecularResult ) ; 
+            
+            
+#line 397
+            if ( uTexSSS ) 
+            { 
+                float4 f4CenterAndRadius = g_pointLightCenterAndRadiusBuffer [ uLightIndex ] ; 
+                float3 f3ToLight = f4CenterAndRadius . xyz - f3VertexPos ; 
+                float3 f3LightCol = g_pointLightColorBuffer [ uLightIndex ] . rgb ; 
+                float fLength = length ( f3ToLight ) ; 
+                
+                const float4 f4TexColor = tex2D [ 0 ] . Sample ( g_Sampler , f2ParallaxTex ) ; 
+                const float fThickValue = length ( tex2D [ 6 ] . Sample ( g_Sampler , f2ParallaxTex ) . rgb ) ; 
+                
+                SubsurfaceScattering ( f4CenterAndRadius , f3ToLight , f3LightCol , f4TexColor , fThickValue , f4SSSBRDFParams , 
+                f4ColorSSS , input . f4VertexPos , input . f3CamPos , f3Norm , 
+                f3LightColorSpecularResult , f3LightColorDiffuseResult ) ; 
+                
+            } 
+            
+            f3AccumDiffuse += f3LightColorDiffuseResult ; 
+            f3AccumSpecular += f3LightColorSpecularResult ; 
+        } 
+    } 
+    
+#line 420
+    { 
+        uint uStartIndex , uLightCount ; 
+        GetLightListInfo ( g_perTileSpotLightIndexBuffer , g_uMaxNumLightsPerTile , g_uMaxNumElementsPerTile , input . f4Pos , 
+        uStartIndex , uLightCount ) ; 
+        [ loop ] 
+        for ( uint i = uStartIndex ; i < uStartIndex + uLightCount ; i ++ ) 
+        { 
+            uint uLightIndex = g_perTileSpotLightIndexBuffer [ i ] ; 
+            
+            float3 f3LightColorDiffuseResult = float3 ( 0.f , 0.f , 0.f ) ; 
+            float3 f3LightColorSpecularResult = float3 ( 0.f , 0.f , 0.f ) ; 
+            
+#line 435
+            
+            ApplySpotLighting ( false , g_spotLightCenterAndRadiusBuffer , g_spotLightColorBuffer , g_spotLightSpotParamsBuffer , 
+            uLightIndex , f3VertexPos , f3Norm , f3ViewDir , f2ParallaxTex , f4SpecMapCol , f4DiffTex , input . f3Tangent , input . f3Bitangent , 
+            f3LightColorDiffuseResult , f3LightColorSpecularResult ) ; 
+            
+            
+            if ( uTexSSS ) 
+            { 
+                float4 f4CenterAndRadius = g_spotLightCenterAndRadiusBuffer [ uLightIndex ] ; 
+                float3 f3ToLight = f4CenterAndRadius . xyz - f3VertexPos ; 
+                float3 f3LightCol = g_spotLightColorBuffer [ uLightIndex ] . rgb ; 
+                
+                const float4 f4TexColor = tex2D [ 0 ] . Sample ( g_Sampler , f2ParallaxTex ) ; 
+                const float fThickValue = length ( tex2D [ 6 ] . Sample ( g_Sampler , f2ParallaxTex ) . rgb ) ; 
+                
+                SubsurfaceScattering ( f4CenterAndRadius , f3ToLight , f3LightCol , f4TexColor , fThickValue , f4SSSBRDFParams , 
+                f4ColorSSS , input . f4VertexPos , input . f3CamPos , f3Norm , 
+                f3LightColorSpecularResult , f3LightColorDiffuseResult ) ; 
+            } 
+            
+            f3AccumDiffuse += f3LightColorDiffuseResult ; 
+            f3AccumSpecular += f3LightColorSpecularResult ; 
+        } 
+    } 
+    
+#line 498
+    
+    
+    f3AccumDiffuse *= 180.f ; 
+    f3AccumSpecular *= 2.f ; 
+    
+#line 505
+    float4 f4Glow = 0.f ; 
+    [ branch ] 
+    if ( uGlow ) 
+    { 
+        float4 f4Amb = float4 ( 1.f , 1.f , 1.f , 1.f ) ; 
+        [ branch ] 
+        if ( uGlowAsAmbient ) 
+        f4Glow = float4 ( f3Ambient , 1.f ) ; 
+        else 
+        { 
+            if ( uGlowAsImage ) 
+            f4Glow = tex2D [ 0 ] . Sample ( g_Sampler , f2ParallaxTex ) * saturate ( 1 - float4 ( f3Ambient , 1.f ) ) ; 
+            else 
+            f4Glow = tex2D [ 1 ] . Sample ( g_Sampler , f2ParallaxTex ) * saturate ( 1 - float4 ( f3Ambient , 1.f ) ) ; 
+        } 
+    } 
+    else 
+    f4Glow = 0.f ; 
+    
+#line 526
+    f3AccumDiffuse += f4Glow * 0.75 ; 
+    float3 f3DiffuseAndAmbient = f3AccumDiffuse + f3Ambient ; 
+    float4 f4ColorOut = float4 ( 0.f , 0.f , 0.f , 1.f ) ; 
+    [ branch ] 
+    if ( uShadingOn ) 
+    { 
+        f4ColorOut = float4 ( ( f4DiffTex . xyz * ( f3DiffuseAndAmbient + f3AccumSpecular * fSpecMasc ) ) , 1.f ) ; 
+        float3 ambient = f3Ambient * f4DiffTex . xyz ; 
+        float3 spec = f3AccumSpecular * f4DiffTex . xyz ; 
+        f4ColorOut = float4 ( f3AccumDiffuse + ambient + ( spec * fSpecMasc ) , 1.f ) ; 
+    } 
+    else 
+    { 
+        f4ColorOut = float4 ( f4DiffTex . xyz , 1 ) ; 
+    } 
+    
+    float4 f4ReflectionTexture ; 
+    if ( uSpecular ) 
+    { 
+        if ( uSpecularWhite ) 
+        f4ReflectionTexture = 1 ; 
+        else if ( uSpecularAsImage ) 
+        f4ReflectionTexture = tex2D [ 0 ] . Sample ( g_Sampler , f2ParallaxTex ) ; 
+        else 
+        f4ReflectionTexture = tex2D [ 2 ] . Sample ( g_Sampler , f2ParallaxTex ) ; 
+    } 
+    else 
+    { 
+        f4ReflectionTexture = 0 ; 
+    } 
+    
+#line 559
+    [ branch ] 
+    if ( uEnvironment ) 
+    { 
+        float3 f3EyeVector = - normalize ( input . f3CamPos - input . f4VertexPos . xyz ) ; 
+        float3 f3Reflection = reflect ( f3EyeVector , input . f3Normal ) ; 
+        float3 f3Refraction = refract ( f3EyeVector , input . f3Normal , .95f ) ; 
+        
+        float4 f4RefrColor = tex2D [ 4 ] . Sample ( g_Sampler , SphericalMapping ( f3Refraction ) ) ; 
+        float4 f4ReflColor = tex2D [ 4 ] . Sample ( g_Sampler , SphericalMapping ( f3Reflection ) ) ; 
+        
+        f4ColorOut += ( ( f4RefrColor * f4ReflectionTexture . r + f4ReflColor * f4ReflectionTexture . g + f4ColorOut * f4ReflectionTexture . b ) 
+        / f4ColorSSS . a ) * ( length ( f4ColorOut . rgb ) * length ( f4ColorOut . rgb ) ) ; 
+    } 
+    
+#line 575
+    [ branch ] 
+    if ( uStyleHalfTransparent ) 
+    { 
+        f4ColorOut *= 0.5 ; 
+    } 
+    [ branch ] 
+    if ( uStyleOutlining ) 
+    { 
+        float fEdge = max ( dot ( normalize ( input . f3CamPos - ( float3 ) input . f4VertexPos ) , f3Norm ) , 0 ) ; 
+        [ branch ] 
+        if ( fEdge < f4ColorViewportOutline . a ) 
+        f4ColorOut . rgb = f4ColorViewportOutline . rgb ; 
+        
+    } 
+    
+#line 592
+    [ branch ] 
+    if ( uStyleFog ) 
+    { 
+        f4ColorOut . rgb += saturate ( length ( input . f3CamPos - ( float3 ) input . f4VertexPos ) / f4FogParams . a ) ; 
+    } 
+    
+#line 600
+    [ branch ] 
+    if ( uStyleColor ) 
+    { 
+        f4ColorOut = mul ( f4ColorOut , mColorModification ) ; 
+    } 
+    
+#line 608
+    [ branch ] 
+    if ( uStyleOwn ) 
+    { 
+        
+    } 
+    
+    return f4ColorOut ; 
+} 
+ 

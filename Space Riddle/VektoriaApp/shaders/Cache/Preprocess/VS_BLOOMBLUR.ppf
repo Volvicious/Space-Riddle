@@ -1,0 +1,262 @@
+#line 1 "\\\\?\\C:\\Projects\\Vektoria_2015-05-22_V13withPatch4\\Vektoria\\trunk\\VektoriaApp\\shaders\\source\\BloomPost.hlsl"
+
+
+#line 1 "postconstants.h"
+
+SamplerState linearSampler : register ( s1 ) ; 
+SamplerState pointSampler : register ( s2 ) ; 
+
+cbuffer ObjectInfo : register ( b0 ) 
+{ 
+    matrix World ; 
+} 
+
+cbuffer TexInfo : register ( b7 ) 
+{ 
+    float fBloomOriginalIntensity : packoffset ( c0 . x ) ; 
+    float fBloomIntensity : packoffset ( c0 . y ) ; 
+    float fBloomOriginalSaturation : packoffset ( c0 . z ) ; 
+    float fBloomSaturation : packoffset ( c0 . w ) ; 
+    float fRayExposure : packoffset ( c1 . x ) ; 
+    float fRayDecay : packoffset ( c1 . y ) ; 
+    float fRayDensity : packoffset ( c1 . z ) ; 
+    float fRayWeight : packoffset ( c1 . w ) ; 
+    float fTimeDelta : packoffset ( c2 . x ) ; 
+    float fBloomBlurDistance : packoffset ( c2 . y ) ; 
+    float fDoFFar : packoffset ( c2 . z ) ; 
+    float fDoFNear : packoffset ( c2 . w ) ; 
+    float fRcpFrameX : packoffset ( c3 . x ) ; 
+    float fRcpFrameY : packoffset ( c3 . y ) ; 
+    uint uPad5 : packoffset ( c3 . z ) ; 
+    uint uPad6 : packoffset ( c3 . w ) ; 
+    float4 f4GodRayPos : packoffset ( c4 ) ; 
+    float4 f4rcpFrameOpt : packoffset ( c5 ) ; 
+    float4 f4DoFParams : packoffset ( c6 ) ; 
+} 
+
+#line 35
+float CalcLuminance ( float3 f3Color ) 
+{ 
+    return max ( dot ( f3Color , float3 ( 0.299f , 0.587f , 0.114f ) ) , 0.0001f ) ; 
+} 
+
+float GetAvgLuminance ( Texture2D lumTex , float2 f2TexCoord ) 
+{ 
+    return exp ( lumTex . SampleLevel ( linearSampler , f2TexCoord , 10 ) . x ) ; 
+} 
+
+#line 46
+float3 ToneMapFilmicALU ( float3 f3Color ) 
+{ 
+    f3Color = max ( 0.f , f3Color - 0.004f ) ; 
+    f3Color = ( f3Color * ( 6.2f * f3Color + .5f ) ) / ( f3Color * ( 6.2f * f3Color + 1.7f ) + 0.06f ) ; 
+    
+#line 52
+    return pow ( f3Color , 2.2f ) ; 
+} 
+
+#line 56
+float3 ToneMapReinhard ( float3 f3Color , float fSaturation ) 
+{ 
+    float fPixelLuminance = CalcLuminance ( f3Color ) ; 
+    float fToneMappedLuminance = fPixelLuminance / ( fPixelLuminance + 1.f ) ; 
+    return fToneMappedLuminance * pow ( f3Color / fPixelLuminance , fSaturation ) ; 
+} 
+
+float3 CalcExposedColor ( float3 f3Color , float fAvgLuminance , float fThreshold , out float fExposure ) 
+{ 
+    fAvgLuminance = max ( fAvgLuminance , 0.0001f ) ; 
+    float fKeyVal = 1.f ; 
+    float fLinearExposure = ( fKeyVal / fAvgLuminance ) ; 
+    fExposure = log2 ( max ( fLinearExposure , 0.0001f ) ) ; 
+    fExposure -= fThreshold ; 
+    
+    return exp2 ( fExposure ) * f3Color ; 
+} 
+
+float3 ToneMap ( float3 f3Color , float fAvgLuminance , float fThreshold , float fSaturation , out float fExposure ) 
+{ 
+    float fPixelLuminance = CalcLuminance ( f3Color ) ; 
+    fExposure = 0.f ; 
+    f3Color = CalcExposedColor ( f3Color , fAvgLuminance , fThreshold , fExposure ) ; 
+    f3Color = ToneMapFilmicALU ( f3Color ) ; 
+    
+    return f3Color ; 
+} 
+
+#line 3 "\\\\?\\C:\\Projects\\Vektoria_2015-05-22_V13withPatch4\\Vektoria\\trunk\\VektoriaApp\\shaders\\source\\BloomPost.hlsl"
+Texture2D tex2D [ 9 ] : register ( t15 ) ; 
+
+
+Texture2D < float > transparentDepthTex : register ( t26 ) ; 
+Texture2D < float > opaqueDepthTex : register ( t24 ) ; 
+
+#line 11
+
+
+Texture2D lumTex : register ( t25 ) ; 
+Texture2D lumTex1 : register ( t26 ) ; 
+
+struct VS_INPUT_BLOOM_POST 
+{ 
+    float4 f4Pos : POSITION ; 
+    float3 f3Normal : NORMAL ; 
+    float2 f2TexCoord : TEXCOORD ; 
+    float3 f3Tangent : TANGENT ; 
+    float3 f3Bitangent : BITANGENT ; 
+} ; 
+
+struct PS_INPUT_BLOOM_POST 
+{ 
+    float4 f4Pos : SV_POSITION0 ; 
+    float2 f2TexCoord : TEXCOORD0 ; 
+    float4 f4VertexPos : TEXCOORD2 ; 
+} ; 
+
+PS_INPUT_BLOOM_POST VS_BLOOMTEXTURE ( VS_INPUT_BLOOM_POST input ) 
+{ 
+    PS_INPUT_BLOOM_POST output = ( PS_INPUT_BLOOM_POST ) 0 ; 
+    output . f2TexCoord = input . f2TexCoord ; 
+    
+    output . f4Pos = mul ( input . f4Pos , World ) ; 
+    
+    return output ; 
+} 
+
+PS_INPUT_BLOOM_POST VS_BLOOMBLUR ( VS_INPUT_BLOOM_POST input ) 
+{ 
+    PS_INPUT_BLOOM_POST output = ( PS_INPUT_BLOOM_POST ) 0 ; 
+    output . f2TexCoord = input . f2TexCoord ; 
+    
+    output . f4Pos = mul ( input . f4Pos , World ) ; 
+    
+    return output ; 
+} 
+
+PS_INPUT_BLOOM_POST VS_BLOOMACCUM ( VS_INPUT_BLOOM_POST input ) 
+{ 
+    PS_INPUT_BLOOM_POST output = ( PS_INPUT_BLOOM_POST ) 0 ; 
+    output . f2TexCoord = input . f2TexCoord ; 
+    
+    output . f4Pos = mul ( input . f4Pos , World ) ; 
+    
+    return output ; 
+} 
+
+float4 PS_BLOOMTEXTURE ( PS_INPUT_BLOOM_POST input ) : SV_TARGET 
+{ 
+    float4 f4ColorOut = tex2D [ 7 ] . Sample ( linearSampler , input . f2TexCoord ) ; 
+    float fThreshold = .9 ; 
+    
+    return saturate ( ( f4ColorOut - fThreshold ) / ( 1.f - fThreshold ) ) ; 
+} 
+
+float CalcGaussianWeight ( int iSampleDist , float fSigma ) 
+{ 
+    float fG = 1.f / sqrt ( 2.f * 3.14159 * fSigma * fSigma ) ; 
+    return ( fG * exp ( - ( iSampleDist * iSampleDist ) / ( 2 * fSigma * fSigma ) ) ) ; 
+} 
+
+float4 Blur ( in PS_INPUT_BLOOM_POST input , float2 f2TexScale , float fSigma ) 
+{ 
+    float4 f4Color = 0 ; 
+    float2 f2FrameWidth = float2 ( 1.f / fRcpFrameX , 1.f / fRcpFrameY ) ; 
+    for ( int i = - 6 ; i < 6 ; ++ i ) 
+    { 
+        float fWeight = CalcGaussianWeight ( i , fSigma ) ; 
+        float2 f2TexCoord = input . f2TexCoord ; 
+        f2TexCoord -= ( i / f2FrameWidth ) * f2TexScale ; 
+        
+        float4 f4Sample = tex2D [ 8 ] . Sample ( linearSampler , f2TexCoord ) ; 
+        f4Color += f4Sample * fWeight ; 
+    } 
+    
+    return f4Color ; 
+} 
+
+float4 BloomBlurH ( in PS_INPUT_BLOOM_POST input ) 
+{ 
+    return ( Blur ( input , float2 ( 1 , 0 ) , 1.8f ) ) ; 
+} 
+
+float4 BloomBlurV ( in PS_INPUT_BLOOM_POST input ) 
+{ 
+    return ( Blur ( input , float2 ( 0 , 1 ) , 1.8f ) ) ; 
+} 
+
+float4 PS_BLOOMBLUR ( PS_INPUT_BLOOM_POST input ) : SV_TARGET 
+{ 
+    float4 f4ColorOut = BloomBlurH ( input ) ; 
+    f4ColorOut += BloomBlurV ( input ) ; 
+    f4ColorOut *= 0.5f ; 
+    
+    f4ColorOut . w = 1.f ; 
+    return f4ColorOut ; 
+} 
+
+float4 AdjustSaturationO ( float4 f4Color , float fSaturation , float2 f2TexCoord ) 
+{ 
+    float fGrey = max ( dot ( f4Color . xyz , float3 ( 0.299f , 0.587f , 0.114f ) ) , 0.0001f ) ; 
+    
+    return lerp ( fGrey , f4Color , fSaturation ) ; 
+} 
+
+float4 AdjustSaturationB ( float4 f4Color , float fSaturation ) 
+{ 
+    float fGrey = max ( dot ( f4Color . xyz , float3 ( 0.299f , 0.587f , 0.114f ) ) , 0.0001f ) ; 
+    
+    return lerp ( fGrey , f4Color , fSaturation ) ; 
+} 
+
+float4 PS_LUMINANCE ( PS_INPUT_BLOOM_POST input ) : SV_TARGET 
+{ 
+    float3 f3Color = tex2D [ 7 ] . Sample ( linearSampler , input . f2TexCoord ) ; 
+    
+    float fLuminance = CalcLuminance ( f3Color ) ; 
+    
+    return float4 ( fLuminance , 1.f , 1.f , 1.f ) ; 
+} 
+
+float4 PS_ADAPT_LUMINANCE ( PS_INPUT_BLOOM_POST input ) : SV_TARGET 
+{ 
+    const float fTau = 1.f ; 
+    float fLastLum = exp ( lumTex1 . Sample ( pointSampler , input . f2TexCoord ) . x ) ; 
+    float fCurrentLum = lumTex . Sample ( pointSampler , input . f2TexCoord ) . x ; 
+    
+    float fAdaptedLum = fLastLum + ( fCurrentLum - fLastLum ) * ( 1.f - exp ( - fTimeDelta * fTau ) ) ; 
+    
+    return float4 ( log ( fAdaptedLum ) , 1.f , 1.f , 1.f ) ; 
+} 
+
+float LinearDepth ( in float fZBufferDepth ) 
+{ 
+    return fDoFFar / ( fZBufferDepth - fDoFNear ) ; 
+} 
+
+float4 PS_BLOOMACCUM ( PS_INPUT_BLOOM_POST input ) : SV_TARGET 
+{ 
+    float fOriginalIntesity = 1.f ; 
+    float fBloomIntesity = 1.3f ; 
+    float fOriginalSaturation = 1.f ; 
+    float fBloomSaturation = 1.3f ; 
+    
+    
+    float fOpaqueDepth = LinearDepth ( opaqueDepthTex . Load ( int3 ( input . f4Pos . xy , 0 ) ) ) ; 
+    float fTransparentDepth = LinearDepth ( transparentDepthTex . Load ( int3 ( input . f4Pos . xy , 0 ) ) ) ; 
+    
+#line 165
+    
+    
+    float fDepth = fTransparentDepth > fOpaqueDepth ? fOpaqueDepth : fTransparentDepth ; 
+    fDepth = 1.f - 1.3 * fDepth ; 
+    
+    fBloomIntesity *= ( fDepth ) ; 
+    float4 f4BloomColor = tex2D [ 8 ] . Sample ( linearSampler , input . f2TexCoord ) * fBloomIntesity ; 
+    float4 f4OriginalColor = tex2D [ 7 ] . Sample ( linearSampler , input . f2TexCoord ) * fOriginalIntesity ; 
+    
+#line 178
+    f4BloomColor = AdjustSaturationB ( f4BloomColor , fBloomSaturation ) * fBloomIntesity ; 
+    f4OriginalColor = AdjustSaturationO ( f4OriginalColor , fOriginalSaturation , input . f2TexCoord ) * fOriginalIntesity ; 
+    
+    return f4OriginalColor + f4BloomColor ; 
+}  
