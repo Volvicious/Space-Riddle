@@ -58,6 +58,8 @@
 
 #include "Vektoria\Root.h"
 #include "Meteorit.h"
+#include "TastaturGER.h"
+#include "TextOutput.h"
 
 using namespace Vektoria;
 
@@ -105,6 +107,13 @@ private:
 	CGeoSphere m_zgSphere;
 	CGeoTube m_zTube;
 	CMeteorit m_zMeteoriten;
+
+	
+	// Testzeux
+
+	CTastaturGER tastaturGer; 
+	CTextOutput textoutput; 
+
 
 	//Globale Variablen
 	bool bFirstPerson = true;
