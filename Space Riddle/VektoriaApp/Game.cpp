@@ -18,6 +18,8 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zv.InitFull(&m_zc);
 	m_zl.Init(CHVector(1.0f, 1.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f));
 
+
+	
 	//Materialgebung
 	m_zMaterialKugel.MakeTextureDiffuse("textures\\Textur.jpg");
 	m_zMaterialBoden.MakeTextureDiffuse("textures\\Boden.JPG");
@@ -76,11 +78,22 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//Meteoriten Random erstellen
 	//srand(time(0));
 
+	tastaturGer.Init(&m_zKeyboard, DIK_T, true);
+	textoutput.Init(&m_zv);
+
+
 
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)
 {
+
+
+	
+	tastaturGer.Run();
+	textoutput.WriteFromTastatur(&tastaturGer);
+
+	//TEst 
 
 	// Hier die Echtzeit-Veränderungen einfügen:
 
@@ -90,6 +103,7 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	CameraPosition(); //Cameraposition
 
 	//WASD - Steuerung
+	/*
 	if (m_zKeyboard.KeyPressed(DIK_W))
 	{
 		m_zpSphere.TranslateYDelta(3.0F * fTimeDelta);
@@ -110,6 +124,7 @@ void CGame::Tick(float fTime, float fTimeDelta)
 		m_zpSphere.TranslateXDelta(3.0F * fTimeDelta);
 	}
 
+	
 
 	//Switch von 1stPerson zu 3rdPerson und vice versa
 	if (m_zKeyboard.KeyDown(DIK_C))
@@ -136,7 +151,7 @@ void CGame::Tick(float fTime, float fTimeDelta)
 		//fGeschwindigkeitRotation = 0.001F;
 		//m_zpCamera.Translate(RotateAroundAxes('y', m_zpSphere.GetTranslation(), fGeschwindigkeitRotation, m_zpCamera.GetTranslation()));
 	}
-
+	*/
 	m_zr.Tick(fTimeDelta);
 }
 
