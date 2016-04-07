@@ -1,9 +1,11 @@
 x64/*
 VektoriaApp.sdf
 VektoriaApp.suo
-VektoriaApp/VektoriaApp.cpp
-VektoriaApp/vcxproj
-VektoriaApp/vcxproj.filters
-VektoriaApp/vcxproj.user
+VektoriaApp/VektoriaApp.rc
+VektoriaApp/VektoriaApp.vcxproj
+VektoriaApp/VektoriaApp.vcxproj.filters
+VektoriaApp/VektoriaApp.vcxproj.user
 VektoriaApp/x64/*
 VektoriaApp.v12.suo
+Debug/*
+Release/*
