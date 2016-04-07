@@ -49,3 +49,11 @@ void CTextOutput::WriteFromTastatur(CTastaturGER * TastaturGer) {
 
 
 }
+
+
+void CTextOutput::WriteTest() {
+
+	writing.PrintFloat(123.2F);
+
+
+}

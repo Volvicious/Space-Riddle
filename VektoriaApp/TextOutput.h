@@ -20,6 +20,7 @@ public:
 	void Init(CViewport * ViewPortPtr);
 	void Write(std::string s);
 	void WriteFromTastatur(CTastaturGER * TastaturGer);
+	void WriteTest();
 
 
 };
