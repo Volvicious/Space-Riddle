@@ -2,6 +2,7 @@ x64/*
 VektoriaApp.sdf
 VektoriaApp.suo
 VektoriaApp/Debug/*
+VektoriaApp/Release/*
 VektoriaApp/VektoriaApp.rc
 VektoriaApp/VektoriaApp.vcxproj
 VektoriaApp/VektoriaApp.vcxproj.filters
