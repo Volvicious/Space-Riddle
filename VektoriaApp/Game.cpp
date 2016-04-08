@@ -75,7 +75,7 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	//Cameraposition
 	CameraPosition(); 
 
-	m_zMeteoriten.RenewMeteorits(&m_zpSphere);
+	//m_zMeteoriten.RenewMeteorits(&m_zpSphere);
 
 	//WASD - Steuerung
 	if (m_zKeyboard.KeyPressed(DIK_W))
