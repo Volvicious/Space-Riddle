@@ -59,7 +59,7 @@ void CMeteorit::RenewMeteorits(CPlacement * pRaumschiff)
 	m_zvMeteorit = m_azp[iCounterStart].GetTranslation();
 
 	//Alten Meteoriten deaktivieren und neuen aktivieren
-	if (m_zvMeteorit.GetZ() >= m_zvRaumschiff.GetZ())
+	if (m_zvMeteorit.GetZ() >= m_zvRaumschiff.GetZ() + 15.0F)
 	{
 		++iCounterStart;
 		m_azp[iCounterStart].SwitchOff();

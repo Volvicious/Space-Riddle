@@ -29,10 +29,9 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	//Init Objects
 	m_zgSphere.Init(0.5F, &m_zMaterialKugel, 50, 50);
-	m_zTube.InitStraight(10.0F, 10.5F, 100.0F, &m_zMaterialTube);
 
 	//Root
-	m_zr.AddFrameHere(&m_zf);
+	m_zr.AddFrame(&m_zf);
 	m_zr.AddScene(&m_zs);
 	m_zr.AddMaterial(&m_zMaterialKugel);
 	m_zr.AddMaterial(&m_zMaterialBackground);

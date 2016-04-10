@@ -30,12 +30,6 @@
     <ClInclude Include="Meteorit.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="TastaturGER.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="TextOutput.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -48,12 +42,6 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Meteorit.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="TastaturGER.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="TextOutput.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
