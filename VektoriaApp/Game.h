@@ -58,8 +58,6 @@
 
 #include "Vektoria\Root.h"
 #include "Meteorit.h"
-#include "TastaturGER.h"
-#include "TextOutput.h"
 
 using namespace Vektoria;
 
@@ -78,6 +76,8 @@ public:
 
 	void CameraPosition();
 
+	float Clamp(float input, float min, float max);
+
 private:
     // Hier ist Platz für die Vektoriaobjekte:
 	CRoot m_zr;
@@ -90,7 +90,6 @@ private:
 	// Placements
 	CPlacement m_zpCamera;
 	CPlacement m_zpSphere;
-	CPlacement m_zpBoden;
 	CPlacement m_zpTube;
 
 	//Extras
@@ -108,16 +107,11 @@ private:
 	CGeoTube m_zTube;
 	CMeteorit m_zMeteoriten;
 
-	
-	// Testzeux
-
-	CTastaturGER tastaturGer; 
-	CTextOutput textoutput; 
-
-
 	//Globale Variablen
 	bool bFirstPerson = true;
 	int iTimerMeteoriten = 0;
+	float fGeschwindigkeitVertikal = 0.0;
+	float fGeschwindigkeitHorizontal = 0.0;
 };
 
 

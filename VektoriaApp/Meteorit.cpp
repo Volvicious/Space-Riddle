@@ -13,7 +13,7 @@ CMeteorit::~CMeteorit()
 void CMeteorit::Init(CScene * scene)
 {
 	float ri = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-	m_zMeteorit.Init(ri, NULL, 10.0, 10.0);
+	m_zMeteorit.Init(1.0F, NULL, 10.0, 10.0);
 	iCounterStart = 0;
 	iCounterEnd = MAX_METEOR / 2;
 
@@ -59,7 +59,7 @@ void CMeteorit::RenewMeteorits(CPlacement * pRaumschiff)
 	m_zvMeteorit = m_azp[iCounterStart].GetTranslation();
 
 	//Alten Meteoriten deaktivieren und neuen aktivieren
-	if (m_zvMeteorit.GetZ() >= m_zvRaumschiff.GetZ())
+	if (m_zvMeteorit.GetZ() >= m_zvRaumschiff.GetZ() + 15.0F)
 	{
 		++iCounterStart;
 		m_azp[iCounterStart].SwitchOff();

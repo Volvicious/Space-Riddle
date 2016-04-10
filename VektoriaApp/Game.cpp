@@ -29,10 +29,10 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	//Init Objects
 	m_zgSphere.Init(0.5F, &m_zMaterialKugel, 50, 50);
-	m_zTube.InitStraight(10.0F, 10.5F, 100.0F, &m_zMaterialTube);
+	//m_zTube.Init(CHVector(0, 0, 0), &m_zMaterialTube, );
 
 	//Root
-	m_zr.AddFrameHere(&m_zf);
+	m_zr.AddFrame(&m_zf);
 	m_zr.AddScene(&m_zs);
 	m_zr.AddMaterial(&m_zMaterialKugel);
 	m_zr.AddMaterial(&m_zMaterialBackground);
@@ -68,6 +68,7 @@ void CGame::Tick(float fTime, float fTimeDelta)
 {
 
 	// Hier die Echtzeit-Veränderungen einfügen:
+	
 
 	//Raumschiffgeschwindigkeit
 	m_zpSphere.TranslateZDelta(-2.0F * fTimeDelta); //Raumschiffgeschwindigkeit
@@ -75,28 +76,64 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	//Cameraposition
 	CameraPosition(); 
 
+	//Meteoriten werden erzeugt und erneuert
 	m_zMeteoriten.RenewMeteorits(&m_zpSphere);
 
 	//WASD - Steuerung
 	if (m_zKeyboard.KeyPressed(DIK_W))
 	{
-		m_zpSphere.TranslateYDelta(3.0F * fTimeDelta);
+		fGeschwindigkeitVertikal += 3.0F / 1000.0F;
 	}
 
 	if (m_zKeyboard.KeyPressed(DIK_A))
 	{
-		m_zpSphere.TranslateXDelta(-3.0F * fTimeDelta);
+		fGeschwindigkeitHorizontal -= 3.0F / 1000.0F;
 	}
 
 	if (m_zKeyboard.KeyPressed(DIK_S))
 	{
-		m_zpSphere.TranslateYDelta(-3.0F * fTimeDelta);
+		fGeschwindigkeitVertikal -= 3.0F / 1000.0F;
 	}
 
-	if (m_zKeyboard.KeyPressed(DIK_D))
+	if (m_zKeyboard.KeyPressed(DIK_D) && m_zpSphere.GetTranslation().GetX() < 10.0F)
 	{
-		m_zpSphere.TranslateXDelta(3.0F * fTimeDelta);
+		fGeschwindigkeitHorizontal += 3.0F / 1000.0F;
 	}
+
+	if (m_zpSphere.GetTranslation().GetX() > 10.0F)
+	{
+		fGeschwindigkeitHorizontal -= 6.0f / 1000.0f;		
+	}
+
+	//Trägheit
+	if (m_zKeyboard.KeyPressed(DIK_A) == false && m_zKeyboard.KeyPressed(DIK_D) == false)
+	{
+		if (fGeschwindigkeitHorizontal > 0)
+		{
+			fGeschwindigkeitHorizontal -= 3.0F / 1000.0F;
+
+			if (fGeschwindigkeitHorizontal < 0)
+			{
+				fGeschwindigkeitHorizontal = 0;
+			}
+		}
+
+		if (fGeschwindigkeitHorizontal < 0)
+		{
+			fGeschwindigkeitHorizontal += 3.0F / 1000.0F;
+
+			if (fGeschwindigkeitHorizontal > 0)
+			{ 
+				fGeschwindigkeitHorizontal = 0;
+			}
+		}
+	}
+
+	m_zpSphere.Translate(CHVector(
+		(m_zpSphere.GetTranslation().GetX() + fGeschwindigkeitHorizontal),
+		(m_zpSphere.GetTranslation().GetY() + fGeschwindigkeitVertikal),
+		m_zpSphere.GetTranslation().GetZ()));
+
 
 
 	//Switch von 1stPerson zu 3rdPerson und vice versa
@@ -137,3 +174,16 @@ void CGame::CameraPosition()
 	if (bFirstPerson == false)
 		m_zpCamera.TranslateZDelta(15.0F);
 }
+
+float CGame::Clamp(float input, float min, float max)
+{
+	float output = input;
+
+	if (output > max)
+		output = max;
+	if (output < min)
+		output = min;
+
+	return output;
+}
+
