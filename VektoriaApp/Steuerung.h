@@ -1,7 +1,10 @@
 #pragma once
 #include "Vektoria\Root.h"
+#define MAX_TUBE 10.0F
+#define MIN_TUBE -10.0F
 
 using namespace Vektoria;
+
 class CSteuerung
 {
 
@@ -13,7 +16,6 @@ public:
 	void Inertia(CPlacement * placement);
 
 private:
-	CHVector m_zvRaumschiff;
 
 	//Globale Variablen
 	float pfvVertikal = 0;

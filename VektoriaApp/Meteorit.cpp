@@ -19,8 +19,8 @@ void CMeteorit::Init(CScene * scene)
 
 	for (int i = 0; i < MAX_METEOR; i++)
 	{
-		float xi = rand() % 19 + (-9);
-		float yi = rand() % 19 + (-9);
+		float xi = rand() % 30 + (-19);
+		float yi = rand() % 30 + (-19);
 		float zi = i * -5;
 
 		//Meteorit erstellen

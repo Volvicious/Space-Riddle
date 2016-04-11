@@ -33,6 +33,9 @@
     <ClInclude Include="Steuerung.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="CameraController.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -48,6 +51,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Steuerung.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraController.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

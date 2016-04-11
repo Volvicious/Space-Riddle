@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CameraController.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Meteorit.h" />
     <ClInclude Include="resource.h" />
@@ -147,6 +148,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Meteorit.cpp" />
     <ClCompile Include="stdafx.cpp" />

@@ -59,6 +59,7 @@
 #include "Vektoria\Root.h"
 #include "Meteorit.h"
 #include "Steuerung.h"
+#include "CameraController.h"
 
 using namespace Vektoria;
 
@@ -82,7 +83,7 @@ public:
 private:
     // Hier ist Platz für die Vektoriaobjekte:
 	CRoot m_zr;
-	CCamera m_zc;
+	CCameraController m_zc;
 	CScene m_zs;
 	CFrame m_zf;
 	CViewport m_zv;
@@ -91,8 +92,8 @@ private:
 
 	// Placements
 	CPlacement m_zpCamera;
-	CPlacement m_zpSphere;
 	CPlacement m_zpTube;
+	CPlacement m_zpTeaPot;
 
 	//Extras
 	CMaterial m_zMaterialKugel;
@@ -107,15 +108,12 @@ private:
 	CHVector m_zCameraTranslation;
 
 	//Objekte
-	CGeoSphere m_zgSphere;
+	CGeoUtahTeapot m_zTeaPot;
 	CGeoTube m_zTube;
 	CMeteorit m_zMeteoriten;
 
 	//Globale Variablen
 	bool bFirstPerson = true;
-	int iTimerMeteoriten = 0;
-	float fGeschwindigkeitVertikal = 0.0;
-	float fGeschwindigkeitHorizontal = 0.0;
 };
 
 

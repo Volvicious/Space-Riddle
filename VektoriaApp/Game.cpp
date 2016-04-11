@@ -13,9 +13,8 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 {
 	// Hier die Initialisierung der Vektoria-Objekte einfügen:
 	m_zr.Init(psplash);
-	m_zc.Init(QUARTERPI);
+	m_zc.Init(&m_zv, &m_zs);
 	m_zf.Init(hwnd, procOS);
-	m_zv.InitFull(&m_zc);
 	m_zl.Init(CHVector(1.0f, 1.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f));
 
 	//Materialgebung
@@ -28,8 +27,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zBackground.Init(&m_zMaterialBackground, CFloatRect(0.0, 0.0, 1.0, 1.0));
 
 	//Init Objects
-	m_zgSphere.Init(0.5F, &m_zMaterialKugel, 50, 50);
-	//m_zTube.Init(CHVector(0, 0, 0), &m_zMaterialTube, );
+	m_zTeaPot.Init(0.5F, &m_zMaterialKugel, 8, false);
 
 	//Root
 	m_zr.AddFrame(&m_zf);
@@ -42,14 +40,12 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zf.AddDeviceKeyboard(&m_zKeyboard);
 
 	//Viewport
-	m_zpCamera.AddCamera(&m_zc);
-	m_zpSphere.AddGeo(&m_zgSphere);
+	m_zpTeaPot.AddGeo(&m_zTeaPot);
 	m_zpTube.AddGeo(&m_zTube);
 	m_zv.AddBackground(&m_zBackground);
 
 	//Scene
-	m_zs.AddPlacement(&m_zpCamera);
-	m_zs.AddPlacement(&m_zpSphere);
+	m_zs.AddPlacement(&m_zpTeaPot);
 	m_zs.AddLightParallel(&m_zl);
 	m_zs.AddPlacement(&m_zpTube);
 
@@ -65,35 +61,18 @@ void CGame::Tick(float fTime, float fTimeDelta)
 {
 
 	// Hier die Echtzeit-Veränderungen einfügen:
-	
 
 	//Raumschiffgeschwindigkeit
-	m_zpSphere.TranslateZDelta(-2.0F * fTimeDelta); //Raumschiffgeschwindigkeit
+	m_zpTeaPot.TranslateZDelta(-2.0F * fTimeDelta); //Raumschiffgeschwindigkeit
 
 	//Cameraposition
-	CameraPosition(); 
+	m_zc.Tick(&m_zpTeaPot, m_zKeyboard);
 
 	//Meteoriten werden erzeugt und erneuert
-	m_zMeteoriten.RenewMeteorits(&m_zpSphere);
+	m_zMeteoriten.RenewMeteorits(&m_zpTeaPot);
 
 	//Raumschiff bewegen
-	m_zSteuerung.Tick(&m_zpSphere, m_zKeyboard);
-
-	//Switch von 1stPerson zu 3rdPerson und vice versa
-	if (m_zKeyboard.KeyDown(DIK_C))
-	{
-		if (bFirstPerson == true)
-		{
-			m_zpCamera.Translate(m_zCameraTranslation.operator = (m_zpSphere.GetTranslation()));
-			m_zpCamera.TranslateZDelta(15.0F);
-			bFirstPerson = false;
-		}
-		else
-		{
-			m_zpCamera.Translate(m_zCameraTranslation.operator = (m_zpSphere.GetTranslation()));
-			bFirstPerson = true;
-		}
-	}
+	m_zSteuerung.Tick(&m_zpTeaPot, m_zKeyboard);
 
 	m_zr.Tick(fTimeDelta);
 }
@@ -108,14 +87,6 @@ void CGame::WindowReSize(int iNewWidth, int iNewHeight)
 	// Windows ReSize wird immer automatisch aufgerufen, wenn die Fenstergröße verändert wurde.
 	// Hier kannst Du dann die Auflösung des Viewports neu einstellen:
 	m_zf.ReSize(iNewWidth, iNewHeight);
-}
-
-void CGame::CameraPosition()
-{
-	m_zpCamera.Translate(m_zCameraTranslation.operator = (m_zpSphere.GetTranslation()));
-
-	if (bFirstPerson == false)
-		m_zpCamera.TranslateZDelta(15.0F);
 }
 
 float CGame::Clamp(float input, float min, float max)
