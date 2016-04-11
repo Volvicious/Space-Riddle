@@ -95,11 +95,13 @@ private:
 	CPlacement m_zpTube;
 
 	//Extras
-	CDeviceKeyboard m_zKeyboard;
 	CMaterial m_zMaterialKugel;
 	CMaterial m_zMaterialBackground;
 	CMaterial m_zMaterialTube;
 	CBackground m_zBackground;
+
+	//Keyboard
+	CDeviceKeyboard m_zKeyboard;
 
 	//Cameravektor
 	CHVector m_zCameraTranslation;

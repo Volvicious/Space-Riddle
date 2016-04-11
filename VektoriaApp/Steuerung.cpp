@@ -10,87 +10,95 @@ CSteuerung::~CSteuerung()
 {
 }
 
-void CSteuerung::Bewegung(CPlacement * placement)
+void CSteuerung::Tick(CPlacement * placement, CDeviceKeyboard keyboard)
 {
-	Init(placement);
-	Trägheit(fvVertikal, fvHorizontal);
-	placement->Translate(CHVector(placement->GetTranslation().GetX() + fvHorizontal, 
-		placement->GetTranslation().GetY() + fvVertikal, 
+	if (keyboard.KeyPressed(DIK_W) && placement->GetTranslation().GetY() < 10.0F)
+	{
+		pfvVertikal += 3.0F / 1000.0F;
+	}
+
+	if (keyboard.KeyPressed(DIK_A) && placement->GetTranslation().GetX() > -10.0F)
+	{
+		pfvHorizontal -= 3.0F / 1000.0F;
+	}
+
+	if (keyboard.KeyPressed(DIK_S) && placement->GetTranslation().GetY() > -10.0F)
+	{
+		pfvVertikal -= 3.0F / 1000.0F;
+	}
+
+	if (keyboard.KeyPressed(DIK_D) && placement->GetTranslation().GetX() < 10.0F)
+	{
+		pfvHorizontal += 3.0F / 1000.0F;
+	}
+
+	//Trägheit
+	Inertia(placement);
+
+	//Raumschiff wird bewegt
+	placement->Translate(CHVector(placement->GetTranslation().GetX() + pfvHorizontal, 
+		placement->GetTranslation().GetY() + pfvVertikal, 
 		placement->GetTranslation().GetZ()));
 
 }
 
-void CSteuerung::Init(CPlacement * placement)
+void CSteuerung::Inertia(CPlacement * placement)
 {
-	if (m_zKeyboard.KeyPressed(DIK_W) && placement->GetTranslation().GetY() < 10.0F)
+	//Bremsen
+	if (pfvVertikal > 0)
 	{
-		fvVertikal += 3.0F / 1000.0F;
-	}
-
-	if (m_zKeyboard.KeyPressed(DIK_A) && placement->GetTranslation().GetX() < -10.0F)
-	{
-		fvHorizontal -= 3.0F / 1000.0F;
-	}
-
-	if (m_zKeyboard.KeyPressed(DIK_S) && placement->GetTranslation().GetY() < -10.0F)
-	{
-		fvVertikal -= 3.0F / 1000.0F;
-	}
-
-	if (m_zKeyboard.KeyPressed(DIK_D) && placement->GetTranslation().GetX() < 10.0F)
-	{
-		fvHorizontal += 3.0F / 1000.0F;
-	}
-
-}
-
-void CSteuerung::Trägheit(float fvVertikal, float fvHorizontal)
-{
-	//Vertikal
-	if (m_zKeyboard.KeyPressed(DIK_W) == false && m_zKeyboard.KeyPressed(DIK_S) == false)
-	{
-		if (fvVertikal > 0)
+		if (placement->GetTranslation().GetY() <= 10.0F && placement->GetTranslation().GetY() >= -10.0F)
 		{
-			fvVertikal -= 3.0F / 1000.0F;
+			pfvVertikal -= 0.5F / 1000.0F;
 
-			if (fvVertikal < 0)
+			if (pfvVertikal < 0)
 			{
-				fvVertikal = 0;
-			}
-		}
-
-		if (fvVertikal < 0)
-		{
-			fvVertikal += 3.0F / 1000.0F;
-
-			if (fvVertikal > 0)
-			{
-				fvVertikal = 0;
+				pfvVertikal = 0.0f;
 			}
 		}
 	}
 
-	//Horizontal
-	if (m_zKeyboard.KeyPressed(DIK_A) == false && m_zKeyboard.KeyPressed(DIK_D) == false)
+	//Bremsen 
+	if (pfvVertikal < 0)
 	{
-		if (fvHorizontal > 0)
+		if (placement->GetTranslation().GetY() <= 10.0F && placement->GetTranslation().GetY() >= -10.0F)
 		{
-			fvHorizontal -= 3.0F / 1000.0F;
+			pfvVertikal += 0.5F / 1000.0F;
 
-			if (fvHorizontal < 0)
+			if (pfvVertikal > 0)
 			{
-				fvHorizontal = 0;
+				pfvVertikal = 0.0f;
 			}
 		}
+	}
 
-		if (fvHorizontal < 0)
+
+	//Vertikal oben
+	if (placement->GetTranslation().GetY() >= 10.0F)
+	{
+		pfvVertikal -= 3.0F / 1000.0F;
+
+		if (pfvVertikal < (-1.0F / 10.0F))
 		{
-			fvHorizontal += 3.0F / 1000.0F;
-
-			if (fvHorizontal > 0)
-			{
-				fvHorizontal = 0;
-			}
+			pfvVertikal = -1.0F / 10.0F;
 		}
+	}
+
+	//Vertikal unten
+	if (placement->GetTranslation().GetY() <= -10.0F)
+	{
+		pfvVertikal += 3.0F / 1000.0F;
+	}
+
+	//Horizontal links
+	if (placement->GetTranslation().GetX() <= -10.0F)
+	{
+		pfvHorizontal += 3.0F / 1000.0F;
+	}
+
+	//Horizontal rechts
+	if (placement->GetTranslation().GetX() >= 10.0F)
+	{
+		pfvHorizontal -= 3.0F / 1000.0F;
 	}
 }

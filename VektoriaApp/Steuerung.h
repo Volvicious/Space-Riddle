@@ -1,5 +1,7 @@
 #pragma once
-#include "Game.h"
+#include "Vektoria\Root.h"
+
+using namespace Vektoria;
 class CSteuerung
 {
 
@@ -7,19 +9,15 @@ public:
 	CSteuerung();
 	~CSteuerung();
 
-	void Init(CPlacement * placement);
-	void Trägheit(float fvVertikal, float fvHorizontal);
-	void Bewegung(CPlacement * placement);
-	float getfvVertikal(){ return fvVertikal; };
-	float getfvHorizontal(){ return fvHorizontal; };
+	void Tick(CPlacement * placement, CDeviceKeyboard keyboard);
+	void Inertia(CPlacement * placement);
 
 private:
-	CDeviceKeyboard m_zKeyboard;
 	CHVector m_zvRaumschiff;
 
 	//Globale Variablen
-	float fvVertikal = 0;
-	float fvHorizontal = 0;
+	float pfvVertikal = 0;
+	float pfvHorizontal = 0;
 
 
 };

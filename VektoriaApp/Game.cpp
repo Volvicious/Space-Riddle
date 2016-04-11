@@ -57,9 +57,6 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zpTube.RotateX(UM_DEG2RAD(90));
 	m_zpCamera.TranslateZ(15.0F);
 
-	//Keyboard sensitivity
-	m_zKeyboard.SetWASDTranslationSensitivity(5.0F);
-
 	//Meteoriten der Scene hinzufügen
 	m_zMeteoriten.Init(&m_zs);
 }
@@ -79,7 +76,8 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	//Meteoriten werden erzeugt und erneuert
 	m_zMeteoriten.RenewMeteorits(&m_zpSphere);
 
-	m_zSteuerung.Bewegung(&m_zpSphere);
+	//Raumschiff bewegen
+	m_zSteuerung.Tick(&m_zpSphere, m_zKeyboard);
 
 	//Switch von 1stPerson zu 3rdPerson und vice versa
 	if (m_zKeyboard.KeyDown(DIK_C))
