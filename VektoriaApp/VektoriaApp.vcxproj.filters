@@ -30,6 +30,9 @@
     <ClInclude Include="Meteorit.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Steuerung.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -42,6 +45,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Meteorit.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Steuerung.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

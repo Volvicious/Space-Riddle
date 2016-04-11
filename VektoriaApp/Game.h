@@ -58,6 +58,7 @@
 
 #include "Vektoria\Root.h"
 #include "Meteorit.h"
+#include "Steuerung.h"
 
 using namespace Vektoria;
 
@@ -86,6 +87,7 @@ private:
 	CFrame m_zf;
 	CViewport m_zv;
 	CLightParallel m_zl;
+	CSteuerung m_zSteuerung;
 
 	// Placements
 	CPlacement m_zpCamera;

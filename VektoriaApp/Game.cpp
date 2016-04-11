@@ -79,62 +79,7 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	//Meteoriten werden erzeugt und erneuert
 	m_zMeteoriten.RenewMeteorits(&m_zpSphere);
 
-	//WASD - Steuerung
-	if (m_zKeyboard.KeyPressed(DIK_W))
-	{
-		fGeschwindigkeitVertikal += 3.0F / 1000.0F;
-	}
-
-	if (m_zKeyboard.KeyPressed(DIK_A))
-	{
-		fGeschwindigkeitHorizontal -= 3.0F / 1000.0F;
-	}
-
-	if (m_zKeyboard.KeyPressed(DIK_S))
-	{
-		fGeschwindigkeitVertikal -= 3.0F / 1000.0F;
-	}
-
-	if (m_zKeyboard.KeyPressed(DIK_D) && m_zpSphere.GetTranslation().GetX() < 10.0F)
-	{
-		fGeschwindigkeitHorizontal += 3.0F / 1000.0F;
-	}
-
-	if (m_zpSphere.GetTranslation().GetX() > 10.0F)
-	{
-		fGeschwindigkeitHorizontal -= 6.0f / 1000.0f;		
-	}
-
-	//Trägheit
-	if (m_zKeyboard.KeyPressed(DIK_A) == false && m_zKeyboard.KeyPressed(DIK_D) == false)
-	{
-		if (fGeschwindigkeitHorizontal > 0)
-		{
-			fGeschwindigkeitHorizontal -= 3.0F / 1000.0F;
-
-			if (fGeschwindigkeitHorizontal < 0)
-			{
-				fGeschwindigkeitHorizontal = 0;
-			}
-		}
-
-		if (fGeschwindigkeitHorizontal < 0)
-		{
-			fGeschwindigkeitHorizontal += 3.0F / 1000.0F;
-
-			if (fGeschwindigkeitHorizontal > 0)
-			{ 
-				fGeschwindigkeitHorizontal = 0;
-			}
-		}
-	}
-
-	m_zpSphere.Translate(CHVector(
-		(m_zpSphere.GetTranslation().GetX() + fGeschwindigkeitHorizontal),
-		(m_zpSphere.GetTranslation().GetY() + fGeschwindigkeitVertikal),
-		m_zpSphere.GetTranslation().GetZ()));
-
-
+	m_zSteuerung.Bewegung(&m_zpSphere);
 
 	//Switch von 1stPerson zu 3rdPerson und vice versa
 	if (m_zKeyboard.KeyDown(DIK_C))
