@@ -58,7 +58,7 @@
 
 #include "Vektoria\Root.h"
 #include "Meteorit.h"
-
+#include "Sound.h"
 
 using namespace Vektoria;
 
@@ -85,6 +85,8 @@ private:
 	CFrame m_zf;
 	CViewport m_zv;
 	CLightParallel m_zl;
+	
+	
 
 	// Placements
 	CPlacement m_zpCamera;
@@ -107,9 +109,17 @@ private:
 	CGeoTube m_zTube;
 	CMeteorit m_zMeteoriten;
 
+	//Eigene
+
+	CSound m_zSound; 
+
+
 	//Globale Variablen
 	bool bFirstPerson = true;
 	int iTimerMeteoriten = 0;
+
+
+	int iSoundTest = 0; 
 };
 
 

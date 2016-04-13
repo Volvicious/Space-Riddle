@@ -1,6 +1,6 @@
 #pragma once
 #include "Vektoria\Root.h"
-
+#include "Sound.h"
 using namespace Vektoria;
 
 #define MAX_METEOR 100
@@ -12,8 +12,13 @@ public:
 	~CMeteorit();
 
 	CPlacement * getPlacement(){ return m_azp; };
-	void Init(CScene* scene);
+	void Init(CScene* scene, CSound * sound);
 	void RenewMeteorits(CPlacement * pRaumschiff);
+
+	
+	
+	CAudio audio;
+	 
 
 private:
 	// Hier ist Platz für die Vektoriaobjekte:

@@ -59,13 +59,35 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//Keyboard sensitivity
 	m_zKeyboard.SetWASDTranslationSensitivity(5.0F);
 
+	//Sounds hinzufuegen
+	m_zSound.Init(&m_zs);
+	
+
 	//Meteoriten der Scene hinzufügen
-	m_zMeteoriten.Init(&m_zs);
+	m_zMeteoriten.Init(&m_zs, &m_zSound);
+
+	
+
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)
 {
+	
+	
 
+	if (m_zKeyboard.KeyDown(DIK_I)){
+
+		if (iSoundTest == 2) iSoundTest = 0; 
+		m_zSound.Loop(iSoundTest);
+	}
+
+	if (m_zKeyboard.KeyUp(DIK_I)){
+		m_zSound.Stop(iSoundTest);
+		iSoundTest++;
+	}
+
+	
+	
 	// Hier die Echtzeit-Veränderungen einfügen:
 
 	//Raumschiffgeschwindigkeit
