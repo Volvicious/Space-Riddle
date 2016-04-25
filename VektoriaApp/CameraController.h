@@ -13,6 +13,8 @@ public:
 	void Tick(CPlacement * placement, CDeviceKeyboard * keyboard);
 	void CameraPosition(CPlacement * placement);
 
+
+	CMaterial * getMaterial() { return &m_zmCockpit; };
 	CCamera getCamera(){ return m_zCamera; };
 	CPlacement getPlacement() { return m_zpCamera; };
 
@@ -23,6 +25,12 @@ private:
 
 	//Placement
 	CPlacement m_zpCamera;
+
+	//Material
+	CMaterial m_zmCockpit;
+
+	//Overlay
+	COverlay m_zoCockpit;
 
 	//Variable
 	bool bFirstPerson = true;

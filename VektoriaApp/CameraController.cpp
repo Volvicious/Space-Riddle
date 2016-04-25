@@ -23,6 +23,15 @@ void CCameraController::Init(CViewport * viewport, CScene * scene)
 
 	//Camera der Szene hinzufügen
 	scene->AddPlacement(&m_zpCamera);
+
+	//Material hinzufügen
+	m_zmCockpit.MakeTextureSprite("textures\\Cockpit.png");
+
+	//Overlay hinzufügen
+	m_zoCockpit.Init(&m_zmCockpit, CFloatRect(0, 0, 1, 1));
+
+	//Overplay dem Viewport zuweisen
+	viewport->AddOverlay(&m_zoCockpit);
 }
 
 void CCameraController::Tick(CPlacement * placement, CDeviceKeyboard * keyboard)
@@ -36,11 +45,13 @@ void CCameraController::Tick(CPlacement * placement, CDeviceKeyboard * keyboard)
 		{
 			m_zpCamera.Translate(m_zpCamera.GetTranslation() = placement->GetTranslation());
 			m_zpCamera.TranslateZDelta(15.0F);
+			m_zoCockpit.SwitchOff();
 			bFirstPerson = false;
 		}
 		else
 		{
 			m_zpCamera.Translate(m_zpCamera.GetTranslation()= placement->GetTranslation());
+			m_zoCockpit.SwitchOn();
 			bFirstPerson = true;
 		}
 	}

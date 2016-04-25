@@ -72,6 +72,8 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	//Meteoriten der Scene hinzufügen
 	m_zMeteoriten.Init(&m_zs);
+
+	//m_zr.AddMaterial(m_zc.getMaterial());
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)
