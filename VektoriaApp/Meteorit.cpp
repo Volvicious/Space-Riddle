@@ -49,7 +49,7 @@ void CMeteorit::Init(CScene * scene)
 void CMeteorit::RenewMeteorits(CPlacement * pRaumschiff)
 {
 	//Start und Ende müssen jeweils um eins hochgezählt werden
-	iCounterEnd = iCounterStart + MAX_METEOR / 2;
+	//iCounterEnd = iCounterStart + MAX_METEOR / 2;
 
 	//Wenn das Ende des Arrays erreicht wird, wird von neuem durchgezählt
 	iCounterStart %= MAX_METEOR;
@@ -61,9 +61,12 @@ void CMeteorit::RenewMeteorits(CPlacement * pRaumschiff)
 	//Alten Meteoriten deaktivieren und neuen aktivieren
 	if (m_zvMeteorit.GetZ() >= m_zvRaumschiff.GetZ() + 15.0F)
 	{
+		m_azp[iCounterStart].TranslateZDelta(-200.0F);
 		++iCounterStart;
-		m_azp[iCounterStart].SwitchOff();
-		m_azp[iCounterEnd].SwitchOn();
+
+
+		/*m_azp[iCounterStart].SwitchOff();
+		m_azp[iCounterEnd].SwitchOn();*/
 	}
 
 }

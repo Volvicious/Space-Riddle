@@ -21,7 +21,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zMaterialKugel.MakeTextureDiffuse("textures\\Textur.jpg");
 	m_zMaterialBackground.MakeTextureDiffuse("textures\\neon.jpg");
 	m_zMaterialBackground.SetTextureGlowAsDiffuse();
-	m_zMaterialTube.LoadPreset("Glass");
+	m_zMaterialFog.MakeTextureDiffuse("textures\\fog.jpg");
 
 	//Background
 	m_zBackground.Init(&m_zMaterialBackground, CFloatRect(0.0, 0.0, 1.0, 1.0));
@@ -34,6 +34,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zr.AddScene(&m_zs);
 	m_zr.AddMaterial(&m_zMaterialKugel);
 	m_zr.AddMaterial(&m_zMaterialBackground);
+	m_zr.AddMaterial(&m_zMaterialFog);
 
 	//Frame
 	m_zf.AddViewport(&m_zv);
@@ -41,16 +42,32 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	//Viewport
 	m_zpTeaPot.AddGeo(&m_zTeaPot);
-	m_zpTube.AddGeo(&m_zTube);
 	m_zv.AddBackground(&m_zBackground);
 
 	//Scene
 	m_zs.AddPlacement(&m_zpTeaPot);
 	m_zs.AddLightParallel(&m_zl);
-	m_zs.AddPlacement(&m_zpTube);
+
+	//FOG
+	m_zFog.Init(10.0, 10.0, &m_zMaterialFog);
+	m_zpFog.AddGeo(&m_zFog);
+	m_zs.AddPlacement(&m_zpFog);
+
+	m_zpFog.RotateXDelta(UM_DEG2RAD(90));
+
+	//Licht initialisieren
+	//m_zLight.Init(&m_zs);
+
+	//Walls initialisieren
+	m_zTube.Init(&m_zs);
+
+	//Tunnel initinialisieren
+	//m_zTunnel.InitStraight(20.0F, 20.5F, 1500.0F, NULL);
+	//m_zpTunnel.AddGeo(&m_zTunnel);
+	//m_zs.AddPlacement(&m_zpTunnel);
+	//m_zpTunnel.RotateX(UM_DEG2RAD(90));
 
 	//Rotieren, Translieren, Skalieren
-	m_zpTube.RotateX(UM_DEG2RAD(90));
 	m_zpCamera.TranslateZ(15.0F);
 
 	//Meteoriten der Scene hinzufügen
@@ -59,14 +76,21 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 void CGame::Tick(float fTime, float fTimeDelta)
 {
-
 	// Hier die Echtzeit-Veränderungen einfügen:
-
 	//Raumschiffgeschwindigkeit
-	m_zpTeaPot.TranslateZDelta(-2.0F * fTimeDelta); //Raumschiffgeschwindigkeit
+	m_zpTeaPot.TranslateZDelta(-10.0F * fTimeDelta); //Raumschiffgeschwindigkeit
 
 	//Cameraposition
-	m_zc.Tick(&m_zpTeaPot, m_zKeyboard);
+	m_zc.Tick(&m_zpTeaPot, &m_zKeyboard);
+
+	//Wall verschieben
+	m_zTube.RenewWalls(&m_zpTeaPot);
+
+	//Lichter erstellen
+	//m_zLight.RenewLights(&m_zpTeaPot);
+
+	//Fog verschieben
+	m_zpFog.TranslateZ(m_zpTeaPot.GetTranslation().GetZ() - 150.0F);
 
 	//Meteoriten werden erzeugt und erneuert
 	m_zMeteoriten.RenewMeteorits(&m_zpTeaPot);

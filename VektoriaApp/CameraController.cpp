@@ -25,12 +25,12 @@ void CCameraController::Init(CViewport * viewport, CScene * scene)
 	scene->AddPlacement(&m_zpCamera);
 }
 
-void CCameraController::Tick(CPlacement * placement, CDeviceKeyboard keyboard)
+void CCameraController::Tick(CPlacement * placement, CDeviceKeyboard * keyboard)
 {
 	CameraPosition(placement);
 
 	//Switch von 1stPerson zu 3rdPerson und vice versa
-	if (keyboard.KeyDown(DIK_C))
+	if (keyboard->KeyDown(DIK_C))
 	{
 		if (bFirstPerson == true)
 		{

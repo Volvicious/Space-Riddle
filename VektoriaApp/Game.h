@@ -60,6 +60,8 @@
 #include "Meteorit.h"
 #include "Steuerung.h"
 #include "CameraController.h"
+#include "LightTunnel.h"
+#include "Tube.h"
 
 using namespace Vektoria;
 
@@ -92,13 +94,15 @@ private:
 
 	// Placements
 	CPlacement m_zpCamera;
-	CPlacement m_zpTube;
 	CPlacement m_zpTeaPot;
+	CPlacement m_zpFog;
+	CPlacement m_zpTunnel;
 
 	//Extras
 	CMaterial m_zMaterialKugel;
 	CMaterial m_zMaterialBackground;
-	CMaterial m_zMaterialTube;
+	CMaterial m_zMaterialFog;
+	CMaterial m_zMaterialTunnel;
 	CBackground m_zBackground;
 
 	//Keyboard
@@ -109,8 +113,19 @@ private:
 
 	//Objekte
 	CGeoUtahTeapot m_zTeaPot;
-	CGeoTube m_zTube;
 	CMeteorit m_zMeteoriten;
+
+	//Fog erstellen
+	CGeoQuad m_zFog;
+	
+	//Lichter
+	CLightTunnel m_zLight;
+
+	//Walls
+	CTube m_zTube;
+
+	//Tunnel
+	CGeoTube m_zTunnel;
 
 	//Globale Variablen
 	bool bFirstPerson = true;

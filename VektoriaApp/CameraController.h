@@ -10,9 +10,10 @@ public:
 	~CCameraController();
 
 	void Init(CViewport * viewport, CScene * scene);
-	void Tick(CPlacement * placement, CDeviceKeyboard keyboard);
+	void Tick(CPlacement * placement, CDeviceKeyboard * keyboard);
 	void CameraPosition(CPlacement * placement);
 	CCamera getCamera(){ return m_zCamera; };
+	CPlacement getPlacement() { return m_zpCamera; };
 
 private:
 	CCamera m_zCamera;
