@@ -19,9 +19,10 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 	//Materialgebung
 	m_zMaterialKugel.MakeTextureDiffuse("textures\\Textur.jpg");
-	m_zMaterialBackground.MakeTextureDiffuse("textures\\neon.jpg");
+	m_zMaterialBackground.MakeTextureDiffuse("textures\\Background.jpg");
 	m_zMaterialBackground.SetTextureGlowAsDiffuse();
-	m_zMaterialFog.MakeTextureDiffuse("textures\\fog.jpg");
+	m_zMaterialFog.MakeTextureDiffuse("textures\\FogULTIMATE.png");
+	m_zMaterialFog.SetAni(3, 2, 24);
 
 	//Background
 	m_zBackground.Init(&m_zMaterialBackground, CFloatRect(0.0, 0.0, 1.0, 1.0));
@@ -49,20 +50,19 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zs.AddLightParallel(&m_zl);
 
 	//FOG
-	m_zFog.Init(10.0, 10.0, &m_zMaterialFog);
+	m_zFog.Init(50.0, 10.0, &m_zMaterialFog);
 	m_zpFog.AddGeo(&m_zFog);
 	m_zs.AddPlacement(&m_zpFog);
-
 	m_zpFog.RotateXDelta(UM_DEG2RAD(90));
 
 	//Licht initialisieren
 	//m_zLight.Init(&m_zs);
 
 	//Walls initialisieren
-	m_zTube.Init(&m_zs);
+	//m_zTube.Init(&m_zs);
 
 	//Tunnel initinialisieren
-	//m_zTunnel.InitStraight(20.0F, 20.5F, 1500.0F, NULL);
+	//m_zTunnel.InitStraight(20.0F, 20.5F, 150.0F, NULL);
 	//m_zpTunnel.AddGeo(&m_zTunnel);
 	//m_zs.AddPlacement(&m_zpTunnel);
 	//m_zpTunnel.RotateX(UM_DEG2RAD(90));
@@ -83,8 +83,11 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	//Cameraposition
 	m_zc.Tick(&m_zpTeaPot, &m_zKeyboard);
 
+	//Tube verschieben
+	//m_zpTunnel.TranslateZDelta(-10.0F * fTimeDelta);
+
 	//Wall verschieben
-	m_zTube.RenewWalls(&m_zpTeaPot);
+	//m_zTube.RenewWalls(&m_zpTeaPot);
 
 	//Lichter erstellen
 	//m_zLight.RenewLights(&m_zpTeaPot);
@@ -92,7 +95,7 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	//Fog verschieben
 	m_zpFog.TranslateZ(m_zpTeaPot.GetTranslation().GetZ() - 150.0F);
 
-	//Meteoriten werden erzeugt und erneuert
+	//Meteoriten erneuern
 	m_zMeteoriten.RenewMeteorits(&m_zpTeaPot);
 
 	//Raumschiff bewegen
@@ -111,17 +114,5 @@ void CGame::WindowReSize(int iNewWidth, int iNewHeight)
 	// Windows ReSize wird immer automatisch aufgerufen, wenn die Fenstergröße verändert wurde.
 	// Hier kannst Du dann die Auflösung des Viewports neu einstellen:
 	m_zf.ReSize(iNewWidth, iNewHeight);
-}
-
-float CGame::Clamp(float input, float min, float max)
-{
-	float output = input;
-
-	if (output > max)
-		output = max;
-	if (output < min)
-		output = min;
-
-	return output;
 }
 

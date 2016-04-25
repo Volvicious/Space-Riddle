@@ -12,7 +12,7 @@ CLightTunnel::~CLightTunnel()
 
 void CLightTunnel::Init(CScene * scene)
 {
-	m_zLight.Init(0.1, NULL, 24, 12);
+	m_zLight.Init(0.2, NULL, 24, 12);
 
 	for (int i = 0; i < MAX_LIGHT / 4; i++)
 	{
@@ -50,7 +50,7 @@ void CLightTunnel::Init(CScene * scene)
 
 void CLightTunnel::RenewLights(CPlacement * Raumschiff)
 {
-	if (Raumschiff->GetTranslation().GetZ() <= m_azpRechtsOben[iCounter].GetTranslation().GetZ() + 15.0F)
+	if (m_azpRechtsOben[iCounter].GetTranslation().GetZ() >= Raumschiff->GetTranslation().GetZ() + 15.0F)
 	{
 		//Licht hinter die Plane schieben
 		m_azpRechtsOben[iCounter].TranslateZDelta(-150.0F);

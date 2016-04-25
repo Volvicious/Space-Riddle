@@ -3,7 +3,7 @@
 
 using namespace Vektoria;
 
-#define MAX_METEOR 100
+#define MAX_METEOR 50
 
 class CMeteorit
 {
@@ -27,11 +27,8 @@ private:
 
 	//Meteoriten Placements
 	CPlacement m_azp[MAX_METEOR];
-	CPlacement * m_pzpStart;
-	CPlacement * m_pzpEnd;
 
 	//Globale Variablen
-	int iCounterStart = 0;
-	int iCounterEnd = 0;
+	int iCounter = 0;
 };
 
