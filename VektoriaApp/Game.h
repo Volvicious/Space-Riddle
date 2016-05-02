@@ -62,6 +62,7 @@
 #include "CameraController.h"
 #include "LightTunnel.h"
 #include "Tube.h"
+#include "Fog.h"
 
 using namespace Vektoria;
 
@@ -82,6 +83,9 @@ public:
 
 	float Clamp(float input, float min, float max);
 
+	//Geschwindigkeit des Raumschiffs
+	float fGeschwindigkeit;
+
 private:
     // Hier ist Platz für die Vektoriaobjekte:
 	CRoot m_zr;
@@ -91,12 +95,14 @@ private:
 	CViewport m_zv;
 	CLightParallel m_zl;
 	CSteuerung m_zSteuerung;
+	CFog m_zFog;
 
 	// Placements
 	CPlacement m_zpCamera;
 	CPlacement m_zpTeaPot;
 	CPlacement m_zpFog;
 	CPlacement m_zpTunnel;
+	CPlacement m_zpSkybox;
 
 	//Extras
 	CMaterial m_zMaterialKugel;
@@ -104,6 +110,7 @@ private:
 	CMaterial m_zMaterialFog;
 	CMaterial m_zMaterialTunnel;
 	CBackground m_zBackground;
+	CGeoSkybox m_zSkybox;
 
 	//Keyboard
 	CDeviceKeyboard m_zKeyboard;
@@ -114,9 +121,6 @@ private:
 	//Objekte
 	CGeoUtahTeapot m_zTeaPot;
 	CMeteorit m_zMeteoriten;
-
-	//Fog erstellen
-	CGeoQuad m_zFog;
 	
 	//Lichter
 	CLightTunnel m_zLight;
