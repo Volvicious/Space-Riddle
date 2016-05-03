@@ -13,22 +13,22 @@ void CSteuerung::Tick(CPlacement * placement, CDeviceKeyboard keyboard)
 {
 	if (keyboard.KeyPressed(DIK_W) && placement->GetTranslation().GetY() < MAX_TUBE)
 	{
-		pfvVertikal += 3.0F / 1000.0F;
+		pfvVertikal += 1.0F / 1000.0F;
 	}
 
 	if (keyboard.KeyPressed(DIK_A) && placement->GetTranslation().GetX() > MIN_TUBE)
 	{
-		pfvHorizontal -= 3.0F / 1000.0F;
+		pfvHorizontal -= 1.0F / 1000.0F;
 	}
 
 	if (keyboard.KeyPressed(DIK_S) && placement->GetTranslation().GetY() > MIN_TUBE)
 	{
-		pfvVertikal -= 3.0F / 1000.0F;
+		pfvVertikal -= 1.0F / 1000.0F;
 	}
 
 	if (keyboard.KeyPressed(DIK_D) && placement->GetTranslation().GetX() < MAX_TUBE)
 	{
-		pfvHorizontal += 3.0F / 1000.0F;
+		pfvHorizontal += 1.0F / 1000.0F;
 	}
 
 	//Trägheit

@@ -37,6 +37,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//Viewport
 	m_zpTeaPot.AddGeo(&m_zTeaPot);
 	m_zv.AddBackground(&m_zBackground);
+	//m_zv.SetWireframeOn();
 
 	//Scene
 	m_zs.AddPlacement(&m_zpTeaPot);
@@ -74,7 +75,7 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	// Hier die Echtzeit-Veränderungen einfügen:
 
 	//Raumschiffgeschwindigkeit
-	fGeschwindigkeit = -10.0F * fTimeDelta;
+	fGeschwindigkeit = -30.0F * fTimeDelta;
 
 	//Raumschiffgeschwindigkeit
 	m_zpTeaPot.TranslateZDelta(fGeschwindigkeit);
@@ -83,10 +84,10 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	m_zc.Tick(&m_zpTeaPot, &m_zKeyboard);
 
 	//Dome bewegen
-	m_zpSkybox.TranslateZDelta(-10.0F * fTimeDelta);
+	m_zpSkybox.TranslateZDelta(fGeschwindigkeit);
 
 	//Fog bewegt sich mit
-	//m_zFog.Tick(fGeschwindigkeit);
+	m_zFog.Tick(fGeschwindigkeit);
 
 	//Tube verschieben
 	//m_zpTunnel.TranslateZDelta(-10.0F * fTimeDelta);

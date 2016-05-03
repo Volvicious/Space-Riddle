@@ -57,11 +57,12 @@ void CCameraController::Tick(CPlacement * placement, CDeviceKeyboard * keyboard)
 	}
 }
 
-
 void CCameraController::CameraPosition(CPlacement * placement)
 {
 	m_zpCamera.Translate(m_zpCamera.GetTranslation() = placement->GetTranslation());
 
 	if (bFirstPerson == false)
+	{
 		m_zpCamera.TranslateZDelta(15.0F);
+	}
 }

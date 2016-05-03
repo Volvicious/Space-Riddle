@@ -1,7 +1,8 @@
 #pragma once
 #include "Vektoria\Root.h"
-#define MAX_TUBE 10.0F
-#define MIN_TUBE -10.0F
+
+#define MAX_TUBE 20.0F
+#define MIN_TUBE -20.0F
 
 using namespace Vektoria;
 

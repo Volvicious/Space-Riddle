@@ -16,11 +16,11 @@ void CFog::Init(CRoot * root, CScene * scene)
 	{
 		//Material
 		root->AddMaterial(&m_zmFog[i]);
-		m_zmFog[i].MakeTextureDiffuse("textures\\FogPNG.PNG");
-		m_zmFog[i].SetAni(4, 3, 3);
+		m_zmFog[i].MakeTextureDiffuse("textures\\Fog.png");
+		//m_zmFog[i].SetAni(4, 3, 3);
 
 		//Geo initialisieren
-		m_zFog[i].Init(25.0F, 10.0F, &m_zmFog[i]);
+		m_zFog[i].Init(100.0F, 50.0F, &m_zmFog[i]);
 
 		//Dem Placement das Geo hinzufügen
 		m_zpFog[i].AddGeo(&m_zFog[i]);
