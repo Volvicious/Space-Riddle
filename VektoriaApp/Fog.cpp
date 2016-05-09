@@ -16,19 +16,19 @@ void CFog::Init(CRoot * root, CScene * scene)
 	{
 		//Material
 		root->AddMaterial(&m_zmFog[i]);
-		m_zmFog[i].MakeTextureDiffuse("textures\\Fog.png");
-		//m_zmFog[i].SetAni(4, 3, 3);
+		m_zmFog[i].MakeTextureDiffuse("textures\\Transparent.png");
+		m_zmFog[i].SetAni(4, 3, 12);
 
 		//Geo initialisieren
-		m_zFog[i].Init(100.0F, 50.0F, &m_zmFog[i]);
+		m_zFog[i].Init(250.0F, 250.0F, &m_zmFog[i]);
 
 		//Dem Placement das Geo hinzufügen
 		m_zpFog[i].AddGeo(&m_zFog[i]);
 		
 		//Transparency vom Fog festlegen
-		//OutputDebugString("\n");
+		OutputDebugString("\n");
 		fAnzahl = fAnzahl - (100 / MAX_FOG);
-		//OutputDebugString(std::to_string(fAnzahl / 100.0F).c_str());
+		OutputDebugString(std::to_string(fAnzahl / 100.0F).c_str());
 
 		//Transparency der Plane
 		m_zmFog[i].SetTransparency(fAnzahl / 100.0F);

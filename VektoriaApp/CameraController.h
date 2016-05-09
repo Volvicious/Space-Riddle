@@ -1,6 +1,6 @@
 #pragma once
-
 #include "Vektoria\Root.h"
+
 using namespace Vektoria;
 
 class CCameraController

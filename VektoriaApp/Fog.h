@@ -1,6 +1,6 @@
 #pragma once
 
-#define MAX_FOG 4
+#define MAX_FOG 10
 
 #include "Vektoria\Root.h"
 

@@ -144,6 +144,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="LightTunnel.h" />
     <ClInclude Include="Meteorit.h" />
+    <ClInclude Include="Raumschiff.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Steuerung.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LightTunnel.cpp" />
     <ClCompile Include="Meteorit.cpp" />
+    <ClCompile Include="Raumschiff.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Steuerung.cpp" />
     <ClCompile Include="Tube.cpp" />

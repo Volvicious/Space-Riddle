@@ -63,6 +63,7 @@
 #include "LightTunnel.h"
 #include "Tube.h"
 #include "Fog.h"
+#include "Raumschiff.h"
 
 using namespace Vektoria;
 
@@ -96,40 +97,33 @@ private:
 	CLightParallel m_zl;
 	CSteuerung m_zSteuerung;
 	CFog m_zFog;
+	CRaumschiff m_zRaumschiff;
+
+	CTexture m_ztBackground;
+	CImage m_ziBackground;
 
 	// Placements
 	CPlacement m_zpCamera;
-	CPlacement m_zpTeaPot;
 	CPlacement m_zpFog;
-	CPlacement m_zpTunnel;
-	CPlacement m_zpSkybox;
+	CPlacement m_zpSkyDome;
 
 	//Extras
-	CMaterial m_zMaterialKugel;
 	CMaterial m_zMaterialBackground;
 	CMaterial m_zMaterialFog;
-	CMaterial m_zMaterialTunnel;
 	CBackground m_zBackground;
-	CGeoSkybox m_zSkybox;
 
 	//Keyboard
+	CGeoDome m_zSkyDome;
 	CDeviceKeyboard m_zKeyboard;
 
 	//Cameravektor
 	CHVector m_zCameraTranslation;
 
 	//Objekte
-	CGeoUtahTeapot m_zTeaPot;
 	CMeteorit m_zMeteoriten;
 	
 	//Lichter
 	CLightTunnel m_zLight;
-
-	//Walls
-	CTube m_zTube;
-
-	//Tunnel
-	CGeoTube m_zTunnel;
 
 	//Globale Variablen
 	bool bFirstPerson = true;
