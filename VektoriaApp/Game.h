@@ -64,6 +64,9 @@
 #include "Tube.h"
 #include "Fog.h"
 #include "Raumschiff.h"
+#include "SceneHandler.h"
+#include "Hitbox.h"
+#include "Frage.h"
 
 using namespace Vektoria;
 
@@ -98,9 +101,7 @@ private:
 	CSteuerung m_zSteuerung;
 	CFog m_zFog;
 	CRaumschiff m_zRaumschiff;
-
-	CTexture m_ztBackground;
-	CImage m_ziBackground;
+	SceneHandler m_zSceneHandler;
 
 	// Placements
 	CPlacement m_zpCamera;
@@ -108,9 +109,13 @@ private:
 	CPlacement m_zpSkyDome;
 
 	//Extras
-	CMaterial m_zMaterialBackground;
+	//Skydome
+	CMaterial m_zMaterial;
+
+
+	//Materialien
+	CMaterial m_zmBackground;
 	CMaterial m_zMaterialFog;
-	CBackground m_zBackground;
 
 	//Keyboard
 	CGeoDome m_zSkyDome;

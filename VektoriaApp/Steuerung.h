@@ -13,8 +13,9 @@ public:
 	CSteuerung();
 	~CSteuerung();
 
-	void Tick(CPlacement * placement, CDeviceKeyboard keyboard);
-	void Inertia(CPlacement * placement);
+	void Tick(float fGeschwindigkeit, CPlacement * placement, CDeviceKeyboard keyboard);
+	void MaxTube(float fGeschwindigkeit, CPlacement * placement);
+	void Inertia(float fGeschwindigkeit, CPlacement * placement);
 
 private:
 

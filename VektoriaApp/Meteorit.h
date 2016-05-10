@@ -15,7 +15,10 @@ public:
 	void Init(CScene* scene);
 	void RenewMeteorits(CPlacement * pRaumschiff);
 
+	int getiCounterMeteoriten() { return iCounterMeteoriten; };
+
 private:
+
 	// Hier ist Platz für die Vektoriaobjekte:
 	CScene m_zs;
 	CMaterial m_zMaterialMeteorit;
@@ -29,6 +32,7 @@ private:
 	CPlacement m_azp[MAX_METEOR];
 
 	//Globale Variablen
+	int iCounterMeteoriten = 0;
 	int iCounter = 0;
 };
 

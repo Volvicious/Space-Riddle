@@ -14,7 +14,7 @@ void CRaumschiff::Init(CRoot * root,  CScene * scene)
 {
 
 	//Raumschiff Objekt reinladen
-	m_zRaumschiff = m_filewavefront.LoadGeo("models\\CoolesTeilobj.obj");
+	m_zRaumschiff = m_filewavefront.LoadGeo("models\\Raumschiff.obj");
 
 	//Raumschiff Material
 	m_zmRaumschiff.Init();
@@ -26,7 +26,7 @@ void CRaumschiff::Init(CRoot * root,  CScene * scene)
 	root->AddMaterial(&m_zmRaumschiff);
 
 	//Raumschiff rotieren
-	m_zpRaumschiff.RotateY(UM_DEG2RAD(180));
+	//m_zpRaumschiff.RotateY(UM_DEG2RAD(180));
 
 	//Raumschiff dem Geo hinzufügen
 	m_zpRaumschiff.AddGeo(m_zRaumschiff);
