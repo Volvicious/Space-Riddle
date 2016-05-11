@@ -6,6 +6,8 @@
 #include "Raumschiff.h"
 #include "CameraController.h"
 #include "Steuerung.h"
+#include "LightTunnel.h"
+#include "SkyDome.h"
 
 using namespace Vektoria;
 
@@ -16,14 +18,14 @@ public:
 	SceneHandler();
 	~SceneHandler();
 
-	void Init(CViewport * viewport, CScene * scene, CFrame * frame, CDeviceKeyboard * ptrKeyboard); //cfix
+	void Init(CViewport * viewport, CScene * scene, CFrame * frame, CDeviceKeyboard * ptrKeyboard);
 	void InitRaumschiff(CRoot * root, CScene * scene);
 	void InitMeteorits(CScene * scene);
 	void InitCamera(CViewport * viewport, CScene * scene);
-	void InitFrage();
+	void InitLights(CScene * scene);
+	void InitSkyDome(CRoot * root, CScene * scene);
 
-	void Scene_Raumschiff();
-	void Scene_Camera();
+	void InitFrage();
 	void Scene_Meteoriten();
 	void Scene_Frage();
 
@@ -35,10 +37,10 @@ private:
 
 	//Objekte
 	CMeteorit m_zMeteoriten;
-
 	CDeviceKeyboard * m_zKeyboard;
 
-
+	CSkyDome m_zSkydome;
+	CLightTunnel m_zLights;
 	CHitbox m_zHitbox;
 	CHVector m_cameraPos;
 	CFrage m_zFrage;

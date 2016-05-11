@@ -10,7 +10,7 @@ SceneHandler::~SceneHandler()
 {
 }
 
-void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame, CDeviceKeyboard * ptrKeyboard) //cfix 
+void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame, CDeviceKeyboard * ptrKeyboard) 
 {
 	//Wichtig
 	b_sollinit = true;
@@ -18,11 +18,7 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame, CD
 	m_zFrage.Init1(scene);
 	m_fBeschleunigung = -30.0f;
 
-	m_zc.Init(viewPort, scene); //Cfix
-
-
-	//Keyboard dem Frame hinzufügen
-	//frame->AddDeviceKeyboard(&m_zKeyboard); // CFix
+	m_zc.Init(viewPort, scene); 
 	m_zKeyboard = ptrKeyboard;
 
 }
@@ -40,6 +36,16 @@ void SceneHandler::InitRaumschiff(CRoot * root, CScene * scene)
 void SceneHandler::InitCamera(CViewport * viewport, CScene * scene)
 {
 	m_zc.Init(viewport, scene);
+}
+
+void SceneHandler::InitLights(CScene * scene)
+{
+	m_zLights.Init(scene);
+}
+
+void SceneHandler::InitSkyDome(CRoot * root, CScene * scene)
+{
+	m_zSkydome.Init(root, scene);
 }
 
 void SceneHandler::InitFrage()
@@ -83,8 +89,6 @@ void SceneHandler::Scene_Frage()
 	{
 		//b_sollinit = true;
 		i_inScene = 1;
-		
-
 	}
 
 	if (b_braucheAntwort == true)
@@ -119,25 +123,19 @@ void SceneHandler::Scene_Frage()
 }
 
 void SceneHandler::Tick(FLOAT fTimeDelta, CScene * scene)
-{
+{	
+	//Lichter
+	m_zLights.RenewLights(m_zRaumschiff.getpRaumschiff());
 
-	
+	//Skydome bewegen
+	m_zSkydome.Tick(fTimeDelta * -40.0F);
+
 	//Raumschiff bewegen
 	m_zRaumschiff.Tick(fTimeDelta*-40);
 
-
 	//Camera bewegen
 	m_zc.Tick(m_zRaumschiff.getpRaumschiff(), m_zKeyboard);
-
 	
-	
-
-
-	//Meteoriten erneuern
-	//m_zMeteoriten.RenewMeteorits(m_zRaumschiff.getpRaumschiff());
-	
-	
-
 	if (b_sollinit == true)
 	{
 		InitMeteorits(scene);
@@ -151,6 +149,7 @@ void SceneHandler::Tick(FLOAT fTimeDelta, CScene * scene)
 		
 		b_sollinitfrage = false;
 	}
+
 	if (i_inScene == 2)
 	{
 		Scene_Frage();
@@ -162,14 +161,9 @@ void SceneHandler::Tick(FLOAT fTimeDelta, CScene * scene)
 		Scene_Meteoriten();
 	}
 
-
-	
 	//Steuerung
 	if (m_bLenkung == true)
 	{
-		m_zSteuerung.Tick(fTimeDelta, m_zRaumschiff.getpRaumschiff() , m_zKeyboard); //Cfix
+		m_zSteuerung.Tick(fTimeDelta, m_zRaumschiff.getpRaumschiff() , m_zKeyboard);
 	}
-	
-
-	
 }

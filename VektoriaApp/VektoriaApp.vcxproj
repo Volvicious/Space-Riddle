@@ -149,10 +149,10 @@
     <ClInclude Include="Raumschiff.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneHandler.h" />
+    <ClInclude Include="SkyDome.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Steuerung.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Tube.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CameraController.cpp" />
@@ -164,9 +164,9 @@
     <ClCompile Include="Meteorit.cpp" />
     <ClCompile Include="Raumschiff.cpp" />
     <ClCompile Include="SceneHandler.cpp" />
+    <ClCompile Include="SkyDome.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Steuerung.cpp" />
-    <ClCompile Include="Tube.cpp" />
     <ClCompile Include="VektoriaApp.cpp" />
   </ItemGroup>
   <ItemGroup>

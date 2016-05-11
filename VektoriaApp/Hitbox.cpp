@@ -65,7 +65,6 @@ void CHitbox::SetXY(FLOAT f_x, FLOAT f_y)
 {
 	f_StartX = f_x;
 	f_StartY = f_y;
-
 }
 
 int CHitbox::CollisionAntwort(CHVector * posRaumschiff, CHVector * posAntwort, int ABCD)

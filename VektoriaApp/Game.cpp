@@ -31,25 +31,14 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	//Licht initialisieren
 	m_zLight.Init(&m_zs);
 
-
 	//Initialisiert einfach alles
 	m_zSceneHandler.Init(&m_zv,  &m_zs, &m_zf, &m_zKeyboard);
 	m_zSceneHandler.InitRaumschiff(&m_zr, &m_zs);
 	m_zSceneHandler.InitCamera(&m_zv, &m_zs);
 	m_zSceneHandler.InitMeteorits(&m_zs);
+	m_zSceneHandler.InitSkyDome(&m_zr, &m_zs);
+	m_zSceneHandler.InitLights(&m_zs);
 	m_zSceneHandler.InitFrage();
-
-
-	////Skydome
-	m_zMaterial.MakeTextureSky("textures\\Background.jpg");
-	m_zSkyDome.Init(100.0F, 100.0F, &m_zMaterial, true, 24, 12, eMapping_Cylindrical);
-	m_zpSkyDome.AddGeo(&m_zSkyDome);
-	m_zs.AddPlacement(&m_zpSkyDome);
-
-
-
-	//Rotieren, Translieren, Skalieren
-	//m_zpCamera.TranslateZ(15.0F);
 
 	//Fog initialisieren
 	m_zFog.Init(&m_zr, &m_zs);
@@ -57,45 +46,17 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 
 void CGame::Tick(float fTime, float fTimeDelta)
 {
-
-	m_zSceneHandler.Tick(fTimeDelta, &m_zs);
-
-	
 	// Hier die Echtzeit-Veränderungen einfügen:
+
+	//Aktualisiert alles
+	m_zSceneHandler.Tick(fTimeDelta, &m_zs);
 
 	//Raumschiffgeschwindigkeit
 	fGeschwindigkeit = -40.0F * fTimeDelta;
 	
-	/*
-	//Raumschiff Geschwindigkeit
-	//m_zRaumschiff.Tick(fGeschwindigkeit);
-	
-	//Cameraposition
-	//m_zc.Tick(m_zRaumschiff.getpRaumschiff(), &m_zKeyboard);
-	m_zSceneHandler.Tick(fTimeDelta, &m_zc.getPlacement(), &m_zs);
-	
-	//Raumschiff steuern
-	//m_zSteuerung.Tick(fTimeDelta, m_zRaumschiff.getpRaumschiff(), m_zKeyboard);
-	//m_zSceneHandler.Scene_Raumschiff();
-	*/
-
-
-	//Dome bewegen
-	m_zpSkyDome.TranslateZDelta(fGeschwindigkeit);
-	
 	//Fog bewegt sich mit
 	m_zFog.Tick(fGeschwindigkeit);
-	
-	//Lichter erneuern
-	m_zLight.RenewLights(m_zSceneHandler.getRaumschiffptr()->getpRaumschiff());
 
-	/*
-
-	//Meteoriten erneuern
-	m_zMeteoriten.RenewMeteorits(m_zRaumschiff.getpRaumschiff());
-
-	
-	*/
 	m_zr.Tick(fTimeDelta);
 }
 

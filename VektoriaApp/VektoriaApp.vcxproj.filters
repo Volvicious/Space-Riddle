@@ -19,6 +19,12 @@
     <Filter Include="Quelldateien\Basti">
       <UniqueIdentifier>{7ea8d840-e61f-44b1-8d31-b3b8959ac0ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Floo">
+      <UniqueIdentifier>{c170d227-e949-4e8a-9ecd-378e64a2f27e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Floo">
+      <UniqueIdentifier>{56d11193-0b74-4f62-b538-d1e5217258e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -33,27 +39,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Meteorit.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Steuerung.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraController.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="LightTunnel.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Tube.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Fog.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Raumschiff.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Frage.h">
       <Filter>Headerdateien\Basti</Filter>
     </ClInclude>
@@ -62,6 +47,27 @@
     </ClInclude>
     <ClInclude Include="SceneHandler.h">
       <Filter>Headerdateien\Basti</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraController.h">
+      <Filter>Headerdateien\Floo</Filter>
+    </ClInclude>
+    <ClInclude Include="Fog.h">
+      <Filter>Headerdateien\Floo</Filter>
+    </ClInclude>
+    <ClInclude Include="LightTunnel.h">
+      <Filter>Headerdateien\Floo</Filter>
+    </ClInclude>
+    <ClInclude Include="Raumschiff.h">
+      <Filter>Headerdateien\Floo</Filter>
+    </ClInclude>
+    <ClInclude Include="Steuerung.h">
+      <Filter>Headerdateien\Floo</Filter>
+    </ClInclude>
+    <ClInclude Include="Meteorit.h">
+      <Filter>Headerdateien\Floo</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyDome.h">
+      <Filter>Headerdateien\Floo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -74,27 +80,6 @@
     <ClCompile Include="VektoriaApp.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Meteorit.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Steuerung.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraController.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="LightTunnel.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Tube.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Fog.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Raumschiff.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Frage.cpp">
       <Filter>Quelldateien\Basti</Filter>
     </ClCompile>
@@ -103,6 +88,27 @@
     </ClCompile>
     <ClCompile Include="SceneHandler.cpp">
       <Filter>Quelldateien\Basti</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="Fog.cpp">
+      <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="LightTunnel.cpp">
+      <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="Meteorit.cpp">
+      <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="Raumschiff.cpp">
+      <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="Steuerung.cpp">
+      <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyDome.cpp">
+      <Filter>Quelldateien\Floo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
