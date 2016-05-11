@@ -32,10 +32,11 @@ void CMeteorit::Init(CScene * scene)
 	for (int i = 0; i < MAX_METEOR; i++)
 	{
 		scene->AddPlacement(&m_azp[i]);
+		
 	}
 }
 
-void CMeteorit::RenewMeteorits(CPlacement * pRaumschiff)
+void CMeteorit::RenewMeteorits(CPlacement * pRaumschiff, bool b)
 {
 		//Wenn das Ende des Arrays erreicht wird, wird von neuem durchgezählt
 		iCounter %= MAX_METEOR;
@@ -47,8 +48,20 @@ void CMeteorit::RenewMeteorits(CPlacement * pRaumschiff)
 		//Meteoriten hinter den Fog schieben
 		if (m_zvMeteorit.GetZ() >= m_zvRaumschiff.GetZ() + 15.0F)
 		{
-			m_azp[iCounter].TranslateZDelta(-200.0F);
+			m_azp[iCounter].TranslateZDelta(-50.0F);
+			if (b) {
+				m_azp[iCounter].SwitchOn();
+
+			}
+			else {
+				m_azp[iCounter].SwitchOff();
+				iCounterMeteoriten = 0;
+
+			}
+
+
 			++iCounter;
+			iCounterMeteoriten++;
 		}
 }
 

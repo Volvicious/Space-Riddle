@@ -27,6 +27,8 @@ public:
 	void Scene_Meteoriten();
 	void Scene_Frage();
 
+	CRaumschiff * getRaumschiffptr() { return &m_zRaumschiff; };
+
 	void Tick(FLOAT fTimeDelta, CScene * scene);
 
 private:

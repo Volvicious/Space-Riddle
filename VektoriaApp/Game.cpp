@@ -65,6 +65,7 @@ void CGame::Tick(float fTime, float fTimeDelta)
 
 	//Raumschiffgeschwindigkeit
 	fGeschwindigkeit = -40.0F * fTimeDelta;
+	
 	/*
 	//Raumschiff Geschwindigkeit
 	//m_zRaumschiff.Tick(fGeschwindigkeit);
@@ -77,6 +78,8 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	//m_zSteuerung.Tick(fTimeDelta, m_zRaumschiff.getpRaumschiff(), m_zKeyboard);
 	//m_zSceneHandler.Scene_Raumschiff();
 	*/
+
+
 	//Dome bewegen
 	m_zpSkyDome.TranslateZDelta(fGeschwindigkeit);
 	
@@ -84,7 +87,7 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	m_zFog.Tick(fGeschwindigkeit);
 	
 	//Lichter erneuern
-	m_zLight.RenewLights(m_zRaumschiff.getpRaumschiff());
+	m_zLight.RenewLights(m_zSceneHandler.getRaumschiffptr()->getpRaumschiff());
 
 	/*
 

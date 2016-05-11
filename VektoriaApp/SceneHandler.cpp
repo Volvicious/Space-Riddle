@@ -59,13 +59,13 @@ void SceneHandler::InitFrage()
 void SceneHandler::Scene_Meteoriten()
 {
 	//Meteoriten erneuern
-	m_zMeteoriten.RenewMeteorits(m_zRaumschiff.getpRaumschiff());
+	m_zMeteoriten.RenewMeteorits(m_zRaumschiff.getpRaumschiff(), true);
 
 	//Hitboxen kollision
 	m_zHitbox.CollisionMeteorit(&m_zRaumschiff.getpRaumschiff()->GetTranslation(), &m_zMeteoriten);
 
 	//Counter der Meteoriten hochzählen
-	if (m_zMeteoriten.getiCounterMeteoriten() == MAX_METEOR)
+	if (m_zMeteoriten.getiCounterMeteoriten() == MAX_METEOR-1)
 	{ 
 		//Szene ändern wenn alle Meteoriten vorbei sind
 		b_sollinitfrage = true;
@@ -75,11 +75,16 @@ void SceneHandler::Scene_Meteoriten()
 
 void SceneHandler::Scene_Frage()
 {
+
+	m_zMeteoriten.RenewMeteorits(m_zRaumschiff.getpRaumschiff(), false);
+
 	//Raumschiffgeschwindigkeit
-	if (f_PosRaumschiffZ - 50.0f >= m_zRaumschiff.getpRaumschiff()->GetTranslation().GetY())
+	if (f_PosRaumschiffZ - 100.0f >= m_zRaumschiff.getpRaumschiff()->GetTranslation().GetZ())
 	{
-		b_sollinit = true;
+		//b_sollinit = true;
 		i_inScene = 1;
+		
+
 	}
 
 	if (b_braucheAntwort == true)
@@ -129,7 +134,7 @@ void SceneHandler::Tick(FLOAT fTimeDelta, CScene * scene)
 
 
 	//Meteoriten erneuern
-	m_zMeteoriten.RenewMeteorits(m_zRaumschiff.getpRaumschiff());
+	//m_zMeteoriten.RenewMeteorits(m_zRaumschiff.getpRaumschiff());
 	
 	
 
@@ -143,6 +148,7 @@ void SceneHandler::Tick(FLOAT fTimeDelta, CScene * scene)
 	if (b_sollinitfrage == true)
 	{
 		InitFrage();
+		
 		b_sollinitfrage = false;
 	}
 	if (i_inScene == 2)

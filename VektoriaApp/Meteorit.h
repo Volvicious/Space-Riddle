@@ -13,9 +13,11 @@ public:
 
 	CPlacement * getPlacement(){ return m_azp; };
 	void Init(CScene* scene);
-	void RenewMeteorits(CPlacement * pRaumschiff);
+	void RenewMeteorits(CPlacement * pRaumschiff, bool b );
 
 	int getiCounterMeteoriten() { return iCounterMeteoriten; };
+
+	
 
 private:
 
@@ -27,6 +29,8 @@ private:
 	//Vektor meteorit
 	CHVector m_zvRaumschiff;
 	CHVector m_zvMeteorit;
+
+	
 
 	//Meteoriten Placements
 	CPlacement m_azp[MAX_METEOR];

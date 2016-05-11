@@ -37,8 +37,8 @@ void CFrage::Init(FLOAT f_posZ, FLOAT f_posX, FLOAT f_posY)
 		{
 			fLeftpos = fLeftpos + 5.0f;
 		}
-		m_zpSphere[i].Translate(fLeftpos, f_posY, f_posZ - 35.0f);
+		m_zpSphere[i].Translate(fLeftpos, f_posY, f_posZ - 100.0f);
 	}
 
-	m_zpSphere[4].Translate(f_posX, f_posY + 5.0f, f_posZ - 35.0f);
+	m_zpSphere[4].Translate(f_posX, f_posY + 5.0f, f_posZ - 100.0f);
 }
