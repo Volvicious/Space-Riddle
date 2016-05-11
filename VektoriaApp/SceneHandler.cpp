@@ -10,7 +10,7 @@ SceneHandler::~SceneHandler()
 {
 }
 
-void SceneHandler::Init(CScene * scene, CFrame * frame)
+void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame, CDeviceKeyboard * ptrKeyboard) //cfix 
 {
 	//Wichtig
 	b_sollinit = true;
@@ -18,8 +18,13 @@ void SceneHandler::Init(CScene * scene, CFrame * frame)
 	m_zFrage.Init1(scene);
 	m_fBeschleunigung = -30.0f;
 
+	m_zc.Init(viewPort, scene); //Cfix
+
+
 	//Keyboard dem Frame hinzufügen
-	frame->AddDeviceKeyboard(&m_zKeyboard);
+	//frame->AddDeviceKeyboard(&m_zKeyboard); // CFix
+	m_zKeyboard = ptrKeyboard;
+
 }
 
 void SceneHandler::InitMeteorits(CScene * scene)
@@ -108,16 +113,25 @@ void SceneHandler::Scene_Frage()
 	}
 }
 
-void SceneHandler::Tick(FLOAT fTimeDelta, CPlacement * camera, CScene * scene)
+void SceneHandler::Tick(FLOAT fTimeDelta, CScene * scene)
 {
+
+	
 	//Raumschiff bewegen
-	m_zRaumschiff.Tick(fTimeDelta);
+	m_zRaumschiff.Tick(fTimeDelta*-40);
+
 
 	//Camera bewegen
-	m_zc.Tick(camera, &m_zKeyboard);
+	m_zc.Tick(m_zRaumschiff.getpRaumschiff(), m_zKeyboard);
+
+	
+	
+
 
 	//Meteoriten erneuern
-	m_zMeteoriten.RenewMeteorits(camera);
+	m_zMeteoriten.RenewMeteorits(m_zRaumschiff.getpRaumschiff());
+	
+	
 
 	if (b_sollinit == true)
 	{
@@ -142,9 +156,14 @@ void SceneHandler::Tick(FLOAT fTimeDelta, CPlacement * camera, CScene * scene)
 		Scene_Meteoriten();
 	}
 
+
+	
 	//Steuerung
 	if (m_bLenkung == true)
 	{
-		m_zSteuerung.Tick(fTimeDelta, camera, m_zKeyboard);
+		m_zSteuerung.Tick(fTimeDelta, m_zRaumschiff.getpRaumschiff() , m_zKeyboard); //Cfix
 	}
+	
+
+	
 }

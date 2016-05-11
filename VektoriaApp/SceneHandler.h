@@ -16,7 +16,7 @@ public:
 	SceneHandler();
 	~SceneHandler();
 
-	void Init(CScene * scene, CFrame * frame);
+	void Init(CViewport * viewport, CScene * scene, CFrame * frame, CDeviceKeyboard * ptrKeyboard); //cfix
 	void InitRaumschiff(CRoot * root, CScene * scene);
 	void InitMeteorits(CScene * scene);
 	void InitCamera(CViewport * viewport, CScene * scene);
@@ -27,13 +27,16 @@ public:
 	void Scene_Meteoriten();
 	void Scene_Frage();
 
-	void Tick(FLOAT fTimeDelta, CPlacement * camera, CScene * scene);
+	void Tick(FLOAT fTimeDelta, CScene * scene);
 
 private:
 
 	//Objekte
 	CMeteorit m_zMeteoriten;
-	CDeviceKeyboard m_zKeyboard;
+
+	CDeviceKeyboard * m_zKeyboard;
+
+
 	CHitbox m_zHitbox;
 	CHVector m_cameraPos;
 	CFrage m_zFrage;

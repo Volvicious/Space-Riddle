@@ -9,24 +9,24 @@ CSteuerung::~CSteuerung()
 {
 }
 
-void CSteuerung::Tick(float fGeschwindigkeit, CPlacement * placement, CDeviceKeyboard keyboard)
+void CSteuerung::Tick(float fGeschwindigkeit, CPlacement * placement, CDeviceKeyboard * keyboard)
 {
-	if (keyboard.KeyPressed(DIK_W) && placement->GetTranslation().GetY() < MAX_TUBE)
+	if (keyboard->KeyPressed(DIK_W) && placement->GetTranslation().GetY() < MAX_TUBE)
 	{
 		pfvVertikal += 3.0F / 10.0F * fGeschwindigkeit;
 	}
 
-	if (keyboard.KeyPressed(DIK_A) && placement->GetTranslation().GetX() > MIN_TUBE)
+	if (keyboard->KeyPressed(DIK_A) && placement->GetTranslation().GetX() > MIN_TUBE)
 	{
 		pfvHorizontal -= 3.0F / 10.0F * fGeschwindigkeit;
 	}
 
-	if (keyboard.KeyPressed(DIK_S) && placement->GetTranslation().GetY() > MIN_TUBE)
+	if (keyboard->KeyPressed(DIK_S) && placement->GetTranslation().GetY() > MIN_TUBE)
 	{
 		pfvVertikal -= 3.0F / 10.0F * fGeschwindigkeit;
 	}
 
-	if (keyboard.KeyPressed(DIK_D) && placement->GetTranslation().GetX() < MAX_TUBE)
+	if (keyboard->KeyPressed(DIK_D) && placement->GetTranslation().GetX() < MAX_TUBE)
 	{
 		pfvHorizontal += 3.0F / 10.0F * fGeschwindigkeit;
 	}

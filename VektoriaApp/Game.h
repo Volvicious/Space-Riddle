@@ -93,7 +93,7 @@ public:
 private:
     // Hier ist Platz für die Vektoriaobjekte:
 	CRoot m_zr;
-	CCameraController m_zc;
+	//CCameraController m_zc; //CFix
 	CScene m_zs;
 	CFrame m_zf;
 	CViewport m_zv;
@@ -104,7 +104,7 @@ private:
 	SceneHandler m_zSceneHandler;
 
 	// Placements
-	CPlacement m_zpCamera;
+	//CPlacement m_zpCamera;
 	CPlacement m_zpFog;
 	CPlacement m_zpSkyDome;
 
@@ -125,7 +125,7 @@ private:
 	CHVector m_zCameraTranslation;
 
 	//Objekte
-	CMeteorit m_zMeteoriten;
+	//CMeteorit m_zMeteoriten;
 	
 	//Lichter
 	CLightTunnel m_zLight;
