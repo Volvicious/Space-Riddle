@@ -65,7 +65,7 @@ void SceneHandler::InitFrage()
 void SceneHandler::Scene_Meteoriten()
 {
 	//Meteoriten erneuern
-	m_zMeteoriten.RenewMeteorits(m_zRaumschiff.getpRaumschiff(), true);
+	m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff(), true);
 
 	//Hitboxen kollision
 	m_zHitbox.CollisionMeteorit(&m_zRaumschiff.getpRaumschiff()->GetTranslation(), &m_zMeteoriten);
@@ -81,8 +81,7 @@ void SceneHandler::Scene_Meteoriten()
 
 void SceneHandler::Scene_Frage()
 {
-
-	m_zMeteoriten.RenewMeteorits(m_zRaumschiff.getpRaumschiff(), false);
+	m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff(), false);
 
 	//Raumschiffgeschwindigkeit
 	if (f_PosRaumschiffZ - 100.0f >= m_zRaumschiff.getpRaumschiff()->GetTranslation().GetZ())
