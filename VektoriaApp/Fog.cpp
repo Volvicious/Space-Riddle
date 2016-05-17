@@ -12,15 +12,20 @@ CFog::~CFog()
 
 void CFog::Init(CRoot * root, CScene * scene)
 {
+	m_zmFog[0].MakeTextureDiffuse("textures\\Fog1.png");
+	m_zmFog[1].MakeTextureDiffuse("textures\\Fog2.png");
+	m_zmFog[2].MakeTextureDiffuse("textures\\Fog3.png");
+	m_zmFog[3].MakeTextureDiffuse("textures\\Fog4.png");
+	m_zmFog[4].MakeTextureDiffuse("textures\\Fog5.png");
+	m_zmFog[5].MakeTextureDiffuse("textures\\Fog6.png");
+
 	for (int i = 0; i < MAX_FOG; i++)
 	{
 		//Material
 		root->AddMaterial(&m_zmFog[i]);
-		m_zmFog[i].MakeTextureDiffuse("textures\\Transparent.png");
-		m_zmFog[i].SetAni(4, 3, 12);
 
 		//Geo initialisieren
-		m_zFog[i].Init(250.0F, 250.0F, &m_zmFog[i]);
+		m_zFog[i].Init(50.0F, 50.0F, &m_zmFog[i]);
 
 		//Dem Placement das Geo hinzufügen
 		m_zpFog[i].AddGeo(&m_zFog[i]);
@@ -31,10 +36,10 @@ void CFog::Init(CRoot * root, CScene * scene)
 		OutputDebugString(std::to_string(fAnzahl / 100.0F).c_str());
 
 		//Transparency der Plane
-		m_zmFog[i].SetTransparency(fAnzahl / 100.0F);
+		//m_zmFog[i].SetTransparency(fAnzahl / 100.0F);
 
 		//Abstand der Planes festlegen
-		fAbstand -= 25;
+		fAbstand -= 50;
 
 		//Fog verschieben
 		m_zpFog[i].TranslateZDelta(fAbstand);

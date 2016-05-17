@@ -35,13 +35,13 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zSceneHandler.Init(&m_zv,  &m_zs, &m_zf, &m_zKeyboard);
 	m_zSceneHandler.InitRaumschiff(&m_zr, &m_zs);
 	m_zSceneHandler.InitCamera(&m_zv, &m_zs);
-	m_zSceneHandler.InitMeteorits(&m_zs);
+	m_zSceneHandler.InitMeteorits(&m_zr, &m_zs);
 	m_zSceneHandler.InitSkyDome(&m_zr, &m_zs);
 	m_zSceneHandler.InitLights(&m_zs);
 	m_zSceneHandler.InitFrage();
 
 	//Fog initialisieren
-	m_zFog.Init(&m_zr, &m_zs);
+	//m_zFog.Init(&m_zr, &m_zs);
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)
@@ -55,7 +55,7 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	fGeschwindigkeit = -40.0F * fTimeDelta;
 	
 	//Fog bewegt sich mit
-	m_zFog.Tick(fGeschwindigkeit);
+	//m_zFog.Tick(fGeschwindigkeit);
 
 	m_zr.Tick(fTimeDelta);
 }

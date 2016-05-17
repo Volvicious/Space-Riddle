@@ -20,7 +20,7 @@ public:
 
 	void Init(CViewport * viewport, CScene * scene, CFrame * frame, CDeviceKeyboard * ptrKeyboard);
 	void InitRaumschiff(CRoot * root, CScene * scene);
-	void InitMeteorits(CScene * scene);
+	void InitMeteorits(CRoot * root, CScene * scene);
 	void InitCamera(CViewport * viewport, CScene * scene);
 	void InitLights(CScene * scene);
 	void InitSkyDome(CRoot * root, CScene * scene);

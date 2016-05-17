@@ -23,9 +23,9 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame, CD
 
 }
 
-void SceneHandler::InitMeteorits(CScene * scene)
+void SceneHandler::InitMeteorits(CRoot * root, CScene * scene)
 {
-	m_zMeteoriten.Init(scene);
+	m_zMeteoriten.Init(root, scene);
 }
 
 void SceneHandler::InitRaumschiff(CRoot * root, CScene * scene)
@@ -134,12 +134,6 @@ void SceneHandler::Tick(FLOAT fTimeDelta, CScene * scene)
 
 	//Camera bewegen
 	m_zc.Tick(m_zRaumschiff.getpRaumschiff(), m_zKeyboard);
-	
-	if (b_sollinit == true)
-	{
-		InitMeteorits(scene);
-		b_sollinit = false;
-	}
 
 	//Frage initialisieren
 	if (b_sollinitfrage == true)

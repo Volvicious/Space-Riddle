@@ -4,7 +4,8 @@
 using namespace Vektoria;
 
 #define MAX_METEOR 50
-#define VAR_METEOR 3
+#define VAR_METEOR 4
+#define MAX_TEXTUR 5
 
 class CMeteorit
 {
@@ -13,27 +14,26 @@ public:
 	~CMeteorit();
 
 	CPlacement * getPlacement(){ return m_zpMeteoriten; };
-	void Init(CScene* scene);
 	void Tick(CPlacement * pRaumschiff, bool b );
+	void Init(CRoot * root, CScene * scene);
 
 	int getiCounterMeteoriten() { return iCounterMeteoriten; };
 
-	void LoadBlenderFiles(CScene * scene);
 
 private:
 
 	// Hier ist Platz für die Vektoriaobjekte:
 	CScene m_zs;
-	CMaterial m_zMaterialMeteorit;
+	CMaterial m_zMaterialMeteorit[5];
 
 	//Vektor meteorit
 	CHVector m_zvRaumschiff;
 	CHVector m_zvMeteorit;
 
 	//Blender Meteoriten reinladen
-	CGeo * m_zMeteorit[VAR_METEOR];
-	CFileWavefront m_zfilewavefront[VAR_METEOR];
-	CPlacement m_zpMeteoriten[MAX_METEOR];
+	CGeo * m_zMeteorit[4];
+	CFileWavefront m_zfilewavefront[4];
+	CPlacement m_zpMeteoriten[50];
 
 	//Globale Variablen
 	int iCounterMeteoriten = 0;
