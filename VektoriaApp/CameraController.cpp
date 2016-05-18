@@ -48,7 +48,7 @@ void CCameraController::Tick(CPlacement * placement, CDeviceKeyboard * keyboard)
 		if (bFirstPerson == true)
 		{
 			m_zpCamera.Translate(m_zpCamera.GetTranslation() = placement->GetTranslation());
-			m_zpCamera.TranslateZDelta(15.0F);
+			m_zpCamera.TranslateZDelta(30.0F);
 			placement->SwitchOn();
 			m_zoCockpit.SwitchOff();
 			bFirstPerson = false;
@@ -70,6 +70,6 @@ void CCameraController::CameraPosition(CPlacement * placement)
 	if (bFirstPerson == false)
 	{
 		placement->SwitchOn();
-		m_zpCamera.TranslateZDelta(15.0F);
+		m_zpCamera.TranslateZDelta(30.0F);
 	}
 }

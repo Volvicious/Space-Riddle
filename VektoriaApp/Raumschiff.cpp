@@ -14,7 +14,7 @@ void CRaumschiff::Init(CRoot * root,  CScene * scene)
 {
 
 	//Raumschiff Objekt reinladen
-	m_zRaumschiff = m_filewavefront.LoadGeo("models\\Raumschiff.obj");
+	m_zRaumschiff = m_filewavefront.LoadGeo("models\\Raumschiff_alt.obj");
 
 	//Raumschiff Material
 	m_zmRaumschiff.Init();
@@ -24,9 +24,6 @@ void CRaumschiff::Init(CRoot * root,  CScene * scene)
 
 	//Material dem Root hinzufügen
 	root->AddMaterial(&m_zmRaumschiff);
-
-	//Raumschiff rotieren
-	//m_zpRaumschiff.RotateY(UM_DEG2RAD(180));
 
 	//Raumschiff dem Geo hinzufügen
 	m_zpRaumschiff.AddGeo(m_zRaumschiff);
@@ -38,4 +35,9 @@ void CRaumschiff::Init(CRoot * root,  CScene * scene)
 void CRaumschiff::Tick(float Geschwindigkeit)
 {
 	m_zpRaumschiff.TranslateZDelta(Geschwindigkeit);
+}
+
+void CRaumschiff::SetZero(FLOAT ZPos)
+{
+	m_zpRaumschiff.Translate(CHVector(0.0f, 0.0f, ZPos));
 }

@@ -25,6 +25,22 @@ void CFrage::Init1(CScene * scene)
 	scene->AddPlacement(&m_zpSphere[4]);
 }
 
+void CFrage::SwitchOff()
+{
+	for (int i = 0; i <= 5; i++)
+	{
+		m_zpSphere[i].SwitchOff();
+	}
+}
+
+void CFrage::SwitchOn()
+{
+	for (int i = 0; i <= 5; i++)
+	{
+		m_zpSphere[i].SwitchOn();
+	}
+}
+
 void CFrage::Init(FLOAT f_posZ, FLOAT f_posX, FLOAT f_posY)
 {
 	for (int i = 0; i < 4; i++)

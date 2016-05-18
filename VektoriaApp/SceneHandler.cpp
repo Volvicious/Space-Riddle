@@ -20,12 +20,22 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame, CD
 
 	m_zc.Init(viewPort, scene); 
 	m_zKeyboard = ptrKeyboard;
+	m_zSound.Init(scene);
 
 }
 
 void SceneHandler::InitMeteorits(CRoot * root, CScene * scene)
 {
-	m_zMeteoriten.Init(root, scene);
+	bool Graphics = true;
+
+	if (Graphics == true)
+	{
+		m_zMeteoriten.Init(root, scene);
+	}
+	else
+	{
+		m_zMeteoriten.LowGraphics(root, scene);
+	}
 }
 
 void SceneHandler::InitRaumschiff(CRoot * root, CScene * scene)
@@ -51,8 +61,8 @@ void SceneHandler::InitSkyDome(CRoot * root, CScene * scene)
 void SceneHandler::InitFrage()
 {
 	f_PosRaumschiffZ = m_zRaumschiff.getpRaumschiff()->GetTranslation().GetZ();
-	f_PosRaumschiffY = m_zRaumschiff.getpRaumschiff()->GetTranslation().GetY();
-	f_PosRaumschiffX = m_zRaumschiff.getpRaumschiff()->GetTranslation().GetX();
+	f_PosRaumschiffY = 0.0F;
+	f_PosRaumschiffX = 0.0F;
 
 	m_zFrage.Init(f_PosRaumschiffZ, f_PosRaumschiffX, f_PosRaumschiffY);
 
@@ -71,11 +81,31 @@ void SceneHandler::Scene_Meteoriten()
 	m_zHitbox.CollisionMeteorit(&m_zRaumschiff.getpRaumschiff()->GetTranslation(), &m_zMeteoriten);
 
 	//Counter der Meteoriten hochzählen
-	if (m_zMeteoriten.getiCounterMeteoriten() == MAX_METEOR-1)
+	if (m_zMeteoriten.getiCounterMeteoriten() == MAX_METEOR)
 	{ 
 		//Szene ändern wenn alle Meteoriten vorbei sind
+		m_zMeteoriten.SwitchOff();
 		b_sollinitfrage = true;
 		i_inScene = 2;
+	}
+}
+
+void SceneHandler::SwitchScene()
+{
+	if (m_zMeteoriten.getiCounterMeteoriten() == MAX_METEOR)
+	{
+		if (i_inScene == 1)
+		{
+			m_zMeteoriten.SwitchOff();
+			m_zFrage.SwitchOn();
+			i_inScene = 2;
+		}
+		else if (i_inScene == 2)
+		{
+			m_zFrage.SwitchOff();
+			m_zMeteoriten.SwitchOn();
+			i_inScene = 1;
+		}
 	}
 }
 
@@ -84,10 +114,20 @@ void SceneHandler::Scene_Frage()
 	m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff(), false);
 
 	//Raumschiffgeschwindigkeit
-	if (f_PosRaumschiffZ - 100.0f >= m_zRaumschiff.getpRaumschiff()->GetTranslation().GetZ())
+	if (m_zFrage.GetPlacementFrage() - 20.0f >= m_zRaumschiff.GetZPosition())
 	{
 		//b_sollinit = true;
 		i_inScene = 1;
+
+		//Meteoriten auf 0 setzen
+		m_zMeteoriten.SetiCounterZero();
+
+		//Raumschiff auf Position 0 setzen
+		m_zRaumschiff.SetZero(m_zMeteoriten.getiCounterZPos());
+
+		//Meteoriten Szene anmachen
+		m_zMeteoriten.SwitchOn();
+		ULDebug("lkdasflksdjsldkfj");
 	}
 
 	if (b_braucheAntwort == true)
@@ -142,6 +182,8 @@ void SceneHandler::Tick(FLOAT fTimeDelta, CScene * scene)
 		
 		b_sollinitfrage = false;
 	}
+
+	//SwitchScene();
 
 	if (i_inScene == 2)
 	{

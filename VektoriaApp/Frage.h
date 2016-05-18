@@ -9,8 +9,13 @@ public:
 	~CFrage();
 
 	void Init(FLOAT f_posRaumschiff, FLOAT f_posX, FLOAT f_posY);
-	void Init1(CScene * scene1);
+	void Init1(CScene * scene);
+
+	void SwitchOff();
+	void SwitchOn();
+
 	CHVector getPlacement(int j){ return  m_zpSphere[j].GetTranslation(); };
+	FLOAT GetPlacementFrage(){ return m_zpSphere[3].GetTranslation().GetZ(); }
 
 private:
 

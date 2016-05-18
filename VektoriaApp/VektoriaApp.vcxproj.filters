@@ -25,6 +25,12 @@
     <Filter Include="Quelldateien\Floo">
       <UniqueIdentifier>{56d11193-0b74-4f62-b538-d1e5217258e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Sounds">
+      <UniqueIdentifier>{3feaa337-ab72-4a46-9b61-e81f970bb0f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Sounds">
+      <UniqueIdentifier>{9e5efc90-d7c8-4684-9172-05c215ca0aa6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -69,6 +75,9 @@
     <ClInclude Include="SkyDome.h">
       <Filter>Headerdateien\Floo</Filter>
     </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Headerdateien\Sounds</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -109,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="SkyDome.cpp">
       <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Quelldateien\Sounds</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

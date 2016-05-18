@@ -8,6 +8,7 @@
 #include "Steuerung.h"
 #include "LightTunnel.h"
 #include "SkyDome.h"
+#include "Sound.h"
 
 using namespace Vektoria;
 
@@ -28,6 +29,7 @@ public:
 	void InitFrage();
 	void Scene_Meteoriten();
 	void Scene_Frage();
+	void SwitchScene();
 
 	CRaumschiff * getRaumschiffptr() { return &m_zRaumschiff; };
 
@@ -47,6 +49,9 @@ private:
 	CRaumschiff m_zRaumschiff;
 	CCameraController m_zc;
 	CSteuerung m_zSteuerung;
+
+	//Sound
+	CSound m_zSound;
 
 	//Sonstiges
 	CHVector m_vMetroritenvektor;
