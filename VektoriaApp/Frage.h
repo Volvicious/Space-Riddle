@@ -8,8 +8,8 @@ public:
 	CFrage();
 	~CFrage();
 
-	void Init(FLOAT f_posRaumschiff, FLOAT f_posX, FLOAT f_posY);
-	void Init1(CScene * scene);
+	void Init(CScene * scene);
+	void Tick(FLOAT f_posRaumschiff, FLOAT f_posX, FLOAT f_posY);
 
 	void SwitchOff();
 	void SwitchOn();

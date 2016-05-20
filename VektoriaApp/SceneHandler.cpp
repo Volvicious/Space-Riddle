@@ -15,7 +15,7 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame, CD
 	//Wichtig
 	b_sollinit = true;
 	i_inScene = 1;
-	m_zFrage.Init1(scene);
+	m_zFrage.Init(scene);
 	m_fBeschleunigung = -30.0f;
 
 	m_zc.Init(viewPort, scene); 
@@ -28,7 +28,7 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame, CD
 
 void SceneHandler::InitMeteorits(CRoot * root, CScene * scene)
 {
-	bool HighGraphics = true;
+	bool HighGraphics = false;
 
 	if (HighGraphics == true)
 		m_zMeteoriten.Init(root, scene);
@@ -62,7 +62,8 @@ void SceneHandler::InitFrage()
 	f_PosRaumschiffY = 0.0F;
 	f_PosRaumschiffX = 0.0F;
 
-	m_zFrage.Init(f_PosRaumschiffZ, f_PosRaumschiffX, f_PosRaumschiffY);
+	//Frage initialisieren
+	m_zFrage.Tick(f_PosRaumschiffZ, f_PosRaumschiffX, f_PosRaumschiffY);
 
 	b_braucheAntwort = true;
 
@@ -138,21 +139,16 @@ void SceneHandler::Scene_Frage()
 			{
 				b_braucheAntwort = false;
 
-				if (i_Antwort == 0)
+				switch (i_Antwort)
 				{
-					ULDebug("AntwortA");
-				}
-				if (i_Antwort == 1)
-				{
-					ULDebug("AntwortB");
-				}
-				if (i_Antwort == 2)
-				{
-					ULDebug("AntwortC");
-				}
-				if (i_Antwort == 3)
-				{
-					ULDebug("AntwortD");
+				case 0: ULDebug("Antwort A");
+					break;
+				case 1: ULDebug("Antwort B");
+					break;
+				case 2: ULDebug("Antwort C");
+					break;
+				case 3: ULDebug("Antwort D");
+					break;
 				}
 			}
 		}
@@ -165,10 +161,10 @@ void SceneHandler::Tick(FLOAT fTimeDelta, CScene * scene)
 	m_zLights.RenewLights(m_zRaumschiff.getpRaumschiff());
 
 	//Skydome bewegen
-	m_zSkydome.Tick(fTimeDelta * -40.0F);
+	m_zSkydome.Tick(-40.0F * fTimeDelta);
 
 	//Raumschiff bewegen
-	m_zRaumschiff.Tick(fTimeDelta*-40);
+	m_zRaumschiff.Tick(-40.0F * fTimeDelta);
 
 	//Camera bewegen
 	m_zc.Tick(m_zRaumschiff.getpRaumschiff(), m_zKeyboard);

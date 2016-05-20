@@ -15,7 +15,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zr.Init(psplash);
 	m_zf.Init(hwnd, procOS);
 	m_zl.Init(CHVector(1.0f, 1.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f));
-	m_zv.SetWireframeOn();
+
 	//Root
 	m_zr.AddFrame(&m_zf);
 	m_zr.AddScene(&m_zs);
@@ -48,12 +48,12 @@ void CGame::Tick(float fTime, float fTimeDelta)
 {
 	// Hier die Echtzeit-Veränderungen einfügen:
 
+	//Raumschiffgeschwindigkeit
+	fGeschwindigkeit = -100.0F * fTimeDelta;
+
 	//Aktualisiert alles
 	m_zSceneHandler.Tick(fTimeDelta, &m_zs);
 
-	//Raumschiffgeschwindigkeit
-	fGeschwindigkeit = -5.0F * fTimeDelta;
-	
 	//Fog bewegt sich mit
 	//m_zFog.Tick(fGeschwindigkeit);
 

@@ -35,6 +35,9 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 	//Meteoriten hinzufügen
 	for (int i = 0; i < MAX_METEOR; i++)
 	{
+		//Sphere verändern
+		Deform(i);
+
 		//Random Textur auswählen
 		int maxTextur = (rand() % 5);
 
@@ -70,41 +73,31 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 
 }
 
+void CMeteorit::Deform(int iZahl)
+{
+	//Hier wird die Kugel deformiert, dass sie aussieht wie ein Meteorit
+	//m_zMeteorit[iZahl]->
+
+
+}
+
 void CMeteorit::Tick(CPlacement * pRaumschiff, bool b)
 {
-		//Wenn das Ende des Arrays erreicht wird, wird von neuem durchgezählt
-		iCounter %= MAX_METEOR;
+	//Wenn das Array überschritten wird muss es wieder bei 0 anfangen
+	iCounter %= MAX_METEOR;
 
-		//Random zahlen generieren
-		float rndxy = rand() % 30 -15;
-		float rndx = rand() % 10 - 5;
-		float rndy = rand() % 10 - 5;
-
-		//Raumschiff und Meteoriten position wird in einen Vektor umgewandelt
-		m_zvRaumschiff = pRaumschiff->GetTranslation();
-		m_zvMeteorit = m_zpMeteoriten[iCounter].GetTranslation();
-
-		//Meteoriten hinter den Fog schieben
-		if (m_zvMeteorit.GetZ() >= m_zvRaumschiff.GetZ() + 15.0F)
+	if (m_zpMeteoriten[iCounter].GetTranslation().GetZ() >= pRaumschiff->GetTranslation().GetZ())
+	{
+		if (iCounter % 10 == 0)
 		{
-			m_zpMeteoriten[iCounter].TranslateZDelta(-200.0F);
-
-			//Meteorit random verschieben
-			//m_zpMeteoriten[iCounter].TranslateDelta(CHVector(rndx, rndy, -150.0F));
-
-			//if (m_zpMeteoriten[iCounter].GetTranslation().GetX() <= -20 || m_zpMeteoriten[iCounter].GetTranslation().GetX() >= 20)
-			//{
-			//	m_zvMeteorit.SetX(0.0F);
-			//}
-
-			//if (m_zpMeteoriten[iCounter].GetTranslation().GetY() <= -20 || m_zpMeteoriten[iCounter].GetTranslation().GetY() >= 20)
-			//{
-			//	m_zvMeteorit.SetY(0.0F);
-			//}
-
-			++iCounter;
-			iCounterMeteoriten++;
+			//Meteoriten auf Raumschiff X,Y Position setzen
+			m_zpMeteoriten[iCounter].m_mLocal.m_fx03 = pRaumschiff->GetTranslation().GetX();
+			m_zpMeteoriten[iCounter].m_mLocal.m_fx13 = pRaumschiff->GetTranslation().GetY();
+			m_zpMeteoriten[iCounter].TranslateZDelta(-150.0F);
 		}
+		iCounter++;
+		iCounterMeteoriten++;
+	}
 }
 
 void CMeteorit::SwitchOff()
@@ -127,7 +120,7 @@ void CMeteorit::SwitchOn()
 void CMeteorit::LowGraphics(CRoot * root, CScene * scene)
 {
 	float ri = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-	m_zGeos.Init(1.0F, NULL, 10.0, 10.0);
+	m_zGeos.Init(1.0F, NULL);
 
 	for (int i = 0; i < MAX_METEOR; i++)
 	{

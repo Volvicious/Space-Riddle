@@ -18,6 +18,8 @@ public:
 	void Init(CRoot * root, CScene * scene);
 	void LowGraphics(CRoot * root, CScene * scene);
 
+	void Deform(int iZahl);
+
 	int getiCounterMeteoriten() { return iCounterMeteoriten; };
 
 	void SetiCounterZero(){ iCounterMeteoriten = 0; };
