@@ -13,16 +13,25 @@ CMeteorit::~CMeteorit()
 void CMeteorit::Init(CRoot * root, CScene * scene)
 {
 	//Blender File Laden
-	m_zMeteorit[0] = m_zfilewavefront[0].LoadGeo("models\\Meteorit3.obj");
-	m_zMeteorit[1] = m_zfilewavefront[1].LoadGeo("models\\Meteorit2.obj");
+	m_zMeteorit[0] = m_zfilewavefront[0].LoadGeoTriangleList("models\\Meteorit3.obj");
+	m_zMeteorit[1] = m_zfilewavefront[1].LoadGeoTriangleList("models\\Meteorit2.obj");
+	//m_zMeteorit[2] = m_zfilewavefront[2].LoadGeo("models\\Meteorit3.obj");
+
+	m_zMeteorit[0]->ReduceRedundancy(true, 6.5f);
+	m_zMeteorit[1]->ReduceRedundancy(true, 6.5f);
+	//m_zMeteorit[2]->ReduceRedundancy(true, 1.5f);
+
+//	m_zMeteorit[0].Init(2, NULL);
+//	m_zMeteorit[1].Init(3, NULL);
+//	m_zMeteorit[2].Init(4, NULL);
 
 	//Texturen der Meteoriten laden
-	/*m_zMaterialMeteorit[0].MakeTextureDiffuse("textures\\MeteoritTextur1.obj");
+	m_zMaterialMeteorit[0].MakeTextureDiffuse("textures\\MeteoritTextur1.obj");
 	m_zMaterialMeteorit[1].MakeTextureDiffuse("textures\\MeteoritTextur2.obj");
 	m_zMaterialMeteorit[2].MakeTextureDiffuse("textures\\MeteoritTextur3.obj");
 	m_zMaterialMeteorit[3].MakeTextureDiffuse("textures\\MeteoritTextur4.obj");
 	m_zMaterialMeteorit[4].MakeTextureDiffuse("textures\\MeteoritTextur5.obj");
-*/
+
 	//Meteoriten hinzufügen
 	for (int i = 0; i < MAX_METEOR; i++)
 	{
@@ -31,9 +40,6 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 
 		//Random Meteoriten auswählen
 		int varMeteor = (rand() % 2);
-
-		//Random Meteoriten drehen
-		int rotMeteor = (rand() % 360);
 
 		//Translations Variablen Random erstellen
 		float xi = rand() % 30 + (-15);
@@ -45,9 +51,6 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 
 		//Meteoriten dem Placement geben
 		m_zpMeteoriten[i].AddGeo(m_zMeteorit[varMeteor]);
-
-		//Meteoriten random rotieren
-		m_zpMeteoriten[i].RotateZDelta(UM_DEG2RAD(rotMeteor));
 
 		//Meteoriten random verschieben
 		m_zpMeteoriten[i].Translate(xi, yi, zi);

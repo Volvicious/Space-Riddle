@@ -39,6 +39,7 @@ private:
 
 	//Blender Meteoriten reinladen
 	CGeo * m_zMeteorit[4];
+//	CGeoCube m_zMeteorit[4];
 	CFileWavefront m_zfilewavefront[4];
 	CPlacement m_zpMeteoriten[50];
 

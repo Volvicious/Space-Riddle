@@ -20,22 +20,20 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame, CD
 
 	m_zc.Init(viewPort, scene); 
 	m_zKeyboard = ptrKeyboard;
+
+	//Sound initialisieren
 	m_zSound.Init(scene);
 
 }
 
 void SceneHandler::InitMeteorits(CRoot * root, CScene * scene)
 {
-	bool Graphics = true;
+	bool HighGraphics = true;
 
-	if (Graphics == true)
-	{
+	if (HighGraphics == true)
 		m_zMeteoriten.Init(root, scene);
-	}
 	else
-	{
 		m_zMeteoriten.LowGraphics(root, scene);
-	}
 }
 
 void SceneHandler::InitRaumschiff(CRoot * root, CScene * scene)
