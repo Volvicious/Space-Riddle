@@ -28,7 +28,7 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame, CD
 
 void SceneHandler::InitMeteorits(CRoot * root, CScene * scene)
 {
-	bool HighGraphics = false;
+	bool HighGraphics = true;
 
 	if (HighGraphics == true)
 		m_zMeteoriten.Init(root, scene);

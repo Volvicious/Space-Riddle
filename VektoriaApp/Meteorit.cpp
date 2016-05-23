@@ -12,18 +12,18 @@ CMeteorit::~CMeteorit()
 
 void CMeteorit::Init(CRoot * root, CScene * scene)
 {
-	//Blender File Laden
-	m_zMeteorit[0] = m_zfilewavefront[0].LoadGeoTriangleList("models\\Meteorit3.obj");
-	m_zMeteorit[1] = m_zfilewavefront[1].LoadGeoTriangleList("models\\Meteorit2.obj");
-	//m_zMeteorit[2] = m_zfilewavefront[2].LoadGeo("models\\Meteorit3.obj");
-
-	m_zMeteorit[0]->ReduceRedundancy(true, 6.5f);
-	m_zMeteorit[1]->ReduceRedundancy(true, 6.5f);
-	//m_zMeteorit[2]->ReduceRedundancy(true, 1.5f);
-
-//	m_zMeteorit[0].Init(2, NULL);
-//	m_zMeteorit[1].Init(3, NULL);
-//	m_zMeteorit[2].Init(4, NULL);
+//	//Blender File Laden
+//	m_zMeteorit[0] = m_zfilewavefront[0].LoadGeoTriangleList("models\\Meteorit3.obj");
+//	m_zMeteorit[1] = m_zfilewavefront[1].LoadGeoTriangleList("models\\Meteorit2.obj");
+//	//m_zMeteorit[2] = m_zfilewavefront[2].LoadGeo("models\\Meteorit3.obj");
+//
+//	m_zMeteorit[0]->ReduceRedundancy(true, 6.5f);
+//	m_zMeteorit[1]->ReduceRedundancy(true, 6.5f);
+//	//m_zMeteorit[2]->ReduceRedundancy(true, 1.5f);
+//
+////	m_zMeteorit[0].Init(2, NULL);
+////	m_zMeteorit[1].Init(3, NULL);
+////	m_zMeteorit[2].Init(4, NULL);
 
 	//Texturen der Meteoriten laden
 	m_zMaterialMeteorit[0].MakeTextureDiffuse("textures\\MeteoritTextur1.obj");
@@ -32,31 +32,41 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 	m_zMaterialMeteorit[3].MakeTextureDiffuse("textures\\MeteoritTextur4.obj");
 	m_zMaterialMeteorit[4].MakeTextureDiffuse("textures\\MeteoritTextur5.obj");
 
+	//Kugel initialisieren
+	m_zgMeteorit.Init(1.0F, NULL);
+
+	//Deformieren
+	Deform();
+
 	//Meteoriten hinzufügen
 	for (int i = 0; i < MAX_METEOR; i++)
 	{
-		//Sphere verändern
-		Deform(i);
 
 		//Random Textur auswählen
-		int maxTextur = (rand() % 5);
+		//int maxTextur = (rand() % 5);
 
 		//Random Meteoriten auswählen
-		int varMeteor = (rand() % 2);
+		//int varMeteor = (rand() % 2);
 
 		//Translations Variablen Random erstellen
 		float xi = rand() % 30 + (-15);
 		float yi = rand() % 30 + (-15);
 		float zi = i * -5.0F;
 
+		float fuck = rand() % 360;
+
 		//Textur auf Meteorit laden
 		//m_zMeteorit[i]->SetMaterial(&m_zMaterialMeteorit[maxTextur]);
 
 		//Meteoriten dem Placement geben
-		m_zpMeteoriten[i].AddGeo(m_zMeteorit[varMeteor]);
+		m_zpMeteoriten[i].AddGeo(&m_zgMeteorit);
 
 		//Meteoriten random verschieben
 		m_zpMeteoriten[i].Translate(xi, yi, zi);
+
+		//Rotieren
+		m_zpMeteoriten[i].RotateXDelta(fuck);
+		m_zpMeteoriten[i].RotateZDelta(fuck);
 	}
 
 	//Texturen dem Root hinzufügen
@@ -73,12 +83,22 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 
 }
 
-void CMeteorit::Deform(int iZahl)
+void CMeteorit::Deform()
 {
 	//Hier wird die Kugel deformiert, dass sie aussieht wie ein Meteorit
-	//m_zMeteorit[iZahl]->
+	//m_zgSphere.SetMaterial(&Kugel);
+	//Kugel.SetBumpStrength(5.0f);
+	//Kugel.MakeTextureDiffuse("textures\\m2g.jpg");
+	////Kugel.MakeTextureBump("textures\\m3.jpg");
 
-
+	//Meteoriten deformieren
+	mat.TranslateY(1.0F);
+	m_zgMeteorit.Transform(mat);
+	m_zgMeteorit.TaperY(0.2f, false, true, false);
+	m_zgMeteorit.WaveY(0.1f, 2.0f, 0.0f, true, false, true);
+	
+	m_zgMeteorit.Magnet(CHVector(1, 1, 1, 1), 2.0f, 1.0f, true);
+	m_zgMeteorit.TaperX(0.1f, true, false, false);
 }
 
 void CMeteorit::Tick(CPlacement * pRaumschiff, bool b)

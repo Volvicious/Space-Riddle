@@ -18,7 +18,7 @@ public:
 	void Init(CRoot * root, CScene * scene);
 	void LowGraphics(CRoot * root, CScene * scene);
 
-	void Deform(int iZahl);
+	void Deform();
 
 	int getiCounterMeteoriten() { return iCounterMeteoriten; };
 
@@ -35,13 +35,16 @@ private:
 	CScene m_zs;
 	CMaterial m_zMaterialMeteorit[5];
 
+	//Math
+	CHMat mat;
+
 	//Vektor meteorit
 	CHVector m_zvRaumschiff;
 	CHVector m_zvMeteorit;
 
 	//Blender Meteoriten reinladen
 	CGeo * m_zMeteorit[4];
-//	CGeoCube m_zMeteorit[4];
+	CGeoSphere m_zgMeteorit;
 	CFileWavefront m_zfilewavefront[4];
 	CPlacement m_zpMeteoriten[50];
 
