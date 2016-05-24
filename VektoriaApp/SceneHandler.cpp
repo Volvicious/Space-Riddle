@@ -122,6 +122,10 @@ void SceneHandler::Scene_Frage()
 
 		//Raumschiff auf Position 0 setzen
 		m_zRaumschiff.SetZero(m_zMeteoriten.getiCounterZPos());
+		//hier muss der skydome zurückgesetzt werden
+		m_zSkydome.SetZero(m_zMeteoriten.getiCounterZPos());
+
+
 
 		//Meteoriten Szene anmachen
 		m_zMeteoriten.SwitchOn();

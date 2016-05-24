@@ -28,6 +28,9 @@ void CSkyDome::Init(CRoot * root, CScene * scene)
 	scene->AddPlacement(&m_zpSkyDome);
 }
 
+void CSkyDome::SetZero(float fZPos){
+	m_zpSkyDome.TranslateZ(fZPos);
+}
 void CSkyDome::Tick(float fGeschwindigkeit)
 {
 	m_zpSkyDome.TranslateZDelta(fGeschwindigkeit);

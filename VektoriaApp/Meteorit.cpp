@@ -17,8 +17,8 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 	m_zMeteorit[1] = m_zfilewavefront[1].LoadGeoTriangleList("models\\Meteorit2.obj");
 	//m_zMeteorit[2] = m_zfilewavefront[2].LoadGeo("models\\Meteorit3.obj");
 
-	m_zMeteorit[0]->ReduceRedundancy(true, 6.5f);
-	m_zMeteorit[1]->ReduceRedundancy(true, 6.5f);
+//	m_zMeteorit[0]->ReduceRedundancy(true, 6.5f);
+	//m_zMeteorit[1]->ReduceRedundancy(true, 6.5f);
 	//m_zMeteorit[2]->ReduceRedundancy(true, 1.5f);
 
 //	m_zMeteorit[0].Init(2, NULL);
