@@ -74,3 +74,18 @@ void CLightTunnel::RenewLights(CPlacement * Raumschiff)
 		iCounter %= MAX_LIGHT / 8;
 	}
 }
+
+void CLightTunnel::SetZero(float fZPos)
+{
+	////for (int i = 0; i < MAX_LIGHT / 8; i++)
+	////{
+	//	m_azpRechtsUnten[iCounter].TranslateZ(fZPos);
+	//	m_azpRechtsOben[iCounter].TranslateZ(fZPos);
+	//	m_azpLinksOben[iCounter].TranslateZ(fZPos);
+	//	m_azpLinksUnten[iCounter].TranslateZ(fZPos);
+	//	m_azpOben[iCounter].TranslateZ(fZPos);
+	//	m_azpUnten[iCounter].TranslateZ(fZPos);
+	//	m_azpRechts[iCounter].TranslateZ(fZPos);
+	//	m_azpLinks[iCounter].TranslateZ(fZPos);
+	////}
+}

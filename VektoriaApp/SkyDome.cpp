@@ -13,7 +13,7 @@ CSkyDome::~CSkyDome()
 void CSkyDome::Init(CRoot * root, CScene * scene)
 {
 	//Material
-	m_zMaterial.MakeTextureSky("textures\\Background.jpg");
+	m_zMaterial.MakeTextureSky("textures\\Hurensohn.png");
 
 	//Skydome init
 	m_zSkyDome.Init(100.0F, 100.0F, &m_zMaterial, true, 24, 12, eMapping_Cylindrical);
@@ -28,9 +28,11 @@ void CSkyDome::Init(CRoot * root, CScene * scene)
 	scene->AddPlacement(&m_zpSkyDome);
 }
 
-void CSkyDome::SetZero(float fZPos){
+void CSkyDome::SetZero(float fZPos)
+{
 	m_zpSkyDome.TranslateZ(fZPos);
 }
+
 void CSkyDome::Tick(float fGeschwindigkeit)
 {
 	m_zpSkyDome.TranslateZDelta(fGeschwindigkeit);

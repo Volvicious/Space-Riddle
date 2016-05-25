@@ -14,7 +14,7 @@ void CRaumschiff::Init(CRoot * root,  CScene * scene)
 {
 
 	//Raumschiff Objekt reinladen
-	m_zRaumschiff = m_filewavefront.LoadGeo("models\\Raumschiff_alt.obj");
+	m_zRaumschiff = m_filewavefront.LoadGeo("models\\Raumschiff.obj");
 
 	//Raumschiff Material
 	m_zmRaumschiff.Init();

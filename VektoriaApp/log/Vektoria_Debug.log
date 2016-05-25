@@ -9,6 +9,7 @@ Ok:    2. sound (sounds\Ambient_Sounds\Ingame.wav) added as ambient
 Ok:    3. sound (sounds\Ambient_Sounds\Game_Over.wav) added as ambient
 Ok:    4. sound (sounds\Small_Explosion.wav) added as ambient
 Debug: lkdasflksdjsldkfj
+Debug: Antwort B
 Debug: lkdasflksdjsldkfj
 Debug: lkdasflksdjsldkfj
 Debug: lkdasflksdjsldkfj
@@ -16,54 +17,292 @@ Debug: lkdasflksdjsldkfj
 Debug: lkdasflksdjsldkfj
 Debug: lkdasflksdjsldkfj
 Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
-Debug: lkdasflksdjsldkfj
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.

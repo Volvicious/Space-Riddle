@@ -10,18 +10,23 @@ CFrage::~CFrage()
 {
 }
 
-void CFrage::Init1(CScene * scene)
+void CFrage::Init(CScene * scene)
 {
+	//Frage initialisieren
 	m_zgSphere.Init(1.0F, &m_zMaterialKugel, 50, 50);
 	m_zgFrage.Init(3.0f, &m_zMaterialKugel, 50, 50);
 
+	//Frage und Antworten hinzufügen
 	for (int i = 0; i < 4; i++)
 	{
 		m_zpSphere[i].AddGeo(&m_zgSphere);
 		scene->AddPlacement(&m_zpSphere[i]);
 	}
 
+	//Dem Placement die Frage hinzufügen
 	m_zpSphere[4].AddGeo(&m_zgFrage);
+
+	//Der Szene das Placement hinzufügen
 	scene->AddPlacement(&m_zpSphere[4]);
 }
 
@@ -41,7 +46,7 @@ void CFrage::SwitchOn()
 	}
 }
 
-void CFrage::Init(FLOAT f_posZ, FLOAT f_posX, FLOAT f_posY)
+void CFrage::Tick(FLOAT f_posZ, FLOAT f_posX, FLOAT f_posY)
 {
 	for (int i = 0; i < 4; i++)
 	{

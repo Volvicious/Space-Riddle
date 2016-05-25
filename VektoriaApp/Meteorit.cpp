@@ -12,52 +12,42 @@ CMeteorit::~CMeteorit()
 
 void CMeteorit::Init(CRoot * root, CScene * scene)
 {
-	//Blender File Laden
-	m_zMeteorit[0] = m_zfilewavefront[0].LoadGeoTriangleList("models\\Meteorit3.obj");
-	m_zMeteorit[1] = m_zfilewavefront[1].LoadGeoTriangleList("models\\Meteorit2.obj");
-	//m_zMeteorit[2] = m_zfilewavefront[2].LoadGeo("models\\Meteorit3.obj");
+	//BUMP
+	for (int i = 0; i < 3; i++)
+	{
+		m_zMaterialMeteorit[i].SetBumpStrength(2);								//Optional
+		m_zMaterialMeteorit[i].MakeTextureDiffuse("textures\\moon.jpg");		//Normale Textur
+		m_zMaterialMeteorit[i].MakeTextureBump("textures\\moonbump.png");		//Bump Textur
+	}
 
-//	m_zMeteorit[0]->ReduceRedundancy(true, 6.5f);
-	//m_zMeteorit[1]->ReduceRedundancy(true, 6.5f);
-	//m_zMeteorit[2]->ReduceRedundancy(true, 1.5f);
+	//Kugel initialisieren
+	m_zgMeteorit[0].Init(1.0F, &m_zMaterialMeteorit[0]);
+	m_zgMeteorit[1].Init(1.0F, &m_zMaterialMeteorit[1]);
+	m_zgMeteorit[2].Init(1.0F, &m_zMaterialMeteorit[2]);
 
-//	m_zMeteorit[0].Init(2, NULL);
-//	m_zMeteorit[1].Init(3, NULL);
-//	m_zMeteorit[2].Init(4, NULL);
-
-	//Texturen der Meteoriten laden
-	m_zMaterialMeteorit[0].MakeTextureDiffuse("textures\\MeteoritTextur1.obj");
-	m_zMaterialMeteorit[1].MakeTextureDiffuse("textures\\MeteoritTextur2.obj");
-	m_zMaterialMeteorit[2].MakeTextureDiffuse("textures\\MeteoritTextur3.obj");
-	m_zMaterialMeteorit[3].MakeTextureDiffuse("textures\\MeteoritTextur4.obj");
-	m_zMaterialMeteorit[4].MakeTextureDiffuse("textures\\MeteoritTextur5.obj");
+	//Deformieren
+	Deform();
 
 	//Meteoriten hinzufügen
 	for (int i = 0; i < MAX_METEOR; i++)
 	{
-		//Random Textur auswählen
-		int maxTextur = (rand() % 5);
-
 		//Random Meteoriten auswählen
-		int varMeteor = (rand() % 2);
+		int varMeteor = (rand() % 3);
 
 		//Translations Variablen Random erstellen
 		float xi = rand() % 30 + (-15);
 		float yi = rand() % 30 + (-15);
-		float zi = i * -5.0F;
-
-		//Textur auf Meteorit laden
-		//m_zMeteorit[i]->SetMaterial(&m_zMaterialMeteorit[maxTextur]);
+		float zi = i * -10.0F;
 
 		//Meteoriten dem Placement geben
-		m_zpMeteoriten[i].AddGeo(m_zMeteorit[varMeteor]);
+		m_zpMeteoriten[i].AddGeo(&m_zgMeteorit[varMeteor]);
 
 		//Meteoriten random verschieben
 		m_zpMeteoriten[i].Translate(xi, yi, zi);
 	}
 
 	//Texturen dem Root hinzufügen
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		root->AddMaterial(&m_zMaterialMeteorit[i]);
 	}
@@ -70,41 +60,51 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 
 }
 
+void CMeteorit::Deform()
+{
+	//Meteoriten deformieren
+	// Form 1
+	m_zgMeteorit[0].TaperY(0.5F, true, false, true);
+	m_zgMeteorit[0].WaveX(0.1F, 1.5f, 0.0f, true, false, true);
+	CHVector v1(1, 1, 1, 1);
+	m_zgMeteorit[0].Magnet(v1, 1.5f, 1.0f, true);
+
+	//Form 2
+	m_zgMeteorit[1].TaperX(0.2F, false, true, true);
+	m_zgMeteorit[1].WaveX(0.6F, 5.0f, 0.0f, true, false, true);
+	CHVector v2(0, 2, 2, 1);
+	m_zgMeteorit[1].Magnet(v2, 1.0f, 1.0f, true);
+
+	//Form3
+	m_zgMeteorit[2].TaperY(0.2f, true, false, true);
+	m_zgMeteorit[2].RippleY(0.1f, 4, 0.0f, true, false, true);
+	m_zgMeteorit[2].WaveX(0.1F, 4.0f, 0.0f, true, false, true);
+	CHVector v3(1, 1, 1, 1);
+	m_zgMeteorit[2].Magnet(v3, 1.2f, 1.5f, true);
+
+}
+
 void CMeteorit::Tick(CPlacement * pRaumschiff, bool b)
 {
-		//Wenn das Ende des Arrays erreicht wird, wird von neuem durchgezählt
-		iCounter %= MAX_METEOR;
+	//Wenn das Array überschritten wird muss es wieder bei 0 anfangen
+	iCounter %= MAX_METEOR;
 
-		//Random zahlen generieren
-		float rndxy = rand() % 30 -15;
-		float rndx = rand() % 10 - 5;
-		float rndy = rand() % 10 - 5;
-
-		//Raumschiff und Meteoriten position wird in einen Vektor umgewandelt
-		m_zvRaumschiff = pRaumschiff->GetTranslation();
-		m_zvMeteorit = m_zpMeteoriten[iCounter].GetTranslation();
-
-		//Meteoriten hinter den Fog schieben
-		if (m_zvMeteorit.GetZ() >= m_zvRaumschiff.GetZ() + 15.0F)
+	if (m_zpMeteoriten[iCounter].GetTranslation().GetZ() >= pRaumschiff->GetTranslation().GetZ())
+	{
+		if (iCounter % 10 == 0)
 		{
-			m_zpMeteoriten[iCounter].TranslateZDelta(-200.0F);
-
-			//Meteorit random verschieben
-			//m_zpMeteoriten[iCounter].TranslateDelta(CHVector(rndx, rndy, -150.0F));
-
-			//if (m_zpMeteoriten[iCounter].GetTranslation().GetX() <= -20 || m_zpMeteoriten[iCounter].GetTranslation().GetX() >= 20)
-			//{
-			//	m_zvMeteorit.SetX(0.0F);
-			//}
-
-			//if (m_zpMeteoriten[iCounter].GetTranslation().GetY() <= -20 || m_zpMeteoriten[iCounter].GetTranslation().GetY() >= 20)
-			//{
-			//	m_zvMeteorit.SetY(0.0F);
-			//}
-
-			++iCounter;
-			iCounterMeteoriten++;
+			//Meteoriten auf Raumschiff X,Y Position setzen
+			m_zpMeteoriten[iCounter].m_mLocal.m_fx03 = pRaumschiff->GetTranslation().GetX();
+			m_zpMeteoriten[iCounter].m_mLocal.m_fx13 = pRaumschiff->GetTranslation().GetY();
 		}
+
+		//Nach hinten verschieben
+		m_zpMeteoriten[iCounter].TranslateZDelta(-150.0F);
+
+		m_zpMeteoriten[iCounter].m_bAABBUpdateNeeded;
+		iCounter++;
+		iMeteorPassed++;
+	}
 }
 
 void CMeteorit::SwitchOff()
@@ -123,29 +123,4 @@ void CMeteorit::SwitchOn()
 	}
 }
 
-
-void CMeteorit::LowGraphics(CRoot * root, CScene * scene)
-{
-	float ri = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-	m_zGeos.Init(1.0F, NULL, 10.0, 10.0);
-
-	for (int i = 0; i < MAX_METEOR; i++)
-	{
-		float xi = rand() % 30 + (-15);
-		float yi = rand() % 30 + (-15);
-		float zi = i * -5.0F;
-
-		//Meteorit erstellen
-		m_zpMeteoriten[i].AddGeo(&m_zGeos);
-
-		//Meteorit verschieben
-		m_zpMeteoriten[i].Translate(xi, yi, zi);
-	}
-
-	//Meteoriten in Scene laden
-	for (int i = 0; i < MAX_METEOR; i++)
-	{
-		scene->AddPlacement(&m_zpMeteoriten[i]);
-	}
-}
 
