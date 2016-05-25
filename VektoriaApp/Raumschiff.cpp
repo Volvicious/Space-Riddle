@@ -12,11 +12,16 @@ CRaumschiff::~CRaumschiff()
 
 void CRaumschiff::Init(CRoot * root,  CScene * scene)
 {
+	//Raumschiff verkleinern
+	mathskalierung.Scale(0.5F);
 
 	//Raumschiff Objekt reinladen
 	m_zRaumschiff = m_filewavefront.LoadGeo("models\\Raumschiff.obj");
+	m_zRaumschiff->Transform(mathskalierung);
 
 	//Raumschiff Material
+	//UV Map draufladen 
+	//TODO:
 	m_zmRaumschiff.Init();
 
 	//Dem Raumschiff das Material geben

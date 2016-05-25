@@ -24,6 +24,7 @@ private:
 	CGeo * m_zRaumschiff;
 	CFileWavefront m_filewavefront;
 	CPlacement m_zpRaumschiff;
+	CHMat mathskalierung;
 
 	//Material Raumschiff
 	CColor m_zcRaumschiff;

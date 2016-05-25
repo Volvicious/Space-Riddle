@@ -13,8 +13,10 @@ CLightTunnel::~CLightTunnel()
 void CLightTunnel::Init(CScene * scene)
 {
 	//Farbe der Lichter
-	m_zcLights.InitGreen();
+	m_zcLights.InitBlue();
 	m_zmLights.Translate(m_zcLights);
+
+	//Licht initialisieren
 	m_zLight.Init(0.2, &m_zmLights, 24, 12);
 
 	for (int i = 0; i < MAX_LIGHT / 8; i++)

@@ -12,13 +12,18 @@ CMeteorit::~CMeteorit()
 
 void CMeteorit::Init(CRoot * root, CScene * scene)
 {
-	//BUMP
-	for (int i = 0; i < 3; i++)
-	{
-		m_zMaterialMeteorit[i].SetBumpStrength(2);								//Optional
-		m_zMaterialMeteorit[i].MakeTextureDiffuse("textures\\moon.jpg");		//Normale Textur
-		m_zMaterialMeteorit[i].MakeTextureBump("textures\\moonbump.png");		//Bump Textur
-	}
+	//Textur draufwerfen
+	m_zMaterialMeteorit[0].SetBumpStrength(2);
+	m_zMaterialMeteorit[0].MakeTextureDiffuse("textures\\textur1.jpg");
+	m_zMaterialMeteorit[0].MakeTextureBump("textures\\textur1Bump.png");
+
+	//m_zMaterialMeteorit[1].SetBumpStrength(2);
+	//m_zMaterialMeteorit[1].MakeTextureDiffuse("textures\\textur2.JPG");
+	//m_zMaterialMeteorit[1].MakeTextureBump("textures\\textur2Bump.png");
+
+	m_zMaterialMeteorit[2].SetBumpStrength(2);
+	m_zMaterialMeteorit[2].MakeTextureDiffuse("textures\\textur3.jpg");
+	m_zMaterialMeteorit[2].MakeTextureBump("textures\\textur3Bump.png");
 
 	//Kugel initialisieren
 	m_zgMeteorit[0].Init(1.0F, &m_zMaterialMeteorit[0]);
@@ -81,7 +86,6 @@ void CMeteorit::Deform()
 	m_zgMeteorit[2].WaveX(0.1F, 4.0f, 0.0f, true, false, true);
 	CHVector v3(1, 1, 1, 1);
 	m_zgMeteorit[2].Magnet(v3, 1.2f, 1.5f, true);
-
 }
 
 void CMeteorit::Tick(CPlacement * pRaumschiff, bool b)

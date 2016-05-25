@@ -18,6 +18,8 @@ private:
 	//Geos
 	CGeoDome m_zSkyDome;
 
+	//Rotieren
+
 	//Material
 	CMaterial m_zMaterial;
 
