@@ -5,7 +5,7 @@
 #include "FileFinder.h"
 #include "FileHandler.h"
 #include "Maus.h"
-
+#include "TastaturGER.h"
 
 #include "StringToChar.h"
 
@@ -25,6 +25,9 @@ public:
 
 	
 	void Init(CViewport * m_zv, CMaus  * ptrMaus_, CFileHandler * filehandlerPtr, char * caHintergrundBildPfad, char * caIconBildPfad, char * caOrdnerPfad);
+	void Init(CViewport * m_zv, CMaus  * ptrMaus_, CFileHandler * filehandlerPtr, char * caHintergrundBildPfad, char * caIconBildPfad, char * caOrdnerPfad, CTastaturGER * ptr);
+
+
 
 	void Run();
 
