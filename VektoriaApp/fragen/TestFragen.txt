@@ -1,0 +1,43 @@
+#Logischer Operator f¸r Ñoderì? 
+!||
+-gibts nicht
+-or
+-uu
+$1
+
+
+#Logischer Operator f¸r Ñundì? 
+!&&
+-und
+-||
+-Sonnenschein
+$2
+
+#Mit welchem Operator verweist der Zeiger auf den Inhalt? 
+!*
+-->
+-ptr
+-dalang
+$3
+
+
+#01001001 ñ Welches Zahlensystem ist das? 
+!Bin‰r
+-Es gibt 10 Arten von Menschen. Die, die Bin‰rcode verstehen und die, die ihn nicht verstehen.
+-Olaf
+-Eugen
+$4
+
+#32xh ñ Welche Zahlensystem ist das? 
+!Hexadezimal
+-gar keins, das heiﬂt 32 mal h. h ist hierbei ein unbekannter Faktor.
+-32
+-h
+$5
+
+#Wie viele Schichten hat das OSI-Schichtenmodell? 
+!7
+-5
+-8
+-10
+$6

@@ -140,11 +140,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CameraController.h" />
+    <ClInclude Include="Explorer.h" />
+    <ClInclude Include="ExplorerProfil.h" />
+    <ClInclude Include="FileFinder.h" />
+    <ClInclude Include="FileHandler.h" />
+    <ClInclude Include="FileReader.h" />
+    <ClInclude Include="FileWriter.h" />
     <ClInclude Include="Fog.h" />
     <ClInclude Include="Frage.h" />
+    <ClInclude Include="FrageGrafik.h" />
+    <ClInclude Include="FrageMulti.h" />
+    <ClInclude Include="FragenHandler.h" />
+    <ClInclude Include="FrageText.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Hitbox.h" />
     <ClInclude Include="LightTunnel.h" />
+    <ClInclude Include="LLAnzeige.h" />
+    <ClInclude Include="Mainmenu.h" />
+    <ClInclude Include="Maus.h" />
     <ClInclude Include="Meteorit.h" />
     <ClInclude Include="Raumschiff.h" />
     <ClInclude Include="resource.h" />
@@ -153,15 +166,29 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Steuerung.h" />
+    <ClInclude Include="StringToChar.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CameraController.cpp" />
+    <ClCompile Include="Explorer.cpp" />
+    <ClCompile Include="ExplorerProfil.cpp" />
+    <ClCompile Include="FileFinder.cpp" />
+    <ClCompile Include="FileHandler.cpp" />
+    <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="FileWriter.cpp" />
     <ClCompile Include="Fog.cpp" />
     <ClCompile Include="Frage.cpp" />
+    <ClCompile Include="FrageGrafik.cpp" />
+    <ClCompile Include="FrageMulti.cpp" />
+    <ClCompile Include="FragenHandler.cpp" />
+    <ClCompile Include="FrageText.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="LightTunnel.cpp" />
+    <ClCompile Include="LLAnzeige.cpp" />
+    <ClCompile Include="Mainmenu.cpp" />
+    <ClCompile Include="Maus.cpp" />
     <ClCompile Include="Meteorit.cpp" />
     <ClCompile Include="Raumschiff.cpp" />
     <ClCompile Include="SceneHandler.cpp" />
@@ -169,6 +196,9 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Steuerung.cpp" />
+    <ClCompile Include="StringToChar.cpp" />
+    <ClCompile Include="TastaturGER.cpp" />
+    <ClCompile Include="TextOutput.cpp" />
     <ClCompile Include="VektoriaApp.cpp" />
   </ItemGroup>
   <ItemGroup>

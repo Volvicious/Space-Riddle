@@ -1,33 +1,49 @@
 #pragma once
-#include "Vektoria\Root.h"
+#include <string>
 
-using namespace Vektoria;
+//----------------------------------
+//Fragenklasse
+//Author: Christoph Fischmann
+//Aenderung: --
+//----------------------------------
+
 class CFrage
 {
 public:
 	CFrage();
 	~CFrage();
 
-	void Init(CScene * scene);
-	void Tick(FLOAT f_posRaumschiff, FLOAT f_posX, FLOAT f_posY);
+	
+	void setTyp(int);
+	int getTyp(); 
+	
+	void setUUID(std::string);
+	std::string getUUID(); 
 
-	void SwitchOff();
-	void SwitchOn();
+	void setFrage(std::string);
+	std::string getFrage(); 
 
-	CHVector getPlacement(int j){ return  m_zpSphere[j].GetTranslation(); };
-	FLOAT GetPlacementFrage(){ return m_zpSphere[3].GetTranslation().GetZ(); }
+	void setGewichtung(float fFaktor);
+	float getGewichtung();
 
-private:
+	void setAntwort(std::string sAntwort_);
+	std::string getAntwort(); 
 
-	//
-	CMaterial m_zMaterialKugel;
-	CGeoSphere m_zgSphere;
-	CGeoSphere m_zgFrage;
-	CPlacement m_zpSphere[5];
+	void setFalscheAntwort(std::string sFalscheAntwort); 
+	std::string getFalscheAntwort(int i);
+	
+	
 
-	//Sonstige Variablen
-	float fLeftpos;
 
+private: 
+
+	int iTyp;
+	float fGewichtung; 
+	std::string sUUID; 
+	std::string sFrage;
+	std::string sAntwort;
+	std::string falscheAntworten[3];
+	int iFalsacheAntwort = 0; 
 
 };
 

@@ -66,7 +66,8 @@
 #include "Raumschiff.h"
 #include "SceneHandler.h"
 #include "Hitbox.h"
-#include "Frage.h"
+#include "LLAnzeige.h"
+//#include "Frage.h"
 
 using namespace Vektoria;
 

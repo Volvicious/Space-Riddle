@@ -1,14 +1,27 @@
+
 #pragma once
 #include "Vektoria\Root.h"
 #include "Meteorit.h"
 #include "Hitbox.h"
-#include "Frage.h"
+#include "FrageGrafik.h"
 #include "Raumschiff.h"
 #include "CameraController.h"
 #include "Steuerung.h"
 #include "LightTunnel.h"
 #include "SkyDome.h"
 #include "Sound.h"
+
+#include "Mainmenu.h"
+#include "TextOutput.h"
+#include "TastaturGER.h"
+#include "FragenHandler.h"
+#include "FileHandler.h"
+#include "Frage.h"
+#include "FrageText.h"
+#include "Maus.h"
+#include "Explorer.h"
+#include "LLAnzeige.h"
+
 
 using namespace Vektoria;
 
@@ -45,13 +58,34 @@ private:
 	CLightTunnel m_zLights;
 	CHitbox m_zHitbox;
 	CHVector m_cameraPos;
-	CFrage m_zFrage;
+	CFrageGrafik m_zFrage;
 	CRaumschiff m_zRaumschiff;
 	CCameraController m_zc;
 	CSteuerung m_zSteuerung;
 
 	//Sound
 	CSound m_zSound;
+
+	// Testzeux von Chris
+
+	CMainmenu m_zHauptmenu;
+
+	CTastaturGER m_zTastaturGer;
+	CTextOutput m_zTextoutput;
+
+	CTextOutput m_zTextoutputFrage;
+	CFragenHandler m_zFragenHandler;
+
+	CFileHandler m_zFilehandlerLernpaket;
+	CFileHandler m_zFilehandlerProfil;
+
+	CExplorer m_zExplorerLernpaket;
+	CExplorer m_zExplorerProfil; 
+
+	CMaus m_dMaus;
+
+	CLLAnzeige m_zLLA; 
+
 
 	//Sonstiges
 	CHVector m_vMetroritenvektor;
