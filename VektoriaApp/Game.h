@@ -67,6 +67,7 @@
 #include "SceneHandler.h"
 #include "Hitbox.h"
 #include "LLAnzeige.h"
+#include "FrageGrafik.h"
 //#include "Frage.h"
 
 using namespace Vektoria;
@@ -103,6 +104,8 @@ private:
 	CFog m_zFog;
 	CRaumschiff m_zRaumschiff;
 	SceneHandler m_zSceneHandler;
+	CFrageGrafik m_zFrageGrafik;
+	CMeteorit m_zMeteor;
 
 	// Placements
 	CPlacement m_zpFog;

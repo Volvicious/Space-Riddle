@@ -16,7 +16,10 @@ public:
 	CPlacement * getPlacement(){ return m_zpMeteoriten; };
 	void Tick(CPlacement * pRaumschiff, bool b );
 	void Init(CRoot * root, CScene * scene);
-	void LowGraphics(CRoot * root, CScene * scene);
+
+	void NextMeteor(CPlacement * raumschiff);
+
+	CPlacement * getpMeteor(int i) { return &m_zpMeteoriten[i]; };
 
 	void Deform();
 
@@ -52,5 +55,6 @@ private:
 	//Globale Variablen
 	int iMeteorPassed = 0;
 	int iCounter = 0;
+	int i = 0;
 };
 

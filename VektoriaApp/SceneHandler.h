@@ -38,6 +38,7 @@ public:
 	void InitCamera(CViewport * viewport, CScene * scene);
 	void InitLights(CScene * scene);
 	void InitSkyDome(CRoot * root, CScene * scene);
+	void InitHitbox(CFrageGrafik * frage, CMeteorit * meteor);
 
 	void InitFrage();
 	void Scene_Meteoriten();

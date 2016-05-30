@@ -17,9 +17,9 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 	m_zMaterialMeteorit[0].MakeTextureDiffuse("textures\\textur1.jpg");
 	m_zMaterialMeteorit[0].MakeTextureBump("textures\\textur1Bump.png");
 
-	//m_zMaterialMeteorit[1].SetBumpStrength(2);
-	//m_zMaterialMeteorit[1].MakeTextureDiffuse("textures\\textur2.JPG");
-	//m_zMaterialMeteorit[1].MakeTextureBump("textures\\textur2Bump.png");
+	/*m_zMaterialMeteorit[1].SetBumpStrength(2);
+	m_zMaterialMeteorit[1].MakeTextureDiffuse("textures\\textur2.JPG");
+	m_zMaterialMeteorit[1].MakeTextureBump("textures\\textur2Bump.png");*/
 
 	m_zMaterialMeteorit[2].SetBumpStrength(2);
 	m_zMaterialMeteorit[2].MakeTextureDiffuse("textures\\textur3.jpg");
@@ -42,7 +42,7 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 		//Translations Variablen Random erstellen
 		float xi = rand() % 30 + (-15);
 		float yi = rand() % 30 + (-15);
-		float zi = i * -10.0F;
+		float zi = i * -10.0F - 20.0f;
 
 		//Meteoriten dem Placement geben
 		m_zpMeteoriten[i].AddGeo(&m_zgMeteorit[varMeteor]);
@@ -63,6 +63,14 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 		scene->AddPlacement(&m_zpMeteoriten[i]);
 	}
 
+}
+
+void CMeteorit::NextMeteor(CPlacement * raumschiff)
+{
+	if (m_zpMeteoriten[i].GetTranslation().GetZ() >= raumschiff->GetTranslation().GetZ())
+	{
+		i++;
+	}
 }
 
 void CMeteorit::Deform()

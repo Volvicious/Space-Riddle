@@ -1,6 +1,8 @@
 #pragma once
 #include "Vektoria\Root.h"
 #include "Meteorit.h"
+#include "Raumschiff.h"
+#include "FrageGrafik.h"
 
 using namespace Vektoria;
 
@@ -11,13 +13,18 @@ public:
 	CHitbox();
 	~CHitbox();
 
-	void Init();
+	void Init(CFrageGrafik * frage, CMeteorit * meteor);
+	void HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage);
+
+
 	bool CollisionDetection(CHVector * v, CHVector * vRaumschiff);
-	bool CollisionMeteorit(CHVector * Raumschiff, CMeteorit * Meteor);
 	int CollisionAntwort(CHVector * posRaumschiff, CHVector * posAntwort, int ABCD);
 	void SetXY(FLOAT x, FLOAT y);
 
 private:
+
+	CRay r[7];
+	CPlacements m_zps;
 
 	FLOAT f_StartX, f_StartY;
 	CHVector m_zVektor;

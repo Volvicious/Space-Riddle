@@ -14,6 +14,7 @@ public:
 	void SwitchOff();
 	void SwitchOn();
 
+	CPlacement * getpFrage(int i) { return &m_zpSphere[i]; };
 	CHVector getPlacement(int j){ return  m_zpSphere[j].GetTranslation(); };
 	FLOAT GetPlacementFrage(){ return m_zpSphere[3].GetTranslation().GetZ(); }
 
@@ -22,8 +23,7 @@ private:
 	//
 	CMaterial m_zMaterialKugel;
 	CGeoSphere m_zgSphere;
-	CGeoSphere m_zgFrage;
-	CPlacement m_zpSphere[5];
+	CPlacement m_zpSphere[4];
 
 	//Sonstige Variablen
 	float fLeftpos;

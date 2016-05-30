@@ -65,6 +65,11 @@ void SceneHandler::InitSkyDome(CRoot * root, CScene * scene)
 	m_zSkydome.Init(root, scene);
 }
 
+void SceneHandler::InitHitbox(CFrageGrafik * frage, CMeteorit * meteor)
+{
+	m_zHitbox.Init(frage, meteor);
+}
+
 void SceneHandler::InitFrage()
 {
 	f_PosRaumschiffZ = m_zRaumschiff.getpRaumschiff()->GetTranslation().GetZ();
@@ -85,7 +90,7 @@ void SceneHandler::Scene_Meteoriten()
 	m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff(), true);
 
 	//Hitboxen kollision
-	m_zHitbox.CollisionMeteorit(&m_zRaumschiff.getpRaumschiff()->GetTranslation(), &m_zMeteoriten);
+	//m_zHitbox.CollisionMeteorit(&m_zRaumschiff.getpRaumschiff()->GetTranslation(), &m_zMeteoriten);
 
 	//Counter der Meteoriten hochzählen
 	if (m_zMeteoriten.getiCounterMeteoriten() == MAX_METEOR)
@@ -171,6 +176,7 @@ void SceneHandler::Scene_Frage()
 void SceneHandler::Tick(FLOAT fTimeDelta, CScene * scene)
 {	
 	if (i_inScene > 0) {
+
 		// Lichter
 		m_zLights.RenewLights(m_zRaumschiff.getpRaumschiff());
 
@@ -182,18 +188,24 @@ void SceneHandler::Tick(FLOAT fTimeDelta, CScene * scene)
 
 		//Camera bewegen
 		m_zc.Tick(m_zRaumschiff.getpRaumschiff(), m_zKeyboard);
+
+		//Hitboxen
+		m_zHitbox.HitboxFrage(&m_zRaumschiff, &m_zFrage);
 		
+		//Lalalalalalalalalalalala Run
 		m_zLLA.Run();
 	}
 
-	if (i_inScene == 0) {
+	if (i_inScene == 0) 
+	{
 		m_dMaus.Run();
 		m_zExplorerLernpaket.Run();
 		m_zHauptmenu.menuTick(); 
 		m_zTastaturGer.Run();
 		m_zFragenHandler.Run();
 		 
-		if (m_zHauptmenu.getbGo()) {
+		if (m_zHauptmenu.getbGo()) 
+		{
 			i_inScene = 1;
 			m_dMaus.SwitchOff();
 			m_zLLA.SwitchOn(); 

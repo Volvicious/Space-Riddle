@@ -39,6 +39,10 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zSceneHandler.InitSkyDome(&m_zr, &m_zs);
 	m_zSceneHandler.InitLights(&m_zs);
 	m_zSceneHandler.InitFrage();
+	m_zSceneHandler.InitHitbox(&m_zFrageGrafik, &m_zMeteor);
+
+	m_zs.EnableAABBs();
+	m_zs.SetBVHExactCalculationOn();
 
 	//Fog initialisieren
 	//m_zFog.Init(&m_zr, &m_zs);
