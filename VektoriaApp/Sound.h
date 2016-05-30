@@ -1,38 +1,31 @@
 #pragma once
 #include "Vektoria\Root.h"
-using namespace Vektoria; 
+using namespace Vektoria;
+
 class CSound
 {
 public:
 
-	 
-
-
 	CSound();
 	~CSound();
-	//void Init(char *stringWavFile, float fRadius);
-	void SetRadius(float fRadius);
+
+	void Setradius(float fRadius);
 	void SetDoppler(float fFactor);
-	void Init(CScene * mzs); 
-	void Loop(int iSoundNummer); 
+	void Init(CScene * mzs);
+	void Loop(int iSoundNummer);
 	void Stop(int iSoundNummer);
+	void Pause(int iSoundNummer);
 	void Start(int iSoundNummer);
 	void SetVolume(int iSoundNummer, float f);
 
 	void Fini();
-
-	CAudio * getAudioPointr(int iSoundNummer); 
 	
-
-
+	CAudio*getAudioPointr(int iSoundNummer);
 
 private:
-	//CAudio audio;
+
+	//Audio und Placement
 	CAudio audio[10];
-	CPlacement placement; 
-
-
+	CPlacement placement;
 };
-
-
 

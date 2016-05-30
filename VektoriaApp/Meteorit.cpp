@@ -10,97 +10,142 @@ CMeteorit::~CMeteorit()
 {
 }
 
-void CMeteorit::Init(CScene * scene, CSound * sound)
+void CMeteorit::Init(CRoot * root, CScene * scene)
+{
+	//Blender File Laden
+	m_zMeteorit[0] = m_zfilewavefront[0].LoadGeoTriangleList("models\\Meteorit3.obj");
+	m_zMeteorit[1] = m_zfilewavefront[1].LoadGeoTriangleList("models\\Meteorit2.obj");
+	//m_zMeteorit[2] = m_zfilewavefront[2].LoadGeo("models\\Meteorit3.obj");
+
+	m_zMeteorit[0]->ReduceRedundancy(true, 6.5f);
+	m_zMeteorit[1]->ReduceRedundancy(true, 6.5f);
+	//m_zMeteorit[2]->ReduceRedundancy(true, 1.5f);
+
+//	m_zMeteorit[0].Init(2, NULL);
+//	m_zMeteorit[1].Init(3, NULL);
+//	m_zMeteorit[2].Init(4, NULL);
+
+	//Texturen der Meteoriten laden
+	m_zMaterialMeteorit[0].MakeTextureDiffuse("textures\\MeteoritTextur1.obj");
+	m_zMaterialMeteorit[1].MakeTextureDiffuse("textures\\MeteoritTextur2.obj");
+	m_zMaterialMeteorit[2].MakeTextureDiffuse("textures\\MeteoritTextur3.obj");
+	m_zMaterialMeteorit[3].MakeTextureDiffuse("textures\\MeteoritTextur4.obj");
+	m_zMaterialMeteorit[4].MakeTextureDiffuse("textures\\MeteoritTextur5.obj");
+
+	//Meteoriten hinzufügen
+	for (int i = 0; i < MAX_METEOR; i++)
+	{
+		//Random Textur auswählen
+		int maxTextur = (rand() % 5);
+
+		//Random Meteoriten auswählen
+		int varMeteor = (rand() % 2);
+
+		//Translations Variablen Random erstellen
+		float xi = rand() % 30 + (-15);
+		float yi = rand() % 30 + (-15);
+		float zi = i * -5.0F;
+
+		//Textur auf Meteorit laden
+		//m_zMeteorit[i]->SetMaterial(&m_zMaterialMeteorit[maxTextur]);
+
+		//Meteoriten dem Placement geben
+		m_zpMeteoriten[i].AddGeo(m_zMeteorit[varMeteor]);
+
+		//Meteoriten random verschieben
+		m_zpMeteoriten[i].Translate(xi, yi, zi);
+	}
+
+	//Texturen dem Root hinzufügen
+	for (int i = 0; i < 5; i++)
+	{
+		root->AddMaterial(&m_zMaterialMeteorit[i]);
+	}
+
+	//Meteoriten in die Szene laden
+	for (int i = 0; i < MAX_METEOR; i++)
+	{
+		scene->AddPlacement(&m_zpMeteoriten[i]);
+	}
+
+}
+
+void CMeteorit::Tick(CPlacement * pRaumschiff, bool b)
+{
+		//Wenn das Ende des Arrays erreicht wird, wird von neuem durchgezählt
+		iCounter %= MAX_METEOR;
+
+		//Random zahlen generieren
+		float rndxy = rand() % 30 -15;
+		float rndx = rand() % 10 - 5;
+		float rndy = rand() % 10 - 5;
+
+		//Raumschiff und Meteoriten position wird in einen Vektor umgewandelt
+		m_zvRaumschiff = pRaumschiff->GetTranslation();
+		m_zvMeteorit = m_zpMeteoriten[iCounter].GetTranslation();
+
+		//Meteoriten hinter den Fog schieben
+		if (m_zvMeteorit.GetZ() >= m_zvRaumschiff.GetZ() + 15.0F)
+		{
+			m_zpMeteoriten[iCounter].TranslateZDelta(-200.0F);
+
+			//Meteorit random verschieben
+			//m_zpMeteoriten[iCounter].TranslateDelta(CHVector(rndx, rndy, -150.0F));
+
+			//if (m_zpMeteoriten[iCounter].GetTranslation().GetX() <= -20 || m_zpMeteoriten[iCounter].GetTranslation().GetX() >= 20)
+			//{
+			//	m_zvMeteorit.SetX(0.0F);
+			//}
+
+			//if (m_zpMeteoriten[iCounter].GetTranslation().GetY() <= -20 || m_zpMeteoriten[iCounter].GetTranslation().GetY() >= 20)
+			//{
+			//	m_zvMeteorit.SetY(0.0F);
+			//}
+
+			++iCounter;
+			iCounterMeteoriten++;
+		}
+}
+
+void CMeteorit::SwitchOff()
+{
+	for (int i = 0; i < MAX_METEOR; i++)
+	{
+		m_zpMeteoriten[i].SwitchOff();
+	}
+}
+
+void CMeteorit::SwitchOn()
+{
+	for (int i = 0; i < MAX_METEOR; i++)
+	{
+		m_zpMeteoriten[i].SwitchOn();
+	}
+}
+
+
+void CMeteorit::LowGraphics(CRoot * root, CScene * scene)
 {
 	float ri = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-	m_zMeteorit.Init(ri, NULL, 10.0, 10.0);
-	iCounterStart = 0;
-	iCounterEnd = MAX_METEOR / 2;
-
-	audio.Init3D("sounds\\3D_Sounds\\Passing_Object.wav", 3.0F);
-	if (audio.m_b3D){
-		ULDebug("3D ist true");
-	}
-	else{
-		ULDebug("3D ist false");
-	}
+	m_zGeos.Init(1.0F, NULL, 10.0, 10.0);
 
 	for (int i = 0; i < MAX_METEOR; i++)
 	{
-		float xi = rand() % 19 + (-9);
-		float yi = rand() % 19 + (-9);
-		float zi = i * -5;
+		float xi = rand() % 30 + (-15);
+		float yi = rand() % 30 + (-15);
+		float zi = i * -5.0F;
 
 		//Meteorit erstellen
-		
-		
-
-		m_azp[i].AddGeo(&m_zMeteorit);
-		//m_azp[i].AddAudio(sound->getAudioPointr(2)); 
-		//audio.Init3D("sounds\\3D_Sounds\\Passing_Object.wav", 3.0F);
-		//m_azp[i].AddAudio(&audio);
-		//audio.SetVolume(1.0F);
-		//audio.Loop();
-
-		
-
-		
-
-		//audio[2].SetRadius(3.0F);
-		//audio.Fini();
-		
-		//mcs->AddAudio(&audio[2]);
-		//audio[2].Loop(2);
-		
-		/*audio[2].Init("sounds\\3D_Sounds\\Passing_Object.wav", 5.0F);
-		m_azp[i].AddAudio(sound->getAudioPointr(2));
-		audio[2].Loop(2);*/
-		
-		//audio[2].SetRadius(5.0F);
-		//audio[2].Fini();
+		m_zpMeteoriten[i].AddGeo(&m_zGeos);
 
 		//Meteorit verschieben
-		m_azp[i].Translate(xi, yi, zi);
-
-		//Die Anzahl der anzuzeigenden Meteoriten am Anfang festlegen
-		if (i > MAX_METEOR / 2)
-		{
-			m_azp[i].SwitchOff();
-		}
+		m_zpMeteoriten[i].Translate(xi, yi, zi);
 	}
-
-	m_pzpStart = &m_azp[0];
-	m_pzpEnd = &m_azp[MAX_METEOR / 2];
 
 	//Meteoriten in Scene laden
 	for (int i = 0; i < MAX_METEOR; i++)
 	{
-		scene->AddPlacement(&m_azp[i]);
+		scene->AddPlacement(&m_zpMeteoriten[i]);
 	}
-	audio.SetVolume(1.0F);
-	audio.Loop();
-
-}
-
-void CMeteorit::RenewMeteorits(CPlacement * pRaumschiff)
-{
-	//Start und Ende müssen jeweils um eins hochgezählt werden
-	iCounterEnd = iCounterStart + MAX_METEOR / 2;
-
-	//Wenn das Ende des Arrays erreicht wird, wird von neuem durchgezählt
-	iCounterStart %= MAX_METEOR;
-	iCounterEnd %= MAX_METEOR;
-
-	m_zvRaumschiff = pRaumschiff->GetTranslation();
-	m_zvMeteorit = m_azp[iCounterStart].GetTranslation();
-
-	//Alten Meteoriten deaktivieren und neuen aktivieren
-	if (m_zvMeteorit.GetZ() >= m_zvRaumschiff.GetZ() + 15.0F)
-	{
-		++iCounterStart;
-		m_azp[iCounterStart].SwitchOff();
-		m_azp[iCounterEnd].SwitchOn();
-	}
-
 }
 

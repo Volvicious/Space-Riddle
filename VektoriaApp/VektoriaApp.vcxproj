@@ -67,25 +67,25 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(DXSDK_DIR)Include;..\..\Lib;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29;C:\Users\Floo\Documents\Visual Studio 2013\Projects\Lib;$(DXSDK_DIR)Include;..\..\Lib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29;$(DXSDK_DIR)Include;2010%29\Include;..\..\Lib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(DXSDK_DIR)Lib\x86;..\..\Lib\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29;C:\Users\Floo\Documents\Visual Studio 2013\Projects\Lib;$(DXSDK_DIR)Lib\x86;..\..\Lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29;C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Lib;$(DXSDK_DIR)Lib\x64;..\..\Lib\Debug64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(DXSDK_DIR)Include;..\..\Lib;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29;C:\Users\Floo\Documents\Visual Studio 2013\Projects\Lib;$(DXSDK_DIR)Include;..\..\Lib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29;$(DXSDK_DIR)Include;2010%29\Include;..\..\Lib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath);..\..\lib\Release</LibraryPath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29;C:\Users\Floo\Documents\Visual Studio 2013\Projects\Lib;$(DXSDK_DIR)Lib\x86;$(LibraryPath);..\..\lib\Release</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29;C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Lib;..\..\Lib\Release64;$(DXSDK_DIR)Lib\x64;$(LibraryPath)</LibraryPath>
@@ -139,16 +139,68 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CameraController.h" />
+    <ClInclude Include="Explorer.h" />
+    <ClInclude Include="ExplorerProfil.h" />
+    <ClInclude Include="FileFinder.h" />
+    <ClInclude Include="FileHandler.h" />
+    <ClInclude Include="FileReader.h" />
+    <ClInclude Include="FileWriter.h" />
+    <ClInclude Include="Fog.h" />
+    <ClInclude Include="Frage.h" />
+    <ClInclude Include="FrageGrafik.h" />
+    <ClInclude Include="FrageMulti.h" />
+    <ClInclude Include="FragenHandler.h" />
+    <ClInclude Include="FrageText.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Hitbox.h" />
+    <ClInclude Include="LightTunnel.h" />
+    <ClInclude Include="LLAnzeige.h" />
+    <ClInclude Include="Mainmenu.h" />
+    <ClInclude Include="Maus.h" />
     <ClInclude Include="Meteorit.h" />
+    <ClInclude Include="Raumschiff.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SceneHandler.h" />
+    <ClInclude Include="SkyDome.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Steuerung.h" />
+    <ClInclude Include="StringToChar.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TastaturGER.h" />
+    <ClInclude Include="TextOutput.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CameraController.cpp" />
+    <ClCompile Include="Explorer.cpp" />
+    <ClCompile Include="ExplorerProfil.cpp" />
+    <ClCompile Include="FileFinder.cpp" />
+    <ClCompile Include="FileHandler.cpp" />
+    <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="FileWriter.cpp" />
+    <ClCompile Include="Fog.cpp" />
+    <ClCompile Include="Frage.cpp" />
+    <ClCompile Include="FrageGrafik.cpp" />
+    <ClCompile Include="FrageMulti.cpp" />
+    <ClCompile Include="FragenHandler.cpp" />
+    <ClCompile Include="FrageText.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Hitbox.cpp" />
+    <ClCompile Include="LightTunnel.cpp" />
+    <ClCompile Include="LLAnzeige.cpp" />
+    <ClCompile Include="Mainmenu.cpp" />
+    <ClCompile Include="Maus.cpp" />
     <ClCompile Include="Meteorit.cpp" />
+    <ClCompile Include="Raumschiff.cpp" />
+    <ClCompile Include="SceneHandler.cpp" />
+    <ClCompile Include="SkyDome.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Steuerung.cpp" />
+    <ClCompile Include="StringToChar.cpp" />
+    <ClCompile Include="TastaturGER.cpp" />
+    <ClCompile Include="TextOutput.cpp" />
     <ClCompile Include="VektoriaApp.cpp" />
   </ItemGroup>
   <ItemGroup>

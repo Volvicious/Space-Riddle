@@ -13,6 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Headerdateien\Basti">
+      <UniqueIdentifier>{773b6464-59c4-40fa-8ad4-51e2510c6983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Basti">
+      <UniqueIdentifier>{7ea8d840-e61f-44b1-8d31-b3b8959ac0ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Floo">
+      <UniqueIdentifier>{c170d227-e949-4e8a-9ecd-378e64a2f27e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Floo">
+      <UniqueIdentifier>{56d11193-0b74-4f62-b538-d1e5217258e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Sounds">
+      <UniqueIdentifier>{3feaa337-ab72-4a46-9b61-e81f970bb0f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Sounds">
+      <UniqueIdentifier>{9e5efc90-d7c8-4684-9172-05c215ca0aa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Chris">
+      <UniqueIdentifier>{129b796f-41eb-4273-9ff6-839e4ea439be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Chris">
+      <UniqueIdentifier>{4b1e8767-01b4-4de4-934d-5f3bf33ef838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Julian">
+      <UniqueIdentifier>{a5172aaa-1df0-4b71-96a9-649780bec458}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Julian">
+      <UniqueIdentifier>{5105844b-9eec-443c-8cfe-358e350daac1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -27,22 +57,178 @@
     <ClInclude Include="targetver.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Hitbox.h">
+      <Filter>Headerdateien\Basti</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneHandler.h">
+      <Filter>Headerdateien\Basti</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraController.h">
+      <Filter>Headerdateien\Floo</Filter>
+    </ClInclude>
+    <ClInclude Include="Fog.h">
+      <Filter>Headerdateien\Floo</Filter>
+    </ClInclude>
+    <ClInclude Include="LightTunnel.h">
+      <Filter>Headerdateien\Floo</Filter>
+    </ClInclude>
+    <ClInclude Include="Raumschiff.h">
+      <Filter>Headerdateien\Floo</Filter>
+    </ClInclude>
+    <ClInclude Include="Steuerung.h">
+      <Filter>Headerdateien\Floo</Filter>
+    </ClInclude>
     <ClInclude Include="Meteorit.h">
+      <Filter>Headerdateien\Floo</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyDome.h">
+      <Filter>Headerdateien\Floo</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Headerdateien\Sounds</Filter>
+    </ClInclude>
+    <ClInclude Include="FrageGrafik.h">
+      <Filter>Headerdateien\Basti</Filter>
+    </ClInclude>
+    <ClInclude Include="Explorer.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="FileFinder.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="FileHandler.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="FileReader.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="FileWriter.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="Frage.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="FragenHandler.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="FrageText.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="Maus.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="StringToChar.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="TastaturGER.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="TextOutput.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="Mainmenu.h">
+      <Filter>Headerdateien\Julian</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplorerProfil.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="FrageMulti.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="LLAnzeige.h">
+      <Filter>Headerdateien\Chris</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="VektoriaApp.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Hitbox.cpp">
+      <Filter>Quelldateien\Basti</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneHandler.cpp">
+      <Filter>Quelldateien\Basti</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="Fog.cpp">
+      <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="LightTunnel.cpp">
+      <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
     <ClCompile Include="Meteorit.cpp">
+      <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="Raumschiff.cpp">
+      <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="Steuerung.cpp">
+      <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyDome.cpp">
+      <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Quelldateien\Sounds</Filter>
+    </ClCompile>
+    <ClCompile Include="FrageGrafik.cpp">
+      <Filter>Quelldateien\Basti</Filter>
+    </ClCompile>
+    <ClCompile Include="Explorer.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="FileFinder.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="FileHandler.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="FileReader.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="FileWriter.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="Frage.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="FragenHandler.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="FrageText.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="Maus.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="StringToChar.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="TastaturGER.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="TextOutput.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="Mainmenu.cpp">
+      <Filter>Quelldateien\Julian</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplorerProfil.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="FrageMulti.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="LLAnzeige.cpp">
+      <Filter>Quelldateien\Chris</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,11 @@
 #pragma once
 #include "Vektoria\Root.h"
-#include "Sound.h"
+
 using namespace Vektoria;
 
-#define MAX_METEOR 100
+#define MAX_METEOR 50
+#define VAR_METEOR 4
+#define MAX_TEXTUR 5
 
 class CMeteorit
 {
@@ -11,32 +13,41 @@ public:
 	CMeteorit();
 	~CMeteorit();
 
-	CPlacement * getPlacement(){ return m_azp; };
-	void Init(CScene* scene, CSound * sound);
-	void RenewMeteorits(CPlacement * pRaumschiff);
+	CPlacement * getPlacement(){ return m_zpMeteoriten; };
+	void Tick(CPlacement * pRaumschiff, bool b );
+	void Init(CRoot * root, CScene * scene);
+	void LowGraphics(CRoot * root, CScene * scene);
 
-	
-	
-	CAudio audio;
-	 
+	int getiCounterMeteoriten() { return iCounterMeteoriten; };
+
+	void SetiCounterZero(){ iCounterMeteoriten = 0; };
+	FLOAT getiCounterZPos(){ return m_zpMeteoriten[iCounter].GetTranslation().GetZ(); };
+
+	void SwitchOff();
+	void SwitchOn();
+
 
 private:
+
 	// Hier ist Platz für die Vektoriaobjekte:
 	CScene m_zs;
-	CMaterial m_zMaterialMeteorit;
-	CGeoSphere m_zMeteorit;
+	CMaterial m_zMaterialMeteorit[5];
 
 	//Vektor meteorit
 	CHVector m_zvRaumschiff;
 	CHVector m_zvMeteorit;
 
-	//Meteoriten Placements
-	CPlacement m_azp[MAX_METEOR];
-	CPlacement * m_pzpStart;
-	CPlacement * m_pzpEnd;
+	//Blender Meteoriten reinladen
+	CGeo * m_zMeteorit[4];
+//	CGeoCube m_zMeteorit[4];
+	CFileWavefront m_zfilewavefront[4];
+	CPlacement m_zpMeteoriten[50];
+
+	//Kugeln
+	CGeoSphere m_zGeos;
 
 	//Globale Variablen
-	int iCounterStart = 0;
-	int iCounterEnd = 0;
+	int iCounterMeteoriten = 0;
+	int iCounter = 0;
 };
 

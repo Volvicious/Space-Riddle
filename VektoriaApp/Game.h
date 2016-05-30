@@ -58,7 +58,16 @@
 
 #include "Vektoria\Root.h"
 #include "Meteorit.h"
-#include "Sound.h"
+#include "Steuerung.h"
+#include "CameraController.h"
+#include "LightTunnel.h"
+#include "Tube.h"
+#include "Fog.h"
+#include "Raumschiff.h"
+#include "SceneHandler.h"
+#include "Hitbox.h"
+#include "LLAnzeige.h"
+//#include "Frage.h"
 
 using namespace Vektoria;
 
@@ -77,49 +86,52 @@ public:
 
 	void CameraPosition();
 
+	float Clamp(float input, float min, float max);
+
+	//Geschwindigkeit des Raumschiffs
+	float fGeschwindigkeit;
+
 private:
     // Hier ist Platz für die Vektoriaobjekte:
 	CRoot m_zr;
-	CCamera m_zc;
+
 	CScene m_zs;
 	CFrame m_zf;
 	CViewport m_zv;
 	CLightParallel m_zl;
-	
-	
+	CSteuerung m_zSteuerung;
+	CFog m_zFog;
+	CRaumschiff m_zRaumschiff;
+	SceneHandler m_zSceneHandler;
 
 	// Placements
-	CPlacement m_zpCamera;
-	CPlacement m_zpSphere;
-	CPlacement m_zpBoden;
-	CPlacement m_zpTube;
+	CPlacement m_zpFog;
 
 	//Extras
+	//Skydome
+	CMaterial m_zMaterial;
+
+	//Materialien
+	CMaterial m_zmBackground;
+	CMaterial m_zMaterialFog;
+
+	//Keyboard
 	CDeviceKeyboard m_zKeyboard;
-	CMaterial m_zMaterialKugel;
-	CMaterial m_zMaterialBackground;
-	CMaterial m_zMaterialTube;
-	CBackground m_zBackground;
 
 	//Cameravektor
 	CHVector m_zCameraTranslation;
-
-	//Objekte
-	CGeoSphere m_zgSphere;
-	CGeoTube m_zTube;
-	CMeteorit m_zMeteoriten;
-
-	//Eigene
-
-	CSound m_zSound; 
-
+	
+	//Lichter
+	CLightTunnel m_zLight;
 
 	//Globale Variablen
 	bool bFirstPerson = true;
-	int iTimerMeteoriten = 0;
+
+	//Testbereich
+
+	CLLAnzeige LLA; 
 
 
-	int iSoundTest = 0; 
 };
 
 
