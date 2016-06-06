@@ -10,7 +10,7 @@ CFrageGrafik::~CFrageGrafik()
 {
 }
 
-void CFrageGrafik::Init1(CScene * scene)
+void CFrageGrafik::Init(CScene * scene)
 {
 	m_zgSphere.Init(1.0F, &m_zMaterialKugel, 50, 50);
 
@@ -18,6 +18,7 @@ void CFrageGrafik::Init1(CScene * scene)
 	{
 		m_zpSphere[i].AddGeo(&m_zgSphere);
 		scene->AddPlacement(&m_zpSphere[i]);
+		SwitchOff();
 	}
 }
 
@@ -37,8 +38,11 @@ void CFrageGrafik::SwitchOn()
 	}
 }
 
-void CFrageGrafik::Init(FLOAT f_posZ, FLOAT f_posX, FLOAT f_posY)
+void CFrageGrafik::Translate(FLOAT f_posZ, FLOAT f_posX, FLOAT f_posY)
 {
+	//Fragen wieder hinzufügen
+	SwitchOn();
+
 	for (int i = 0; i < 4; i++)
 	{
 		if (i == 0)
@@ -49,6 +53,7 @@ void CFrageGrafik::Init(FLOAT f_posZ, FLOAT f_posX, FLOAT f_posY)
 		{
 			fLeftpos = fLeftpos + 5.0f;
 		}
+
 		m_zpSphere[i].Translate(fLeftpos, f_posY, f_posZ - 100.0f);
 	}
 }

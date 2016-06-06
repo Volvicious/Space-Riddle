@@ -118,9 +118,6 @@ private:
 	CMaterial m_zmBackground;
 	CMaterial m_zMaterialFog;
 
-	//Keyboard
-	CDeviceKeyboard m_zKeyboard;
-
 	//Cameravektor
 	CHVector m_zCameraTranslation;
 	

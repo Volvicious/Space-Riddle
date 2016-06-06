@@ -11,7 +11,8 @@ public:
 
 	void Init(CRoot * root, CScene * scene);
 	void Tick(float fGeschwindigkeit);
-	void SetZero(float fZpos);
+
+	void SetZero();
 
 private:
 

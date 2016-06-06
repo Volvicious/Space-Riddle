@@ -77,17 +77,17 @@ void CLightTunnel::RenewLights(CPlacement * Raumschiff)
 	}
 }
 
-void CLightTunnel::SetZero(float fZPos)
+void CLightTunnel::SetZero()
 {
-	////for (int i = 0; i < MAX_LIGHT / 8; i++)
-	////{
-	//	m_azpRechtsUnten[iCounter].TranslateZ(fZPos);
-	//	m_azpRechtsOben[iCounter].TranslateZ(fZPos);
-	//	m_azpLinksOben[iCounter].TranslateZ(fZPos);
-	//	m_azpLinksUnten[iCounter].TranslateZ(fZPos);
-	//	m_azpOben[iCounter].TranslateZ(fZPos);
-	//	m_azpUnten[iCounter].TranslateZ(fZPos);
-	//	m_azpRechts[iCounter].TranslateZ(fZPos);
-	//	m_azpLinks[iCounter].TranslateZ(fZPos);
-	////}
+	for (int i = 0; i < MAX_LIGHT / 8; i++)
+	{
+		m_azpRechtsUnten[iCounter].TranslateZ(0.0f);
+		m_azpRechtsOben[iCounter].TranslateZ(0.0f);
+		m_azpLinksOben[iCounter].TranslateZ(0.0f);
+		m_azpLinksUnten[iCounter].TranslateZ(0.0f);
+		m_azpOben[iCounter].TranslateZ(0.0f);
+		m_azpUnten[iCounter].TranslateZ(0.0f);
+		m_azpRechts[iCounter].TranslateZ(0.0f);
+		m_azpLinks[iCounter].TranslateZ(0.0f);
+	}
 }

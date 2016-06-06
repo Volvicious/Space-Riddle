@@ -7,34 +7,29 @@
 #include "Maus.h"
 #include "TextOutput.h"
 
-
-
-
 using namespace Vektoria;
 
-class CMainmenu
+
+class CMainMenu
 {
 public:
 
-	CMainmenu(){};
-	~CMainmenu(){};
-	void menuInit(CViewport * m_zv, CMaus * ptrMaus_, CExplorer * ptrExplorer_);
-	void menuTick();
+	CMainMenu(){};
+	~CMainMenu(){};
+
+	void Init(CViewport * m_zv, CMaus * ptrMaus_, CExplorer * ptrExplorer_);
+	void Tick();
 
 	void SwitchOn();
 	void SwitchOff();
 
 	bool getbGo(); 
 
-	//CDeviceCursor * GetCursorPtr(); 
-	//COverlay * GetCursorOverPtr();
-
-	//Alles ab Hier Julians 
+private:
 
 	//Hauptmenuzeugs
 	COverlay m_zoMainmbackground;
 	CImage m_ziMainmbackground;
-
 
 	//Steuerung
 	COverlay m_zoSteuerungBackground;
@@ -44,19 +39,13 @@ public:
 	COverlay m_zoHighscoreBackground;
 	CImage m_ziHighscoreBackground;
 
-
 	//Optionen
 	COverlay m_zoOptionsBackground;
 	CImage m_ziOptionsBackground;
 
-
-
 	//Transparenzpickwerkzeuge
-
-	
 	COverlay m_zoName;
 	CMaterial m_zmName;
-
 
 	CMaterial m_zmLernPaket;
 	COverlay m_zoLernPaket;
@@ -76,12 +65,7 @@ public:
 	CTextOutput m_zTOPProfil; 
 	CTextOutput m_zTOPLernpaket; 
 
-
-
-
-
 	// Steuerungsbuttons
-
 	COverlay m_zoBackButton;
 	CImage m_ziBackButton;
 
@@ -91,19 +75,12 @@ public:
 	//Maus
 	CMaus * ptrMaus;
 
+	//Explorer
 	CExplorer * ptrExplorer;
 	
-
 	//Hilfsvars
-
 	bool bLernpaket = false; 
 	bool bProfil = false; 
 	
 	bool bGo = false; 
-	
-	
-
-
-
-
 };

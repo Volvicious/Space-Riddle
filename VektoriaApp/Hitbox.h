@@ -13,15 +13,25 @@ public:
 	CHitbox();
 	~CHitbox();
 
-	void Init(CFrageGrafik * frage, CMeteorit * meteor);
-	void HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage);
-
+	void Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * meteor, CScene * scene);
+	void HitboxFrage(CFrageGrafik * frage);
+	void HitboxMeteoriten(CMeteorit * meteoriten);
 
 	bool CollisionDetection(CHVector * v, CHVector * vRaumschiff);
 	int CollisionAntwort(CHVector * posRaumschiff, CHVector * posAntwort, int ABCD);
 	void SetXY(FLOAT x, FLOAT y);
 
 private:
+
+	//Alles nur wegen dem Ray
+	CHMat rotate;
+	CHVector vector;
+	CGeoCylinder cylinder;
+	CPlacement m_zpcylinder;
+	//
+
+	//Speicherpointer
+	CRaumschiff * ptrRaumschiff;
 
 	CRay r[7];
 	CPlacements m_zps;

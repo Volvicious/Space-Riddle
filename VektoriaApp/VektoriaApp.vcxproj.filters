@@ -120,15 +120,6 @@
     <ClInclude Include="StringToChar.h">
       <Filter>Headerdateien\Chris</Filter>
     </ClInclude>
-    <ClInclude Include="TastaturGER.h">
-      <Filter>Headerdateien\Chris</Filter>
-    </ClInclude>
-    <ClInclude Include="TextOutput.h">
-      <Filter>Headerdateien\Chris</Filter>
-    </ClInclude>
-    <ClInclude Include="Mainmenu.h">
-      <Filter>Headerdateien\Julian</Filter>
-    </ClInclude>
     <ClInclude Include="ExplorerProfil.h">
       <Filter>Headerdateien\Chris</Filter>
     </ClInclude>
@@ -137,6 +128,9 @@
     </ClInclude>
     <ClInclude Include="LLAnzeige.h">
       <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Headerdateien\Julian</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -215,9 +209,6 @@
     <ClCompile Include="TextOutput.cpp">
       <Filter>Quelldateien\Chris</Filter>
     </ClCompile>
-    <ClCompile Include="Mainmenu.cpp">
-      <Filter>Quelldateien\Julian</Filter>
-    </ClCompile>
     <ClCompile Include="ExplorerProfil.cpp">
       <Filter>Quelldateien\Chris</Filter>
     </ClCompile>
@@ -229,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="LLAnzeige.cpp">
       <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Quelldateien\Julian</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

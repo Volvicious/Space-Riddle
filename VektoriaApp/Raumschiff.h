@@ -13,10 +13,9 @@ public:
 	void Init(CRoot * root, CScene * scene);
 	void Tick(float Geschwindigkeit);
 
-	void SetZero(FLOAT Zpos);
-	CPlacement * getpRaumschiff(){ return &m_zpRaumschiff; };
+	void SetZero();
 
-	FLOAT GetZPosition(){ return m_zpRaumschiff.GetTranslation().GetZ(); };
+	CPlacement * getpRaumschiff(){ return &m_zpRaumschiff; };
 
 private:
 

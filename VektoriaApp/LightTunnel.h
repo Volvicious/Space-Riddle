@@ -15,7 +15,7 @@ public:
 	void Init(CScene* scene);
 	void RenewLights(CPlacement * Raumschiff);
 
-	void SetZero(float fZpos);
+	void SetZero();
 
 private:
 	// Hier ist Platz für die Vektoriaobjekte:
