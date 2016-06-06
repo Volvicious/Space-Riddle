@@ -17,9 +17,9 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 	m_zMaterialMeteorit[0].MakeTextureDiffuse("textures\\textur1.jpg");
 	m_zMaterialMeteorit[0].MakeTextureBump("textures\\textur1Bump.png");
 
-	m_zMaterialMeteorit[1].SetBumpStrength(2);
-	m_zMaterialMeteorit[1].MakeTextureDiffuse("textures\\textur2.JPG");
-	m_zMaterialMeteorit[1].MakeTextureBump("textures\\textur2Bump.png");
+	//m_zMaterialMeteorit[1].SetBumpStrength(2);
+	//m_zMaterialMeteorit[1].MakeTextureDiffuse("textures\\textur2.JPG");
+	//m_zMaterialMeteorit[1].MakeTextureBump("textures\\textur2Bump.png");
 
 	m_zMaterialMeteorit[2].SetBumpStrength(2);
 	m_zMaterialMeteorit[2].MakeTextureDiffuse("textures\\textur3.jpg");
