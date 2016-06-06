@@ -8,22 +8,20 @@ public:
 	CFrageGrafik();
 	~CFrageGrafik();
 
-	void Init(FLOAT f_posRaumschiff, FLOAT f_posX, FLOAT f_posY);
-	void Init1(CScene * scene);
+	void Init(CScene * scene);
+	void Translate(float f_posRaumschiff, float f_posX, float f_posY);
 
 	void SwitchOff();
 	void SwitchOn();
 
-	CHVector getPlacement(int j){ return  m_zpSphere[j].GetTranslation(); };
-	FLOAT GetPlacementFrage(){ return m_zpSphere[3].GetTranslation().GetZ(); }
+	CPlacement * getpFrage(int i) { return &m_zpSphere[i]; };
 
 private:
 
-	//
+	//Fragenzeugs
 	CMaterial m_zMaterialKugel;
 	CGeoSphere m_zgSphere;
-	CGeoSphere m_zgFrage;
-	CPlacement m_zpSphere[5];
+	CPlacement m_zpSphere[4];
 
 	//Sonstige Variablen
 	float fLeftpos;

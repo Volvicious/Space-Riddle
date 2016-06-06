@@ -11,7 +11,7 @@
 #include "SkyDome.h"
 #include "Sound.h"
 
-#include "Mainmenu.h"
+#include "MainMenu.h"
 #include "TextOutput.h"
 #include "TastaturGER.h"
 #include "FragenHandler.h"
@@ -32,33 +32,32 @@ public:
 	SceneHandler();
 	~SceneHandler();
 
-	void Init(CViewport * viewport, CScene * scene, CFrame * frame, CDeviceKeyboard * ptrKeyboard);
+	void Init(CViewport * viewport, CScene * scene, CFrame * frame);
 	void InitRaumschiff(CRoot * root, CScene * scene);
 	void InitMeteorits(CRoot * root, CScene * scene);
 	void InitCamera(CViewport * viewport, CScene * scene);
 	void InitLights(CScene * scene);
 	void InitSkyDome(CRoot * root, CScene * scene);
+	void InitHitbox(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * meteor, CScene * scene);
 
-	void InitFrage();
-	void Scene_Meteoriten();
-	void Scene_Frage();
+
+	void Tick(float fTimeDelta, float fTime);
+	void FrageTranslation();
+	void MeteoritenTick();
+	void FrageTick();
 	void SwitchScene();
-
-	CRaumschiff * getRaumschiffptr() { return &m_zRaumschiff; };
-
-	void Tick(FLOAT fTimeDelta, CScene * scene);
 
 private:
 
 	//Objekte
 	CMeteorit m_zMeteoriten;
-	CDeviceKeyboard * m_zKeyboard;
+	CDeviceKeyboard m_zKeyboard;
 
 	CSkyDome m_zSkydome;
 	CLightTunnel m_zLights;
 	CHitbox m_zHitbox;
 	CHVector m_cameraPos;
-	CFrageGrafik m_zFrage;
+	CFrageGrafik m_zFrageGrafik;
 	CRaumschiff m_zRaumschiff;
 	CCameraController m_zc;
 	CSteuerung m_zSteuerung;
@@ -67,8 +66,7 @@ private:
 	CSound m_zSound;
 
 	// Testzeux von Chris
-
-	CMainmenu m_zHauptmenu;
+	CMainMenu m_zHauptmenu;
 
 	CTastaturGER m_zTastaturGer;
 	CTextOutput m_zTextoutput;
@@ -89,20 +87,25 @@ private:
 
 	//Sonstiges
 	CHVector m_vMetroritenvektor;
-	FLOAT f_PosRaumschiffZ;
-	FLOAT f_PosRaumschiffY;
-	FLOAT f_PosRaumschiffX;
-	FLOAT m_fTestAbstand;
-	FLOAT m_fGeschwindigkeit;
-	FLOAT m_fBeschleunigung;
+
+
+
+	//Lokale Variablen
+	float f_PosRaumschiffZ;
+	float f_PosRaumschiffY;
+	float f_PosRaumschiffX;
+	float m_fTestAbstand;
+	float m_fGeschwindigkeit;
+	float m_fBeschleunigung;
+
+	int iScene;
+	bool FrageSwitch = false;
 
 
 	bool b_istKollidiert;
 	bool bFirstPerson = true;
-	int i_Antwort;
 
 
-	int i_inScene;
 	bool b_braucheAntwort = true;
 	bool b_sollinit = false;
 	bool b_sollinitfrage = false;

@@ -42,7 +42,7 @@ void CRaumschiff::Tick(float Geschwindigkeit)
 	m_zpRaumschiff.TranslateZDelta(Geschwindigkeit);
 }
 
-void CRaumschiff::SetZero(FLOAT ZPos)
+void CRaumschiff::SetZero()
 {
-	m_zpRaumschiff.Translate(CHVector(0.0f, 0.0f, ZPos));
+	m_zpRaumschiff.Translate(CHVector(0.0f, 0.0f, 0.0f));
 }

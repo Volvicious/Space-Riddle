@@ -156,7 +156,7 @@
     <ClInclude Include="Hitbox.h" />
     <ClInclude Include="LightTunnel.h" />
     <ClInclude Include="LLAnzeige.h" />
-    <ClInclude Include="Mainmenu.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Maus.h" />
     <ClInclude Include="Meteorit.h" />
     <ClInclude Include="Raumschiff.h" />
@@ -187,7 +187,7 @@
     <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="LightTunnel.cpp" />
     <ClCompile Include="LLAnzeige.cpp" />
-    <ClCompile Include="Mainmenu.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Maus.cpp" />
     <ClCompile Include="Meteorit.cpp" />
     <ClCompile Include="Raumschiff.cpp" />
