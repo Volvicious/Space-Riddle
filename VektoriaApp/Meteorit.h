@@ -13,24 +13,21 @@ public:
 	CMeteorit();
 	~CMeteorit();
 
-	CPlacement * getPlacement(){ return m_zpMeteoriten; };
 	void Tick(CPlacement * pRaumschiff, bool b );
 	void Init(CRoot * root, CScene * scene);
 
 	void NextMeteor(CPlacement * raumschiff);
+	int getiCounterMeteoriten() { return iCounter; };
+	int setiCounterMeteoriten(int i) { return iCounter = i; };
 
-	CPlacement * getpMeteor(int i) { return &m_zpMeteoriten[i]; };
 
-	void Deform();
-
-	int getiCounterMeteoriten() { return iMeteorPassed; };
-
-	void SetiCounterZero(){ iMeteorPassed = 0; };
-	FLOAT getiCounterZPos(){ return m_zpMeteoriten[iCounter].GetTranslation().GetZ(); };
-
+	void SetZero();
 	void SwitchOff();
 	void SwitchOn();
 
+	void Deform();
+
+	CPlacement * getpMeteor(int i) { return &m_zpMeteoriten[i]; };
 
 private:
 
@@ -53,8 +50,6 @@ private:
 	CGeoSphere m_zGeos;
 
 	//Globale Variablen
-	int iMeteorPassed = 0;
 	int iCounter = 0;
-	int i = 0;
 };
 

@@ -10,6 +10,7 @@ SceneHandler::~SceneHandler()
 {
 }
 
+#pragma region Init
 void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame) 
 {
 	//Kamera
@@ -88,13 +89,15 @@ void SceneHandler::FrageTranslation()
 	m_zFrageGrafik.Translate(f_PosRaumschiffZ, f_PosRaumschiffX, f_PosRaumschiffY);
 }
 
+#pragma endregion
+
 void SceneHandler::MeteoritenTick()
 {
 	//Meteoriten erneuern
 	m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff(), true);
 
 	//Kollision
-	m_zHitbox.HitboxMeteoriten(&m_zMeteoriten);
+	//m_zHitbox.HitboxMeteoriten(&m_zMeteoriten);
 
 	//Wenn alle Meteoriten vorbei sind
 	if (m_zMeteoriten.getiCounterMeteoriten() == MAX_METEOR)
@@ -102,6 +105,7 @@ void SceneHandler::MeteoritenTick()
 		iScene = 2;
 		SwitchScene();
 		FrageSwitch = true;
+		//m_zMeteoriten.setiCounterMeteoriten(0);
 	}
 }
 
@@ -128,25 +132,15 @@ void SceneHandler::FrageTick()
 	}
 
 	//Hitboxen
-	m_zHitbox.HitboxFrage(&m_zFrageGrafik);
+	m_zHitbox.HitboxFrage(&m_zRaumschiff, &m_zFrageGrafik);
 
 	//Wenn ich an der Frage vorbei bin muss die Szene gewechselt werden
 	if (m_zFrageGrafik.getpFrage(1)->GetTranslation().GetZ() >= m_zRaumschiff.getpRaumschiff()->GetTranslation().GetZ())
 	{
 		m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
 		iScene = 1;
-		SetZero();
 		SwitchScene();
 	}
-
-}
-
-void SceneHandler::SetZero()
-{
-	m_zRaumschiff.SetZero();
-	m_zSkydome.SetZero();
-	m_zLights.SetZero();
-	m_zMeteoriten.SetiCounterZero();
 }
 
 void SceneHandler::Tick(float fTimeDelta, float fTime)
@@ -183,6 +177,9 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		//Raumschiff bewegen
 		m_zRaumschiff.Tick(fTimeDelta* m_fGeschwindigkeit);
 
+		//Raytick
+		m_zHitbox.RayTick(&m_zRaumschiff);
+
 		//Camera bewegen
 		m_zc.Tick(m_zRaumschiff.getpRaumschiff(), &m_zKeyboard);
 
@@ -197,7 +194,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		}
 
 		//Frage
-		else if (iScene == 2)
+		if (iScene == 2)
 		{
 			FrageTick();
 		}

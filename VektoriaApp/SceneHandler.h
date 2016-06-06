@@ -46,7 +46,6 @@ public:
 	void MeteoritenTick();
 	void FrageTick();
 	void SwitchScene();
-	void SetZero();
 
 private:
 

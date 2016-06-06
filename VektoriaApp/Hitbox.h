@@ -14,8 +14,10 @@ public:
 	~CHitbox();
 
 	void Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * meteor, CScene * scene);
-	void HitboxFrage(CFrageGrafik * frage);
+	void HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage);
 	void HitboxMeteoriten(CMeteorit * meteoriten);
+
+	void RayTick(CRaumschiff * raumschiff);
 
 	bool CollisionDetection(CHVector * v, CHVector * vRaumschiff);
 	int CollisionAntwort(CHVector * posRaumschiff, CHVector * posAntwort, int ABCD);

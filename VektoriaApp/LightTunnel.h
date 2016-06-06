@@ -25,6 +25,8 @@ private:
 	CColor m_zcLights;
 	CMaterial m_zmLights;
 
+	CHVector PosLight[8];
+
 	//Placements der Lichter
 	CPlacement m_azpRechtsUnten[MAX_LIGHT / 8];
 	CPlacement m_azpRechtsOben[MAX_LIGHT / 8];

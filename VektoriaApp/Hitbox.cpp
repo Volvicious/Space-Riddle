@@ -12,9 +12,6 @@ CHitbox::~CHitbox()
 
 void CHitbox::Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * meteor, CScene * scene)
 {
-	//Raumschiff zwischengespeichert
-	ptrRaumschiff = raumschiff;
-
 	//Ray 1 (ganz links)
 	r[0].Init(CHVector(-3.0f, 0.0f, 0.0f, 1.0f), CHVector(0.0f, 0.0f, -1.0f, 0.0f));
 	r[0].m_fMin = 0.0f;
@@ -43,7 +40,7 @@ void CHitbox::Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * m
 	//Ray 6 (mitte oben)
 	r[5].Init(CHVector(0.0f, 0.0f, 0.0f, 1.0f), CHVector(0.0f, 0.0f, -1.0f, 0.0f));
 	r[5].m_fMin = 0.0f;
-	r[5].m_fMax = 3.0f;
+	r[5].m_fMax = 10.0f;
 
 	//Ray 7 (mitte unten)
 	r[6].Init(CHVector(0.0f, -1.5f, 0.0f, 1.0f), CHVector(0.0f, 0.0f, -1.0f, 0.0f));
@@ -63,6 +60,7 @@ void CHitbox::Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * m
 
 	//Cylinder initialisieren um Ray sichtbar zu machen
 	cylinder.Init(0.2f, 0.2f, r[5].m_vOrigin.GetZ() - r[5].m_vDirection.GetZ(), NULL);
+
 	m_zpcylinder.AddGeo(&cylinder);
 
 	rotate.RotateX(UM_DEG2RAD(-90));
@@ -75,19 +73,19 @@ void CHitbox::Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * m
 
 }
 
-void CHitbox::HitboxFrage(CFrageGrafik * frage)
+void CHitbox::RayTick(CRaumschiff * raumschiff)
 {
 	for (float i = -3; i <= 3; i += 1.5)
 	{
-		r[(int)(i / 1.5f + 2.0f)].m_vOrigin.SetX(ptrRaumschiff->getpRaumschiff()->GetTranslation().GetX() + i);
-		r[(int)(i / 1.5f + 2.0f)].m_vOrigin.SetY(ptrRaumschiff->getpRaumschiff()->GetTranslation().GetY());
-		r[(int)(i / 1.5f + 2.0f)].m_vOrigin.SetZ(ptrRaumschiff->getpRaumschiff()->GetTranslation().GetZ());
+		r[(int)(i / 1.5f + 2.0f)].m_vOrigin.SetX(raumschiff->getpRaumschiff()->GetTranslation().GetX() + i);
+		r[(int)(i / 1.5f + 2.0f)].m_vOrigin.SetY(raumschiff->getpRaumschiff()->GetTranslation().GetY());
+		r[(int)(i / 1.5f + 2.0f)].m_vOrigin.SetZ(raumschiff->getpRaumschiff()->GetTranslation().GetZ());
 	}
 
 	//Ray 5
-	r[5].m_vOrigin.SetX(ptrRaumschiff->getpRaumschiff()->GetTranslation().GetX());
-	r[5].m_vOrigin.SetY(ptrRaumschiff->getpRaumschiff()->GetTranslation().GetY());
-	r[5].m_vOrigin.SetZ(ptrRaumschiff->getpRaumschiff()->GetTranslation().GetZ());
+	r[5].m_vOrigin.SetX(raumschiff->getpRaumschiff()->GetTranslation().GetX());
+	r[5].m_vOrigin.SetY(raumschiff->getpRaumschiff()->GetTranslation().GetY() + 0.5F);
+	r[5].m_vOrigin.SetZ(raumschiff->getpRaumschiff()->GetTranslation().GetZ());
 	r[5].m_vOrigin.SetW(1.0F);
 
 	//Cylinder hat Position von Ray 5
@@ -99,37 +97,34 @@ void CHitbox::HitboxFrage(CFrageGrafik * frage)
 	m_zpcylinder.Translate(vector);
 
 	//Ray 6
-	r[6].m_vOrigin.SetX(ptrRaumschiff->getpRaumschiff()->GetTranslation().GetX());
-	r[6].m_vOrigin.SetY(ptrRaumschiff->getpRaumschiff()->GetTranslation().GetY() - 1.5F);
-	r[6].m_vOrigin.SetZ(ptrRaumschiff->getpRaumschiff()->GetTranslation().GetZ());
+	r[6].m_vOrigin.SetX(raumschiff->getpRaumschiff()->GetTranslation().GetX());
+	r[6].m_vOrigin.SetY(raumschiff->getpRaumschiff()->GetTranslation().GetY() - 1.5F);
+	r[6].m_vOrigin.SetZ(raumschiff->getpRaumschiff()->GetTranslation().GetZ());
+}
 
-	//W muss immer auf 1 gesetzt werden
-	//for (int i = 0; i <= 6; i++)
-	//{
-	//	r[i].m_vOrigin.SetW(1.0f);
-	//}
-
-	//for (int j = 0; j <= 6; j++)
-	//{
-	//	if (m_zpcylinder.m_aaabb[0].Intersects(r[j]))
-	//	{
-	//		OutputDebugString("Cylinder\n");
-	//	}
-	//	else
-	//	{
-	//		OutputDebugString("No\n");
-	//	}
-	//}
-
+void CHitbox::HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage)
+{
 	//Abfrage ob Antwort getroffen wird
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j <= 6; j++)
 		{
 			//Überprüfen ob Ray 5 mit irgendeiner Frage kollidiert
-			if (frage->getpFrage(i)->m_aaabb[0].Intersects(r[5]))
+			//if (frage->getpFrage(i)->m_aaabb[0].Intersects(.Intersects(r[5]))
+			float fDistance;
+			CAABB aabb(r[5].m_vOrigin, r[5].m_vOrigin + r[5].m_vDirection);;
+			aabb.m_vMin = r[5].m_vOrigin;
+			aabb.m_vMax = r[5].m_vOrigin + r[5].m_vDirection;
+
+			if (frage->getpFrage(i)->m_aaabb[0].Intersects(aabb))
 			{
 				OutputDebugString("Test1\n");
+				ULVector("vMin", frage->getpFrage(i)->m_aaabb[0].m_vMin);
+				ULVector("vMax", frage->getpFrage(i)->m_aaabb[0].m_vMax);
+				ULVector("vOrigin", r[5].m_vOrigin);
+				ULVector("vDirection", r[5].m_vDirection);
+				ULDebug("Ray Min: %f, Max: %f ", r[5].m_fMin, r[5].m_fMax);
+				ULDebug("Distance: %f ", fDistance);
 			}
 			else
 			{
@@ -138,71 +133,16 @@ void CHitbox::HitboxFrage(CFrageGrafik * frage)
 		}
 	}
 }
-
 void CHitbox::HitboxMeteoriten(CMeteorit * meteoriten)
 {
-	//TODO: Kollsion mit Meteoriten abfragen
-}
-
-bool CHitbox::CollisionDetection(CHVector * v, CHVector * vRaumschiff)
-{
-	m_zVektor1.SetX(v->GetX());
-	m_zVektor1.SetY(v->GetY());
-	m_zVektor1.SetZ(v->GetZ());
-
-	m_zVektor.SetX(vRaumschiff->GetX());
-	m_zVektor.SetY(vRaumschiff->GetY());
-	m_zVektor.SetZ(vRaumschiff->GetZ());
-
-	m_zVektor1 = m_zVektor1 - m_zVektor;
-
-	m_fAbstand = sqrt((m_zVektor1.GetX() * m_zVektor1.GetX())
-		+ (m_zVektor1.GetY() *  m_zVektor1.GetY()) 
-		+ (m_zVektor1.GetZ() *  m_zVektor1.GetZ())); // Abstand der beiden Kugeln 
-	m_fRadius = 2.3F;
-
-	if (m_fAbstand <= m_fRadius)
+	for (int i = 0; i <= MAX_METEOR; i++)
 	{
-		//an dieser stelle ist man kollidiert.
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-
-}
-
-void CHitbox::SetXY(FLOAT f_x, FLOAT f_y)
-{
-	f_StartX = f_x;
-	f_StartY = f_y;
-}
-
-int CHitbox::CollisionAntwort(CHVector * posRaumschiff, CHVector * posAntwort, int ABCD)
-{
-	m_zVektor1.SetX(posAntwort->GetX());
-	m_zVektor1.SetY(posAntwort->GetY());
-	m_zVektor1.SetZ(posAntwort->GetZ());
-
-	m_zVektor.SetX(posRaumschiff->GetX());
-	m_zVektor.SetY(posRaumschiff->GetY());
-	m_zVektor.SetZ(posRaumschiff->GetZ());
-
-	m_zVektor1 = m_zVektor - m_zVektor1;
-
-	m_fAbstand = sqrt((m_zVektor1.GetX() * m_zVektor1.GetX()) 
-		+ (m_zVektor1.GetY() *  m_zVektor1.GetY()) 
-		+ (m_zVektor1.GetZ() *  m_zVektor1.GetZ())); // Abstand der beiden Kugeln 
-
-	m_fRadius = 2.3F;
-
-	if (m_fAbstand <= m_fRadius)
-	{
-		return ABCD;
-	}
-	else
-	{
-		return 5;
+		for (int j = 0; j <= 6; j++)
+		{
+			if (meteoriten->getpMeteor(i)->m_aaabb[0].Intersects(r[j]))
+			{
+				//TODO: Sagen was passiert wenn ich kollidiere
+			}
+		}
 	}
 }

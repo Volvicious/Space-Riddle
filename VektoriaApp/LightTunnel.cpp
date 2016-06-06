@@ -26,6 +26,8 @@ void CLightTunnel::Init(CScene * scene)
 		m_azpRechtsOben[i].AddGeo(&m_zLight);
 		m_azpRechtsOben[i].TranslateDelta(10.0, 10.0, zi);
 		scene->AddPlacement(&m_azpRechtsOben[i]);
+		PosLight[0].SetX(10.0f);
+		PosLight[0].SetY(10.0f);
 
 		m_azpRechtsUnten[i].AddGeo(&m_zLight);
 		m_azpRechtsUnten[i].TranslateDelta(10.0, -10.0, zi);
@@ -59,7 +61,7 @@ void CLightTunnel::Init(CScene * scene)
 
 void CLightTunnel::RenewLights(CPlacement * Raumschiff)
 {
-	if (m_azpRechtsOben[iCounter].GetTranslation().GetZ() >= Raumschiff->GetTranslation().GetZ() + 15.0F)
+	if (m_azpRechtsOben[iCounter].GetTranslation().GetZ() >= Raumschiff->GetTranslation().GetZ())
 	{
 		//Licht hinter die Plane schieben
 		m_azpRechtsOben[iCounter].TranslateZDelta(-150.0F);
@@ -79,15 +81,23 @@ void CLightTunnel::RenewLights(CPlacement * Raumschiff)
 
 void CLightTunnel::SetZero()
 {
+	for (int i = 0; i <= 7; i++)
+	{
+		PosLight[i].SetZ(0.0f);
+	}
+
 	for (int i = 0; i < MAX_LIGHT / 8; i++)
 	{
-		m_azpRechtsUnten[iCounter].TranslateZ(0.0f);
-		m_azpRechtsOben[iCounter].TranslateZ(0.0f);
-		m_azpLinksOben[iCounter].TranslateZ(0.0f);
-		m_azpLinksUnten[iCounter].TranslateZ(0.0f);
-		m_azpOben[iCounter].TranslateZ(0.0f);
-		m_azpUnten[iCounter].TranslateZ(0.0f);
-		m_azpRechts[iCounter].TranslateZ(0.0f);
-		m_azpLinks[iCounter].TranslateZ(0.0f);
+		//m_azpRechtsUnten[iCounter].Translate(0.0f);
+		//m_azpLinksOben[iCounter].Translate(0.0f);
+		//m_azpLinksUnten[iCounter].Translate(;
+		//m_azpOben[iCounter].Translate(0.0f);
+		//m_azpUnten[iCounter].Translate(0.0f);
+		//m_azpRechts[iCounter].Translate(0.0f);
+		//m_azpLinks[iCounter].Translate(0.0f);
+		m_azpRechtsOben[iCounter].Translate(PosLight[0]);
 	}
+
+	//Counter auf 0 setzen
+	iCounter = 0;
 }
