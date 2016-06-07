@@ -17,43 +17,52 @@ void CLightTunnel::Init(CScene * scene)
 	m_zmLights.Translate(m_zcLights);
 
 	//Licht initialisieren
-	m_zLight.Init(0.2, &m_zmLights, 24, 12);
+	m_zLight.Init(0.07f, 0.07f, 1.5f, &m_zmLights);
+	m_zmLights.MakeTextureGlow("textures\\blinken.jpg");
+	m_zmLights.SetAni(4, 2, 10);
+	//m_zLights.TaperX(5.0f, false, true, true);
 
 	for (int i = 0; i < MAX_LIGHT / 8; i++)
 	{
 		float zi = i * -10.0;
 
 		m_azpRechtsOben[i].AddGeo(&m_zLight);
+		m_azpRechtsOben[i].RotateX(HALFPI);
 		m_azpRechtsOben[i].TranslateDelta(10.0, 10.0, zi);
 		scene->AddPlacement(&m_azpRechtsOben[i]);
-		PosLight[0].SetX(10.0f);
-		PosLight[0].SetY(10.0f);
 
 		m_azpRechtsUnten[i].AddGeo(&m_zLight);
+		m_azpRechtsUnten[i].RotateX(HALFPI);
 		m_azpRechtsUnten[i].TranslateDelta(10.0, -10.0, zi);
 		scene->AddPlacement(&m_azpRechtsUnten[i]);
 
 		m_azpLinksOben[i].AddGeo(&m_zLight);
+		m_azpLinksOben[i].RotateX(HALFPI);
 		m_azpLinksOben[i].TranslateDelta(-10.0, 10.0, zi);
 		scene->AddPlacement(&m_azpLinksOben[i]);
 
 		m_azpLinksUnten[i].AddGeo(&m_zLight);
+		m_azpLinksUnten[i].RotateX(HALFPI);
 		m_azpLinksUnten[i].TranslateDelta(-10.0, -10.0, zi);
 		scene->AddPlacement(&m_azpLinksUnten[i]);
 
 		m_azpLinks[i].AddGeo(&m_zLight);
+		m_azpLinks[i].RotateX(HALFPI);
 		m_azpLinks[i].TranslateDelta(-15.0, 0, zi);
 		scene->AddPlacement(&m_azpLinks[i]);
 
 		m_azpRechts[i].AddGeo(&m_zLight);
+		m_azpRechts[i].RotateX(HALFPI);
 		m_azpRechts[i].TranslateDelta(15.0, 0, zi);
 		scene->AddPlacement(&m_azpRechts[i]);
 
 		m_azpOben[i].AddGeo(&m_zLight);
+		m_azpOben[i].RotateX(HALFPI);
 		m_azpOben[i].TranslateDelta(0, 15.0, zi);
 		scene->AddPlacement(&m_azpOben[i]);
 
 		m_azpUnten[i].AddGeo(&m_zLight);
+		m_azpUnten[i].RotateX(HALFPI);
 		m_azpUnten[i].TranslateDelta(0, -15.0, zi);
 		scene->AddPlacement(&m_azpUnten[i]);
 	}

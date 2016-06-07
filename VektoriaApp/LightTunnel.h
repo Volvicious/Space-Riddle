@@ -20,7 +20,7 @@ public:
 private:
 	// Hier ist Platz für die Vektoriaobjekte:
 	CScene m_zs;
-	CGeoSphere m_zLight;
+	CGeoCylinder m_zLight;
 
 	CColor m_zcLights;
 	CMaterial m_zmLights;
