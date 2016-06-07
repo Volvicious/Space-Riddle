@@ -8,20 +8,23 @@ public:
 	CFrageGrafik();
 	~CFrageGrafik();
 
-	void Init(CScene * scene);
+	void Init(CRoot * root, CScene * scene);
 	void Translate(float f_posRaumschiff, float f_posX, float f_posY);
 
 	void SwitchOff();
 	void SwitchOn();
 
-	CPlacement * getpFrage(int i) { return &m_zpSphere[i]; };
+	CPlacement * getpFrage(int i) { return &m_zpStargate[i]; };
 
 private:
 
 	//Fragenzeugs
-	CMaterial m_zMaterialKugel;
-	CGeoSphere m_zgSphere;
-	CPlacement m_zpSphere[4];
+	CMaterial m_zmStargate;
+	CPlacement m_zpStargate[4];
+
+	CGeo * m_zgStargate;
+	CFileWavefront m_zfilewavefront;
+	CHMat Skalierung;
 
 	//Sonstige Variablen
 	float fLeftpos;

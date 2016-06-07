@@ -23,6 +23,5 @@ private:
 	float pfvVertikal = 0;
 	float pfvHorizontal = 0;
 
-
 };
 

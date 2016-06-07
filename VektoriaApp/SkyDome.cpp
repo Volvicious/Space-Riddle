@@ -13,7 +13,7 @@ CSkyDome::~CSkyDome()
 void CSkyDome::Init(CRoot * root, CScene * scene)
 {
 	//Material
-	m_zMaterial.MakeTextureSky("textures\\Hurensohn.png");
+	m_zMaterial.MakeTextureSky("textures\\Skydome.png");
 
 	//Skydome init
 	m_zSkyDome.Init(100.0F, 100.0F, &m_zMaterial, true, 24, 12, eMapping_Cylindrical);

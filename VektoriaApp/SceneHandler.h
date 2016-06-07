@@ -38,7 +38,8 @@ public:
 	void InitCamera(CViewport * viewport, CScene * scene);
 	void InitLights(CScene * scene);
 	void InitSkyDome(CRoot * root, CScene * scene);
-	void InitHitbox(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * meteor, CScene * scene);
+	void InitHitbox(CScene * scene);
+	void InitFrageGrafik(CRoot * root, CScene * scene);
 
 
 	void Tick(float fTimeDelta, float fTime);
@@ -51,12 +52,9 @@ private:
 
 	//Objekte
 	CMeteorit m_zMeteoriten;
-	CDeviceKeyboard m_zKeyboard;
-
 	CSkyDome m_zSkydome;
 	CLightTunnel m_zLights;
 	CHitbox m_zHitbox;
-	CHVector m_cameraPos;
 	CFrageGrafik m_zFrageGrafik;
 	CRaumschiff m_zRaumschiff;
 	CCameraController m_zc;
@@ -81,34 +79,20 @@ private:
 	CExplorer m_zExplorerProfil; 
 
 	CMaus m_dMaus;
+	CDeviceKeyboard m_zKeyboard;
 
 	CLLAnzeige m_zLLA; 
-
-
-	//Sonstiges
-	CHVector m_vMetroritenvektor;
-
-
 
 	//Lokale Variablen
 	float f_PosRaumschiffZ;
 	float f_PosRaumschiffY;
 	float f_PosRaumschiffX;
-	float m_fTestAbstand;
 	float m_fGeschwindigkeit;
-	float m_fBeschleunigung;
 
 	int iScene;
 	bool FrageSwitch = false;
-
-
-	bool b_istKollidiert;
+	bool MeteoritenSwitch = false;
 	bool bFirstPerson = true;
 
-
-	bool b_braucheAntwort = true;
-	bool b_sollinit = false;
-	bool b_sollinitfrage = false;
-	bool m_bLenkung = true;
 };
 

@@ -1,7 +1,61 @@
-﻿Der Buildvorgang wurde am 07.04.2016 02:16:35 gestartet.
+﻿Der Buildvorgang wurde am 07.06.2016 15:48:06 gestartet.
      1>Projekt "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\VektoriaApp\VektoriaApp.vcxproj" auf Knoten "2", Build Ziel(e).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt VektoriaApp.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CameraController.cpp Explorer.cpp ExplorerProfil.cpp FileFinder.cpp FileHandler.cpp FileReader.cpp FileWriter.cpp Fog.cpp Frage.cpp FrageGrafik.cpp FrageMulti.cpp FragenHandler.cpp FrageText.cpp Game.cpp Hitbox.cpp LightTunnel.cpp LLAnzeige.cpp MainMenu.cpp Maus.cpp Meteorit.cpp Raumschiff.cpp SceneHandler.cpp SkyDome.cpp Sound.cpp stdafx.cpp Steuerung.cpp StringToChar.cpp TastaturGER.cpp TextOutput.cpp VektoriaApp.cpp
+         CameraController.cpp
+         Explorer.cpp
+     1>Explorer.cpp(176): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(112): Siehe Deklaration von 'strcpy'
+         ExplorerProfil.cpp
+     1>ExplorerProfil.cpp(49): warning C4305: 'Argument': Verkürzung von 'double' in 'float'
+     1>ExplorerProfil.cpp(140): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(112): Siehe Deklaration von 'strcpy'
+         FileFinder.cpp
+     1>FileFinder.cpp(36): warning C4101: 'filesize': Unreferenzierte lokale Variable
+         FileHandler.cpp
+         FileReader.cpp
+         FileWriter.cpp
+         Fog.cpp
+         Frage.cpp
+         FrageGrafik.cpp
+         FrageMulti.cpp
+         FragenHandler.cpp
+         FrageText.cpp
+     1>FrageText.cpp(29): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+     1>FrageText.cpp(54): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+         Game.cpp
+         Hitbox.cpp
+     1>Hitbox.cpp(59): warning C4244: 'Argument': Konvertierung von 'double' in 'float', möglicher Datenverlust
+         LightTunnel.cpp
+     1>LightTunnel.cpp(20): warning C4305: 'Argument': Verkürzung von 'double' in 'float'
+     1>LightTunnel.cpp(24): warning C4244: 'Initialisierung': Konvertierung von 'double' in 'float', möglicher Datenverlust
+         LLAnzeige.cpp
+         MainMenu.cpp
+         Maus.cpp
+         Meteorit.cpp
+     1>Meteorit.cpp(5): warning C4244: 'Argument': Konvertierung von 'time_t' in 'unsigned int', möglicher Datenverlust
+     1>Meteorit.cpp(43): warning C4244: 'Initialisierung': Konvertierung von 'int' in 'float', möglicher Datenverlust
+     1>Meteorit.cpp(44): warning C4244: 'Initialisierung': Konvertierung von 'int' in 'float', möglicher Datenverlust
+         Kompilieren...
+         Raumschiff.cpp
+         SceneHandler.cpp
+     1>SceneHandler.cpp(196): warning C4804: '>': unsichere Verwendung des Typs 'bool' in einer Operation
+         SkyDome.cpp
+         Sound.cpp
+         stdafx.cpp
+         Steuerung.cpp
+         StringToChar.cpp
+     1>StringToChar.cpp(17): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(195): Siehe Deklaration von 'strncpy'
+         TastaturGER.cpp
+     1>TastaturGER.cpp(184): warning C4800: 'SHORT': Variable wird auf booleschen Wert ('True' oder 'False') gesetzt (Auswirkungen auf Leistungsverhalten möglich)
+     1>TastaturGER.cpp(185): warning C4800: 'SHORT': Variable wird auf booleschen Wert ('True' oder 'False') gesetzt (Auswirkungen auf Leistungsverhalten möglich)
+     1>TastaturGER.cpp(326): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(112): Siehe Deklaration von 'strcpy'
+     1>TastaturGER.cpp(337): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(112): Siehe Deklaration von 'strcpy'
+         TextOutput.cpp
+     1>TextOutput.cpp(142): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
          VektoriaApp.cpp
      1>VektoriaApp.cpp(212): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356): Siehe Deklaration von 'sprintf'
@@ -21,9 +75,33 @@
          C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"Release\VektoriaApp.res" VektoriaApp.rc 
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\SpaceRiddle.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\SpaceRiddle.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\SpaceRiddle.lib" /MACHINE:X86 /SAFESEH Release\VektoriaApp.res
+         Release\CameraController.obj
+         Release\Explorer.obj
+         Release\ExplorerProfil.obj
+         Release\FileFinder.obj
+         Release\FileHandler.obj
+         Release\FileReader.obj
+         Release\FileWriter.obj
+         Release\Fog.obj
+         Release\Frage.obj
+         Release\FrageGrafik.obj
+         Release\FrageMulti.obj
+         Release\FragenHandler.obj
+         Release\FrageText.obj
          Release\Game.obj
+         Release\Hitbox.obj
+         Release\LightTunnel.obj
+         Release\LLAnzeige.obj
+         Release\MainMenu.obj
+         Release\Maus.obj
          Release\Meteorit.obj
+         Release\Raumschiff.obj
+         Release\SceneHandler.obj
+         Release\SkyDome.obj
+         Release\Sound.obj
          Release\stdafx.obj
+         Release\Steuerung.obj
+         Release\StringToChar.obj
          Release\TastaturGER.obj
          Release\TextOutput.obj
          Release\VektoriaApp.obj
@@ -31,13 +109,13 @@
          Codegenerierung ist abgeschlossen.
      1>VektoriaMath_Release.lib(FloatRect.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(FloatRect.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>VektoriaMath_Release.lib(HVector.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(HVector.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
-     1>VektoriaMath_Release.lib(Color.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(Color.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>VektoriaMath_Release.lib(HMat.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(HMat.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
-     1>VektoriaMath_Release.lib(HMats.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(HMats.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+     1>VektoriaMath_Release.lib(Color.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(Color.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+     1>VektoriaMath_Release.lib(AABB.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(AABB.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>VektoriaMath_Release.lib(Ray.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(Ray.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>VektoriaMath_Release.lib(Frustum.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(Frustum.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>VektoriaMath_Release.lib(Quaternion.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(Quaternion.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
-     1>VektoriaMath_Release.lib(AABB.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(AABB.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+     1>VektoriaMath_Release.lib(HMats.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(HMats.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>VektoriaMath_Release.lib(HVectors.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(HVectors.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>VektoriaMath_Release.lib(Plane.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(Plane.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>VektoriaMath_Release.lib(stdafx.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "VektoriaMath_Release.lib(stdafx.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
@@ -86,6 +164,7 @@
      1>Vektoria_Release.lib(DeviceCursor.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(DeviceCursor.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(DeviceKeyboard.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(DeviceKeyboard.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(FileVektoria.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(FileVektoria.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+     1>Vektoria_Release.lib(GeoDome.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(GeoDome.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(GeoLineList.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(GeoLineList.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(GeoPointList.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(GeoPointList.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(GeoSphere.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(GeoSphere.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
@@ -120,6 +199,7 @@
      1>Vektoria_Release.lib(Cameras.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(Cameras.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(Emitter.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(Emitter.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(Emitters.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(Emitters.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
+     1>Vektoria_Release.lib(FileWavefront.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(FileWavefront.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(Frame.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(Frame.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(Frames.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(Frames.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(Geo.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(Geo.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
@@ -128,7 +208,6 @@
      1>Vektoria_Release.lib(GeoQuad.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(GeoQuad.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(Geos.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(Geos.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(GeoSweep.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(GeoSweep.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
-     1>Vektoria_Release.lib(GeoTube.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(GeoTube.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(Hardware.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(Hardware.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(Hardwares.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(Hardwares.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
      1>Vektoria_Release.lib(Image.obj) : warning LNK4099: PDB "vc120.pdb" wurde nicht mit "Vektoria_Release.lib(Image.obj)" oder an "C:\Users\flori_000\Documents\Visual Studio 2013\Projects\Space-Riddle\Release\vc120.pdb" gefunden; Objekt wird verknüpft, als ob keine Debuginformationen vorhanden wären.
@@ -162,4 +241,4 @@
 
 Build erfolgreich.
 
-Verstrichene Zeit 00:00:03.06
+Verstrichene Zeit 00:00:15.77

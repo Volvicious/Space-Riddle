@@ -45,9 +45,10 @@ void CCameraController::Tick(CPlacement * placement, CDeviceKeyboard * keyboard)
 	//Switch von 1stPerson zu 3rdPerson und vice versa
 	if (keyboard->KeyDown(DIK_C))
 	{
+		m_zpCamera.Translate(m_zpCamera.GetTranslation() = placement->GetTranslation());
+
 		if (bFirstPerson == true)
 		{
-			m_zpCamera.Translate(m_zpCamera.GetTranslation() = placement->GetTranslation());
 			m_zpCamera.TranslateZDelta(15.0F);
 			m_zpCamera.TranslateYDelta(1.5F);
 			placement->SwitchOn();
@@ -56,7 +57,6 @@ void CCameraController::Tick(CPlacement * placement, CDeviceKeyboard * keyboard)
 		}
 		else
 		{
-			m_zpCamera.Translate(m_zpCamera.GetTranslation()= placement->GetTranslation());
 			m_zoCockpit.SwitchOn();
 			placement->SwitchOff();
 			bFirstPerson = true;
@@ -74,4 +74,5 @@ void CCameraController::CameraPosition(CPlacement * placement)
 		m_zpCamera.TranslateZDelta(15.0F);
 		m_zpCamera.TranslateYDelta(1.5F);
 	}
+
 }

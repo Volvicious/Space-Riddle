@@ -13,7 +13,7 @@ CRaumschiff::~CRaumschiff()
 void CRaumschiff::Init(CRoot * root,  CScene * scene)
 {
 	//Raumschiff verkleinern
-	mathskalierung.Scale(0.5F);
+	mathskalierung.Scale(0.55F);
 
 	//Raumschiff Objekt reinladen
 	m_zRaumschiff = m_filewavefront.LoadGeo("models\\Raumschiff.obj");

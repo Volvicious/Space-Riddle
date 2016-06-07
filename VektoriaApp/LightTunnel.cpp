@@ -59,7 +59,7 @@ void CLightTunnel::Init(CScene * scene)
 	}
 }
 
-void CLightTunnel::RenewLights(CPlacement * Raumschiff)
+void CLightTunnel::Tick(CPlacement * Raumschiff)
 {
 	if (m_azpRechtsOben[iCounter].GetTranslation().GetZ() >= Raumschiff->GetTranslation().GetZ())
 	{

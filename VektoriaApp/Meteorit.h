@@ -16,18 +16,15 @@ public:
 	void Tick(CPlacement * pRaumschiff, bool b );
 	void Init(CRoot * root, CScene * scene);
 
-	void NextMeteor(CPlacement * raumschiff);
-	int getiCounterMeteoriten() { return iCounter; };
-	int setiCounterMeteoriten(int i) { return iCounter = i; };
-
+	CPlacement * getpMeteor(int i) { return &m_zpMeteoriten[i]; };
 
 	void SetZero();
 	void SwitchOff();
 	void SwitchOn();
-
 	void Deform();
+	int getiMeteorNummer() { return iCounter; };
 
-	CPlacement * getpMeteor(int i) { return &m_zpMeteoriten[i]; };
+
 
 private:
 
@@ -37,10 +34,6 @@ private:
 
 	//Math
 	CHMat mat;
-
-	//Vektor meteorit
-	CHVector m_zvRaumschiff;
-	CHVector m_zvMeteorit;
 
 	//Blender Meteoriten reinladen
 	CGeoSphere m_zgMeteorit[3];

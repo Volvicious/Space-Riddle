@@ -13,7 +13,7 @@ public:
 	~CLightTunnel();
 
 	void Init(CScene* scene);
-	void RenewLights(CPlacement * Raumschiff);
+	void Tick(CPlacement * Raumschiff);
 
 	void SetZero();
 

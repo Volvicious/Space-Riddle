@@ -20,7 +20,7 @@ public:
 
 	void Fini();
 	
-	CAudio*getAudioPointr(int iSoundNummer);
+	CAudio * getAudioPointr(int iSoundNummer);
 
 private:
 

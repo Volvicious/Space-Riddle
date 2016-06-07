@@ -26,10 +26,9 @@ private:
 	CHMat mathskalierung;
 
 	//Material Raumschiff
-	CColor m_zcRaumschiff;
 	CMaterial m_zmRaumschiff;
-	CImage m_ziRaumschiff;
-	CTexture m_ztRaumschiff;
+
+
 	
 };
 

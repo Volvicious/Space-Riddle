@@ -15,13 +15,11 @@ public:
 
 	void Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * meteor, CScene * scene);
 	void HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage);
-	void HitboxMeteoriten(CMeteorit * meteoriten);
+	void HitboxMeteoriten(CPlacement * raumschiff, CMeteorit * meteoriten);
 
 	void RayTick(CRaumschiff * raumschiff);
 
-	bool CollisionDetection(CHVector * v, CHVector * vRaumschiff);
-	int CollisionAntwort(CHVector * posRaumschiff, CHVector * posAntwort, int ABCD);
-	void SetXY(FLOAT x, FLOAT y);
+	bool Collision(){ return Kollision; };
 
 private:
 
@@ -29,23 +27,12 @@ private:
 	CHMat rotate;
 	CHVector vector;
 	CGeoCylinder cylinder;
-	CPlacement m_zpcylinder;
-	//
-
-	//Speicherpointer
-	CRaumschiff * ptrRaumschiff;
+	CPlacement m_zpcylinder[7];
 
 	CRay r[7];
 	CPlacements m_zps;
 
-	FLOAT f_StartX, f_StartY;
-	CHVector m_zVektor;
-	CHVector m_zVektor1;
-	CHVector m_zVektorFin;
-	CRay m_zRay;
-	FLOAT m_fAbstand;
-	FLOAT m_fRadius;
-	FLOAT y_Abstand, x_Abstand;
-	FLOAT a, b, c, d, e, f;
+	//Lokale Variablen
+	bool Kollision = false;
 };
 

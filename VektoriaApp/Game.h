@@ -68,7 +68,6 @@
 #include "Hitbox.h"
 #include "LLAnzeige.h"
 #include "FrageGrafik.h"
-//#include "Frage.h"
 
 using namespace Vektoria;
 
@@ -85,47 +84,15 @@ public:
 
 	void WindowReSize(int iNewWidth, int iNewHeight);											// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergröße verändert hat
 
-	void CameraPosition();
-
-	float Clamp(float input, float min, float max);
-
-	//Geschwindigkeit des Raumschiffs
-	float fGeschwindigkeit;
 
 private:
     // Hier ist Platz für die Vektoriaobjekte:
 	CRoot m_zr;
-
 	CScene m_zs;
 	CFrame m_zf;
 	CViewport m_zv;
 	CLightParallel m_zl;
-	CSteuerung m_zSteuerung;
-	CFog m_zFog;
-	CRaumschiff m_zRaumschiff;
 	SceneHandler m_zSceneHandler;
-	CFrageGrafik m_zFrageGrafik;
-	CMeteorit m_zMeteor;
-
-	// Placements
-	CPlacement m_zpFog;
-
-	//Extras
-	//Skydome
-	CMaterial m_zMaterial;
-
-	//Materialien
-	CMaterial m_zmBackground;
-	CMaterial m_zMaterialFog;
-
-	//Cameravektor
-	CHVector m_zCameraTranslation;
-	
-	//Lichter
-	CLightTunnel m_zLight;
-
-	//Globale Variablen
-	bool bFirstPerson = true;
 };
 
 
