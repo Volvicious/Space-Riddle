@@ -17,11 +17,15 @@ public:
 	void MaxTube(float fGeschwindigkeit, CPlacement * placement);
 	void Inertia(float fGeschwindigkeit, CPlacement * placement);
 
+	int PauseGame(int iScene, CDeviceKeyboard * keyboard);
+
 private:
 
-	//Globale Variablen
+	//Lokale Variablen
 	float pfvVertikal = 0;
 	float pfvHorizontal = 0;
+	int Scene = 0;
+	int SceneSpeicher = 0;
 
 };
 

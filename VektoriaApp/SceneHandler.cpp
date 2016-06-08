@@ -44,6 +44,7 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	//1 ist Meteoriten
 	//2 ist Fragen
 	//3 ist Verloren
+	//4 ist Pause Menü
 	iScene = 0;
 
 	//Geschwindigkeit
@@ -174,6 +175,9 @@ void SceneHandler::FrageTick()
 
 void SceneHandler::Tick(float fTimeDelta, float fTime)
 {	
+	//Spiel pausieren
+	iScene = m_zSteuerung.PauseGame(iScene, &m_zKeyboard);
+
 	//Hauptmenü getickt
 	if (iScene == 0)
 	{
@@ -230,9 +234,18 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 		if (m_zLLA.getLebenAnzahl() == 0)
 		{
-			//TODO: Game Over
-			//TODO: Highscoreliste anzeigen
 			iScene = 3;
 		}
+	}
+
+	if (iScene == 3)
+	{
+		//TODO: Game Over
+		//TODO: Highscoreliste anzeigen
+	}
+
+	if (iScene == 4)
+	{
+		//TODO: Pause Menü einblenden
 	}
 }

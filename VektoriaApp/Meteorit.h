@@ -3,7 +3,7 @@
 
 using namespace Vektoria;
 
-#define MAX_METEOR 50
+#define MAX_METEOR 100
 #define VAR_METEOR 4
 #define MAX_TEXTUR 5
 

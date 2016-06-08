@@ -44,6 +44,24 @@ void CSteuerung::Tick(float fGeschwindigkeit, CPlacement * placement, CDeviceKey
 
 }
 
+int CSteuerung::PauseGame(int iScene, CDeviceKeyboard * keyboard)
+{
+	if (keyboard->KeyDown(DIK_P))
+	{
+		if (iScene != 4)
+		{
+			SceneSpeicher = iScene;
+			iScene = 4;
+		}
+		else if (iScene == 4)
+		{
+			iScene = SceneSpeicher;
+		}
+	}
+
+	return iScene;
+}
+
 void CSteuerung::Inertia(float fGeschwindigkeit, CPlacement * placement)
 {
 	//Bremsen Y-Richtung
