@@ -21,6 +21,7 @@
 #include "Maus.h"
 #include "Explorer.h"
 #include "LLAnzeige.h"
+#include "IngameOverlays.h"
 
 
 using namespace Vektoria;
@@ -40,6 +41,7 @@ public:
 	void InitSkyDome(CRoot * root, CScene * scene);
 	void InitHitbox(CScene * scene);
 	void InitFrageGrafik(CRoot * root, CScene * scene);
+	void InitOverlays(CViewport * viewport);
 
 
 	void Tick(float fTimeDelta, float fTime);
@@ -62,6 +64,9 @@ private:
 
 	//Sound
 	CSound m_zSound;
+
+	//Overlays
+	CIngameOverlays m_zIngameOverlays;
 
 	// Testzeux von Chris
 	CMainMenu m_zHauptmenu;

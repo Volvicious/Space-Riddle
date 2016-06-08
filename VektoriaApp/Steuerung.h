@@ -24,7 +24,6 @@ private:
 	//Lokale Variablen
 	float pfvVertikal = 0;
 	float pfvHorizontal = 0;
-	int Scene = 0;
 	int SceneSpeicher = 0;
 
 };

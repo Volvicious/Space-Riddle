@@ -36,6 +36,7 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zSceneHandler.InitFrageGrafik(&m_zr, &m_zs);
 	m_zSceneHandler.FrageTranslation();
 	m_zSceneHandler.InitHitbox(&m_zs);
+	m_zSceneHandler.InitOverlays(&m_zv);
 
 	//Hitboxen
 	m_zs.EnableAABBs();

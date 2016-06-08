@@ -154,6 +154,7 @@
     <ClInclude Include="FrageText.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Hitbox.h" />
+    <ClInclude Include="IngameOverlays.h" />
     <ClInclude Include="LightTunnel.h" />
     <ClInclude Include="LLAnzeige.h" />
     <ClInclude Include="MainMenu.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="FrageText.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Hitbox.cpp" />
+    <ClCompile Include="IngameOverlays.cpp" />
     <ClCompile Include="LightTunnel.cpp" />
     <ClCompile Include="LLAnzeige.cpp" />
     <ClCompile Include="MainMenu.cpp" />

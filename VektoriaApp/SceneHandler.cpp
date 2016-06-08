@@ -87,6 +87,11 @@ void SceneHandler::InitFrageGrafik(CRoot * root, CScene * scene)
 	m_zFrageGrafik.Init(root, scene);
 }
 
+void SceneHandler::InitOverlays(CViewport * viewport)
+{
+	m_zIngameOverlays.Init(viewport);
+}
+
 void SceneHandler::FrageTranslation()
 {
 	f_PosRaumschiffZ = m_zRaumschiff.getpRaumschiff()->GetTranslation().GetZ();
@@ -198,6 +203,9 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	//Tick für Spiel
 	if (3 > iScene > 0) 
 	{
+		//Ingame Overlays ausschalten
+		m_zIngameOverlays.SwitchOffAll();
+
 		//Steuerung
 		m_zSteuerung.Tick(fTimeDelta, m_zRaumschiff.getpRaumschiff(), &m_zKeyboard);
 
@@ -236,16 +244,18 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		{
 			iScene = 3;
 		}
-	}
-
+	} 
+	
 	if (iScene == 3)
 	{
 		//TODO: Game Over
+		m_zIngameOverlays.SwitchOn(2);
+		m_zIngameOverlays.SetLayer(0, 0.9f);
 		//TODO: Highscoreliste anzeigen
 	}
 
 	if (iScene == 4)
 	{
-		//TODO: Pause Menü einblenden
+		m_zIngameOverlays.SwitchOn(0);
 	}
 }
