@@ -43,6 +43,9 @@ void CHitbox::Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * m
 		m_zps.Add(&m_zpcylinder[i]);
 
 	}
+
+	//Fragen ausmachen
+	//frage->SwitchOff();
 }
 
 void CHitbox::RayTick(CRaumschiff * raumschiff)

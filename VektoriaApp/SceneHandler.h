@@ -94,6 +94,7 @@ private:
 	float f_PosRaumschiffX;
 	float m_fGeschwindigkeit;
 
+	bool PlaySoundOnce = true;
 	int iScene;
 	bool FrageSwitch = false;
 	bool MeteoritenSwitch = false;

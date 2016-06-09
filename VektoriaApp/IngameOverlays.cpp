@@ -13,13 +13,13 @@ CIngameOverlays::~CIngameOverlays()
 void CIngameOverlays::Init(CViewport * viewport)
 {
 	//0 = Pause Overlay
-	//1 = Level Complete
+	//1 = Level Completed
 	//2 = Game Over
 
 	m_zImage[0].Init("textures\\PauseOverlay.png");
 	m_zOverlay[0].InitFull(&m_zImage[0]);
 
-	m_zImage[1].Init("textures\\LevelComplete.png");
+	m_zImage[1].Init("textures\\LevelCompleted.png");
 	m_zOverlay[1].InitFull(&m_zImage[1]);
 
 	m_zImage[2].Init("textures\\GameOver.png");

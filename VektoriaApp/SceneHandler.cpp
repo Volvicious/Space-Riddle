@@ -45,6 +45,8 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	//2 ist Fragen
 	//3 ist Verloren
 	//4 ist Pause Menü
+	//5 für Countdown
+	//6 für Level Completed
 	iScene = 0;
 
 	//Geschwindigkeit
@@ -92,6 +94,8 @@ void SceneHandler::InitOverlays(CViewport * viewport)
 	m_zIngameOverlays.Init(viewport);
 }
 
+#pragma endregion
+
 void SceneHandler::FrageTranslation()
 {
 	f_PosRaumschiffZ = m_zRaumschiff.getpRaumschiff()->GetTranslation().GetZ();
@@ -101,7 +105,7 @@ void SceneHandler::FrageTranslation()
 	m_zFrageGrafik.Translate(f_PosRaumschiffZ, f_PosRaumschiffX, f_PosRaumschiffY);
 }
 
-#pragma endregion
+
 
 void SceneHandler::MeteoritenTick()
 {
@@ -127,7 +131,6 @@ void SceneHandler::MeteoritenTick()
 		//Crashsound
 		m_zSound.Start(3);
 	}
-
 
 	//Wenn alle Meteoriten vorbei sind
 	if (m_zMeteoriten.getiMeteorNummer() == MAX_METEOR)
@@ -165,14 +168,17 @@ void SceneHandler::FrageTick()
 	m_zc.setOverlayCockpit()->SwitchOn();
 
 	//Hitboxen
-	m_zHitbox.HitboxFrage(&m_zRaumschiff, &m_zFrageGrafik);
+	//m_zHitbox.HitboxFrage(&m_zRaumschiff, &m_zFrageGrafik);
 
 	//Wenn ich an der Frage vorbei bin muss die Szene gewechselt werden
 	if (m_zFrageGrafik.getpFrage(1)->GetTranslation().GetZ() >= m_zRaumschiff.getpRaumschiff()->GetTranslation().GetZ())
 	{
 		m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
-		iScene = 1;
-		//Level completed Bild
+		iScene = 6;
+
+		//Level Completed Bild
+		m_zIngameOverlays.SwitchOn(1);
+
 		MeteoritenSwitch = true;
 		SwitchScene();
 	}
@@ -186,6 +192,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	//Hauptmenü getickt
 	if (iScene == 0)
 	{
+		m_zSound.Loop(0);
 		m_dMaus.Run();
 		m_zExplorerLernpaket.Run();
 		m_zHauptmenu.Tick();
@@ -194,15 +201,30 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 		if (m_zHauptmenu.getbGo())
 		{
-			iScene = 1;
+			iScene = 5;
 			m_dMaus.SwitchOff();
 			m_zLLA.SwitchOn();
 		}
 	}
 
-	//Tick für Spiel
-	if (3 > iScene > 0) 
+	//Countdown runterzählen
+	//Wenn Leertaste gedrückt wird, wird iScene auf 1 gesetzt, also das Spiel beginnt
+	if (iScene == 5)
 	{
+		if (PlaySoundOnce == true)
+		{
+			m_zSound.SwitchSounds(0, 4);
+			PlaySoundOnce = false;
+		}
+		iScene = m_zSteuerung.StartGame(iScene, &m_zKeyboard);
+	}
+
+	//Tick für Spiel
+	if (iScene == 1 || iScene == 2) 
+	{
+		//Ingame Loop
+		m_zSound.SwitchSounds(4, 1, true);
+
 		//Ingame Overlays ausschalten
 		m_zIngameOverlays.SwitchOffAll();
 
@@ -248,14 +270,25 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	
 	if (iScene == 3)
 	{
-		//TODO: Game Over
+		//Game Over
 		m_zIngameOverlays.SwitchOn(2);
 		m_zIngameOverlays.SetLayer(0, 0.9f);
+
 		//TODO: Highscoreliste anzeigen
 	}
 
 	if (iScene == 4)
 	{
+		m_zSound.Pause(1);
 		m_zIngameOverlays.SwitchOn(0);
+	}
+
+	if (iScene == 6)
+	{
+		m_zc.setFristPerson(false);
+		m_zc.setOverlayCockpit()->SwitchOff();
+		m_zFrageGrafik.SwitchOff();
+
+		iScene = m_zSteuerung.ContinueGame(iScene, &m_zKeyboard);
 	}
 }

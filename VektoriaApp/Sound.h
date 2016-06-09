@@ -16,6 +16,8 @@ public:
 	void Stop(int iSoundNummer);
 	void Pause(int iSoundNummer);
 	void Start(int iSoundNummer);
+	void SwitchSounds(int iAktuellerSound, int iNextSound, bool bLoop = false);
+	void StopAll();
 	void SetVolume(int iSoundNummer, float f);
 
 	void Fini();
@@ -26,6 +28,6 @@ private:
 
 	//Audio und Placement
 	CAudio audio[10];
-	CPlacement placement;
+
 };
 

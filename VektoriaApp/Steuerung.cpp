@@ -44,6 +44,16 @@ void CSteuerung::Tick(float fGeschwindigkeit, CPlacement * placement, CDeviceKey
 
 }
 
+int CSteuerung::StartGame(int iScene, CDeviceKeyboard * keyboard)
+{
+	if (keyboard->KeyDown(DIK_SPACE))
+	{
+		iScene = 1;
+	}
+
+	return iScene;
+}
+
 int CSteuerung::PauseGame(int iScene, CDeviceKeyboard * keyboard)
 {
 	if (keyboard->KeyDown(DIK_P))
@@ -57,6 +67,16 @@ int CSteuerung::PauseGame(int iScene, CDeviceKeyboard * keyboard)
 		{
 			iScene = SceneSpeicher;
 		}
+	}
+
+	return iScene;
+}
+
+int CSteuerung::ContinueGame(int iScene, CDeviceKeyboard * keyboard)
+{
+	if (keyboard->KeyDown(DIK_RETURN))
+	{
+		iScene = 1;
 	}
 
 	return iScene;

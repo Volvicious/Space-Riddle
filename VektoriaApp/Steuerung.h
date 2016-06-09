@@ -18,6 +18,8 @@ public:
 	void Inertia(float fGeschwindigkeit, CPlacement * placement);
 
 	int PauseGame(int iScene, CDeviceKeyboard * keyboard);
+	int StartGame(int iScene, CDeviceKeyboard * keyboard);
+	int ContinueGame(int iScene, CDeviceKeyboard * keyboard);
 
 private:
 
@@ -25,6 +27,7 @@ private:
 	float pfvVertikal = 0;
 	float pfvHorizontal = 0;
 	int SceneSpeicher = 0;
+	int iScene = 0;
 
 };
 
