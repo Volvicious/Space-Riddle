@@ -114,11 +114,15 @@ void SceneHandler::MeteoritenTick()
 		//Kamerposition fixen
 		m_zc.setFristPerson(false);
 		m_zc.setOverlayCockpit()->SwitchOff();
+
+		//Meteoriten verschieben
+		m_zMeteoriten.NewLevel(m_zRaumschiff.getpRaumschiff());
+
 		MeteoritenSwitch = false;
 	}
 
 	//Meteoriten erneuern
-	m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff(), true);
+	//m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff());
 
 	//Kollision
 	//m_zHitbox.HitboxMeteoriten(m_zRaumschiff.getpRaumschiff(), &m_zMeteoriten);
@@ -180,7 +184,6 @@ void SceneHandler::FrageTick()
 		m_zIngameOverlays.SwitchOn(1);
 
 		MeteoritenSwitch = true;
-		SwitchScene();
 	}
 }
 
@@ -217,6 +220,8 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 			PlaySoundOnce = false;
 		}
 		iScene = m_zSteuerung.StartGame(iScene, &m_zKeyboard);
+
+		MeteoritenSwitch = true;
 	}
 
 	//Tick für Spiel
@@ -268,6 +273,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		}
 	} 
 	
+	//Game Over
 	if (iScene == 3)
 	{
 		//Game Over
@@ -277,16 +283,21 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		//TODO: Highscoreliste anzeigen
 	}
 
+	//Pause gedrückt
 	if (iScene == 4)
 	{
 		m_zSound.Pause(1);
 		m_zIngameOverlays.SwitchOn(0);
 	}
 
+	//Level Completed
 	if (iScene == 6)
 	{
+		//Cameraposition verändern
 		m_zc.setFristPerson(false);
 		m_zc.setOverlayCockpit()->SwitchOff();
+
+		//Fragen hinter mir ausblenden
 		m_zFrageGrafik.SwitchOff();
 
 		iScene = m_zSteuerung.ContinueGame(iScene, &m_zKeyboard);

@@ -39,16 +39,8 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 		//Random Meteoriten auswählen
 		int varMeteor = (rand() % 3);
 
-		//Translations Variablen Random erstellen
-		float xi = rand() % 30 + (-15);
-		float yi = rand() % 30 + (-15);
-		float zi = i * -10.0F - 20.0f;
-
 		//Meteoriten dem Placement geben
 		m_zpMeteoriten[i].AddGeo(&m_zgMeteorit[varMeteor]);
-
-		//Meteoriten random verschieben
-		m_zpMeteoriten[i].Translate(xi, yi, zi);
 	}
 
 	//Texturen dem Root hinzufügen
@@ -63,11 +55,6 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 		scene->AddPlacement(&m_zpMeteoriten[i]);
 	}
 
-}
-
-void CMeteorit::SetZero()
-{
-	iCounter = 0;
 }
 
 void CMeteorit::Deform()
@@ -93,29 +80,37 @@ void CMeteorit::Deform()
 	m_zgMeteorit[2].Magnet(v3, 1.2f, 1.5f, true);
 }
 
-void CMeteorit::Tick(CPlacement * pRaumschiff, bool b)
+void CMeteorit::Tick(CPlacement * pRaumschiff)
 {
-	//Wenn das Array überschritten wird muss es wieder bei 0 anfangen
-	iCounter %= MAX_METEOR;
-
 	if (m_zpMeteoriten[iCounter].GetTranslation().GetZ() >= pRaumschiff->GetTranslation().GetZ())
 	{
-		if (iCounter % 10 == 0)
-		{
-			//Meteoriten auf Raumschiff X,Y Position setzen
-			m_zpMeteoriten[iCounter].m_mLocal.m_fx03 = pRaumschiff->GetTranslation().GetX();
-			m_zpMeteoriten[iCounter].m_mLocal.m_fx13 = pRaumschiff->GetTranslation().GetY();
-		}
-
-		//Nach hinten verschieben
-		m_zpMeteoriten[iCounter].TranslateZDelta(-150.0F);
-
-		//Meteoriten Updaten
-		m_zpMeteoriten[iCounter].m_bAABBUpdateNeeded;
-
 		iCounter++;
 	}
 }
+
+void CMeteorit::NewLevel(CPlacement * raumschiff)
+{
+	for (int i = 0; i <= MAX_METEOR; i++)
+	{
+		//Translations Variablen Random erstellen
+		float xi = rand() % 30 + (-15);
+		float yi = rand() % 30 + (-15);
+		float zi = i * -15.0F - 20.0f;
+
+		if (i == 1)
+		{
+			m_zpMeteoriten[1].m_mLocal.m_fx03 = 0.0f;
+			m_zpMeteoriten[1].m_mLocal.m_fx13 = 0.0f;
+			m_zpMeteoriten[1].m_mLocal.m_fx23 = -20.0f;
+		}
+
+		//Meteoriten verschieben
+		m_zpMeteoriten[i].Translate(xi, yi, raumschiff->GetTranslation().GetZ() - zi);
+	}
+
+	iCounter = 0;
+}
+
 
 void CMeteorit::SwitchOff()
 {
