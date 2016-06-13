@@ -19,15 +19,15 @@ public:
 
 	void RayTick(CRaumschiff * raumschiff);
 
-	bool Collision(){ return Kollision; };
+	bool getCollision(){ return Kollision; };
+
+	void setCollision(bool boom){ Kollision = boom; };
 
 private:
 
 	//Alles nur wegen dem Ray
 	CHMat rotate;
 	CHVector vector;
-	CGeoCylinder cylinder;
-	CPlacement m_zpcylinder[7];
 
 	CRay r[7];
 	CPlacements m_zps;

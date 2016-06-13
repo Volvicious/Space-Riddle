@@ -103,7 +103,6 @@ private:
 	bool MeteoritenSwitch = false;
 	bool bFirstPerson = true;
 
-	bool Promod = true;
-
+	int iLeben = 5;
 };
 

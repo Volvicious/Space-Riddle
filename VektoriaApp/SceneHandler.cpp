@@ -10,12 +10,6 @@ SceneHandler::~SceneHandler()
 {
 }
 
-enum Szene
-{
-	Meteoriten
-
-};
-
 #pragma region Init
 
 void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame) 
@@ -34,7 +28,7 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	m_zFragenHandler.Init(&m_zFilehandlerLernpaket, viewPort, &m_zTastaturGer);
 
 	//Menu
-	m_zHauptmenu.Init(viewPort, &m_dMaus, &m_zExplorerLernpaket);
+	//m_zHauptmenu.Init(viewPort, &m_dMaus, &m_zExplorerLernpaket);
 
 	//Lernpakete
 	m_zExplorerLernpaket.Init(viewPort, &m_dMaus, &m_zFilehandlerLernpaket, 
@@ -46,13 +40,11 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	//Sound
 	m_zSound.Init(scene);
 
-	//Szene setzen
-	iScene = Hauptmenü;
-
-	//Geschwindigkeit
+	////Geschwindigkeit
 	m_fGeschwindigkeit = -40.0f;
 
-
+	//Szene setzen
+	iScene = Countdown;
 }
 
 void SceneHandler::InitMeteorits(CRoot * root, CScene * scene)
@@ -126,9 +118,9 @@ void SceneHandler::MeteoritenTick()
 	m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff());
 
 	//Kollision
-	//m_zHitbox.HitboxMeteoriten(m_zRaumschiff.getpRaumschiff(), &m_zMeteoriten);
+	m_zHitbox.HitboxMeteoriten(m_zRaumschiff.getpRaumschiff(), &m_zMeteoriten);
 
-	if (m_zHitbox.Collision() == true)
+	if (m_zHitbox.getCollision() == true)
 	{
 		m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() - 1);
 		//TODO: Animation
@@ -159,6 +151,9 @@ void SceneHandler::SwitchScene()
 		m_zMeteoriten.SwitchOff();
 		m_zFrageGrafik.SwitchOn();
 	}
+
+	//Kollision für Hitboxen aktivieren
+	m_zHitbox.setCollision(false);
 }
 
 void SceneHandler::FrageTick()
@@ -174,7 +169,14 @@ void SceneHandler::FrageTick()
 	m_zc.setOverlayCockpit()->SwitchOn();
 
 	//Hitboxen
-	//m_zHitbox.HitboxFrage(&m_zRaumschiff, &m_zFrageGrafik);
+	m_zHitbox.HitboxFrage(&m_zRaumschiff, &m_zFrageGrafik);
+
+	//Die Hitbox darf nur einmal Kollidieren und nicht mehrmals
+	if (m_zHitbox.getCollision() == true)
+	{
+		//Wenn Frage falsch, dann drei Leben abzug
+		//Wenn Frage richtig, ein Leben dazu
+	}
 
 	//Wenn ich an der Frage vorbei bin muss die Szene gewechselt werden
 	if (m_zFrageGrafik.getpFrage(1)->GetTranslation().GetZ() >= m_zRaumschiff.getpRaumschiff()->GetTranslation().GetZ())
@@ -255,7 +257,6 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		//Lebensanzeige
 		m_zLLA.Run();
 
-		//Kollision mit Zeug, damit die Zeile schlauer aussieht
 		//Meteoriten
 		if (iScene == Meteoriten)
 		{

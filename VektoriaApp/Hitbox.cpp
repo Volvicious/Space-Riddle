@@ -28,24 +28,6 @@ void CHitbox::Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * m
 	{
 		m_zps.Add(meteor->getpMeteor(i));
 	}
-
-	//Cylinder als Ray anzeigen
-	cylinder.Init(0.01f, 0.01f, r[0].m_vOrigin.GetZ() - r[0].m_vDirection.GetZ(), NULL);
-
-	for (int i = 0; i < 7; i++)
-	{
-		m_zpcylinder[i].AddGeo(&cylinder);
-		rotate.RotateX(UM_DEG2RAD(-90));
-
-		cylinder.Transform(rotate);
-		scene->AddPlacement(&m_zpcylinder[i]);
-
-		m_zps.Add(&m_zpcylinder[i]);
-
-	}
-
-	//Fragen ausmachen
-	//frage->SwitchOff();
 }
 
 void CHitbox::RayTick(CRaumschiff * raumschiff)
@@ -71,15 +53,6 @@ void CHitbox::RayTick(CRaumschiff * raumschiff)
 	{
 		r[i].m_vOrigin.SetW(1.0f);
 	}
-
-	for (int i = 0; i < 7; i++)
-	{
-		vector.SetX(r[i].m_vOrigin.GetX());
-		vector.SetY(r[i].m_vOrigin.GetY());
-		vector.SetZ(r[i].m_vOrigin.GetZ());
-
-		m_zpcylinder[i].Translate(vector);
-	}
 }
 
 void CHitbox::HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage)
@@ -89,20 +62,27 @@ void CHitbox::HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage)
 	{
 		for (int j = 0; j <= 6; j++)
 		{
-			if (frage->getpFrage(i)->m_aaabb[0].Intersects(r[j]))
+			if (frage->getpFrage(i) && frage->getpFrage(i)->m_aaabb)
 			{
-				switch (i)
+				if (frage->getpFrage(i)->m_aaabb[0].Intersects(r[j]))
 				{
-				case 0: 
-					break;
-				case 1:
-					break;
-				case 2:
-					break;
-				case 3:
-					break;
-				default: 
-					break;
+					if (Kollision = false)
+					{
+						switch (i)
+						{
+						case 0: OutputDebugString("Kugel 1");
+							break;
+						case 1: OutputDebugString("Kugel 2");
+							break;
+						case 2: OutputDebugString("Kugel 3");
+							break;
+						case 3: OutputDebugString("Kugel 4");
+							break;
+						default: OutputDebugString("Kugel Garnix");
+							break;
+						}
+						Kollision = true;
+					}
 				}
 			}
 		}
@@ -112,18 +92,15 @@ void CHitbox::HitboxMeteoriten(CPlacement * raumschiff, CMeteorit * meteoriten)
 {
 	for (int j = 0; j <= 6; j++)
 	{
-		if (meteoriten->getiMeteorNummer() >= 49)
+		if (meteoriten->getpMeteor(meteoriten->getiMeteorNummer()) && meteoriten->getpMeteor(meteoriten->getiMeteorNummer())->m_aaabb)
 		{
-			break;
-		}
-		if (meteoriten->getpMeteor(meteoriten->getiMeteorNummer() + 1)->m_aaabb[0].Intersects(r[j]))
-		{
-			Kollision = false;
-			ULDebug("BLA: %f", meteoriten->getiMeteorNummer());
-		}
-		else
-		{
-			Kollision = false;
+			if (meteoriten->getpMeteor(meteoriten->getiMeteorNummer())->m_aaabb[0].Intersects(r[j]))
+			{
+				if (Kollision = false)
+				{
+					Kollision = true;
+				}
+			}
 		}
 	}
 }

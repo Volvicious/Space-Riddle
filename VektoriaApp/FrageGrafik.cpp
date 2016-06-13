@@ -13,23 +13,25 @@ CFrageGrafik::~CFrageGrafik()
 void CFrageGrafik::Init(CRoot * root, CScene * scene)
 {
 	//Geo laden
-	m_zgStargate = m_zfilewavefront.LoadGeo("models\\Stargate.obj");
+	m_zgStargate = m_zfilewavefront.LoadGeoTriangleList("models\\Stargate.obj");
+	m_zgStargate->Center();
 	Skalierung.Scale(0.5F);
 	m_zgStargate->Transform(Skalierung);
+	m_zgStargate->UpdateAABB();
 
 	//Material drauf
 	//Bzw. UV Map
-	//m_zgStargate->SetMaterial(&m_zmStargate);
+	m_zgStargate->SetMaterial(&m_zmStargate);
 
 	//Material dem Root hinzufügen
-	//root->AddMaterial(&m_zmStargate);
+	root->AddMaterial(&m_zmStargate);
 
 	//Stargates den Placements geben
 	for (int i = 0; i < 4; i++)
 	{
 		m_zpStargate[i].AddGeo(m_zgStargate);
 		scene->AddPlacement(&m_zpStargate[i]);
-		SwitchOff();
+	 	SwitchOff();
 	}
 }
 
@@ -66,5 +68,9 @@ void CFrageGrafik::Translate(FLOAT f_posZ, FLOAT f_posX, FLOAT f_posY)
 		}
 
 		m_zpStargate[i].Translate(fLeftpos, f_posY, f_posZ - 100.0f);
+		m_zpStargate[i].UpdateAABBThisFromDirectChildren();
+
 	}
+		m_zgStargate->UpdateAABB();
+
 }

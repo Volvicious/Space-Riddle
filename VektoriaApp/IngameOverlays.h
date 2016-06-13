@@ -25,5 +25,8 @@ private:
 	CImage m_zImage[10];
 	COverlay m_zOverlay[10];
 
+	//IngameOverlays
+	enum IngameOverlays{ Pause = 0, LevelCompleted = 1, Verloren = 2, };
+
 };
 
