@@ -10,6 +10,12 @@ SceneHandler::~SceneHandler()
 {
 }
 
+enum Szene
+{
+	Meteoriten
+
+};
+
 #pragma region Init
 
 void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame) 
@@ -40,17 +46,12 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	//Sound
 	m_zSound.Init(scene);
 
-	//0 ist Hauptmenü
-	//1 ist Meteoriten
-	//2 ist Fragen
-	//3 ist Verloren
-	//4 ist Pause Menü
-	//5 für Countdown
-	//6 für Level Completed
-	iScene = 0;
+	//Szene setzen
+	iScene = Hauptmenü;
 
 	//Geschwindigkeit
 	m_fGeschwindigkeit = -40.0f;
+
 
 }
 
@@ -122,7 +123,7 @@ void SceneHandler::MeteoritenTick()
 	}
 
 	//Meteoriten erneuern
-	//m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff());
+	m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff());
 
 	//Kollision
 	//m_zHitbox.HitboxMeteoriten(m_zRaumschiff.getpRaumschiff(), &m_zMeteoriten);
@@ -137,9 +138,10 @@ void SceneHandler::MeteoritenTick()
 	}
 
 	//Wenn alle Meteoriten vorbei sind
-	if (m_zMeteoriten.getiMeteorNummer() == MAX_METEOR)
+	if (m_zMeteoriten.getiMeteorNummer() == MAX_METEOR - 1)
 	{
-		iScene = 2;
+		m_zMeteoriten.getiMeteorNummer();
+		iScene = Fragen;
 		SwitchScene();
 		FrageSwitch = true;
 	}
@@ -147,12 +149,12 @@ void SceneHandler::MeteoritenTick()
 
 void SceneHandler::SwitchScene()
 {
-	if (iScene == 1)
+	if (iScene == Meteoriten)
 	{
-		m_zMeteoriten.SwitchOn();
 		m_zFrageGrafik.SwitchOff();
+		m_zMeteoriten.SwitchOn();
 	}
-	else if (iScene == 2)
+	else if (iScene == Fragen)
 	{
 		m_zMeteoriten.SwitchOff();
 		m_zFrageGrafik.SwitchOn();
@@ -178,12 +180,10 @@ void SceneHandler::FrageTick()
 	if (m_zFrageGrafik.getpFrage(1)->GetTranslation().GetZ() >= m_zRaumschiff.getpRaumschiff()->GetTranslation().GetZ())
 	{
 		m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
-		iScene = 6;
+		iScene = LevelCompleted;
 
 		//Level Completed Bild
 		m_zIngameOverlays.SwitchOn(1);
-
-		MeteoritenSwitch = true;
 	}
 }
 
@@ -193,7 +193,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	iScene = m_zSteuerung.PauseGame(iScene, &m_zKeyboard);
 
 	//Hauptmenü getickt
-	if (iScene == 0)
+	if (iScene == Hauptmenü)
 	{
 		m_zSound.Loop(0);
 		m_dMaus.Run();
@@ -204,7 +204,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 		if (m_zHauptmenu.getbGo())
 		{
-			iScene = 5;
+			iScene = Countdown;
 			m_dMaus.SwitchOff();
 			m_zLLA.SwitchOn();
 		}
@@ -212,20 +212,21 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 	//Countdown runterzählen
 	//Wenn Leertaste gedrückt wird, wird iScene auf 1 gesetzt, also das Spiel beginnt
-	if (iScene == 5)
+	if (iScene == Countdown)
 	{
 		if (PlaySoundOnce == true)
 		{
 			m_zSound.SwitchSounds(0, 4);
 			PlaySoundOnce = false;
 		}
+
 		iScene = m_zSteuerung.StartGame(iScene, &m_zKeyboard);
 
 		MeteoritenSwitch = true;
 	}
 
 	//Tick für Spiel
-	if (iScene == 1 || iScene == 2) 
+	if (iScene == Meteoriten || iScene == Fragen) 
 	{
 		//Ingame Loop
 		m_zSound.SwitchSounds(4, 1, true);
@@ -256,25 +257,26 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 		//Kollision mit Zeug, damit die Zeile schlauer aussieht
 		//Meteoriten
-		if (iScene == 1)
+		if (iScene == Meteoriten)
 		{
 			MeteoritenTick();
 		}
 
 		//Frage
-		if (iScene == 2)
+		if (iScene == Fragen)
 		{
 			FrageTick();
 		}
 
+		//Wenn das Leben auf 0 ist hat man verloren
 		if (m_zLLA.getLebenAnzahl() == 0)
 		{
-			iScene = 3;
+			iScene = Verloren;
 		}
 	} 
 	
 	//Game Over
-	if (iScene == 3)
+	if (iScene == Verloren)
 	{
 		//Game Over
 		m_zIngameOverlays.SwitchOn(2);
@@ -284,14 +286,15 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	}
 
 	//Pause gedrückt
-	if (iScene == 4)
+	if (iScene == Pause)
 	{
 		m_zSound.Pause(1);
 		m_zIngameOverlays.SwitchOn(0);
+		m_zIngameOverlays.SetLayer(0, 0.8);
 	}
 
 	//Level Completed
-	if (iScene == 6)
+	if (iScene == LevelCompleted)
 	{
 		//Cameraposition verändern
 		m_zc.setFristPerson(false);
@@ -300,6 +303,13 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		//Fragen hinter mir ausblenden
 		m_zFrageGrafik.SwitchOff();
 
+		//Wenn Enter gedrückt wird gehts weiter
 		iScene = m_zSteuerung.ContinueGame(iScene, &m_zKeyboard);
+
+		//Switchscene
+		SwitchScene();
+
+		//Meteoriten starten
+		MeteoritenSwitch = true;
 	}
 }

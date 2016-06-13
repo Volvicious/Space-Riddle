@@ -97,15 +97,8 @@ void CMeteorit::NewLevel(CPlacement * raumschiff)
 		float yi = rand() % 30 + (-15);
 		float zi = i * -15.0F - 20.0f;
 
-		if (i == 1)
-		{
-			m_zpMeteoriten[1].m_mLocal.m_fx03 = 0.0f;
-			m_zpMeteoriten[1].m_mLocal.m_fx13 = 0.0f;
-			m_zpMeteoriten[1].m_mLocal.m_fx23 = -20.0f;
-		}
-
 		//Meteoriten verschieben
-		m_zpMeteoriten[i].Translate(xi, yi, raumschiff->GetTranslation().GetZ() - zi);
+		m_zpMeteoriten[i].Translate(xi, yi, raumschiff->GetTranslation().GetZ() + zi);
 	}
 
 	iCounter = 0;

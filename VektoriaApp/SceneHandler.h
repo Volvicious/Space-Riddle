@@ -88,6 +88,9 @@ private:
 
 	CLLAnzeige m_zLLA; 
 
+	//Szenen
+	enum Szene{ Hauptmenü = 0, Meteoriten = 1, Fragen = 2, Verloren = 3, Pause = 4, Countdown = 5, LevelCompleted = 6};
+
 	//Lokale Variablen
 	float f_PosRaumschiffZ;
 	float f_PosRaumschiffY;
@@ -99,6 +102,8 @@ private:
 	bool FrageSwitch = false;
 	bool MeteoritenSwitch = false;
 	bool bFirstPerson = true;
+
+	bool Promod = true;
 
 };
 
