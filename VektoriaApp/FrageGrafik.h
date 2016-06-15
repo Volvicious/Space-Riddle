@@ -21,8 +21,9 @@ private:
 	//Fragenzeugs
 	CMaterial m_zmStargate;
 	CPlacement m_zpStargate[4];
+	CGeoSphere kugel;
 
-	CGeo * m_zgStargate;
+	CGeoTriangleList * m_zgStargate;
 	CFileWavefront m_zfilewavefront;
 	CHMat Skalierung;
 

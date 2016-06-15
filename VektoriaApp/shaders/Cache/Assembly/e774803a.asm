@@ -3,12 +3,12 @@
 //
 //
 //   fxc /T vs_5_0 /O1 /E VS_POST /Fo
-//    \\?\C:\Projects\VektoriaV14_Alpha\AppHalloKugel\VektoriaApp\Shaders\Cache\Object\Release\VS_POST.obj
+//    \\?\C:\Projects\Vektoria_2016-06-09a_Patch3\Work\VektoriaApp\Shaders\Cache\Object\Release\VS_POST.obj
 //    /Fe
-//    \\?\C:\Projects\VektoriaV14_Alpha\AppHalloKugel\VektoriaApp\Shaders\Cache\Error\VS_POST.txt
+//    \\?\C:\Projects\Vektoria_2016-06-09a_Patch3\Work\VektoriaApp\Shaders\Cache\Error\VS_POST.txt
 //    /Fc
-//    \\?\C:\Projects\VektoriaV14_Alpha\AppHalloKugel\VektoriaApp\Shaders\Cache\Assembly\e774803a.asm
-//    \\?\C:\Projects\VektoriaV14_Alpha\AppHalloKugel\VektoriaApp\shaders\Source\postprocessing.hlsl
+//    \\?\C:\Projects\Vektoria_2016-06-09a_Patch3\Work\VektoriaApp\Shaders\Cache\Assembly\e774803a.asm
+//    \\?\C:\Projects\Vektoria_2016-06-09a_Patch3\Work\VektoriaApp\shaders\Source\postprocessing.hlsl
 //
 //
 // Buffer Definitions: 

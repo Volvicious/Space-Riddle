@@ -26,6 +26,7 @@ void CCameraController::Init(CViewport * viewport, CScene * scene)
 
 	//Material hinzufügen
 	m_zmCockpit.MakeTextureSprite("textures\\Cockpit.png");
+	m_zoCockpit.SetLayer(0.9);
 	m_zmCockpit.SetAni(3, 2, 3);
 
 	//Overlay hinzufügen

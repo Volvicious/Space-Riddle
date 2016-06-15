@@ -21,6 +21,7 @@
 #include "Maus.h"
 #include "Explorer.h"
 #include "LLAnzeige.h"
+#include "IngameOverlays.h"
 
 
 using namespace Vektoria;
@@ -40,6 +41,7 @@ public:
 	void InitSkyDome(CRoot * root, CScene * scene);
 	void InitHitbox(CScene * scene);
 	void InitFrageGrafik(CRoot * root, CScene * scene);
+	void InitOverlays(CViewport * viewport);
 
 
 	void Tick(float fTimeDelta, float fTime);
@@ -63,6 +65,9 @@ private:
 	//Sound
 	CSound m_zSound;
 
+	//Overlays
+	CIngameOverlays m_zIngameOverlays;
+
 	// Testzeux von Chris
 	CMainMenu m_zHauptmenu;
 
@@ -83,16 +88,21 @@ private:
 
 	CLLAnzeige m_zLLA; 
 
+	//Szenen
+	enum Szene{ Hauptmenü = 0, Meteoriten = 1, Fragen = 2, Verloren = 3, Pause = 4, Countdown = 5, LevelCompleted = 6};
+
 	//Lokale Variablen
 	float f_PosRaumschiffZ;
 	float f_PosRaumschiffY;
 	float f_PosRaumschiffX;
 	float m_fGeschwindigkeit;
 
+	bool PlaySoundOnce = true;
 	int iScene;
 	bool FrageSwitch = false;
 	bool MeteoritenSwitch = false;
 	bool bFirstPerson = true;
 
+	int iLeben = 5;
 };
 

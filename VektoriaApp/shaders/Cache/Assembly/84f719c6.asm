@@ -3,12 +3,12 @@
 //
 //
 //   fxc /T vs_5_0 /O1 /E ShadowMapVS /Fo
-//    \\?\C:\Projects\VektoriaV14_Alpha\AppHalloKugel\VektoriaApp\Shaders\Cache\Object\Release\ShadowMapVS.obj
+//    \\?\C:\Projects\Vektoria_2016-06-09a_Patch3\Work\VektoriaApp\Shaders\Cache\Object\Release\ShadowMapVS.obj
 //    /Fe
-//    \\?\C:\Projects\VektoriaV14_Alpha\AppHalloKugel\VektoriaApp\Shaders\Cache\Error\ShadowMapVS.txt
+//    \\?\C:\Projects\Vektoria_2016-06-09a_Patch3\Work\VektoriaApp\Shaders\Cache\Error\ShadowMapVS.txt
 //    /Fc
-//    \\?\C:\Projects\VektoriaV14_Alpha\AppHalloKugel\VektoriaApp\Shaders\Cache\Assembly\84f719c6.asm
-//    \\?\C:\Projects\VektoriaV14_Alpha\AppHalloKugel\VektoriaApp\Shaders\Source\shadowmap.hlsl
+//    \\?\C:\Projects\Vektoria_2016-06-09a_Patch3\Work\VektoriaApp\Shaders\Cache\Assembly\84f719c6.asm
+//    \\?\C:\Projects\Vektoria_2016-06-09a_Patch3\Work\VektoriaApp\Shaders\Source\shadowmap.hlsl
 //
 //
 // Buffer Definitions: 

@@ -1,0 +1,585 @@
+#line 1 "\\\\?\\C:\\Projects\\Vektoria_2016-06-09a_Patch3\\Work\\VektoriaApp\\shaders\\Source\\postprocessing.hlsl"
+
+
+#line 1 "postconstants.h"
+
+SamplerState linearSampler : register ( s1 ) ; 
+SamplerState pointSampler : register ( s2 ) ; 
+
+cbuffer ObjectInfo : register ( b0 ) 
+{ 
+    matrix World ; 
+} 
+
+cbuffer TexInfo : register ( b7 ) 
+{ 
+    float fBloomOriginalIntensity : packoffset ( c0 . x ) ; 
+    float fBloomIntensity : packoffset ( c0 . y ) ; 
+    float fBloomOriginalSaturation : packoffset ( c0 . z ) ; 
+    float fBloomSaturation : packoffset ( c0 . w ) ; 
+    float fRayExposure : packoffset ( c1 . x ) ; 
+    float fRayDecay : packoffset ( c1 . y ) ; 
+    float fRayDensity : packoffset ( c1 . z ) ; 
+    float fRayWeight : packoffset ( c1 . w ) ; 
+    float fTimeDelta : packoffset ( c2 . x ) ; 
+    float fBloomBlurDistance : packoffset ( c2 . y ) ; 
+    float fDoFFar : packoffset ( c2 . z ) ; 
+    float fDoFNear : packoffset ( c2 . w ) ; 
+    float fRcpFrameX : packoffset ( c3 . x ) ; 
+    float fRcpFrameY : packoffset ( c3 . y ) ; 
+    uint uBloom : packoffset ( c3 . z ) ; 
+    uint uGauss : packoffset ( c3 . w ) ; 
+    float4 f4GodRayPos : packoffset ( c4 ) ; 
+    float4 f4rcpFrameOpt : packoffset ( c5 ) ; 
+    float4 f4DoFParams : packoffset ( c6 ) ; 
+} 
+
+#line 35
+float CalcLuminance ( float3 f3Color ) 
+{ 
+    return max ( dot ( f3Color , float3 ( 0.299f , 0.587f , 0.114f ) ) , 0.0001f ) ; 
+} 
+
+float GetAvgLuminance ( Texture2D lumTex , float2 f2TexCoord ) 
+{ 
+    return exp ( lumTex . SampleLevel ( linearSampler , f2TexCoord , 10 ) . x ) ; 
+} 
+
+#line 46
+float3 ToneMapFilmicALU ( float3 f3Color ) 
+{ 
+    f3Color = max ( 0.f , f3Color - 0.004f ) ; 
+    f3Color = ( f3Color * ( 6.2f * f3Color + .5f ) ) / ( f3Color * ( 6.2f * f3Color + 1.7f ) + 0.06f ) ; 
+    
+#line 52
+    return pow ( f3Color , 2.2f ) ; 
+} 
+
+#line 56
+float3 ToneMapReinhard ( float3 f3Color , float fSaturation ) 
+{ 
+    float fPixelLuminance = CalcLuminance ( f3Color ) ; 
+    float fToneMappedLuminance = fPixelLuminance / ( fPixelLuminance + 1.f ) ; 
+    return fToneMappedLuminance * pow ( f3Color / fPixelLuminance , fSaturation ) ; 
+} 
+
+float3 CalcExposedColor ( float3 f3Color , float fAvgLuminance , float fThreshold , out float fExposure ) 
+{ 
+    fAvgLuminance = max ( fAvgLuminance , 0.0001f ) ; 
+    float fKeyVal = 1.f ; 
+    float fLinearExposure = ( fKeyVal / fAvgLuminance ) ; 
+    fExposure = log2 ( max ( fLinearExposure , 0.0001f ) ) ; 
+    fExposure -= fThreshold ; 
+    
+    return exp2 ( fExposure ) * f3Color ; 
+} 
+
+float3 ToneMap ( float3 f3Color , float fAvgLuminance , float fThreshold , float fSaturation , out float fExposure ) 
+{ 
+    float fPixelLuminance = CalcLuminance ( f3Color ) ; 
+    fExposure = 0.f ; 
+    f3Color = CalcExposedColor ( f3Color , fAvgLuminance , fThreshold , fExposure ) ; 
+    f3Color = ToneMapFilmicALU ( f3Color ) ; 
+    
+    return f3Color ; 
+} 
+
+#line 242 "\\\\?\\C:\\Projects\\Vektoria_2016-06-09a_Patch3\\Work\\VektoriaApp\\shaders\\Source\\postprocessing.hlsl"
+static const float afBlur9 [ 361 ] = 
+{ 
+    0.03916388f , 
+    0.05502321f , 
+    0.07427359f , 
+    0.09632763f , 
+    0.12003161f , 
+    0.14370392f , 
+    0.16529891f , 
+    0.18268351f , 
+    0.19398001f , 
+    0.19789869f , 
+    0.19398001f , 
+    0.18268351f , 
+    0.16529891f , 
+    0.14370392f , 
+    0.12003161f , 
+    0.09632763f , 
+    0.07427359f , 
+    0.05502321f , 
+    0.03916388f , 
+    0.05502321f , 
+    0.07730474f , 
+    0.10435046f , 
+    0.13533528f , 
+    0.16863814f , 
+    0.20189650f , 
+    0.23223631f , 
+    0.25666076f , 
+    0.27253181f , 
+    0.27803731f , 
+    0.27253181f , 
+    0.25666076f , 
+    0.23223631f , 
+    0.20189650f , 
+    0.16863814f , 
+    0.13533528f , 
+    0.10435046f , 
+    0.07730474f , 
+    0.05502321f , 
+    0.07427359f , 
+    0.10435046f , 
+    0.14085841f , 
+    0.18268351f , 
+    0.22763768f , 
+    0.27253181f , 
+    0.31348619f , 
+    0.34645584f , 
+    0.36787942f , 
+    0.37531111f , 
+    0.36787942f , 
+    0.34645584f , 
+    0.31348619f , 
+    0.27253181f , 
+    0.22763768f , 
+    0.18268351f , 
+    0.14085841f , 
+    0.10435046f , 
+    0.07427359f , 
+    0.09632763f , 
+    0.13533528f , 
+    0.18268351f , 
+    0.23692779f , 
+    0.29523015f , 
+    0.35345468f , 
+    0.40656963f , 
+    0.44932896f , 
+    0.47711387f , 
+    0.48675224f , 
+    0.47711387f , 
+    0.44932896f , 
+    0.40656963f , 
+    0.35345468f , 
+    0.29523015f , 
+    0.23692779f , 
+    0.18268351f , 
+    0.13533528f , 
+    0.09632763f , 
+    0.12003161f , 
+    0.16863814f , 
+    0.22763768f , 
+    0.29523015f , 
+    0.36787942f , 
+    0.44043165f , 
+    0.50661701f , 
+    0.55989838f , 
+    0.59452051f , 
+    0.60653061f , 
+    0.59452051f , 
+    0.55989838f , 
+    0.50661701f , 
+    0.44043165f , 
+    0.36787942f , 
+    0.29523015f , 
+    0.22763768f , 
+    0.16863814f , 
+    0.12003161f , 
+    0.14370392f , 
+    0.20189650f , 
+    0.27253181f , 
+    0.35345468f , 
+    0.44043165f , 
+    0.52729243f , 
+    0.60653061f , 
+    0.67032003f , 
+    0.71177030f , 
+    0.72614896f , 
+    0.71177030f , 
+    0.67032003f , 
+    0.60653061f , 
+    0.52729243f , 
+    0.44043165f , 
+    0.35345468f , 
+    0.27253181f , 
+    0.20189650f , 
+    0.14370392f , 
+    0.16529891f , 
+    0.23223631f , 
+    0.31348619f , 
+    0.40656963f , 
+    0.50661701f , 
+    0.60653061f , 
+    0.69767630f , 
+    0.77105153f , 
+    0.81873071f , 
+    0.83527023f , 
+    0.81873071f , 
+    0.77105153f , 
+    0.69767630f , 
+    0.60653061f , 
+    0.50661701f , 
+    0.40656963f , 
+    0.31348619f , 
+    0.23223631f , 
+    0.16529891f , 
+    0.18268351f , 
+    0.25666076f , 
+    0.34645584f , 
+    0.44932896f , 
+    0.55989838f , 
+    0.67032003f , 
+    0.77105153f , 
+    0.85214370f , 
+    0.90483737f , 
+    0.92311627f , 
+    0.90483737f , 
+    0.85214370f , 
+    0.77105153f , 
+    0.67032003f , 
+    0.55989838f , 
+    0.44932896f , 
+    0.34645584f , 
+    0.25666076f , 
+    0.18268351f , 
+    0.19398001f , 
+    0.27253181f , 
+    0.36787942f , 
+    0.47711387f , 
+    0.59452051f , 
+    0.71177030f , 
+    0.81873071f , 
+    0.90483737f , 
+    0.96078938f , 
+    0.98019862f , 
+    0.96078938f , 
+    0.90483737f , 
+    0.81873071f , 
+    0.71177030f , 
+    0.59452051f , 
+    0.47711387f , 
+    0.36787942f , 
+    0.27253181f , 
+    0.19398001f , 
+    0.19789869f , 
+    0.27803731f , 
+    0.37531111f , 
+    0.48675224f , 
+    0.60653061f , 
+    0.72614896f , 
+    0.83527023f , 
+    0.92311627f , 
+    0.98019862f , 
+    0.99999994f , 
+    0.98019862f , 
+    0.92311627f , 
+    0.83527023f , 
+    0.72614896f , 
+    0.60653061f , 
+    0.48675224f , 
+    0.37531111f , 
+    0.27803731f , 
+    0.19789869f , 
+    0.19398001f , 
+    0.27253181f , 
+    0.36787942f , 
+    0.47711387f , 
+    0.59452051f , 
+    0.71177030f , 
+    0.81873071f , 
+    0.90483737f , 
+    0.96078938f , 
+    0.98019862f , 
+    0.96078938f , 
+    0.90483737f , 
+    0.81873071f , 
+    0.71177030f , 
+    0.59452051f , 
+    0.47711387f , 
+    0.36787942f , 
+    0.27253181f , 
+    0.19398001f , 
+    0.18268351f , 
+    0.25666076f , 
+    0.34645584f , 
+    0.44932896f , 
+    0.55989838f , 
+    0.67032003f , 
+    0.77105153f , 
+    0.85214370f , 
+    0.90483737f , 
+    0.92311627f , 
+    0.90483737f , 
+    0.85214370f , 
+    0.77105153f , 
+    0.67032003f , 
+    0.55989838f , 
+    0.44932896f , 
+    0.34645584f , 
+    0.25666076f , 
+    0.18268351f , 
+    0.16529891f , 
+    0.23223631f , 
+    0.31348619f , 
+    0.40656963f , 
+    0.50661701f , 
+    0.60653061f , 
+    0.69767630f , 
+    0.77105153f , 
+    0.81873071f , 
+    0.83527023f , 
+    0.81873071f , 
+    0.77105153f , 
+    0.69767630f , 
+    0.60653061f , 
+    0.50661701f , 
+    0.40656963f , 
+    0.31348619f , 
+    0.23223631f , 
+    0.16529891f , 
+    0.14370392f , 
+    0.20189650f , 
+    0.27253181f , 
+    0.35345468f , 
+    0.44043165f , 
+    0.52729243f , 
+    0.60653061f , 
+    0.67032003f , 
+    0.71177030f , 
+    0.72614896f , 
+    0.71177030f , 
+    0.67032003f , 
+    0.60653061f , 
+    0.52729243f , 
+    0.44043165f , 
+    0.35345468f , 
+    0.27253181f , 
+    0.20189650f , 
+    0.14370392f , 
+    0.12003161f , 
+    0.16863814f , 
+    0.22763768f , 
+    0.29523015f , 
+    0.36787942f , 
+    0.44043165f , 
+    0.50661701f , 
+    0.55989838f , 
+    0.59452051f , 
+    0.60653061f , 
+    0.59452051f , 
+    0.55989838f , 
+    0.50661701f , 
+    0.44043165f , 
+    0.36787942f , 
+    0.29523015f , 
+    0.22763768f , 
+    0.16863814f , 
+    0.12003161f , 
+    0.09632763f , 
+    0.13533528f , 
+    0.18268351f , 
+    0.23692779f , 
+    0.29523015f , 
+    0.35345468f , 
+    0.40656963f , 
+    0.44932896f , 
+    0.47711387f , 
+    0.48675224f , 
+    0.47711387f , 
+    0.44932896f , 
+    0.40656963f , 
+    0.35345468f , 
+    0.29523015f , 
+    0.23692779f , 
+    0.18268351f , 
+    0.13533528f , 
+    0.09632763f , 
+    0.07427359f , 
+    0.10435046f , 
+    0.14085841f , 
+    0.18268351f , 
+    0.22763768f , 
+    0.27253181f , 
+    0.31348619f , 
+    0.34645584f , 
+    0.36787942f , 
+    0.37531111f , 
+    0.36787942f , 
+    0.34645584f , 
+    0.31348619f , 
+    0.27253181f , 
+    0.22763768f , 
+    0.18268351f , 
+    0.14085841f , 
+    0.10435046f , 
+    0.07427359f , 
+    0.05502321f , 
+    0.07730474f , 
+    0.10435046f , 
+    0.13533528f , 
+    0.16863814f , 
+    0.20189650f , 
+    0.23223631f , 
+    0.25666076f , 
+    0.27253181f , 
+    0.27803731f , 
+    0.27253181f , 
+    0.25666076f , 
+    0.23223631f , 
+    0.20189650f , 
+    0.16863814f , 
+    0.13533528f , 
+    0.10435046f , 
+    0.07730474f , 
+    0.05502321f , 
+    0.03916388f , 
+    0.05502321f , 
+    0.07427359f , 
+    0.09632763f , 
+    0.12003161f , 
+    0.14370392f , 
+    0.16529891f , 
+    0.18268351f , 
+    0.19398001f , 
+    0.19789869f , 
+    0.19398001f , 
+    0.18268351f , 
+    0.16529891f , 
+    0.14370392f , 
+    0.12003161f , 
+    0.09632763f , 
+    0.07427359f , 
+    0.05502321f , 
+    0.03916388f 
+} ; 
+
+#line 978
+static const float3 af3Blur [ 25 ] = 
+{ 
+    - 2.0f , - 2.0f , 0.00366300366f , 
+    - 2.0f , 2.0f , 0.00366300366f , 
+    2.0f , - 2.0f , 0.00366300366f , 
+    2.0f , 2.0f , 0.00366300366f , 
+    
+    - 2.0f , 0.0f , 0.025641025f , 
+    2.0f , 0.0f , 0.025641025f , 
+    0.0f , - 2.0f , 0.025641025f , 
+    0.0f , 2.0f , 0.025641025f , 
+    
+    - 1.0f , 0.0f , 0.095238095f , 
+    1.0f , 0.0f , 0.095238095f , 
+    0.0f , - 1.0f , 0.095238095f , 
+    0.0f , 1.0f , 0.095238095f , 
+    
+    - 1.0f , - 1.0f , 0.0586080586f , 
+    1.0f , - 1.0f , 0.0586080586f , 
+    - 1.0f , 1.0f , 0.0586080586f , 
+    1.0f , 1.0f , 0.0586080586f , 
+    
+    - 2.0f , - 1.0f , 0.01465201465f , 
+    2.0f , - 1.0f , 0.01465201465f , 
+    - 2.0f , 1.0f , 0.01465201465f , 
+    2.0f , 1.0f , 0.01465201465f , 
+    
+    - 1.0f , - 2.0f , 0.01465201465f , 
+    1.0f , - 2.0f , 0.01465201465f , 
+    - 1.0f , 2.0f , 0.01465201465f , 
+    1.0f , 2.0f , 0.01465201465f , 
+    
+    0.0f , 0.0f , 0.15018315f 
+} ; 
+
+float CalcGauss ( float fPixDist , float fSigma ) 
+{ 
+    float fG = 1.f / sqrt ( 2.f * 3.14159 * fSigma * fSigma ) ; 
+    return ( fG * exp ( - ( fPixDist * fPixDist ) / ( 2 * fSigma * fSigma ) ) ) ; 
+} 
+
+#line 1029
+Texture2D tex2D [ 8 ] : register ( t15 ) ; 
+
+#line 1033
+struct VS_INPUT_POST 
+{ 
+    float4 f4Pos : POSITION ; 
+    float3 f3Normal : NORMAL ; 
+    float2 f2TexCoord : TEXCOORD ; 
+    float3 f3Tangent : TANGENT ; 
+    float3 f3Bitangent : BITANGENT ; 
+} ; 
+
+#line 1043
+struct PS_INPUT_POST 
+{ 
+    float4 f4Pos : SV_POSITION0 ; 
+    float2 f2TexCoord : TEXCOORD0 ; 
+    float4 f4VertexPos : TEXCOORD2 ; 
+} ; 
+
+#line 1053
+PS_INPUT_POST VS_POST ( VS_INPUT_POST input ) 
+{ 
+    PS_INPUT_POST output = ( PS_INPUT_POST ) 0 ; 
+    output . f2TexCoord = input . f2TexCoord ; 
+    output . f4Pos = mul ( input . f4Pos , World ) ; 
+    
+    return output ; 
+} 
+
+#line 1065
+float4 PS_POST ( PS_INPUT_POST input ) : SV_Target 
+{ 
+    float4 f4ColorOut = 1.0f ; 
+    
+    f4ColorOut . rgb = ( tex2D [ 7 ] . Sample ( linearSampler , input . f2TexCoord ) ) . rgb ; 
+    
+#line 1072
+    uint iWidth ; 
+    uint iHeight ; 
+    uint iLevels ; 
+    tex2D [ 7 ] . GetDimensions ( 0 , iWidth , iHeight , iLevels ) ; 
+    
+    int2 i2 ; 
+    i2 . x = input . f2TexCoord . x * iWidth ; 
+    i2 . y = input . f2TexCoord . y * iHeight ; 
+    
+#line 1133
+    f4ColorOut . rgb -= 0.25f ; 
+    f4ColorOut . rgb *= 2.0f ; 
+    
+#line 1142
+    if ( uBloom ) 
+    { 
+        float4 f4O ; 
+        f4O . xyz = 0.75f ; 
+        f4O . a = 0 ; 
+        int jKorr ; 
+        int i ; 
+        
+        for ( int j = - 9 ; j <= 9 ; j ++ ) 
+        { 
+            jKorr = ( j + 9 ) * 19 ; 
+            for ( int k = - 9 ; k <= 9 ; k ++ ) 
+            { 
+                i = jKorr + k + 9 ; 
+                int2 i2K ; 
+                i2K . x = i2 . x + j ; 
+                i2K . y = i2 . y + k ; 
+                
+                float4 f4ColorPix = tex2D [ 7 ] . Load ( int3 ( i2K . x , i2K . y , 0 ) ) ; 
+                f4ColorPix -= 0.25f ; 
+                f4ColorPix *= 2.0f ; 
+                if ( f4ColorPix . r > 1.0f || f4ColorPix . g > 1.0f || f4ColorPix . b > 1.0f ) 
+                { 
+                    
+#line 1167
+                    f4ColorOut . rgb += f4ColorPix . rgb * afBlur9 [ i ] * 0.03333 ; 
+                } 
+            } 
+        } 
+    } 
+    
+    float fMaxRGB = max ( max ( f4ColorOut . r , f4ColorOut . g ) , f4ColorOut . b ) ; 
+    if ( fMaxRGB > 1.0f ) 
+    f4ColorOut . rgb /= fMaxRGB ; 
+    
+    f4ColorOut . a = 1.0f ; 
+    return f4ColorOut ; 
+}  

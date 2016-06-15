@@ -35,6 +35,9 @@ void CRaumschiff::Init(CRoot * root,  CScene * scene)
 
 	//Placement der Szene hinzufügen
 	scene->AddPlacement(&m_zpRaumschiff);
+
+	//Raumschiff auf 0 setzen
+	m_zpRaumschiff.Translate(0, 0, 0);
 }
 
 void CRaumschiff::Tick(float Geschwindigkeit)

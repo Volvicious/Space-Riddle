@@ -3,7 +3,7 @@
 
 using namespace Vektoria;
 
-#define MAX_METEOR 50
+#define MAX_METEOR 10
 #define VAR_METEOR 4
 #define MAX_TEXTUR 5
 
@@ -13,18 +13,19 @@ public:
 	CMeteorit();
 	~CMeteorit();
 
-	void Tick(CPlacement * pRaumschiff, bool b );
 	void Init(CRoot * root, CScene * scene);
+	void Tick(CPlacement * pRaumschiff);
+	void NewLevel(CPlacement * raumschiff);
+
 
 	CPlacement * getpMeteor(int i) { return &m_zpMeteoriten[i]; };
 
-	void SetZero();
+	void SetZero(CPlacement * raumschiff);
 	void SwitchOff();
 	void SwitchOn();
 	void Deform();
+
 	int getiMeteorNummer() { return iCounter; };
-
-
 
 private:
 
