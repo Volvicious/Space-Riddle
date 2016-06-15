@@ -13,9 +13,10 @@ public:
 	CSteuerung();
 	~CSteuerung();
 
-	void Tick(float fGeschwindigkeit, CPlacement * placement, CDeviceKeyboard * keyboard);
-	void MaxTube(float fGeschwindigkeit, CPlacement * placement);
-	void Inertia(float fGeschwindigkeit, CPlacement * placement);
+	void Tick(float fTimeDelta, CPlacement * placement, CDeviceKeyboard * keyboard);
+	void Inertia(float fTimeDelta, CPlacement * placement);
+	void MaxTube(CPlacement * placement);
+
 
 	int PauseGame(int iScene, CDeviceKeyboard * keyboard);
 	int StartGame(int iScene, CDeviceKeyboard * keyboard);

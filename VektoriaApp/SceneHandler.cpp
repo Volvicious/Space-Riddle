@@ -14,9 +14,6 @@ SceneHandler::~SceneHandler()
 
 void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame) 
 {
-	//Kamera
-	m_zc.Init(viewPort, scene);
-
 	//Keyboard
 	frame->AddDeviceKeyboard(&m_zKeyboard);
 	m_zTastaturGer.Init(&m_zKeyboard, 9999, false);
@@ -246,7 +243,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		m_zSkydome.Tick(fTimeDelta * m_fGeschwindigkeit);
 
 		//Raumschiff bewegen
-		m_zRaumschiff.Tick(fTimeDelta* m_fGeschwindigkeit);
+		m_zRaumschiff.Tick(fTimeDelta * m_fGeschwindigkeit);
 
 		//Raytick
 		m_zHitbox.RayTick(&m_zRaumschiff);

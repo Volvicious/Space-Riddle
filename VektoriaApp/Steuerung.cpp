@@ -9,30 +9,30 @@ CSteuerung::~CSteuerung()
 {
 }
 
-void CSteuerung::Tick(float fGeschwindigkeit, CPlacement * placement, CDeviceKeyboard * keyboard)
+void CSteuerung::Tick(float fTimeDelta, CPlacement * placement, CDeviceKeyboard * keyboard)
 {
 	if (keyboard->KeyPressed(DIK_W) && placement->GetTranslation().GetY() < MAX_TUBE)
 	{
-		pfvVertikal += 3.0F / 10.0F * fGeschwindigkeit;
+		pfvVertikal += (1.5F / 10.0f) * fTimeDelta;
 	}
 
 	if (keyboard->KeyPressed(DIK_A) && placement->GetTranslation().GetX() > MIN_TUBE)
 	{
-		pfvHorizontal -= 3.0F / 10.0F * fGeschwindigkeit;
+		pfvHorizontal -= (1.5F / 10.0F) * fTimeDelta;
 	}
 
 	if (keyboard->KeyPressed(DIK_S) && placement->GetTranslation().GetY() > MIN_TUBE)
 	{
-		pfvVertikal -= 3.0F / 10.0F * fGeschwindigkeit;
+		pfvVertikal -= (1.5F / 10.0F) * fTimeDelta;
 	}
 
 	if (keyboard->KeyPressed(DIK_D) && placement->GetTranslation().GetX() < MAX_TUBE)
 	{
-		pfvHorizontal += 3.0F / 10.0F * fGeschwindigkeit;
+		pfvHorizontal += (1.5F / 10.0F) * fTimeDelta;
 	}
 
 	//Trägheit
-	Inertia(fGeschwindigkeit, placement);
+	Inertia(fTimeDelta, placement);
 
 	//Raumschiff wird bewegt
 	placement->Translate(CHVector(placement->GetTranslation().GetX() + pfvHorizontal, 
@@ -40,7 +40,7 @@ void CSteuerung::Tick(float fGeschwindigkeit, CPlacement * placement, CDeviceKey
 		placement->GetTranslation().GetZ()));
 
 	//Geschwindigkeit reseten
-	MaxTube(fGeschwindigkeit, placement);
+	MaxTube(placement);
 
 }
 
@@ -82,14 +82,14 @@ int CSteuerung::ContinueGame(int iScene, CDeviceKeyboard * keyboard)
 	return iScene;
 }
 
-void CSteuerung::Inertia(float fGeschwindigkeit, CPlacement * placement)
+void CSteuerung::Inertia(float fTimeDelta, CPlacement * placement)
 {
 	//Bremsen Y-Richtung
 	if (pfvVertikal > 0)
 	{
 		if (placement->GetTranslation().GetY() <= MAX_TUBE && placement->GetTranslation().GetY() >= MIN_TUBE)
 		{
-			pfvVertikal -= 0.5F / 10.0F * fGeschwindigkeit;
+			pfvVertikal -= 0.5F / 10.0F * fTimeDelta;
 		}
 	}
 
@@ -98,7 +98,7 @@ void CSteuerung::Inertia(float fGeschwindigkeit, CPlacement * placement)
 	{
 		if (placement->GetTranslation().GetY() <= MAX_TUBE && placement->GetTranslation().GetY() >= MIN_TUBE)
 		{
-			pfvVertikal += 0.5F / 10.0F * fGeschwindigkeit;
+			pfvVertikal += 0.5F / 10.0F * fTimeDelta;
 
 			//Bremst bis die Geschwindigkeit 0 ist
 			if (pfvVertikal > 0)
@@ -113,7 +113,7 @@ void CSteuerung::Inertia(float fGeschwindigkeit, CPlacement * placement)
 	{
 		if (placement->GetTranslation().GetX() <= MAX_TUBE && placement->GetTranslation().GetX() >= MIN_TUBE)
 		{
-			pfvHorizontal -= 0.5F / 10.0F * fGeschwindigkeit;
+			pfvHorizontal -= 0.5F / 10.0F * fTimeDelta;
 
 			//Bremst bis die Geschwindkeit 0 ist
 			if (pfvHorizontal < 0)
@@ -128,7 +128,7 @@ void CSteuerung::Inertia(float fGeschwindigkeit, CPlacement * placement)
 	{
 		if (placement->GetTranslation().GetX() <= MAX_TUBE && placement->GetTranslation().GetX() >= MIN_TUBE)
 		{
-			pfvHorizontal += 0.5F / 10.0F * fGeschwindigkeit;
+			pfvHorizontal += 0.5F / 10.0F * fTimeDelta;
 
 			//Bremst bis die Geschwindigkeit 0 ist
 			if (pfvHorizontal > 0)
@@ -139,7 +139,7 @@ void CSteuerung::Inertia(float fGeschwindigkeit, CPlacement * placement)
 	}
 }
 
-void CSteuerung::MaxTube(float fGeschwindigkeit, CPlacement * placement)
+void CSteuerung::MaxTube(CPlacement * placement)
 {
 	//Vertikal oben
 	if (placement->GetTranslation().GetY() >= MAX_TUBE && pfvVertikal > 0)
