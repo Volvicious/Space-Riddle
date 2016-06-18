@@ -97,7 +97,7 @@ void SceneHandler::FrageTranslation()
 
 
 
-void SceneHandler::MeteoritenTick()
+void SceneHandler::MeteoritenTick(float fTimeDelta)
 {
 	if (MeteoritenSwitch == true)
 	{
@@ -112,7 +112,7 @@ void SceneHandler::MeteoritenTick()
 	}
 
 	//Meteoriten erneuern
-	m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff());
+	m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff(), fTimeDelta);
 
 	//Kollision
 	m_zHitbox.HitboxMeteoriten(m_zRaumschiff.getpRaumschiff(), &m_zMeteoriten);
@@ -257,7 +257,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		//Meteoriten
 		if (iScene == Meteoriten)
 		{
-			MeteoritenTick();
+			MeteoritenTick(fTimeDelta);
 		}
 
 		//Frage
