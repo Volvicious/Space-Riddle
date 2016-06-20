@@ -28,7 +28,11 @@ private:
 	CHMat Skalierung;
 
 	//Sonstige Variablen
-	float fLeftpos;
+	float fLeftposX;
+	float fLeftposY;
+	float fLeftposZ;
+
+	int iFrage;
 
 
 };

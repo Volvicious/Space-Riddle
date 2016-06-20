@@ -114,11 +114,14 @@ void SceneHandler::MeteoritenTick()
 		MeteoritenSwitch = false;
 	}
 
+	if (bFirstTick == false)
+	{
+		//Kollision
+		m_zHitbox.HitboxMeteoriten(&m_zRaumschiff, &m_zMeteoriten);
+	}
+
 	//Meteoriten erneuern
 	m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff());
-
-	//Kollision
-	m_zHitbox.HitboxMeteoriten(m_zRaumschiff.getpRaumschiff(), &m_zMeteoriten);
 
 	if (m_zHitbox.getCollision() == true)
 	{
@@ -137,6 +140,9 @@ void SceneHandler::MeteoritenTick()
 		SwitchScene();
 		FrageSwitch = true;
 	}
+
+	//Firsttick setzen
+	bFirstTick = false;
 }
 
 void SceneHandler::SwitchScene()
@@ -154,6 +160,7 @@ void SceneHandler::SwitchScene()
 
 	//Kollision für Hitboxen aktivieren
 	m_zHitbox.setCollision(false);
+	bFirstTick = true;
 }
 
 void SceneHandler::FrageTick()
@@ -168,25 +175,43 @@ void SceneHandler::FrageTick()
 	m_zc.setFristPerson(true);
 	m_zc.setOverlayCockpit()->SwitchOn();
 
-	//Hitboxen
-	m_zHitbox.HitboxFrage(&m_zRaumschiff, &m_zFrageGrafik);
+	if (bFirstTick == false)
+	{
+		//Hitboxen
+		int j = m_zHitbox.HitboxFrage(&m_zRaumschiff, &m_zFrageGrafik);
+	}
 
 	//Die Hitbox darf nur einmal Kollidieren und nicht mehrmals
 	if (m_zHitbox.getCollision() == true)
 	{
-		//Wenn Frage falsch, dann drei Leben abzug
-		//Wenn Frage richtig, ein Leben dazu
+		////Überprüfen mit welcher Frage ich kollidiert bin
+		//if (j < 4 && j > -1)
+		//{
+		//	if(Fragenhandler.IsAntwortRichtig(j))
+		//	{
+		//		m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() + 3);
+		//		m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
+		//		iScene = LevelCompleted;
+		//		m_zIngameOverlays.SwitchOn(1);
+		//	}
+		//	else
+		//	{
+		//		m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() - 3);
+		//	}
+		//}
+		//else if (j == 4)
+		//{
+		//	m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
+		//	iScene = LevelCompleted;
+
+		//	//Level Completed Bild
+		//	m_zIngameOverlays.SwitchOn(1);
+
+		//}
 	}
 
-	//Wenn ich an der Frage vorbei bin muss die Szene gewechselt werden
-	if (m_zFrageGrafik.getpFrage(1)->GetTranslation().GetZ() >= m_zRaumschiff.getpRaumschiff()->GetTranslation().GetZ())
-	{
-		m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
-		iScene = LevelCompleted;
-
-		//Level Completed Bild
-		m_zIngameOverlays.SwitchOn(1);
-	}
+	//FirstTick
+	bFirstTick = false;
 }
 
 void SceneHandler::Tick(float fTimeDelta, float fTime)
@@ -260,20 +285,22 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		//Meteoriten
 		if (iScene == Meteoriten)
 		{
+			m_fGeschwindigkeit = -40.0f;
 			MeteoritenTick();
 		}
 
 		//Frage
 		if (iScene == Fragen)
 		{
+			m_fGeschwindigkeit = -10.0f;
 			FrageTick();
 		}
 
 		//Wenn das Leben auf 0 ist hat man verloren
-		if (m_zLLA.getLebenAnzahl() == 0)
+		/*if (m_zLLA.getLebenAnzahl() == 0)
 		{
 			iScene = Verloren;
-		}
+		}*/
 	} 
 	
 	//Game Over

@@ -102,6 +102,8 @@ private:
 	bool FrageSwitch = false;
 	bool MeteoritenSwitch = false;
 	bool bFirstPerson = true;
+	bool bFirstTick = true;
+
 
 	int iLeben = 5;
 };

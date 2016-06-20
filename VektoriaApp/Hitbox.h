@@ -14,14 +14,16 @@ public:
 	~CHitbox();
 
 	void Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * meteor, CScene * scene);
-	void HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage);
-	void HitboxMeteoriten(CPlacement * raumschiff, CMeteorit * meteoriten);
+	int HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage);
+	void HitboxMeteoriten(CRaumschiff * raumschiff, CMeteorit * meteoriten);
 
 	void RayTick(CRaumschiff * raumschiff);
 
 	bool getCollision(){ return Kollision; };
 
 	void setCollision(bool boom){ Kollision = boom; };
+
+	int getiFrage(){ return iFrage; };
 
 private:
 
@@ -34,5 +36,6 @@ private:
 
 	//Lokale Variablen
 	bool Kollision = false;
+	int iFrage;
 };
 

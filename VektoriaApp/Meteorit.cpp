@@ -84,7 +84,7 @@ void CMeteorit::Tick(CPlacement * pRaumschiff)
 {
 	if (m_zpMeteoriten[iCounter].GetTranslation().GetZ() >= pRaumschiff->GetTranslation().GetZ())
 	{
-		iCounter++;
+		++iCounter;
 	}
 }
 
