@@ -34,14 +34,19 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 	Deform();
 
 	//Prepare Roation
-
 	PrepareRotate(); 
 
 	//Meteoriten hinzufügen
 	for (int i = 0; i < MAX_METEOR; i++)
 	{
+		//Random wert
+		float fGroesse = (float)((rand() % 150) / 100.0F) + 0.5F;
+
 		//Random Meteoriten auswählen
 		int varMeteor = (rand() % 3);
+
+		//Meteorit Transformieren
+		m_zpMeteoriten[i].Scale(fGroesse);
 
 		//Meteoriten dem Placement geben
 		m_zpMeteoriten[i].AddGeo(&m_zgMeteorit[varMeteor]);
@@ -64,20 +69,13 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 
 void CMeteorit::PrepareRotate() {
 
-	for (int i = 0; i < MAX_METEOR; i++) {
-  
-
-		fRotStartWerteXYZ[i][0] = (float)(5 - (rand() % 11)) / 999999.F;
+	for (int i = 0; i < MAX_METEOR; i++) 
+	{
+		fRotStartWerteXYZ[i][0] = (float)(5 - (rand() % 11)) / 4.0f;
 		fRotationXYZ[i][0] = 0.0F;
-
-		
-		fRotStartWerteXYZ[i][1] = (float)(5 - (rand() % 11)) / 999999.F;
+	
+		fRotStartWerteXYZ[i][1] = (float)(5 - (rand() % 11)) / 4.0F;
 		fRotationXYZ[i][1] = 0.0F;
-
-		fRotStartWerteXYZ[i][2] = (float)(5 - (rand() % 11)) / 2554.F;
-		fRotationXYZ[i][2] = 0.0F;
-
-		
 	}
 }
 
@@ -106,31 +104,41 @@ void CMeteorit::Deform()
 
 void CMeteorit::Tick(CPlacement * pRaumschiff, float fTimeDelta)
 {
-	if (m_zpMeteoriten[iCounter].GetTranslation().GetZ() >= pRaumschiff->GetTranslation().GetZ())
+	//Meteoriten konstant drehen
+	for (int i = iCounter; i < MAX_METEOR; i++) 
 	{
-		iCounter++;
-	}
-
-	for (int i = iCounter; i < MAX_METEOR; i++) {
-
 		CHVector vec = m_zpMeteoriten[i].GetTranslation();
 		
-		fRotationXYZ[i][0] += fRotStartWerteXYZ[i][0]/fTimeDelta;
-		fRotationXYZ[i][1] += fRotStartWerteXYZ[i][1]/fTimeDelta;
-		fRotationXYZ[i][2] += fRotStartWerteXYZ[i][2]/fTimeDelta;
-
+		fRotationXYZ[i][0] += fRotStartWerteXYZ[i][0] * fTimeDelta;
+		fRotationXYZ[i][1] += fRotStartWerteXYZ[i][1] * fTimeDelta;
 		
-
 		m_zpMeteoriten[i].RotateX(fRotationXYZ[i][0]);
 		m_zpMeteoriten[i].RotateYDelta(fRotationXYZ[i][1]);
-		//m_zpMeteoriten[i].RotateZDelta(fRotationXYZ[i][2]);
-
+		
 		m_zpMeteoriten[i].TranslateDelta(vec);
-
 	}
 
-	
+	//Die Meteoriten die nicht gesehen werden sollen auf die Position vom Raumschiff gezogen werden
+	for (int i = 0; i <= MAX_METEOR; i++)
+	{
+		if (i % 4 == 0)
+		{
+			if (m_zpMeteoriten[i].GetTranslation().GetZ() < pRaumschiff->GetTranslation().GetZ() - 150)
+			{
+				CHVector verschieben;
+				verschieben.SetX(pRaumschiff->GetTranslation().GetX());
+				verschieben.SetY(pRaumschiff->GetTranslation().GetY());
+				verschieben.SetZ(m_zpMeteoriten[i].GetTranslation().GetZ());
+				m_zpMeteoriten[i].Translate(verschieben);
+			}
+		}
+	}
 
+	//Den Counter hochzählen für den nächsten Meteoriten
+	if (m_zpMeteoriten[iCounter].GetTranslation().GetZ() >= pRaumschiff->GetTranslation().GetZ())
+	{
+		++iCounter;
+	}
 }
 
 void CMeteorit::NewLevel(CPlacement * raumschiff)

@@ -49,8 +49,8 @@ private:
 	int iCounter = 0;
 
 	//Rotationsvariabel
-	float fRotationXYZ[MAX_METEOR][3];
-	float fRotStartWerteXYZ[MAX_METEOR][3]; 
+	float fRotationXYZ[MAX_METEOR][2];
+	float fRotStartWerteXYZ[MAX_METEOR][2]; 
 
 	float fRotateX = 0.001; 
 

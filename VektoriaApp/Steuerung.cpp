@@ -13,22 +13,22 @@ void CSteuerung::Tick(float fGeschwindigkeit, CPlacement * placement, CDeviceKey
 {
 	if (keyboard->KeyPressed(DIK_W) && placement->GetTranslation().GetY() < MAX_TUBE)
 	{
-		pfvVertikal += 3.0F / 10.0F * fGeschwindigkeit;
+		pfvVertikal += (2.0F / 10.0F) * fGeschwindigkeit;
 	}
 
 	if (keyboard->KeyPressed(DIK_A) && placement->GetTranslation().GetX() > MIN_TUBE)
 	{
-		pfvHorizontal -= 3.0F / 10.0F * fGeschwindigkeit;
+		pfvHorizontal -= (2.0F / 10.0F) * fGeschwindigkeit;
 	}
 
 	if (keyboard->KeyPressed(DIK_S) && placement->GetTranslation().GetY() > MIN_TUBE)
 	{
-		pfvVertikal -= 3.0F / 10.0F * fGeschwindigkeit;
+		pfvVertikal -= (2.0F / 10.0F) * fGeschwindigkeit;
 	}
 
 	if (keyboard->KeyPressed(DIK_D) && placement->GetTranslation().GetX() < MAX_TUBE)
 	{
-		pfvHorizontal += 3.0F / 10.0F * fGeschwindigkeit;
+		pfvHorizontal += (2.0F / 10.0F) * fGeschwindigkeit;
 	}
 
 	//Trägheit
@@ -74,7 +74,7 @@ int CSteuerung::PauseGame(int iScene, CDeviceKeyboard * keyboard)
 
 int CSteuerung::ContinueGame(int iScene, CDeviceKeyboard * keyboard)
 {
-	if (keyboard->KeyDown(DIK_RETURN))
+	if (keyboard->KeyDown(DIK_SPACE))
 	{
 		iScene = 1;
 	}
