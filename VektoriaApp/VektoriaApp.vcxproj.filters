@@ -135,6 +135,9 @@
     <ClInclude Include="IngameOverlays.h">
       <Filter>Headerdateien\Floo</Filter>
     </ClInclude>
+    <ClInclude Include="RaumschiffAnimation.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -229,6 +232,9 @@
     </ClCompile>
     <ClCompile Include="IngameOverlays.cpp">
       <Filter>Quelldateien\Floo</Filter>
+    </ClCompile>
+    <ClCompile Include="RaumschiffAnimation.cpp">
+      <Filter>Quelldateien\Chris</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

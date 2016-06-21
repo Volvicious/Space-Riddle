@@ -51,6 +51,7 @@ private:
 	//Rotationsvariabel
 	float fRotationXYZ[MAX_METEOR][2];
 	float fRotStartWerteXYZ[MAX_METEOR][2]; 
+	float fScale[MAX_METEOR];
 
 	float fRotateX = 0.001; 
 
