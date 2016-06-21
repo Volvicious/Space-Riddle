@@ -31,10 +31,10 @@ private:
 	int SceneSpeicher = 0;
 	int iScene = 0;
 
-	bool bFadeLinks = false;
-	bool bFadeRechts = false;
-	bool bFadeUnten = false;
-	bool bFadeOben = false;
+	bool bFadeSoft = false; 
+
+	float fFadeVer = 0.0F; 
+	float fFadeHor = 0.0F; 
 
 	CRaumschiffAnimation m_RAnimation; 
 

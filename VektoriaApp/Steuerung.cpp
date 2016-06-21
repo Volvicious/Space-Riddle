@@ -185,38 +185,23 @@ void CSteuerung::MaxTube(float fGeschwindigkeit, CPlacement * placement)
 
 void CSteuerung::SoftBorder(float fGeschwindigkeit, CPlacement * placement) {
 
-	//Vertikal oben
+	float fDistance = sqrt((placement->GetTranslation().GetX()*placement->GetTranslation().GetX() + placement->GetTranslation().GetY()*placement->GetTranslation().GetY()));
 
-	bFadeOben = placement->GetTranslation().GetY() >= MAX_TUBE + 2;
-
-	//Vertikal unten
-	bFadeUnten = placement->GetTranslation().GetY() <= MIN_TUBE -2;
-
-	//Horizontal links
-	bFadeLinks = placement->GetTranslation().GetX() <= MIN_TUBE -2;
-
-	//Horizontal rechts
-	bFadeRechts = placement->GetTranslation().GetX() >= MAX_TUBE + 2;
-
-	if (bFadeOben) {
-		pfvVertikal = -10.5F * fGeschwindigkeit;
-		bFadeOben = placement->GetTranslation().GetY() >= MAX_TUBE;
+	if (fDistance >= 17.0F && !bFadeSoft) {
+		bFadeSoft = true;
+		fFadeVer = -pfvVertikal / 2; 
+		fFadeHor = -pfvHorizontal / 2;
 	}
 
-	if (bFadeUnten) {
-		pfvVertikal = 10.5F * fGeschwindigkeit;
-		bFadeUnten = placement->GetTranslation().GetY() <= MIN_TUBE;
+	if (bFadeSoft) {
+		
+		pfvVertikal = fFadeVer; 
+		pfvHorizontal = fFadeHor;
+
+		if (fDistance <= 15.0F) {
+			bFadeSoft = false; 
+		}
+
 	}
-
-	if (bFadeLinks) {
-		pfvHorizontal = 10.5F * fGeschwindigkeit;
-		bFadeLinks = placement->GetTranslation().GetX() <= MIN_TUBE;
-	}
-
-	if (bFadeRechts) {
-		pfvHorizontal = -10.5F * fGeschwindigkeit;
-		bFadeRechts = placement->GetTranslation().GetX() >= MAX_TUBE;
-	}
-
-
+	
 }
