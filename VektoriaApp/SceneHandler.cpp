@@ -243,7 +243,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		m_zSkydome.Tick(fTimeDelta * m_fGeschwindigkeit);
 
 		//Raumschiff bewegen
-		m_zRaumschiff.Tick(fTimeDelta* m_fGeschwindigkeit);
+		m_zRaumschiff.Tick(fTimeDelta * m_fGeschwindigkeit);
 
 		//Raytick
 		m_zHitbox.RayTick(&m_zRaumschiff);

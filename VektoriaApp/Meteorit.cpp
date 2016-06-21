@@ -26,9 +26,9 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 	m_zMaterialMeteorit[2].MakeTextureBump("textures\\textur3Bump.png");
 
 	//Kugel initialisieren
-	m_zgMeteorit[0].Init(1.0F, &m_zMaterialMeteorit[0]);
-	m_zgMeteorit[1].Init(1.0F, &m_zMaterialMeteorit[1]);
-	m_zgMeteorit[2].Init(1.0F, &m_zMaterialMeteorit[2]);
+	m_zgMeteorit[0].Init(2.0F, &m_zMaterialMeteorit[0]);
+	m_zgMeteorit[1].Init(2.0F, &m_zMaterialMeteorit[1]);
+	m_zgMeteorit[2].Init(2.0F, &m_zMaterialMeteorit[2]);
 
 	//Deformieren
 	Deform();
@@ -104,6 +104,9 @@ void CMeteorit::Deform()
 
 void CMeteorit::Tick(CPlacement * pRaumschiff, float fTimeDelta)
 {
+	float xi = rand() % 3 + (-5);
+	float yi = rand() % 3 + (-5);
+
 	//Meteoriten konstant drehen
 	for (int i = iCounter; i < MAX_METEOR; i++) 
 	{
@@ -125,7 +128,7 @@ void CMeteorit::Tick(CPlacement * pRaumschiff, float fTimeDelta)
 	{
 		if (i % 4 == 0)
 		{
-			if (m_zpMeteoriten[i].GetTranslation().GetZ() < pRaumschiff->GetTranslation().GetZ() - 150)
+			if (m_zpMeteoriten[i].GetTranslation().GetZ() < pRaumschiff->GetTranslation().GetZ() - 250)
 			{
 				CHVector verschieben;
 				verschieben.SetX(pRaumschiff->GetTranslation().GetX());
