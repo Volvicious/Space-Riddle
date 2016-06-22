@@ -18,6 +18,7 @@ private:
 
 	//Geos
 	CGeoDome m_zSkyDome;
+	CGeoCube m_zSkyCube;
 
 	//Rotieren
 

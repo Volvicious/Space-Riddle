@@ -16,7 +16,7 @@ void CHitbox::Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * m
 	{
 		r[i].Init(CHVector(0.0f, 0.0f, 0.0f, 1.0f), CHVector(0.0f, 0.0f, -1.0f, 0.0f));
 		r[i].m_fMin = 0.0f;
-		r[i].m_fMax = 10.0f;
+		r[i].m_fMax = 3.0f;
 	}
 
 	for (int i = 0; i < 4; i++)
@@ -55,7 +55,7 @@ void CHitbox::RayTick(CRaumschiff * raumschiff)
 	}
 }
 
-void CHitbox::HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage)
+int CHitbox::HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage)
 {
 	//Abfrage ob Antwort getroffen wird
 	for (int i = 0; i < 4; i++)
@@ -66,29 +66,37 @@ void CHitbox::HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage)
 			{
 				if (frage->getpFrage(i)->m_aaabb[0].Intersects(r[j]))
 				{
-					if (Kollision = false)
+					if (Kollision == false)
 					{
 						switch (i)
 						{
-						case 0: OutputDebugString("Kugel 1");
+						case 0: OutputDebugString("Kugel 1"); return 0; 
 							break;
-						case 1: OutputDebugString("Kugel 2");
+						case 1: ULDebug("Kugel 2"); return 1; 
 							break;
-						case 2: OutputDebugString("Kugel 3");
+						case 2: ULDebug("Kugel 3"); return 2; 
 							break;
-						case 3: OutputDebugString("Kugel 4");
-							break;
-						default: OutputDebugString("Kugel Garnix");
+						case 3: ULDebug("Kugel 4"); return 3; 
 							break;
 						}
 						Kollision = true;
 					}
 				}
+				else if (frage->getpFrage(1)->GetTranslation().GetZ() >= raumschiff->getpRaumschiff()->GetTranslation().GetZ())
+				{
+					return 4; 
+					ULDebug("Garnix");
+					iFrage = 2;
+				}
 			}
 		}
 	}
+
+	//Noch nicht kollidiert
+	return -1;
+
 }
-void CHitbox::HitboxMeteoriten(CPlacement * raumschiff, CMeteorit * meteoriten)
+void CHitbox::HitboxMeteoriten(CRaumschiff * raumschiff, CMeteorit * meteoriten)
 {
 	for (int j = 0; j <= 6; j++)
 	{
@@ -96,7 +104,7 @@ void CHitbox::HitboxMeteoriten(CPlacement * raumschiff, CMeteorit * meteoriten)
 		{
 			if (meteoriten->getpMeteor(meteoriten->getiMeteorNummer())->m_aaabb[0].Intersects(r[j]))
 			{
-				if (Kollision = false)
+				if (Kollision == false)
 				{
 					Kollision = true;
 				}

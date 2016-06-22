@@ -13,23 +13,21 @@ CSkyDome::~CSkyDome()
 void CSkyDome::Init(CRoot * root, CScene * scene)
 {
 	//Material
-	m_zMaterial.MakeTextureSky("textures\\Skydome.png");
+	m_zMaterial.MakeTextureSky("textures\\SkydomeTextur.png");
+	m_zSkyCube.Init(500, &m_zMaterial);
+	m_zSkyCube.Flip();
 
 	//Skydome init
-	m_zSkyDome.Init(250.0F, 200.0F, &m_zMaterial, true, 24, 12, eMapping_Cylindrical);
+	//m_zSkyDome.Init(100.0F, 100.0F, &m_zMaterial, true, 24, 12, eMapping_Cylindrical);
 
 	//Placement geo geben
-	m_zpSkyDome.AddGeo(&m_zSkyDome);
+	m_zpSkyDome.AddGeo(&m_zSkyCube);
 
 	//Material dem Root geben
 	root->AddMaterial(&m_zMaterial);
 
 	//Szene Placement geben
 	scene->AddPlacement(&m_zpSkyDome);
-
-	//Verschieben
-	m_zpSkyDome.TranslateZ(-50.0f);
-	m_zpSkyDome.TranslateY(-10.0f);
 }
 
 void CSkyDome::SetZero()

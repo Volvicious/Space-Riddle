@@ -13,7 +13,7 @@ CFrageGrafik::~CFrageGrafik()
 void CFrageGrafik::Init(CRoot * root, CScene * scene)
 {
 	//Geo laden
-	m_zgStargate = m_zfilewavefront.LoadGeoTriangleList("models\\Stargate.obj");
+	m_zgStargate = m_zfilewavefront.LoadGeoTriangleList("models\\Stargate.obj", true);
 	m_zgStargate->Center();
 	Skalierung.Scale(0.5F);
 	m_zgStargate->Transform(Skalierung);
@@ -21,6 +21,7 @@ void CFrageGrafik::Init(CRoot * root, CScene * scene)
 
 	//Material drauf
 	//Bzw. UV Map
+	m_zmStargate.MakeTextureDiffuse("textures\\StargateTextur.png");
 	m_zgStargate->SetMaterial(&m_zmStargate);
 
 	//Material dem Root hinzufügen
@@ -60,17 +61,27 @@ void CFrageGrafik::Translate(FLOAT f_posZ, FLOAT f_posX, FLOAT f_posY)
 	{
 		if (i == 0)
 		{
-			fLeftpos = f_posX - 7.5f;
+			fLeftposX = f_posX - 3.0f;
+			fLeftposY = f_posY + 3.0f;
 		}
-		else
+		else if (i == 1)
 		{
-			fLeftpos = fLeftpos + 5.0f;
+			fLeftposX = f_posX + 3.0f;
+			fLeftposY = f_posY + 3.0f;
+		}
+		else if (i == 2)
+		{
+			fLeftposX = f_posX - 3.0f;
+			fLeftposY = f_posY - 3.0f;
+		}
+		else if (i == 3)
+		{
+			fLeftposX = f_posX + 3.0f;
+			fLeftposY = f_posY - 3.0f;
 		}
 
-		m_zpStargate[i].Translate(fLeftpos, f_posY, f_posZ - 100.0f);
+		m_zpStargate[i].Translate(fLeftposX, fLeftposY, f_posZ - 100.0f);
 		m_zpStargate[i].UpdateAABBThisFromDirectChildren();
-
 	}
-		m_zgStargate->UpdateAABB();
-
+	m_zgStargate->UpdateAABB();
 }
