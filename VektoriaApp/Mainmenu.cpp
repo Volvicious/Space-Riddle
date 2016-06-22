@@ -82,9 +82,9 @@ void CMainMenu::Init(CViewport * m_zv, CMaus * ptrMaus_, CExplorer * ptrExplorer
 	m_zTOPProfil.Init(&m_zoMainmbackground, "fonts\\LucidaConsoleBlackF.png", 0.115F, 0.045F, 1.2F, .03F);
 	m_zTOPProfil.SetString("nicht ausgewählt");
 
-	//Lernpaket
-	m_zTOPLernpaket.Init(&m_zoMainmbackground, "fonts\\LucidaConsoleBlackF.png", 0.18F, 0.13F, 1.2F, .03F);
-	m_zTOPLernpaket.SetString("nicht ausgewählt");
+	////Lernpaket
+	//m_zTOPLernpaket.Init(&m_zoMainmbackground, "fonts\\LucidaConsoleBlackF.png", 0.18F, 0.13F, 1.2F, .03F);
+	//m_zTOPLernpaket.SetString("nicht ausgewählt");
 }
 
 

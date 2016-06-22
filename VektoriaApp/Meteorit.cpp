@@ -128,7 +128,7 @@ void CMeteorit::Tick(CPlacement * pRaumschiff, float fTimeDelta)
 	{
 		if (i % 4 == 0)
 		{
-			if (m_zpMeteoriten[i].GetTranslation().GetZ() < pRaumschiff->GetTranslation().GetZ() - 250)
+			if (m_zpMeteoriten[i].GetTranslation().GetZ() < pRaumschiff->GetTranslation().GetZ() - 250.0F)
 			{
 				CHVector verschieben;
 				verschieben.SetX(pRaumschiff->GetTranslation().GetX());

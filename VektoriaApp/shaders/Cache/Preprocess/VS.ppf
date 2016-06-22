@@ -1,4 +1,4 @@
-#line 1 "\\\\?\\C:\\Projects\\Vektoria_2016-06-09a_Patch3\\Work\\VektoriaApp\\shaders\\Source\\shaders_Monolight.hlsl"
+#line 1 "\\\\?\\C:\\Projects\\Vektoria_2016-06-20\\Work\\VektoriaApp\\shaders\\Source\\shaders_Standard.hlsl"
 
 
 #line 10
@@ -11,15 +11,18 @@ SamplerState linearSampler : register ( s0 ) ;
 #line 20
 cbuffer ObjectInfo : register ( b0 ) 
 { 
-    matrix mWorld ; 
-    matrix mView ; 
-    matrix mViewInv ; 
-    matrix mProjection ; 
-    vector < uint , 4 > iLightsAffecting ; 
-    uint iLightCount ; 
+    matrix mWorld : packoffset ( c0 ) ; 
+    matrix mView : packoffset ( c4 ) ; 
+    matrix mViewInv : packoffset ( c8 ) ; 
+    matrix mProjection : packoffset ( c12 ) ; 
+    vector < uint , 4 > iLightsAffecting : packoffset ( c16 ) ; 
+    uint iLightCount : packoffset ( c17 . x ) ; 
+    uint uDummy1 : packoffset ( c17 . y ) ; 
+    uint uDummy2 : packoffset ( c17 . z ) ; 
+    uint uDummy3 : packoffset ( c17 . w ) ; 
 } 
 
-#line 34
+#line 37
 cbuffer TexInfo : register ( b1 ) 
 { 
     matrix mColor : packoffset ( c0 ) ; 
@@ -69,10 +72,10 @@ cbuffer TexInfo : register ( b1 )
     uint uixPics : packoffset ( c14 . z ) ; 
     uint uiyPics : packoffset ( c14 . w ) ; 
     
-#line 85
+#line 88
 } 
 
-#line 92
+#line 95
 cbuffer ViewportArt : register ( b2 ) 
 { 
     float4 f4SceneColorAmbient : packoffset ( c0 ) ; 
@@ -89,7 +92,7 @@ cbuffer ViewportArt : register ( b2 )
     uint uPad0 : packoffset ( c7 . w ) ; 
 } 
 
-#line 111
+#line 114
 struct SLight 
 { 
     float3 f3Position ; 
@@ -127,10 +130,10 @@ StructuredBuffer < SLight > Lights : register ( t10 ) ;
 
 Texture2D shadowMap : register ( t11 ) ; 
 
-#line 153
+#line 156
 Texture2D tex2D [ 7 ] : register ( t15 ) ; 
 
-#line 157
+#line 160
 struct VS_INPUT 
 { 
     float4 f4Pos : POSITION ; 
@@ -140,6 +143,7 @@ struct VS_INPUT
     float3 f3Bitangent : BITANGENT ; 
 } ; 
 
+#line 170
 struct PS_INPUT 
 { 
     float4 f4Pos : SV_POSITION0 ; 
@@ -153,14 +157,14 @@ struct PS_INPUT
     uint iLightCount : COUNT ; 
 } ; 
 
-#line 180
+#line 186
 struct SDirectionalLight 
 { 
     float4 f4Color ; 
     float3 f3Dir ; 
 } ; 
 
-#line 189
+#line 197
 PS_INPUT VS ( VS_INPUT input ) 
 { 
     PS_INPUT output = ( PS_INPUT ) 0 ; 
@@ -178,44 +182,52 @@ PS_INPUT VS ( VS_INPUT input )
     output . f3Tangent = normalize ( mul ( input . f3Tangent , ( float3x3 ) mWorld ) ) ; 
     output . f3Bitangent = normalize ( mul ( input . f3Bitangent , ( float3x3 ) mWorld ) ) ; 
     
-    SLight lightCurrent ; 
-    int lightCurrentId = iLightsAffecting [ 0 ] ; 
-    lightCurrent = Lights [ lightCurrentId ] ; 
-    output . aaffectinglight [ 0 ] . f4Color = lightCurrent . f4Color ; 
-    output . aaffectinglight [ 0 ] . uType = lightCurrent . uType ; 
-    output . iLightCount = 1 ; 
-    float d ; 
-    
 #line 215
-    if ( lightCurrent . uType == 3 ) 
+    [ unroll ] 
+    for ( uint i = 0 ; i < iLightCount ; i ++ ) 
     { 
-        output . aaffectinglight [ 0 ] . bCauseShadow = lightCurrent . bCauseShadow ; 
-        output . aaffectinglight [ 0 ] . f3Direction = normalize ( output . f4VertexPos . xyz - lightCurrent . f3Position ) ; 
-        output . aaffectinglight [ 0 ] . f3SpotDirection = normalize ( lightCurrent . f3Direction ) ; 
-        output . aaffectinglight [ 0 ] . fSpotInnerCosAngle = lightCurrent . fInnerCosAngle ; 
-        output . aaffectinglight [ 0 ] . fSpotOuterCosAngle = lightCurrent . fOuterCosAngle ; 
-        d = abs ( distance ( lightCurrent . f3Position , output . f4Pos . xyz ) ) ; 
-        output . aaffectinglight [ 0 ] . fLuminosity = 1.0f / ( 1.0f + lightCurrent . fAttenuationConstant + lightCurrent . fAttenuationLinear * d + lightCurrent . fAttenuationQuadratic * pow ( max ( d , 1 ) , 2 ) ) ; 
-        output . aaffectinglight [ 0 ] . f4LightPos = mul ( input . f4Pos , mul ( mWorld , lightCurrent . mLightViewProj ) ) ; 
-        output . aaffectinglight [ 0 ] . bSoftShadow = lightCurrent . bSoftShadow ; 
-        output . aaffectinglight [ 0 ] . bCascadedShadow = lightCurrent . bCascadedShadow ; 
+        SLight lightCurrent ; 
+        int lightCurrentId = iLightsAffecting [ i ] ; 
+        lightCurrent = Lights [ lightCurrentId ] ; 
+        output . aaffectinglight [ i ] . uId = lightCurrentId ; 
+        
+        output . aaffectinglight [ i ] . f4Color = lightCurrent . f4Color ; 
+        output . aaffectinglight [ i ] . uType = lightCurrent . uType ; 
+        
+        float d ; 
+        
+#line 230
+        if ( lightCurrent . uType == 3 ) 
+        { 
+            output . aaffectinglight [ i ] . bCauseShadow = lightCurrent . bCauseShadow ; 
+            output . aaffectinglight [ i ] . f3Direction = normalize ( output . f4VertexPos . xyz - lightCurrent . f3Position ) ; 
+            output . aaffectinglight [ i ] . f3SpotDirection = normalize ( lightCurrent . f3Direction ) ; 
+            output . aaffectinglight [ i ] . fSpotInnerCosAngle = lightCurrent . fInnerCosAngle ; 
+            output . aaffectinglight [ i ] . fSpotOuterCosAngle = lightCurrent . fOuterCosAngle ; 
+            d = abs ( distance ( lightCurrent . f3Position , output . f4Pos . xyz ) ) ; 
+            output . aaffectinglight [ i ] . fLuminosity = 1.0f / ( 1.0f + lightCurrent . fAttenuationConstant + lightCurrent . fAttenuationLinear * d + lightCurrent . fAttenuationQuadratic * pow ( max ( d , 1 ) , 2 ) ) ; 
+            output . aaffectinglight [ i ] . f4LightPos = mul ( input . f4Pos , mul ( mWorld , lightCurrent . mLightViewProj ) ) ; 
+            output . aaffectinglight [ i ] . bSoftShadow = lightCurrent . bSoftShadow ; 
+            output . aaffectinglight [ i ] . bCascadedShadow = lightCurrent . bCascadedShadow ; 
+        } 
+        else if ( lightCurrent . uType == 2 ) 
+        { 
+            output . aaffectinglight [ i ] . f3Direction = normalize ( output . f4VertexPos . xyz - lightCurrent . f3Position ) ; 
+            d = abs ( distance ( lightCurrent . f3Position , output . f4Pos . xyz ) ) ; 
+            output . aaffectinglight [ i ] . fLuminosity = 1 / ( 1 + lightCurrent . fAttenuationConstant + lightCurrent . fAttenuationLinear * d + lightCurrent . fAttenuationQuadratic * pow ( max ( d , 1 ) , 2 ) ) ; 
+        } 
+        else 
+        { 
+            output . aaffectinglight [ i ] . f3Direction = - normalize ( lightCurrent . f3Direction ) ; 
+            output . aaffectinglight [ i ] . fLuminosity = 1 ; 
+        } 
+        
     } 
-    else if ( lightCurrent . uType == 2 ) 
-    { 
-        output . aaffectinglight [ 0 ] . f3Direction = normalize ( output . f4VertexPos . xyz - lightCurrent . f3Position ) ; 
-        d = abs ( distance ( lightCurrent . f3Position , output . f4Pos . xyz ) ) ; 
-        output . aaffectinglight [ 0 ] . fLuminosity = 1 / ( 1 + lightCurrent . fAttenuationConstant + lightCurrent . fAttenuationLinear * d + lightCurrent . fAttenuationQuadratic * pow ( max ( d , 1 ) , 2 ) ) ; 
-    } 
-    else 
-    { 
-        output . aaffectinglight [ 0 ] . f3Direction = - normalize ( lightCurrent . f3Direction ) ; 
-        output . aaffectinglight [ 0 ] . fLuminosity = 1 ; 
-    } 
-    
-#line 241
+    output . iLightCount = iLightCount ; 
     return output ; 
 } 
 
+#line 261
 float HalfLambert ( float3 f3Vec1 , float3 f3Vec2 ) 
 { 
     float fProduct = dot ( f3Vec1 , f3Vec2 ) ; 
@@ -230,7 +242,7 @@ float BlinnPhongSpec ( float3 f3Normal , float3 f3LightDir , float fSpecpower )
     return pow ( saturate ( dot ( f3Normal , f3HalfAngle ) ) , fSpecpower ) ; 
 } 
 
-#line 264
+#line 281
 float3 CubicMapping ( float3 f3 ) 
 { 
     float fx = abs ( f3 . x ) ; 
@@ -324,7 +336,7 @@ float3 SphericalMapping ( float3 f3 )
 { 
     float phi = 0 ; 
     
-#line 358
+#line 375
     phi = atan ( f3 . x / f3 . z ) ; 
     if ( f3 . x >= 0 ) 
     { 
@@ -360,7 +372,7 @@ float3 SphericalMapping ( float3 f3 )
     return f3Out ; 
 } 
 
-#line 410
+#line 426
 static const float3 af3Blur [ 25 ] = 
 { 
     - 2.0f , - 2.0f , 0.00366300366f , 
@@ -396,17 +408,16 @@ static const float3 af3Blur [ 25 ] =
     0.0f , 0.0f , 0.15018315f 
 } ; 
 
-#line 448
+#line 464
 float4 PS ( PS_INPUT input ) : SV_Target 
 { 
-    float3 f3Vertex2Cam = input . f4VertexPos . xyz - input . f3CamPos ; 
-    float3 f3EyeVector = normalize ( f3Vertex2Cam ) ; 
+    float3 f3EyeVector = normalize ( input . f4VertexPos . xyz - input . f3CamPos ) ; 
     
-#line 454
+#line 469
     if ( uixPics > 1 || uiyPics > 1 ) 
     { 
         
-#line 458
+#line 473
         float fxPic = uixPos ; 
         float fyPic = uiyPos ; 
         float fxPics = uixPics ; 
@@ -417,8 +428,7 @@ float4 PS ( PS_INPUT input ) : SV_Target
     
     if ( uPOM == 1 ) 
     { 
-        
-        const float3 f3B = - input . f3Bitangent ; 
+        const float3 f3B = - cross ( input . f3Normal , input . f3Tangent ) ; 
         
         const float3x3 f3x3ToTangent = transpose ( float3x3 ( input . f3Tangent , f3B , input . f3Normal ) ) ; 
         const float3 f3ViewDirTS = mul ( f3EyeVector , f3x3ToTangent ) ; 
@@ -427,7 +437,6 @@ float4 PS ( PS_INPUT input ) : SV_Target
         
         const int iSampleCount = ( ( int ) lerp ( 20 , 5 , dot ( f3EyeVector , input . f3Normal ) ) ) ; 
         
-#line 479
         const float fZStep = 1.f / ( float ) iSampleCount ; 
         const float2 f2TexStep = f2MaxParallaxOffset * fZStep ; 
         
@@ -480,95 +489,117 @@ float4 PS ( PS_INPUT input ) : SV_Target
         input . f3Normal = normalize ( input . f3Normal ) ; 
     } 
     
-#line 532
-    float fShading = saturate ( dot ( - input . aaffectinglight [ 0 ] . f3Direction , input . f3Normal ) ) ; 
+#line 546
+    float4 f4Diffuse = 0 ; 
+    f4Diffuse . xyz = 0.0f ; 
+    float fShading = 0 ; 
     
-#line 535
-    float frShadowFactor = 1.0f ; 
-    float fFallOff = 1.0f ; 
-    
-    if ( input . aaffectinglight [ 0 ] . uType == 3 ) 
+#line 556
+    if ( input . iLightCount < 1 ) 
+    input . iLightCount = 1 ; 
+    [ unroll ] 
+    for ( uint i = 0 ; i < input . iLightCount ; i ++ ) 
     { 
-        float fCosCurAngle = dot ( input . aaffectinglight [ 0 ] . f3Direction , input . aaffectinglight [ 0 ] . f3SpotDirection ) ; 
+        float frShadowFactor = 1.0f ; 
+        float frFallOff = 1.0f ; 
+        float fShadingThisLight = saturate ( dot ( - input . aaffectinglight [ i ] . f3Direction , input . f3Normal ) ) ; 
         
-        if ( fCosCurAngle > input . aaffectinglight [ 0 ] . fSpotOuterCosAngle ) 
+        fShading += fShadingThisLight ; 
+        
+        if ( input . aaffectinglight [ i ] . uType == 3 ) 
         { 
-            if ( fCosCurAngle < input . aaffectinglight [ 0 ] . fSpotInnerCosAngle ) 
+            frShadowFactor = 0.0f ; 
+            
+            float fCosCurAngle = dot ( input . aaffectinglight [ i ] . f3Direction , input . aaffectinglight [ i ] . f3SpotDirection ) ; 
+            
+            if ( fCosCurAngle > input . aaffectinglight [ i ] . fSpotOuterCosAngle ) 
             { 
-                fFallOff = ( fCosCurAngle - input . aaffectinglight [ 0 ] . fSpotOuterCosAngle ) / ( input . aaffectinglight [ 0 ] . fSpotInnerCosAngle - input . aaffectinglight [ 0 ] . fSpotOuterCosAngle ) ; 
+                if ( fCosCurAngle < input . aaffectinglight [ i ] . fSpotInnerCosAngle ) 
+                { 
+                    frFallOff = ( fCosCurAngle - input . aaffectinglight [ i ] . fSpotOuterCosAngle ) / ( input . aaffectinglight [ i ] . fSpotInnerCosAngle - input . aaffectinglight [ i ] . fSpotOuterCosAngle ) ; 
+                } 
+                
+#line 581
+                if ( input . aaffectinglight [ i ] . bCauseShadow ) 
+                { 
+                    
+                    input . aaffectinglight [ i ] . f4LightPos . xyz /= input . aaffectinglight [ i ] . f4LightPos . w ; 
+                    
+#line 587
+                    input . aaffectinglight [ i ] . f4LightPos . x = input . aaffectinglight [ i ] . f4LightPos . x * 0.5f + 0.5f ; 
+                    input . aaffectinglight [ i ] . f4LightPos . y = input . aaffectinglight [ i ] . f4LightPos . y * ( - 0.5f ) + 0.5f ; 
+                    if ( input . aaffectinglight [ i ] . bSoftShadow ) 
+                    { 
+                        float fWidth , fHeight ; 
+                        shadowMap . GetDimensions ( fWidth , fHeight ) ; 
+                        
+                        float fWidthInv = 1.31613f / fWidth ; 
+                        float fHeightInv = 1.31613f / fHeight ; 
+                        
+                        frShadowFactor = 0.0f ; 
+                        [ unroll ] 
+                        for ( int iBlur = 0 ; iBlur < 25 ; iBlur ++ ) 
+                        { 
+                            float2 f2 ; 
+                            f2 . x = input . aaffectinglight [ i ] . f4LightPos . x + af3Blur [ iBlur ] . x * fWidthInv ; 
+                            f2 . y = input . aaffectinglight [ i ] . f4LightPos . y + af3Blur [ iBlur ] . y * fHeightInv ; 
+                            
+                            frShadowFactor += shadowMap . SampleCmpLevelZero ( shadowSampler , f2 . xy , input . aaffectinglight [ i ] . f4LightPos . z ) * af3Blur [ iBlur ] . z ; 
+                        } 
+                    } 
+                    else 
+                    frShadowFactor = shadowMap . SampleCmpLevelZero ( shadowSampler , input . aaffectinglight [ i ] . f4LightPos . xy , input . aaffectinglight [ i ] . f4LightPos . z ) ; 
+                } 
+            } 
+            else 
+            { 
+                frFallOff = 0.0f ; 
+                frShadowFactor = 0.0f ; 
             } 
             
-#line 550
-            if ( input . aaffectinglight [ 0 ] . bCauseShadow ) 
-            { 
-                
-                input . aaffectinglight [ 0 ] . f4LightPos . xyz /= input . aaffectinglight [ 0 ] . f4LightPos . w ; 
-                
-#line 556
-                input . aaffectinglight [ 0 ] . f4LightPos . x = input . aaffectinglight [ 0 ] . f4LightPos . x * 0.5f + 0.5f ; 
-                input . aaffectinglight [ 0 ] . f4LightPos . y = input . aaffectinglight [ 0 ] . f4LightPos . y * ( - 0.5f ) + 0.5f ; 
-                
-                if ( input . aaffectinglight [ 0 ] . bSoftShadow ) 
-                { 
-                    float fWidth , fHeight ; 
-                    shadowMap . GetDimensions ( fWidth , fHeight ) ; 
-                    
-                    float fWidthInv = 1.31613f / fWidth ; 
-                    float fHeightInv = 1.31613f / fHeight ; 
-                    
-                    frShadowFactor = 0.0f ; 
-                    [ unroll ] 
-                    for ( int i = 0 ; i < 25 ; i ++ ) 
-                    { 
-                        float2 f2 ; 
-                        f2 . x = input . aaffectinglight [ 0 ] . f4LightPos . x + af3Blur [ i ] . x * fWidthInv ; 
-                        f2 . y = input . aaffectinglight [ 0 ] . f4LightPos . y + af3Blur [ i ] . y * fHeightInv ; 
-                        
-                        frShadowFactor += shadowMap . SampleCmpLevelZero ( shadowSampler , f2 . xy , input . aaffectinglight [ 0 ] . f4LightPos . z ) * af3Blur [ i ] . z ; 
-                    } 
-                } 
-                else 
-                frShadowFactor = shadowMap . SampleCmpLevelZero ( shadowSampler , input . aaffectinglight [ 0 ] . f4LightPos . xy , input . aaffectinglight [ 0 ] . f4LightPos . z ) ; 
-            } 
         } 
         else 
-        fFallOff = 0.0f ; 
-        
+        { 
+            frFallOff = 1.0f ; 
+            frShadowFactor = 1.0f ; 
+        } 
+        f4Diffuse += fShadingThisLight * input . aaffectinglight [ i ] . fLuminosity * input . aaffectinglight [ i ] . f4Color * frShadowFactor * frFallOff ; 
     } 
+    f4Diffuse . a = 1.0f ; 
     
-#line 588
-    float4 f4Diffuse = fShading * input . aaffectinglight [ 0 ] . fLuminosity * input . aaffectinglight [ 0 ] . f4Color * frShadowFactor * fFallOff ; 
-    
-#line 592
-    float fSpecular = 0 ; 
+#line 629
+    float fSpecular = 0.0f ; 
     float4 f4SpecCol ; 
+    f4SpecCol . rgb = 0.0f ; 
+    f4SpecCol . a = 1.0f ; 
     float4 f4ReflectionTexture ; 
     if ( uSpecular ) 
     { 
-        float3 f3Half = - normalize ( input . aaffectinglight [ 0 ] . f3Direction + f3EyeVector ) ; 
-        fSpecular += pow ( saturate ( dot ( normalize ( input . f3Normal ) , f3Half ) ) , fSpecularSharpness ) ; 
-        if ( uSpecularWhite ) 
-        f4ReflectionTexture = 1 ; 
-        else if ( uSpecularAsImage ) 
-        f4ReflectionTexture = tex2D [ 0 ] . Sample ( linearSampler , input . f2TexCoord ) ; 
-        else 
-        f4ReflectionTexture = tex2D [ 2 ] . Sample ( linearSampler , input . f2TexCoord ) ; 
-        f4SpecCol . rgb = 2 * input . aaffectinglight [ 0 ] . f4Color . rgb * f4ReflectionTexture . b * ( fSpecular * f4Diffuse . rgb ) ; 
-        f4SpecCol . a = 0 ; 
-        saturate ( f4SpecCol ) ; 
-        f4SpecCol *= fSpecularStrength ; 
+        [ unroll ] 
+        for ( uint i = 0 ; i < input . iLightCount ; i ++ ) 
+        { 
+            float3 f3Half = - normalize ( input . aaffectinglight [ i ] . f3Direction + f3EyeVector ) ; 
+            fSpecular = pow ( saturate ( dot ( normalize ( input . f3Normal ) , f3Half ) ) , fSpecularSharpness ) ; 
+            if ( uSpecularWhite ) 
+            f4ReflectionTexture = 1.0f ; 
+            else if ( uSpecularAsImage ) 
+            f4ReflectionTexture = tex2D [ 0 ] . Sample ( linearSampler , input . f2TexCoord ) ; 
+            else 
+            f4ReflectionTexture = tex2D [ 2 ] . Sample ( linearSampler , input . f2TexCoord ) ; 
+            f4SpecCol . rgb += 2.0f * input . aaffectinglight [ i ] . f4Color . rgb * f4ReflectionTexture . b * ( fSpecular * f4Diffuse . rgb ) ; 
+        } 
+        f4SpecCol . a = 1.0f ; 
     } 
     else 
     { 
-        f4ReflectionTexture . rgb = 0 ; 
-        f4ReflectionTexture . a = 1 ; 
-        f4SpecCol = 0 ; 
+        f4ReflectionTexture . rgb = 0.0f ; 
+        f4ReflectionTexture . a = 1.0f ; 
+        f4SpecCol = 0.0f ; 
     } 
     
-#line 619
-    float4 f4ColorOut ; 
+#line 659
     float4 f4ColGlow ; 
-    float fShadingInv = max ( 0.0f , 1.0f - fShading * fGlowSharpness ) ; 
+    float fShadingInv = 1.0f - fShading ; 
     if ( uGlow ) 
     { 
         if ( uGlowAsImage ) 
@@ -583,13 +614,7 @@ float4 PS ( PS_INPUT input ) : SV_Target
     f4ColGlow *= fGlowStrength ; 
     f4ColGlow . a = 1 ; 
     
-    if ( uImage ) 
-    { 
-        f4ColorOut = tex2D [ 0 ] . Sample ( linearSampler , input . f2TexCoord ) ; 
-        f4ColorOut = mul ( f4ColorOut , mColor ) * f4ReflectionTexture . a + f4ColorOut * ( 1.0f - f4ReflectionTexture . a ) ; 
-    } 
-    else 
-    f4ColorOut . rgba = 0.0f ; 
+    float4 f4ColorOut = tex2D [ 0 ] . Sample ( linearSampler , input . f2TexCoord ) ; 
     
     if ( uChromaKeying ) 
     { 
@@ -598,10 +623,10 @@ float4 PS ( PS_INPUT input ) : SV_Target
         uint iLevels ; 
         tex2D [ 0 ] . GetDimensions ( 0 , iWidth , iHeight , iLevels ) ; 
         
-#line 652
+#line 685
         float4 f4ChromaKey = tex2D [ 0 ] . Load ( int3 ( 0 , 0 , 0 ) ) ; 
         
-#line 655
+#line 688
         float4 f4Texel = tex2D [ 0 ] . Load ( int3 ( input . f2TexCoord . x * iWidth , input . f2TexCoord . y * iHeight , 0 ) ) ; 
         
         if ( ( f4Texel . r == f4ChromaKey . r ) && ( f4Texel . g == f4ChromaKey . g ) && ( f4Texel . b == f4ChromaKey . b ) ) 
@@ -609,17 +634,21 @@ float4 PS ( PS_INPUT input ) : SV_Target
         else 
         f4ColorOut = f4Texel ; 
     } 
+    f4ColorOut = mul ( f4ColorOut , mColor ) * f4ReflectionTexture . a + f4ColorOut * ( 1.0f - f4ReflectionTexture . a ) ; 
     
+#line 699
     if ( uShadingOn ) 
-    f4ColorOut . rgb = f4Diffuse . rgb * f4ColorOut . rgb + f4ColGlow . rgb ; 
     
+    f4ColorOut . rgb = f4Diffuse . rgb * f4ColorOut . rgb + fShadingInv * f4ColGlow . rgb ; 
+    
+#line 706
     float fEdgeInv = max ( dot ( - f3EyeVector , input . f3Normal ) , 0 ) ; 
     float fEdge = 1.0f - fEdgeInv ; 
     
-#line 670
+#line 710
     float fEdgeFresnel = fEdge * fEdge * fEdge * fEdge * fEdge * fFresnel ; 
     
-#line 673
+#line 713
     if ( uEnvironment ) 
     { 
         float fCompReflectionAddOn = ( 1.0f - f4ReflectionTexture . g ) * fEdgeFresnel ; 
@@ -647,7 +676,7 @@ float4 PS ( PS_INPUT input ) : SV_Target
             f3UVReflection = SphericalMapping ( f3Reflection ) ; 
         } 
         
-#line 707
+#line 747
         uint iWidth ; 
         uint iHeight ; 
         uint iLevels ; 
@@ -667,6 +696,7 @@ float4 PS ( PS_INPUT input ) : SV_Target
         if ( f3UVReflection . z > 0.9 ) 
         { 
             f4ReflColor = tex2D [ 4 ] . Load ( int3 ( f2UVReflection . x * iWidth , f2UVReflection . y * iHeight , 0 ) ) ; 
+            
         } 
         else 
         { 
@@ -685,7 +715,7 @@ float4 PS ( PS_INPUT input ) : SV_Target
     else 
     f4ColorOut . a = 1.0f ; 
     
-#line 746
+#line 787
     if ( uTexSSS ) 
     { 
         const float fMaterialThickness = f4SSSBRDFParams . r ; 
@@ -704,38 +734,39 @@ float4 PS ( PS_INPUT input ) : SV_Target
         float4 f4LightCol ; 
         float4 f4FinColor ; 
         
-        f3LightDir = input . aaffectinglight [ 0 ] . f3Direction ; 
-        f4LightPos = input . aaffectinglight [ 0 ] . f4LightPos ; 
-        f4LightCol = input . aaffectinglight [ 0 ] . f4Color ; 
-        
-        float4 f4DotLN = HalfLambert ( f3LightDir , input . f3Normal ) ; 
-        
-        float3 f3IndirectLightComponent = ( float3 ) ( fMaterialThickness * max ( 0 , dot ( - input . f3Normal , f3LightDir ) ) ) ; 
-        f3IndirectLightComponent += HalfLambert ( f3EyeVector , f3LightDir ) * fMaterialThickness ; 
-        f3IndirectLightComponent . r *= fExtinctionCoefficientRed ; 
-        f3IndirectLightComponent . g *= fExtinctionCoefficientGreen ; 
-        f3IndirectLightComponent . b *= fExtinctionCoefficientBlue ; 
-        f3IndirectLightComponent . rgb *= fThickValue ; 
-        
-        float3 f3Rim = ( float3 ) ( 1.f - max ( 0.f , dot ( input . f3Normal , - f3EyeVector ) ) ) ; 
-        f3Rim *= f3Rim ; 
-        f3Rim *= max ( 0.f , dot ( input . f3Normal , f3LightDir ) ) * f3SpecColor ; 
-        
-        f4DotLN *= f4TexColor ; 
-        
-        f4FinColor = f4DotLN + float4 ( f3IndirectLightComponent , 1.f ) ; 
-        f4FinColor . a = 1.f ; 
-        f4FinColor . rgb += f3Rim * fRimScalar ; 
-        f4FinColor . rgb += ( BlinnPhongSpec ( input . f3Normal , f3LightDir , fSpecPower ) * f3SpecColor * fStrengthSSSHighlight ) ; 
-        f4FinColor . rgb *= f4LightCol . rgb ; 
-        
+#line 806
+        for ( uint i = 0 ; i < input . iLightCount ; i ++ ) 
+        { 
+            
+            f3LightDir = input . aaffectinglight [ i ] . f3Direction ; 
+            f4LightPos = input . aaffectinglight [ i ] . f4LightPos ; 
+            f4LightCol = input . aaffectinglight [ i ] . f4Color ; 
+            
+            float4 f4DotLN = HalfLambert ( f3LightDir , input . f3Normal ) ; 
+            
+            float3 f3IndirectLightComponent = ( float3 ) ( fMaterialThickness * max ( 0 , dot ( - input . f3Normal , f3LightDir ) ) ) ; 
+            f3IndirectLightComponent += HalfLambert ( f3EyeVector , f3LightDir ) * fMaterialThickness ; 
+            f3IndirectLightComponent . r *= fExtinctionCoefficientRed ; 
+            f3IndirectLightComponent . g *= fExtinctionCoefficientGreen ; 
+            f3IndirectLightComponent . b *= fExtinctionCoefficientBlue ; 
+            f3IndirectLightComponent . rgb *= fThickValue ; 
+            
+            float3 f3Rim = ( float3 ) ( 1.f - max ( 0.f , dot ( input . f3Normal , - f3EyeVector ) ) ) ; 
+            f3Rim *= f3Rim ; 
+            f3Rim *= max ( 0.f , dot ( input . f3Normal , f3LightDir ) ) * f3SpecColor ; 
+            
+            f4DotLN *= f4TexColor ; 
+            
+            f4FinColor = f4DotLN + float4 ( f3IndirectLightComponent , 1.f ) ; 
+            f4FinColor . a = 1.f ; 
+            f4FinColor . rgb += f3Rim * fRimScalar ; 
+            f4FinColor . rgb += ( BlinnPhongSpec ( input . f3Normal , f3LightDir , fSpecPower ) * f3SpecColor * fStrengthSSSHighlight ) ; 
+            f4FinColor . rgb *= f4LightCol . rgb ; 
+        } 
         f4ColorOut *= f4FinColor ; 
     } 
     
-#line 793
-    if ( frTransparencyEdge < 1000000.0f ) 
-    f4ColorOut . a *= min ( frTransparencyEdge * fEdgeInv , 1.0f ) ; 
-    
+#line 842
     if ( uStyleFog ) 
     { 
         f4ColorOut . rgb += length ( input . f3CamPos - ( float3 ) input . f4VertexPos ) / f4FogParams . a ; 
@@ -749,11 +780,12 @@ float4 PS ( PS_INPUT input ) : SV_Target
     if ( uPostprocessing ) 
     { 
         
-#line 811
+#line 860
         f4ColorOut . rgb *= 0.5 ; 
         f4ColorOut . rgb += 0.25 ; 
     } 
     
+#line 866
     return f4ColorOut ; 
 } 
  

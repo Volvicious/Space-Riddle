@@ -27,6 +27,8 @@ private:
 
 	//Material Raumschiff
 	CMaterial m_zmRaumschiff;
+	CLightSpot m_zls;
+	CPlacement m_zpSonne;
 
 
 	

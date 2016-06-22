@@ -100,7 +100,7 @@ void SceneHandler::FrageTranslation()
 
 
 
-void SceneHandler::MeteoritenTick()
+void SceneHandler::MeteoritenTick(float fTimeDelta)
 {
 	if (MeteoritenSwitch == true)
 	{
@@ -121,7 +121,7 @@ void SceneHandler::MeteoritenTick()
 	}
 
 	//Meteoriten erneuern
-	m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff());
+	m_zMeteoriten.Tick(m_zRaumschiff.getpRaumschiff(), fTimeDelta);
 
 	if (m_zHitbox.getCollision() == true)
 	{
@@ -133,7 +133,7 @@ void SceneHandler::MeteoritenTick()
 	}
 
 	//Wenn alle Meteoriten vorbei sind
-	if (m_zMeteoriten.getiMeteorNummer() == MAX_METEOR - 1)
+	if (m_zMeteoriten.getiMeteorNummer() == MAX_METEOR)
 	{
 		m_zMeteoriten.getiMeteorNummer();
 		iScene = Fragen;
@@ -184,30 +184,27 @@ void SceneHandler::FrageTick()
 	//Die Hitbox darf nur einmal Kollidieren und nicht mehrmals
 	if (m_zHitbox.getCollision() == true)
 	{
-		////Überprüfen mit welcher Frage ich kollidiert bin
-		//if (j < 4 && j > -1)
-		//{
-		//	if(Fragenhandler.IsAntwortRichtig(j))
-		//	{
-		//		m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() + 3);
-		//		m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
-		//		iScene = LevelCompleted;
-		//		m_zIngameOverlays.SwitchOn(1);
-		//	}
-		//	else
-		//	{
-		//		m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() - 3);
-		//	}
-		//}
-		//else if (j == 4)
-		//{
-		//	m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
-		//	iScene = LevelCompleted;
+		//Überprüfen mit welcher Frage ich kollidiert bin
+		/*if (j > -1)
+		{
+			if(Fragenhandler.IsAntwortRichtig(j))
+			{
+				m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() + 3);
+				m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
+				iScene = LevelCompleted;
+				m_zIngameOverlays.SwitchOn(1);
+			}
+			else
+			{
+				m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() - 3);
+				m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
+			}
+		}*/
+		
 
-		//	//Level Completed Bild
-		//	m_zIngameOverlays.SwitchOn(1);
-
-		//}
+		//Level Completed
+		iScene = LevelCompleted;
+		m_zIngameOverlays.SwitchOn(1);
 	}
 
 	//FirstTick
@@ -218,6 +215,12 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 {	
 	//Spiel pausieren
 	iScene = m_zSteuerung.PauseGame(iScene, &m_zKeyboard);
+
+	if (iScene == Intro)
+	{
+		//Todo: IF Animation zuende oder Leertaste
+		iScene = m_zSteuerung.Hauptmenue(iScene, &m_zKeyboard);
+	}
 
 	//Hauptmenü getickt
 	if (iScene == Hauptmenü)
@@ -285,8 +288,8 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		//Meteoriten
 		if (iScene == Meteoriten)
 		{
-			m_fGeschwindigkeit = -40.0f;
-			MeteoritenTick();
+			m_fGeschwindigkeit = -60.0f;
+			MeteoritenTick(fTimeDelta);
 		}
 
 		//Frage
@@ -297,20 +300,22 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		}
 
 		//Wenn das Leben auf 0 ist hat man verloren
-		/*if (m_zLLA.getLebenAnzahl() == 0)
-		{
-			iScene = Verloren;
-		}*/
+		//if (m_zLLA.getLebenAnzahl() <= 0)
+		//{
+		//	iScene = Verloren;
+		//}
 	} 
 	
 	//Game Over
 	if (iScene == Verloren)
 	{
 		//Game Over
+		m_zIngameOverlays.SwitchOffAll();
 		m_zIngameOverlays.SwitchOn(2);
 		m_zIngameOverlays.SetLayer(0, 0.9f);
 
-		//TODO: Highscoreliste anzeigen
+		//Highscoreliste anzeigen
+		iScene = m_zSteuerung.Highscore(iScene, &m_zKeyboard);
 	}
 
 	//Pause gedrückt
@@ -331,7 +336,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		//Fragen hinter mir ausblenden
 		m_zFrageGrafik.SwitchOff();
 
-		//Wenn Enter gedrückt wird gehts weiter
+		//Wenn Leertaste gedrückt wird gehts weiter
 		iScene = m_zSteuerung.ContinueGame(iScene, &m_zKeyboard);
 
 		//Switchscene
@@ -339,5 +344,11 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 		//Meteoriten starten
 		MeteoritenSwitch = true;
+	}
+
+	if (iScene == Highscore)
+	{
+		//Todo: Highscore Overlay anzeigen
+		iScene = m_zSteuerung.Hauptmenue(iScene, &m_zKeyboard);
 	}
 }

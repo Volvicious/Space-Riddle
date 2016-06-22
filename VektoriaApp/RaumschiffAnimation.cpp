@@ -30,7 +30,9 @@ bool CRaumschiffAnimation::Run(CPlacement * ptrRaumschiff, CDeviceKeyboard * ptr
 		else {
 			if (iAHit == 2) {
 				
-				if (ptrRaumschiff->GetTranslation().GetX() > -14) {
+				float fDistance = sqrt((ptrRaumschiff->GetTranslation().GetX()*ptrRaumschiff->GetTranslation().GetX() + ptrRaumschiff->GetTranslation().GetY()*ptrRaumschiff->GetTranslation().GetY()));
+
+				if (fDistance < 12.5F) {
 
 					bDoRotateA = !bDoRotateD;
 					fTimeGesA = 0.0F;
@@ -53,7 +55,9 @@ bool CRaumschiffAnimation::Run(CPlacement * ptrRaumschiff, CDeviceKeyboard * ptr
 		else {
 			if (iDHit == 2) {
 
-				if (ptrRaumschiff->GetTranslation().GetX() < 14) {
+				float fDistance = sqrt((ptrRaumschiff->GetTranslation().GetX()*ptrRaumschiff->GetTranslation().GetX() + ptrRaumschiff->GetTranslation().GetY()*ptrRaumschiff->GetTranslation().GetY()));
+
+				if (fDistance < 12.5F) {
 
 					bDoRotateD = !bDoRotateA;
 					fTimeGesD = 0.0F;

@@ -1,4 +1,4 @@
-#line 1 "\\\\?\\C:\\Projects\\Vektoria_2016-06-09a_Patch3\\Work\\VektoriaApp\\Shaders\\Source\\postprocessing.hlsl"
+#line 1 "\\\\?\\C:\\Projects\\Vektoria_2016-06-20\\Work\\VektoriaApp\\Shaders\\Source\\postprocessing.hlsl"
 
 
 #line 1 "postconstants.h"
@@ -84,7 +84,7 @@ float3 ToneMap ( float3 f3Color , float fAvgLuminance , float fThreshold , float
     return f3Color ; 
 } 
 
-#line 242 "\\\\?\\C:\\Projects\\Vektoria_2016-06-09a_Patch3\\Work\\VektoriaApp\\Shaders\\Source\\postprocessing.hlsl"
+#line 12 "\\\\?\\C:\\Projects\\Vektoria_2016-06-20\\Work\\VektoriaApp\\Shaders\\Source\\postprocessing.hlsl"
 static const float afBlur9 [ 361 ] = 
 { 
     0.03916388f , 
@@ -450,7 +450,7 @@ static const float afBlur9 [ 361 ] =
     0.03916388f 
 } ; 
 
-#line 978
+#line 379
 static const float3 af3Blur [ 25 ] = 
 { 
     - 2.0f , - 2.0f , 0.00366300366f , 
@@ -492,10 +492,12 @@ float CalcGauss ( float fPixDist , float fSigma )
     return ( fG * exp ( - ( fPixDist * fPixDist ) / ( 2 * fSigma * fSigma ) ) ) ; 
 } 
 
-#line 1029
+#line 430
 Texture2D tex2D [ 8 ] : register ( t15 ) ; 
 
-#line 1033
+Texture2D texDepth : register ( t24 ) ; 
+
+#line 437
 struct VS_INPUT_POST 
 { 
     float4 f4Pos : POSITION ; 
@@ -505,7 +507,7 @@ struct VS_INPUT_POST
     float3 f3Bitangent : BITANGENT ; 
 } ; 
 
-#line 1043
+#line 447
 struct PS_INPUT_POST 
 { 
     float4 f4Pos : SV_POSITION0 ; 
@@ -513,7 +515,7 @@ struct PS_INPUT_POST
     float4 f4VertexPos : TEXCOORD2 ; 
 } ; 
 
-#line 1053
+#line 457
 PS_INPUT_POST VS_POST ( VS_INPUT_POST input ) 
 { 
     PS_INPUT_POST output = ( PS_INPUT_POST ) 0 ; 
@@ -523,14 +525,14 @@ PS_INPUT_POST VS_POST ( VS_INPUT_POST input )
     return output ; 
 } 
 
-#line 1065
+#line 469
 float4 PS_POST ( PS_INPUT_POST input ) : SV_Target 
 { 
     float4 f4ColorOut = 1.0f ; 
     
     f4ColorOut . rgb = ( tex2D [ 7 ] . Sample ( linearSampler , input . f2TexCoord ) ) . rgb ; 
     
-#line 1072
+#line 476
     uint iWidth ; 
     uint iHeight ; 
     uint iLevels ; 
@@ -539,12 +541,15 @@ float4 PS_POST ( PS_INPUT_POST input ) : SV_Target
     int2 i2 ; 
     i2 . x = input . f2TexCoord . x * iWidth ; 
     i2 . y = input . f2TexCoord . y * iHeight ; 
+    if ( uGauss ) 
+    { 
+        i2 *= 2 ; 
+    } 
     
-#line 1133
+#line 490
     f4ColorOut . rgb -= 0.25f ; 
     f4ColorOut . rgb *= 2.0f ; 
     
-#line 1142
     if ( uBloom ) 
     { 
         float4 f4O ; 
@@ -569,17 +574,17 @@ float4 PS_POST ( PS_INPUT_POST input ) : SV_Target
                 if ( f4ColorPix . r > 1.0f || f4ColorPix . g > 1.0f || f4ColorPix . b > 1.0f ) 
                 { 
                     
-#line 1167
+#line 518
                     f4ColorOut . rgb += f4ColorPix . rgb * afBlur9 [ i ] * 0.03333 ; 
                 } 
             } 
         } 
     } 
-    
     float fMaxRGB = max ( max ( f4ColorOut . r , f4ColorOut . g ) , f4ColorOut . b ) ; 
     if ( fMaxRGB > 1.0f ) 
     f4ColorOut . rgb /= fMaxRGB ; 
     
+#line 529
     f4ColorOut . a = 1.0f ; 
     return f4ColorOut ; 
 }  

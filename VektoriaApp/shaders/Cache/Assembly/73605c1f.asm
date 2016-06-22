@@ -3,12 +3,12 @@
 //
 //
 //   fxc /T ps_5_0 /O1 /E ShadowMapPS /Fo
-//    \\?\C:\Projects\Vektoria_2016-06-09a_Patch3\Work\VektoriaApp\Shaders\Cache\Object\Release\ShadowMapPS.obj
+//    \\?\C:\Projects\Vektoria_2016-06-20\Work\VektoriaApp\Shaders\Cache\Object\Release\ShadowMapPS.obj
 //    /Fe
-//    \\?\C:\Projects\Vektoria_2016-06-09a_Patch3\Work\VektoriaApp\Shaders\Cache\Error\ShadowMapPS.txt
+//    \\?\C:\Projects\Vektoria_2016-06-20\Work\VektoriaApp\Shaders\Cache\Error\ShadowMapPS.txt
 //    /Fc
-//    \\?\C:\Projects\Vektoria_2016-06-09a_Patch3\Work\VektoriaApp\Shaders\Cache\Assembly\73605c1f.asm
-//    \\?\C:\Projects\Vektoria_2016-06-09a_Patch3\Work\VektoriaApp\Shaders\Source\shadowmap.hlsl
+//    \\?\C:\Projects\Vektoria_2016-06-20\Work\VektoriaApp\Shaders\Cache\Assembly\73605c1f.asm
+//    \\?\C:\Projects\Vektoria_2016-06-20\Work\VektoriaApp\Shaders\Source\shadowmap.hlsl
 //
 //
 //

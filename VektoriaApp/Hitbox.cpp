@@ -70,6 +70,8 @@ int CHitbox::HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage)
 					{
 						switch (i)
 						{
+						Kollision = true;
+
 						case 0: OutputDebugString("Kugel 1"); return 0; 
 							break;
 						case 1: ULDebug("Kugel 2"); return 1; 
@@ -79,14 +81,15 @@ int CHitbox::HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage)
 						case 3: ULDebug("Kugel 4"); return 3; 
 							break;
 						}
-						Kollision = true;
 					}
 				}
 				else if (frage->getpFrage(1)->GetTranslation().GetZ() >= raumschiff->getpRaumschiff()->GetTranslation().GetZ())
 				{
-					return 4; 
 					ULDebug("Garnix");
 					iFrage = 2;
+					Kollision = true;
+					return 4;
+
 				}
 			}
 		}

@@ -89,7 +89,7 @@ private:
 	CLLAnzeige m_zLLA; 
 
 	//Szenen
-	enum Szene{ Hauptmenü = 0, Meteoriten = 1, Fragen = 2, Verloren = 3, Pause = 4, Countdown = 5, LevelCompleted = 6};
+	enum Szene{ Hauptmenü = 0, Meteoriten = 1, Fragen = 2, Verloren = 3, Pause = 4, Countdown = 5, LevelCompleted = 6, Highscore = 7, Intro = 8};
 
 	//Lokale Variablen
 	float f_PosRaumschiffZ;

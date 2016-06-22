@@ -25,9 +25,6 @@ void CTextOutput::Init(CViewport * ViewPortPtr, char * caPathFont, float fxPos, 
 	writing.SetLayer(0.2F);
 	writing.Fini();
 	ViewPortPtr->AddWriting(&writing);
-
-	
-
 }
 
 void CTextOutput::Init(CViewport * ViewPortPtr, char * caPathFont,CFloatRect * floatrect_) {
@@ -64,13 +61,10 @@ void CTextOutput::Init(COverlay * OverLayPtr, char * caPathFont, float fxPos, fl
 
 	writingfont.Init(caPathFont, true);
 
-	writingfont.Fini();
 	floatrect.Init(fxPos, fyPos, fxSize, fySize);
-	floatrect.Fini();
 
 	writing.Init(floatrect, 150 , &writingfont);
 	writing.SetLayer(0.2F);
-	writing.Fini();
 
 	OverLayPtr->AddWriting(&writing);
 }

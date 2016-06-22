@@ -14,14 +14,16 @@ public:
 	CSteuerung();
 	~CSteuerung();
 
-	void Tick(float fGeschwindigkeit, CPlacement * placement, CDeviceKeyboard * keyboard);
-	void MaxTube(float fGeschwindigkeit, CPlacement * placement);
-	void Inertia(float fGeschwindigkeit, CPlacement * placement);
-	void SoftBorder(float fGeschwindigkeit, CPlacement * placement);
+	void Tick(float fTimeDelta, CPlacement * placement, CDeviceKeyboard * keyboard);
+	void MaxTube(float fTimeDelta, CPlacement * placement);
+	void Inertia(float fTimeDelta, CPlacement * placement);
+	void SoftBorder(float fTimeDelta, CPlacement * placement);
 
 	int PauseGame(int iScene, CDeviceKeyboard * keyboard);
 	int StartGame(int iScene, CDeviceKeyboard * keyboard);
 	int ContinueGame(int iScene, CDeviceKeyboard * keyboard);
+	int Highscore(int iScene, CDeviceKeyboard * keyboard);
+	int Hauptmenue(int iScene, CDeviceKeyboard * keyboard);
 
 private:
 
@@ -31,10 +33,10 @@ private:
 	int SceneSpeicher = 0;
 	int iScene = 0;
 
-	bool bFadeLinks = false;
-	bool bFadeRechts = false;
-	bool bFadeUnten = false;
-	bool bFadeOben = false;
+	bool bFadeSoft = false; 
+
+	float fFadeVer = 0.0F; 
+	float fFadeHor = 0.0F; 
 
 	CRaumschiffAnimation m_RAnimation; 
 

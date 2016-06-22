@@ -21,7 +21,7 @@ void CFrageGrafik::Init(CRoot * root, CScene * scene)
 
 	//Material drauf
 	//Bzw. UV Map
-	m_zmStargate.MakeTextureDiffuse("textures\\StargateTextur.png");
+	m_zmStargate.MakeTextureDiffuse("textures\\Portal.png");
 	m_zgStargate->SetMaterial(&m_zmStargate);
 
 	//Material dem Root hinzufügen

@@ -18,6 +18,7 @@ void CMaus::Init(CViewport * m_zv, CFrame * m_zf) {
 	m_zf->AddDeviceCursor(&m_zdCursor);
 	m_zv->AddOverlay(&m_zoCurser);
 	m_zoCurser.SetLayer(0.1F);
+	m_zoCurser.SwitchOff();
 }
 
 void CMaus::Run() {
