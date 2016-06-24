@@ -12,7 +12,7 @@ CHitbox::~CHitbox()
 
 void CHitbox::Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * meteor, CScene * scene)
 {
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		r[i].Init(CHVector(0.0f, 0.0f, 0.0f, 1.0f), CHVector(0.0f, 0.0f, -1.0f, 0.0f));
 		r[i].m_fMin = 0.0f;
@@ -32,24 +32,31 @@ void CHitbox::Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * m
 
 void CHitbox::RayTick(CRaumschiff * raumschiff)
 {
-	for (float i = -1.5; i <= 1.5; i += 0.75)
+	for (int i = 0; i < 3; i++)
 	{
-		r[(int)(i / 0.75f + 2.0f)].m_vOrigin.SetX(raumschiff->getpRaumschiff()->GetTranslation().GetX() + i);
-		r[(int)(i / 0.75f + 2.0f)].m_vOrigin.SetY(raumschiff->getpRaumschiff()->GetTranslation().GetY());
-		r[(int)(i / 0.75f + 2.0f)].m_vOrigin.SetZ(raumschiff->getpRaumschiff()->GetTranslation().GetZ());
+		if (i == 0)
+		{
+			r[0].m_vOrigin.SetX(raumschiff->getpRaumschiff()->GetTranslation().GetX() -0.75F);
+			r[0].m_vOrigin.SetY(raumschiff->getpRaumschiff()->GetTranslation().GetY());
+			r[0].m_vOrigin.SetZ(raumschiff->getpRaumschiff()->GetTranslation().GetZ());
+		}
+		
+		if (i == 1)
+		{
+			r[1].m_vOrigin.SetX(raumschiff->getpRaumschiff()->GetTranslation().GetX() + 0.75F);
+			r[1].m_vOrigin.SetY(raumschiff->getpRaumschiff()->GetTranslation().GetY());
+			r[1].m_vOrigin.SetZ(raumschiff->getpRaumschiff()->GetTranslation().GetZ());
+		}
+
+		if (i == 2)
+		{
+			r[2].m_vOrigin.SetX(raumschiff->getpRaumschiff()->GetTranslation().GetX());
+			r[2].m_vOrigin.SetY(raumschiff->getpRaumschiff()->GetTranslation().GetY());
+			r[2].m_vOrigin.SetZ(raumschiff->getpRaumschiff()->GetTranslation().GetZ());
+		}
 	}
 
-	//Ray 5
-	r[5].m_vOrigin.SetX(raumschiff->getpRaumschiff()->GetTranslation().GetX());
-	r[5].m_vOrigin.SetY(raumschiff->getpRaumschiff()->GetTranslation().GetY() + 0.2);
-	r[5].m_vOrigin.SetZ(raumschiff->getpRaumschiff()->GetTranslation().GetZ());
-
-	//Ray 6
-	r[6].m_vOrigin.SetX(raumschiff->getpRaumschiff()->GetTranslation().GetX());
-	r[6].m_vOrigin.SetY(raumschiff->getpRaumschiff()->GetTranslation().GetY() - 0.2F);
-	r[6].m_vOrigin.SetZ(raumschiff->getpRaumschiff()->GetTranslation().GetZ());
-
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		r[i].m_vOrigin.SetW(1.0f);
 	}
@@ -60,7 +67,7 @@ int CHitbox::HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage)
 	//Abfrage ob Antwort getroffen wird
 	for (int i = 0; i < 4; i++)
 	{
-		for (int j = 0; j <= 6; j++)
+		for (int j = 0; j < 3; j++)
 		{
 			if (frage->getpFrage(i) && frage->getpFrage(i)->m_aaabb)
 			{
@@ -101,13 +108,13 @@ int CHitbox::HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage)
 }
 void CHitbox::HitboxMeteoriten(CRaumschiff * raumschiff, CMeteorit * meteoriten)
 {
-	for (int j = 0; j <= 6; j++)
+	if (Kollision == false)
 	{
-		if (meteoriten->getpMeteor(meteoriten->getiMeteorNummer()) && meteoriten->getpMeteor(meteoriten->getiMeteorNummer())->m_aaabb)
+		for (int j = 0; j < 3; j++)
 		{
-			if (meteoriten->getpMeteor(meteoriten->getiMeteorNummer())->m_aaabb[0].Intersects(r[j]))
+			if (meteoriten->getpMeteor(meteoriten->getiMeteorNummer()) && meteoriten->getpMeteor(meteoriten->getiMeteorNummer())->m_aaabb)
 			{
-				if (Kollision == false)
+				if (meteoriten->getpMeteor(meteoriten->getiMeteorNummer())->m_aaabb[0].Intersects(r[j]))
 				{
 					Kollision = true;
 				}

@@ -25,10 +25,9 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	//m_dMaus.Init(viewPort, frame);
 
 	//Fragen
-	
 
 	//Menu
-	m_zHauptmenu.menuInit(viewPort, &m_dMaus, &m_zExplorerLernpaket, &m_zExplorerProfil, &m_zProfilhandler);
+	//m_zHauptmenu.menuInit(viewPort, &m_dMaus, &m_zExplorerLernpaket, &m_zExplorerProfil, &m_zProfilhandler);
 
 	//Lernpakete
 
@@ -57,7 +56,7 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	m_fGeschwindigkeit = -40.0f;
 
 	//Szene setzen
-	iScene = PreHauptmenue;
+	iScene = Countdown;
 }
 
 void SceneHandler::InitMeteorits(CRoot * root, CScene * scene)
@@ -141,9 +140,17 @@ void SceneHandler::MeteoritenTick(float fTimeDelta)
 		m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() - 1);
 		//TODO: Animation
 
+		iLeben -= 1;
+
 		//Crashsound
 		m_zSound.Start(3);
+
+		//Nächster Meteorit
+		m_zMeteoriten.nextMeteor();
 	}
+
+	//Kollision für nächte Hitbox aktivieren
+	m_zHitbox.setCollision(false);
 
 	//Wenn alle Meteoriten vorbei sind
 	if (m_zMeteoriten.getiMeteorNummer() == MAX_METEOR)
@@ -176,7 +183,7 @@ void SceneHandler::SwitchScene()
 	bFirstTick = true;
 }
 
-void SceneHandler::FrageTick()
+void SceneHandler::FrageTick(float fTimeDelta)
 {
 	if (FrageSwitch == true)
 	{
@@ -187,6 +194,9 @@ void SceneHandler::FrageTick()
 	//First Person umstellen
 	m_zc.setFristPerson(true);
 	m_zc.setOverlayCockpit()->SwitchOn();
+
+	//Drehen
+	m_zFrageGrafik.Tick(fTimeDelta);
 
 	if (bFirstTick == false)
 	{
@@ -227,12 +237,12 @@ void SceneHandler::FrageTick()
 void SceneHandler::Tick(float fTimeDelta, float fTime)
 {	
 	//Spiel pausieren
-
 	int iSceneSpeicher = iScene;
 
 	iScene = m_zSteuerung.PauseGame(iScene, &m_zKeyboard);
 
-	if (iSceneSpeicher == Pause && iSceneSpeicher != iScene) {
+	if (iSceneSpeicher == Pause && iSceneSpeicher != iScene)
+	{
 		m_zHighscore.GoOn(fTime);
 	}
 
@@ -242,7 +252,6 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		iScene = m_zSteuerung.Hauptmenue(iScene, &m_zKeyboard);
 	
 	}
-
 
 	if (iScene == PreHauptmenue) {
 
@@ -282,7 +291,8 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		}
 
 		iScene = m_zSteuerung.StartGame(iScene, &m_zKeyboard);
-		if (iScene == 1) {
+		if (iScene == 1)
+		{
 			m_zHighscore.Start(fTimeDelta);
 		}
 
@@ -293,7 +303,8 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	//Tick für Spiel
 	if (iScene == Meteoriten || iScene == Fragen) 
 	{
-		if (m_zKeyboard.KeyDown(DIK_F)) {
+		if (m_zKeyboard.KeyDown(DIK_F)) 
+		{
 			m_zHighscore.SubstractFromHighscore(3);
 		}
 
@@ -336,13 +347,17 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		if (iScene == Fragen)
 		{
 			m_fGeschwindigkeit = -10.0f;
-			FrageTick();
+			FrageTick(fTimeDelta);
 		}
 
 
 		//HighScore
 		m_zHighscore.Run(fTime, fTimeDelta);
 
+		if (iLeben == 0)
+		{ 
+			iScene = Verloren;
+		}
 
 		//Wenn das Leben auf 0 ist hat man verloren
 		//if (m_zLLA.getLebenAnzahl() <= 0)

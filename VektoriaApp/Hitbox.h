@@ -31,7 +31,7 @@ private:
 	CHMat rotate;
 	CHVector vector;
 
-	CRay r[7];
+	CRay r[3];
 	CPlacements m_zps;
 
 	//Lokale Variablen

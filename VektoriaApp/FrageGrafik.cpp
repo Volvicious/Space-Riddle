@@ -85,3 +85,15 @@ void CFrageGrafik::Translate(FLOAT f_posZ, FLOAT f_posX, FLOAT f_posY)
 	}
 	m_zgStargate->UpdateAABB();
 }
+
+void CFrageGrafik::Tick(float fTimeDelta)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		CHVector save = m_zpStargate[i].GetTranslation();
+
+		m_zpStargate[i].TranslateDelta(save * -1.0F);
+		m_zpStargate[i].RotateZDelta(UM_DEG2RAD(30.0) * fTimeDelta);
+		m_zpStargate[i].TranslateDelta(save);
+	}
+}

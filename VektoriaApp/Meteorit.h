@@ -28,6 +28,7 @@ public:
 	void PrepareRotate(); 
 
 	int getiMeteorNummer() { return iCounter; };
+	int nextMeteor() { return iCounter++; };
 
 private:
 
