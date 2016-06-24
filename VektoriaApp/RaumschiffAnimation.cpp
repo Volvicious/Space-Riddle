@@ -89,7 +89,7 @@ bool CRaumschiffAnimation::DoingRotationA(CPlacement * ptrRaumischiffi, float fT
 	CHVector vec = ptrRaumischiffi->GetTranslation(); 
 
 	fRotate += 9.5 * fTimeDelta;
-	fvec -= 0.02F * fTimeDelta; 
+	fvec -= 0.1F * fTimeDelta; 
 
 	vec.SetX(vec.GetX() + fvec);
 
@@ -116,7 +116,7 @@ bool CRaumschiffAnimation::DoingRotationD(CPlacement * ptrRaumischiffi, float fT
 	CHVector vec = ptrRaumischiffi->GetTranslation();
 
 	fRotate -=  9.5 * fTimeDelta ;
-	fvec += 0.02F * fTimeDelta;
+	fvec += 0.1F * fTimeDelta;
 
 	vec.SetX(vec.GetX() + fvec);
 

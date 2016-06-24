@@ -57,7 +57,7 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	m_fGeschwindigkeit = -40.0f;
 
 	//Szene setzen
-	iScene = PreHauptmenue;
+	iScene =  Countdown;
 }
 
 void SceneHandler::InitMeteorits(CRoot * root, CScene * scene)
@@ -138,7 +138,7 @@ void SceneHandler::MeteoritenTick(float fTimeDelta)
 
 	if (m_zHitbox.getCollision() == true)
 	{
-		m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() - 1);
+		//m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() - 1);
 		//TODO: Animation
 
 		//Crashsound
@@ -267,7 +267,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		{
 			iScene = Countdown;
 			m_dMaus.SwitchOff();
-			m_zLLA.SwitchOn();
+			//m_zLLA.SwitchOn();
 		}
 	}
 
@@ -294,7 +294,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	if (iScene == Meteoriten || iScene == Fragen) 
 	{
 		if (m_zKeyboard.KeyDown(DIK_F)) {
-			m_zHighscore.SubstractFromHighscore(3);
+			m_zHighscore.AddToHighscore(3);
 		}
 
 
@@ -321,6 +321,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 		//Camera bewegen
 		m_zc.Tick(m_zRaumschiff.getpRaumschiff(), &m_zKeyboard);
+
 
 		//Lebensanzeige
 		m_zLLA.Run();

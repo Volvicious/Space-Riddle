@@ -35,6 +35,8 @@ void CHighscore::Run(float ftime, float fTimeDelta) {
 			changeString();
 		}
 
+		ULDebug("Highscore");
+
 		topHighscore.WriteSavedString();
 		changeAnimation(ftime, fTimeDelta); 
 
@@ -59,7 +61,9 @@ void CHighscore::Stop() {
 
 void CHighscore::Pause() {
 
+	//fTimePauseSpeicher = fTimeStart;
 	fTimeStart = INT_MAX;
+
 	
 }
 

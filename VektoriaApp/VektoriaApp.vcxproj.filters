@@ -254,10 +254,10 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Quelldateien\Chris</Filter>
     </ClCompile>
-    <ClCompile Include="Highscore.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="ProfilHandler.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="Highscore.cpp">
       <Filter>Quelldateien\Chris</Filter>
     </ClCompile>
   </ItemGroup>

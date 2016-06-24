@@ -30,9 +30,11 @@ private:
 
 
 	int iHighscore = 0;
+	
 	CTextOutput topHighscore;
 	bool bOn = false; 
 	float fTimeStart= 0.0F;
+	float fTimePauseSpeicher = 0.0F; 
 
 	//Animationszeux
 	void changeAnimation(float fTime, float fTimeDelta);
