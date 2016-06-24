@@ -98,6 +98,10 @@ std::string CTastaturGER::GetString() {
 	return sLeseString;
 }
 
+void CTastaturGER::SetString(std::string s) {
+	sLeseString = s; 
+}
+
 std::string * CTastaturGER::GetStringPtr() {
 
 	return &sLeseString; 
@@ -149,6 +153,161 @@ bool CTastaturGER::isKeyUp (int iKey) {
 bool CTastaturGER::createString(int iKeyID) {
 
 	char cToAdd = convertToChar(iKeyID);
+	
+	if (cToAdd == '`' && !bStrichLinks){
+		bStrichLinks = true; 
+		return true; 
+	}
+
+
+	if (cToAdd == '´' && !bStrichRechts){
+		bStrichRechts = true;
+		return true;
+
+	}
+
+	if (cToAdd == '^' && !bDach){
+		bDach = true;
+		return true;
+
+	}
+
+
+	if (bStrichLinks){
+
+		switch (cToAdd)
+		{
+		case 'a':
+			cToAdd = 'à';
+			ULDebug("a");
+			break;
+		case 'e':
+			cToAdd = 'è';
+			break;
+		case 'i':
+			cToAdd = 'ì';
+			break;
+		case 'o':
+			cToAdd = 'ò';
+			break;
+		case 'u':
+			cToAdd = 'ù';
+			break;
+		case 'A':
+			cToAdd = 'À';
+			break;
+		case 'E':
+			cToAdd = 'È';
+			break;
+		case 'I':
+			cToAdd = 'Ì';
+			break;
+		case 'O':
+			cToAdd = 'Ò';
+			break;
+		case 'U':
+			cToAdd = 'Ù';
+			break;
+		default:
+			cToAdd = '`';
+			break;
+		}
+
+		sLeseString += cToAdd;
+		bStrichLinks = false; 
+		return true; 
+	}
+
+	if (bStrichRechts){
+
+		switch (cToAdd)
+		{
+
+		case 'a':
+			cToAdd = 'á';
+			break;
+		case 'e':
+			cToAdd = 'é';
+			break;
+		case 'i':
+			cToAdd = 'í';
+			break;
+		case 'o':
+			cToAdd = 'ó';
+			break;
+		case 'u':
+			cToAdd = 'ú';
+			break;
+		case 'A':
+			cToAdd = 'Á';
+			break;
+		case 'E':
+			cToAdd = 'É';
+			break;
+		case 'I':
+			cToAdd = 'Í';
+			break;
+		case 'O':
+			cToAdd = 'Ó';
+			break;
+		case 'U':
+			cToAdd = 'Ú';
+			break;
+		default:
+			cToAdd = '´';
+			break;
+		}
+
+		bStrichRechts = false; 
+		sLeseString += cToAdd;
+		return true; 
+	}
+
+	if (bDach){
+
+		switch (cToAdd)
+		{
+
+		case 'a':
+			cToAdd = 'â';
+			break;
+		case 'e':
+			cToAdd = 'ê';
+			break;
+		case 'i':
+			cToAdd = 'î';
+			break;
+		case 'o':
+			cToAdd = 'ô';
+			break;
+		case 'u':
+			cToAdd = 'û';
+			break;
+		case 'A':
+			cToAdd = 'Â';
+			break;
+		case 'E':
+			cToAdd = 'Ê';
+			break;
+		case 'I':
+			cToAdd = 'Î';
+			break;
+		case 'O':
+			cToAdd = 'Ô';
+			break;
+		case 'U':
+			cToAdd = 'Û';
+			break;
+		default:
+			cToAdd = '^';
+			break;
+		}
+
+		bDach = false;
+		sLeseString += cToAdd;
+		return true;
+
+	}
 
 	if (cToAdd == 10) {
 		/*char tab2[1024];
@@ -323,7 +482,7 @@ bool CTastaturGER::checkDoublePressed(int iKey) {
 void CTastaturGER::Debug(std::string s) {
 
 	char temp[1024];
-	strcpy(temp, s.c_str());
+	strcpy_s(temp, s.c_str());
 	ULDebug(temp);
 }
 
@@ -334,6 +493,6 @@ void CTastaturGER::Debug(std::string s, int i) {
 
 	std::string tmp = std::to_string(i);
 	s += tmp;
-	strcpy(temp, s.c_str());
+	strcpy_s(temp, s.c_str());
 	ULDebug(temp);
 }

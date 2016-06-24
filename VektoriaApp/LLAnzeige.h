@@ -1,9 +1,9 @@
 #pragma once
 #include "Vektoria\Root.h"
 #include "TextOutput.h"
-using namespace Vektoria;
-#include "TextOutput.h"
 #include "StringToChar.h"
+using namespace Vektoria;
+
 
 class CLLAnzeige
 {
@@ -28,17 +28,24 @@ private:
 
 	int iLevelNummer; 
 	int iLebenAnzahl;
-	bool bIsOn = false; 
+	bool bIsOn = true; 
 
 	COverlay m_zoAnzeige; // Dummy
 
 	CTextOutput top; 
 
+	CImage m_ziLebensBackground;
+	COverlay m_zoLebensbackground; 
 	CImage LebensImages[11];
 	COverlay LebensOverlays[11];
 	
 
-	CStringToChar stc; 
+	CStringToChar stc;
+
+	CWritingFont font; 
+	CWriting writing;
+
+	
 
 
 };

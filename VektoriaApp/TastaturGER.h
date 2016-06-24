@@ -3,6 +3,7 @@
 
 #include "Vektoria\Root.h"
 #include <list>
+#include "StringToChar.h"
 
 
 using namespace Vektoria; 
@@ -20,24 +21,34 @@ public:
 
 	//
 	~CTastaturGER();
-
-	void Init(CDeviceKeyboard * _tastatur, int _iChatOpenKey, bool bChatkeyListenOnOff);						//Tastatur-Init
+	//Chatopenkey Bsp: DIR_T; Chatkeylisten: Wenn True, wird iChatOpenKey überprüft und Tastatur schaltet sich beim Drücken dieses an.
+	void Init(CDeviceKeyboard * _tastatur, int _iChatOpenKey, bool bChatkeyListenOnOff);						
 
 	
+	//Im Tick einbinden.
+	void Run();																		
+	//Schaltet Lesen manuell an.
+	void SwitchOn();
+	//Schaltet Lesen manuell aus.
+	void SwitchOff();																
 
-	void Run();																		//Einbinden, um Tasten abzufragen.
+	// Schaltet Ueberpruefung an, ob TastaturOpenKey gedrueckt wird. Default ist On. FALSE wenn Tastatur AN. (Listen macht keinen Sinn!)
+	bool SwitchListenOn();
+	// Schaltet Ueberpruefung an, ob TastaturOpenKey gedrueckt wird und setzt den dazugehoerigen Key. FALSE wenn Tastatur AN. (Listen macht keinen Sinn!)
+	bool SwitchListenOn(int _ChatOpenKey);
+	// Schaltet Ueberpruefung aus, ob TastaturOpenKey gedrueckt wird. Wenn Manuell Off, wird Listen nach Eingabe nicht automatisch auf On gestellt.
+	void SwitchListenOff();															
 
-	void SwitchOn();																//Schaltet Lesen manuell an.
-	void SwitchOff();																//Schaltet Lesen manuell aus.
-
-	bool SwitchListenOn();															// Schaltet Ueberpruefung an, ob TastaturOpenKey gedrueckt wird. Default ist On. FALSE wenn Tastatur AN. (Listen macht keinen Sinn!)
-	bool SwitchListenOn(int _ChatOpenKey);											// Schaltet Ueberpruefung an, ob TastaturOpenKey gedrueckt wird und setzt den dazugehoerigen Key. FALSE wenn Tastatur AN. (Listen macht keinen Sinn!)
-	void SwitchListenOff();															// Schaltet Ueberpruefung aus, ob TastaturOpenKey gedrueckt wird. Wenn Manuell Off, wird Listen nach Eingabe nicht automatisch auf On gestellt.
-
+	//True, wenn Tastatur im LeseModus.
 	bool IsOn(); 
 
-	std::string GetString();
+	//Gibt den aktuellen String der Tastatur zurück.
+	std::string GetString();														
 
+	//Manuelles Ändern des Tastaturstrings.
+	void SetString(std::string s);													
+
+	//Pointer auf den Einlesestring
 	std::string * GetStringPtr(); 
 
 
@@ -48,8 +59,11 @@ private:
 	
 	bool bTastaturOn = false; 
 	bool bListenOn = false;
-	bool bListenErlauben = true; 
+	bool bListenErlauben = true;
 
+	bool bStrichLinks = false; 
+	bool bStrichRechts = false;
+	bool bDach = false;
 
 	std::list<int> liKeysPressed;
 
@@ -74,7 +88,7 @@ private:
 	void Debug(std::string s);
 	void Debug(std::string s, int i);
 	
-
+	CStringToChar stc; 
 
 };
 

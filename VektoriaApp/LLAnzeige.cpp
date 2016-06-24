@@ -12,11 +12,21 @@ CLLAnzeige::~CLLAnzeige()
 }
 
 void CLLAnzeige::Init(CViewport * mzv) {
-
 	mzv->AddOverlay(&m_zoAnzeige);
-
+	
+	m_ziLebensBackground.Init("textures\\lebensanzeige\\lebensanzeigeleer.png");
+	m_zoLebensbackground.Init(&m_ziLebensBackground, CFloatRect(.85F, 0.0F, 0.15F, 0.1F));
+	m_zoLebensbackground.SetLayer(.19F);
+	m_zoAnzeige.AddOverlay(&m_zoLebensbackground);
 	iLebenAnzahl = 10;
-	iLevelNummer = 1; 
+	iLevelNummer = 1;
+	
+	top.Init(&m_zoAnzeige, "fonts\\Nasalization-rg-Red.png", 0.4F, 0.3F, 2.0F, .03F, 0.01F);
+
+
+	/*font.Init("fonts\\Nasalization-rg-Red.png", true);
+	writing.Init(CFloatRect(0.0F, 0.0F, 2.0F, 0.2F), 100, &font);
+	m_zoAnzeige.AddWriting(&writing);*/
 
 	for (int i = 0; i < 11; i++) {
 
@@ -28,31 +38,37 @@ void CLLAnzeige::Init(CViewport * mzv) {
 
 		LebensImages[i].Init(temp);
 		
-		LebensOverlays[i].Init(&LebensImages[i], CFloatRect(.845F, 0.0F, 0.15F, 0.1F));
+		LebensOverlays[i].Init(&LebensImages[i], CFloatRect(.85F, 0.0F, 0.15F, 0.1F));
 		m_zoAnzeige.AddOverlay(&LebensOverlays[i]);
-		LebensOverlays[i].SetLayer(0.25F);
+		LebensOverlays[i].SetLayer(0.18F);
 		LebensOverlays[i].SwitchOff();
 
 		
 	}
+
 	LebensOverlays[iLebenAnzahl].SwitchOn();
-	m_zoAnzeige.SetLayer(0.25F);
-	m_zoAnzeige.SwitchOff();
+	//m_zoAnzeige.SwitchOff();
+	//COverlay * ptrOver = &m_zoAnzeige;
+	//ptrOver->AddWriting(&writing);
 
-	top.Init(&m_zoAnzeige, "fonts\\Nasalization-rg-White.png", 0.855F, 0.03F, 3.0F, .06F);
+	//m_zoAnzeige.AddWriting(&writing);
+
+	//top.Init(mzv, "fonts\\Nasalization-rg-Red.png", 0.4F, 0.3F, 2.0F, .03F);
+
+
+
+	
 	setLevelNummer(iLevelNummer);
-
-
+	
+	
 }
 
 void CLLAnzeige::Run() {
 
 	if (bIsOn) {
 
+		//writing.PrintF("Test");
 		top.WriteSavedString();		
-		/*ULDebug("Bin hier drin.");
-		ULDebug(stc.DoStringToChar(top.GetString()));*/ 
-
 	}
 
 

@@ -22,14 +22,19 @@ public:
 
 	CWritingFont writingfont;
 	//CWritingChar writingchar;
-	CFloatRect floatrect;
+	//CFloatRect floatrect;
 	CWriting writing;
 
 	void Init(CViewport * ViewPortPtr, char* sPathFont, float fxPos, float fyPos, float fxSize, float fySize);
-	void Init(CViewport * ViewPortPtr, char* sPathFont, CFloatRect * floatrect);
-	void Init(CViewport * ViewPortPtr, CTastaturGER * TastaturGer, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize);
+	
+	//Hängt Writing an Overlay an, ermöglicht die Übergabe des LayerWertes
+	void Init(COverlay * ptrOverlay, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, float iLayer);
 
+	//an ein Overlay anhängen
 	void Init(COverlay * OverLayPtr, char* sPathFont, float fxPos, float fyPos, float fxSize, float fySize);
+	//zum "in der Mitte durcken"
+	void Init(COverlay * OverLayPtr, char* sPathFont, float fxPos, float fyPos, float fxSize, float fySize, int iVisibleChars);
+
 
 
 	void SwitchOn(); 
@@ -49,16 +54,25 @@ public:
 	void WriteFromTastatur(CTastaturGER * TastaturGer);
 	void WriteTest();
 
+	CFloatRect GetWritingRect(); 
+	void SetWritingRect(CFloatRect rect);
+
+
 
 private: 
 	
 	CStringToChar strToChar;
 
+	COverlay * ptrOverlay;
+
 
 	bool bUpdating = false;
 	bool bCheckForTastaturOn = false; 
 
-	std::string sStringToWrite; 
+	int iVisibleChars = 100;
+	bool bPrintMiddle = false; 
+
+	std::string sStringToWrite = ""; 
 
 	CTastaturGER * ptrTastaturGer; 
 	void Workaround(std::string * s);

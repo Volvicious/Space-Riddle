@@ -15,60 +15,65 @@ CTextOutput::~CTextOutput()
 
 void CTextOutput::Init(CViewport * ViewPortPtr, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize) {
 	
+	ULDebug("----------------Wird genutzt 1-----------");
 	writingfont.Init(caPathFont, true);
 
-	writingfont.Fini();
-	floatrect.Init(fxPos, fyPos, fxSize, fySize);
-	floatrect.Fini();
+	//writingfont.Fini();
 
-	writing.Init(floatrect, 100, &writingfont);
-	writing.SetLayer(0.2F);
-	writing.Fini();
+	writing.Init(CFloatRect(fxPos, fyPos, fxSize, fySize), 100, &writingfont);
+	//writing.SetLayer(0.2F);
+	//writing.Fini();
 	ViewPortPtr->AddWriting(&writing);
 }
 
-void CTextOutput::Init(CViewport * ViewPortPtr, char * caPathFont,CFloatRect * floatrect_) {
+
+void CTextOutput::Init(COverlay * ptroverlay, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, float iLayer) {
+
+	ULDebug("----------------Wird genutzt 2-----------");
+
+	ptrOverlay = ptroverlay; 
 
 	writingfont.Init(caPathFont, true);
-
-	writingfont.Fini();
-	floatrect.Init(floatrect_->GetXPos(), floatrect_->GetYPos(), floatrect_->GetXSize(), floatrect_->GetYSize());
-	floatrect.Fini();
-	writing.Init(floatrect, 100, &writingfont);
-	writing.Fini();
-	ViewPortPtr->AddWriting(&writing);
-
-}
-
-void CTextOutput::Init(CViewport * ViewPortPtr, CTastaturGER * ptrrTastaturGer, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize) {
-
-	writingfont.Init(caPathFont, true);
-
-	writingfont.Fini();
-	floatrect.Init(fxPos, fyPos, fxSize, fySize);
-	floatrect.Fini();
-
-	writing.Init(floatrect, 100, &writingfont);
-
-	writing.Fini();
-	ViewPortPtr->AddWriting(&writing);
-
-	ptrTastaturGer = ptrrTastaturGer;
+	writingfont.RotateHue(PI);
+	writing.Init(CFloatRect(fxPos, fyPos, fxSize, fySize), 100, &writingfont);
+	
+	//writing.SetLayer(0.2F);
+	
+	ptrOverlay->AddWriting(&writing);
 
 }
 
 void CTextOutput::Init(COverlay * OverLayPtr, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize) {
+	ULDebug("----------------Wird genutzt 3-----------");
+
 
 	writingfont.Init(caPathFont, true);
+	//writingfont.RotateHue(.5F);
 
-	floatrect.Init(fxPos, fyPos, fxSize, fySize);
-
-	writing.Init(floatrect, 150 , &writingfont);
-	writing.SetLayer(0.2F);
+	writing.Init(CFloatRect(fxPos, fyPos, fxSize, fySize), 100 , &writingfont);
+	//writing.SetLayer(0.2F);
 
 	OverLayPtr->AddWriting(&writing);
 }
 
+void CTextOutput::Init(COverlay * OverLayPtr, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, int iVisibleChars_) {
+	ULDebug("----------------Wird genutzt 4-----------");
+
+
+
+	iVisibleChars =  iVisibleChars_; 
+	bPrintMiddle = true; 
+
+	writingfont.Init(caPathFont, true);
+
+	writingfont.Fini();
+	
+
+	writing.Init(CFloatRect(fxPos, fyPos, fxSize, fySize), 150, &writingfont);
+	writing.SetLayer(0.2F);
+
+	OverLayPtr->AddWriting(&writing);
+}
 
 
 void CTextOutput::SwitchOn() {
@@ -86,7 +91,22 @@ CWriting * CTextOutput::getWritingPtr() {
 
 
 void CTextOutput::SetString(std::string s) {
-	sStringToWrite = s; 
+
+	if (bPrintMiddle) {
+
+		sStringToWrite = ""; 
+		int j = (iVisibleChars - s.size()) / 2;
+		for (int i = 0; i < j; i++){
+			sStringToWrite += " ";
+		}
+		sStringToWrite += s;
+		
+	}
+	else {
+		sStringToWrite = s;
+	}
+
+	
 }
 
 std::string CTextOutput::GetString() {
@@ -131,6 +151,16 @@ void CTextOutput::WriteTest() {
 
 }
 
+CFloatRect CTextOutput::GetWritingRect() {
+
+	return writing.GetRect();
+}
+
+
+void CTextOutput::SetWritingRect(CFloatRect rect) {
+	writing.SetRect(rect);
+}
+
 void CTextOutput::Workaround(std::string * s) {
 
 	for (int i = 0; i < s->length(); i++) {
@@ -167,8 +197,104 @@ void CTextOutput::Workaround(std::string * s) {
 			case '§':
 				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(7, 8);
 
+			case'à':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(0, 12);
 
 				break;
+			case 'è':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(8, 12);
+				break;
+			case 'ì':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(12, 10);
+				break;
+			case 'ò':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(2, 11);
+				break;
+			case 'ù':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(9, 13);
+				break;
+			case 'À':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(0, 10);
+				break;
+			case 'È':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(8, 10);
+				break;
+			case 'Ì':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(12, 10);
+				break;
+			case 'Ò':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(2, 11);
+				break;
+			case 'Ù':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(9, 11);
+				break;
+
+			case 'á':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(1, 12);
+
+				break;
+			case 'é':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(9, 12);
+
+				break;
+			case 'í':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(13, 10);
+				break;
+			case 'ó':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(3, 11);
+				break;
+			case 'ú':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(10, 13);
+				break;
+			case 'Á':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(1, 10);
+				break;
+			case 'É':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(9, 10);
+				break;
+			case 'Í':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(13, 10);
+				break;
+			case 'Ó':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(3, 11);
+				break;
+			case 'Ú':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(10, 11);
+				break;
+
+			
+
+			case 'â':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(2, 12);
+				break;
+			case 'ê':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(10, 12);
+				break;
+			case 'î':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(14, 10);
+				break;
+			case 'ô':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(4, 11);
+				break;
+			case  'û':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(11, 13);
+				break;
+			case 'Â':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(2, 10);
+				break;
+			case 'Ê':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(10, 10);
+				break;
+			case  'Î':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(14, 10);
+				break;
+			case 'Ô':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(4, 11);
+				break;
+			case 'Û':
+				writing.m_writingchars.m_apwritingchar[i]->m_pmaterial->SetPic(11, 11);
+				break;
+		
 		default:
 			break;
 		}

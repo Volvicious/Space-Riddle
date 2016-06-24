@@ -138,6 +138,18 @@
     <ClInclude Include="RaumschiffAnimation.h">
       <Filter>Headerdateien\Chris</Filter>
     </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="TastaturGER.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="TextOutput.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="Highscore.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -235,6 +247,12 @@
     </ClCompile>
     <ClCompile Include="RaumschiffAnimation.cpp">
       <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Quelldateien\Chris</Filter>
+    </ClCompile>
+    <ClCompile Include="Highscore.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

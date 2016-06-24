@@ -37,6 +37,9 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	//Leben- & Levelanzeige
 	m_zLLA.Init(viewPort);
 
+	// Highscore
+	m_zHighscore.Init(viewPort);
+
 	//Sound
 	m_zSound.Init(scene);
 
@@ -214,12 +217,20 @@ void SceneHandler::FrageTick()
 void SceneHandler::Tick(float fTimeDelta, float fTime)
 {	
 	//Spiel pausieren
+
+	int iSceneSpeicher = iScene;
+
 	iScene = m_zSteuerung.PauseGame(iScene, &m_zKeyboard);
+
+	if (iSceneSpeicher == Pause && iSceneSpeicher != iScene) {
+		m_zHighscore.GoOn(fTime);
+	}
 
 	if (iScene == Intro)
 	{
 		//Todo: IF Animation zuende oder Leertaste
 		iScene = m_zSteuerung.Hauptmenue(iScene, &m_zKeyboard);
+	
 	}
 
 	//Hauptmenü getickt
@@ -251,6 +262,10 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		}
 
 		iScene = m_zSteuerung.StartGame(iScene, &m_zKeyboard);
+		if (iScene == 1) {
+			m_zHighscore.Start(fTimeDelta);
+		}
+
 
 		MeteoritenSwitch = true;
 	}
@@ -258,6 +273,11 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	//Tick für Spiel
 	if (iScene == Meteoriten || iScene == Fragen) 
 	{
+		if (m_zKeyboard.KeyDown(DIK_F)) {
+			m_zHighscore.AddToHighscore(3);
+		}
+
+
 		//Ingame Loop
 		m_zSound.SwitchSounds(4, 1, true);
 
@@ -299,6 +319,11 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 			FrageTick();
 		}
 
+
+		//HighScore
+		m_zHighscore.Run(fTime);
+
+
 		//Wenn das Leben auf 0 ist hat man verloren
 		//if (m_zLLA.getLebenAnzahl() <= 0)
 		//{
@@ -321,6 +346,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	//Pause gedrückt
 	if (iScene == Pause)
 	{
+		m_zHighscore.Pause(); 
 		m_zSound.Pause(1);
 		m_zIngameOverlays.SwitchOn(0);
 		m_zIngameOverlays.SetLayer(0, 0.8);

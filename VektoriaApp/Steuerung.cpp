@@ -44,7 +44,7 @@ void CSteuerung::Tick(float fTimeDelta, CPlacement * placement, CDeviceKeyboard 
 
 		//Raumschiff Neigung
 		placement->RotateZ(-pfvHorizontal*2);
-		placement->RotateXDelta(pfvVertikal*2+0.05F);
+		placement->RotateXDelta(pfvVertikal+0.05F);
 		placement->TranslateDelta(vec);
 	}
 

@@ -40,7 +40,7 @@ void CMeteorit::Init(CRoot * root, CScene * scene)
 	for (int i = 0; i < MAX_METEOR; i++)
 	{
 		//Random wert
-		float fGroesse = (float)((rand() % 75) / 50.0F) + 0.5F;
+		float fGroesse = (float)((rand() % 35) / 50.0F) + 0.5F;
 
 		//Random Meteoriten auswählen
 		int varMeteor = (rand() % 3);

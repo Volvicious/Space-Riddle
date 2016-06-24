@@ -23,6 +23,9 @@
 #include "LLAnzeige.h"
 #include "IngameOverlays.h"
 
+#include "Highscore.h"
+#include "Animation.h"
+
 
 using namespace Vektoria;
 
@@ -68,7 +71,7 @@ private:
 	//Overlays
 	CIngameOverlays m_zIngameOverlays;
 
-	// Testzeux von Chris
+	// Zeux von Chris
 	CMainMenu m_zHauptmenu;
 
 	CTastaturGER m_zTastaturGer;
@@ -87,6 +90,10 @@ private:
 	CDeviceKeyboard m_zKeyboard;
 
 	CLLAnzeige m_zLLA; 
+	CAnimation m_zAnimationIntroVideo; 
+	CAnimation m_zAnimation321; 
+
+	CHighscore m_zHighscore; 
 
 	//Szenen
 	enum Szene{ Hauptmenü = 0, Meteoriten = 1, Fragen = 2, Verloren = 3, Pause = 4, Countdown = 5, LevelCompleted = 6, Highscore = 7, Intro = 8};
