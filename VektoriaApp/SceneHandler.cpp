@@ -274,7 +274,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	if (iScene == Meteoriten || iScene == Fragen) 
 	{
 		if (m_zKeyboard.KeyDown(DIK_F)) {
-			m_zHighscore.AddToHighscore(3);
+			m_zHighscore.SubstractFromHighscore(3);
 		}
 
 

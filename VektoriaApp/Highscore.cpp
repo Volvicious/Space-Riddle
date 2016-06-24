@@ -84,7 +84,9 @@ void CHighscore::AddToHighscore (int i) {
 
 	iHighscore += i;
 	changeString();
+	if (i > 0) {
 	sChange = "+";
+	}
 	sChange += std::to_string(i);
 	bDisplayChange = true; 
 
@@ -92,10 +94,17 @@ void CHighscore::AddToHighscore (int i) {
 }
 
 void CHighscore::SubstractFromHighscore (int i) {
+	
+	if (i > 0) {
+		sChange = "-";
+		iHighscore -= i;
+	}
+	else {
+		sChange = "";
+		iHighscore += i;
+	}
 
-	iHighscore -= i;
-	changeString();
-	sChange = std::to_string(i);
+	sChange += std::to_string(i);
 	bDisplayChange = true;
 
 }

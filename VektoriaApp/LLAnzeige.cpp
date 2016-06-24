@@ -21,7 +21,7 @@ void CLLAnzeige::Init(CViewport * mzv) {
 	iLebenAnzahl = 10;
 	iLevelNummer = 1;
 	
-	top.Init(&m_zoAnzeige, "fonts\\Nasalization-rg-Red.png", 0.4F, 0.3F, 2.0F, .03F, 0.01F);
+	top.Init(&m_zoAnzeige, "fonts\\Nasalization-rg-Red.png", 0.85F, 0.0F, 2.0F, .03F, 0.01F);
 
 
 	/*font.Init("fonts\\Nasalization-rg-Red.png", true);
@@ -106,6 +106,19 @@ void CLLAnzeige::setLebenAnzahl(int i) {
 		iLebenAnzahl = i;
 		LebensOverlays[i].SwitchOn();
 	}
+
+	if (i < 0) {
+		LebensOverlays[iLebenAnzahl].SwitchOff(); 
+		iLebenAnzahl = 0; 
+		LebensOverlays[0].SwitchOn();
+	}
+
+	if (i > 10) {
+		LebensOverlays[iLebenAnzahl].SwitchOff();
+		iLebenAnzahl = 10;
+		LebensOverlays[10].SwitchOn();
+	}
+
 }
 
 int CLLAnzeige::getLebenAnzahl() {
@@ -121,6 +134,7 @@ void CLLAnzeige::SwitchOn() {
 void CLLAnzeige::SwitchOff() {
 
 	m_zoAnzeige.SwitchOff();
+	top.SwitchOff();
 	bIsOn = false; 
 
 }
