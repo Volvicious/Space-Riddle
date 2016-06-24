@@ -30,7 +30,8 @@ public:
 	void setSelectedFilePath(std::string);
 
 	bool IsFileSelected(); 
-
+	bool DoNewFile();
+	void SetDoNewFile(bool b); 
 	std::string getSelectedFileDisplayName();
 
 private: 
@@ -42,7 +43,15 @@ private:
 	std::string sSelectedFile;
 	std::string sSelectedFileDisplayName; 
 	std::string sSelectedFilePath;
+	
+	
 	bool bIsFileSelected = false; 
+	bool bDoNewFile = false; 
+
+
+
+
+
 
 };
 

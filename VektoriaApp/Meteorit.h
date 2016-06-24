@@ -53,7 +53,7 @@ private:
 	float fRotStartWerteXYZ[MAX_METEOR][2]; 
 	float fScale[MAX_METEOR];
 
-	float fRotateX = 0.001; 
+	float fRotateX = 0.001F; 
 
 	CStringToChar stc; 
 };

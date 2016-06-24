@@ -24,7 +24,7 @@ void CHighscore::Init(CViewport * mvz) {
 	bOn = true; 
 }
 
-void CHighscore::Run(float ftime) {
+void CHighscore::Run(float ftime, float fTimeDelta) {
 
 	if (bOn) {
 
@@ -36,7 +36,7 @@ void CHighscore::Run(float ftime) {
 		}
 
 		topHighscore.WriteSavedString();
-		changeAnimation(ftime); 
+		changeAnimation(ftime, fTimeDelta); 
 
 	}
 
@@ -114,7 +114,7 @@ void CHighscore::changeString() {
 	topHighscore.SetString(std::to_string(iHighscore));
 }
 
-void CHighscore::changeAnimation(float fTime) {
+void CHighscore::changeAnimation(float fTime, float fTimeDelta) {
 
 	if (bDisplayChange) {
 		fxSize = 0.0F; 
@@ -124,8 +124,8 @@ void CHighscore::changeAnimation(float fTime) {
 	}
 
 	if (fxSize < fxEndSize) {
-		fxSize += fxEndSize /100; 
-		fySize += fyEndSize / 100;
+		fxSize += fxEndSize * fTimeDelta; 
+		fySize += fyEndSize *fTimeDelta;
 		topChange.SetWritingRect(CFloatRect(fxPos, fyPos, fxSize, fySize));
 		fTimeStartChange = fTime; 
 	}

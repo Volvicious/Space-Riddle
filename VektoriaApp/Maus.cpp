@@ -17,13 +17,14 @@ void CMaus::Init(CViewport * m_zv, CFrame * m_zf) {
 	m_zoCurser.Init(&m_ziCurser, CFloatRect(0.5F, 0.5F, 0.02F, 0.02F), true);
 	m_zf->AddDeviceCursor(&m_zdCursor);
 	m_zv->AddOverlay(&m_zoCurser);
-	m_zoCurser.SetLayer(0.1F);
-	m_zoCurser.SwitchOff();
+	m_zoCurser.SetLayer(0.01F);
+	//m_zoCurser.SwitchOff();
 }
 
 void CMaus::Run() {
 	if (bOn) {
 
+		ULDebug("Ist an.");
 
 		float fx, fy;
 
@@ -34,8 +35,6 @@ void CMaus::Run() {
 		if (!m_zdCursor.ButtonPressedLeft()) {
 			bKeyDown = false;
 		}
-		
-
 	}
 
 	

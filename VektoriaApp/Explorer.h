@@ -25,7 +25,7 @@ public:
 
 	
 	void Init(CViewport * m_zv, CMaus  * ptrMaus_, CFileHandler * filehandlerPtr, char * caHintergrundBildPfad, char * caIconBildPfad, char * caOrdnerPfad);
-	void Init(CViewport * m_zv, CMaus  * ptrMaus_, CFileHandler * filehandlerPtr, char * caHintergrundBildPfad, char * caIconBildPfad, char * caOrdnerPfad, CTastaturGER * ptr);
+	void Init(CViewport * m_zv, CMaus  * ptrMaus_, CFileHandler * filehandlerPtr, char * caHintergrundBildPfad, char * caIconBildPfad, char * caOrdnerPfad, CDeviceKeyboard * ptrdk);
 
 
 
@@ -39,6 +39,7 @@ public:
 	bool getMakeMenuOn();
 	void setMakeMenuOn(bool b);
 	
+	
 	CFileHandler * getFileHandlerPtr(); 
 
 private:
@@ -49,6 +50,7 @@ private:
 	
 	CImage m_ziMainmbackground;
 	CImage m_ziTextIcon; 
+	CMaterial m_zmMainmbackground;
 
 
 	COverlay m_zoBackButton;
@@ -60,7 +62,7 @@ private:
 	CFileFinder * filefinder;
 	CFileHandler * ptrfilehandler; 
 
-	CTextOutput top;
+	CTextOutput topNamenEingabe;
 	
 	bool bOn = false;
 	bool bmakeMenueOn = false; 
@@ -73,8 +75,14 @@ private:
 
 
 	CMaus * ptrMaus;
+	CTastaturGER TastaturGer; 
 	
 	CStringToChar stc;
+
+	int iTyp; 
+	bool bTastaturStarted = false; 
+
+	float fTransp = 1.0F; 
 
 };
 

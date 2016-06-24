@@ -82,6 +82,9 @@ std::string CFileHandler::getSelectedFileDisplayName(){
 	return sSelectedFileDisplayName;
 }
 
+
+
+
 bool CFileHandler::IsFileSelected() {
 
 	if (bIsFileSelected) {
@@ -90,6 +93,23 @@ bool CFileHandler::IsFileSelected() {
 		return true;
 	}
 
+
+	return false; 
+}
+
+void CFileHandler::SetDoNewFile(bool b){
+
+	bDoNewFile = b; 
+}
+
+
+bool CFileHandler::DoNewFile(){
+
+	if (bDoNewFile){
+		bDoNewFile = false; 
+		return true; 
+
+	}
 
 	return false; 
 }

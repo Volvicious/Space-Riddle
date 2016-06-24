@@ -162,6 +162,7 @@
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Maus.h" />
     <ClInclude Include="Meteorit.h" />
+    <ClInclude Include="ProfilHandler.h" />
     <ClInclude Include="Raumschiff.h" />
     <ClInclude Include="RaumschiffAnimation.h" />
     <ClInclude Include="resource.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Maus.cpp" />
     <ClCompile Include="Meteorit.cpp" />
+    <ClCompile Include="ProfilHandler.cpp" />
     <ClCompile Include="Raumschiff.cpp" />
     <ClCompile Include="RaumschiffAnimation.cpp" />
     <ClCompile Include="SceneHandler.cpp" />

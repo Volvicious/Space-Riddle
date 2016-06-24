@@ -22,17 +22,27 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	m_zTastaturGer.Init(&m_zKeyboard, 9999, false);
 	
 	//Maus 
-	m_dMaus.Init(viewPort, frame);
+	//m_dMaus.Init(viewPort, frame);
 
 	//Fragen
-	m_zFragenHandler.Init(&m_zFilehandlerLernpaket, viewPort, &m_zTastaturGer);
+	
 
 	//Menu
-	//m_zHauptmenu.Init(viewPort, &m_dMaus, &m_zExplorerLernpaket);
+	m_zHauptmenu.menuInit(viewPort, &m_dMaus, &m_zExplorerLernpaket, &m_zExplorerProfil, &m_zProfilhandler);
 
 	//Lernpakete
+
 	m_zExplorerLernpaket.Init(viewPort, &m_dMaus, &m_zFilehandlerLernpaket, 
-		"textures\\menubild_lernpaketexplorer.jpg", "textures\\TextIcon.gif", "..\\VektoriaApp\\fragen");
+		"textures\\explorer\\menubild_lernpaketexplorer.jpg", "textures\\TextIcon.gif",
+		"..\\VektoriaApp\\fragen"); 
+
+	m_zProfilhandler.Init(&m_zFilehandlerProfil);
+	m_zFragenHandler.Init(&m_zFilehandlerLernpaket, viewPort, &m_zProfilhandler);
+
+	m_zExplorerProfil.Init(viewPort, &m_dMaus, &m_zFilehandlerProfil,
+		"textures\\explorer\\menubild_profilmanager.jpg", "textures\\TextIcon.gif",
+		"..\\VektoriaApp\\profil", &m_zKeyboard); 
+
 
 	//Leben- & Levelanzeige
 	m_zLLA.Init(viewPort);
@@ -47,7 +57,7 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	m_fGeschwindigkeit = -40.0f;
 
 	//Szene setzen
-	iScene = Countdown;
+	iScene = PreHauptmenue;
 }
 
 void SceneHandler::InitMeteorits(CRoot * root, CScene * scene)
@@ -233,15 +243,25 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	
 	}
 
+
+	if (iScene == PreHauptmenue) {
+
+		m_zHauptmenu.SwitchOn();
+		m_dMaus.SwitchOn();
+		iScene = Hauptmenü;
+	}
+
 	//Hauptmenü getickt
 	if (iScene == Hauptmenü)
 	{
+
+		
 		m_zSound.Loop(0);
 		m_dMaus.Run();
 		m_zExplorerLernpaket.Run();
-		m_zHauptmenu.Tick();
+		m_zHauptmenu.menuTick();
 		m_zTastaturGer.Run();
-		m_zFragenHandler.Run();
+		m_zFragenHandler.Run(fTimeDelta);
 
 		if (m_zHauptmenu.getbGo())
 		{
@@ -321,7 +341,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 
 		//HighScore
-		m_zHighscore.Run(fTime);
+		m_zHighscore.Run(fTime, fTimeDelta);
 
 
 		//Wenn das Leben auf 0 ist hat man verloren
@@ -349,7 +369,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		m_zHighscore.Pause(); 
 		m_zSound.Pause(1);
 		m_zIngameOverlays.SwitchOn(0);
-		m_zIngameOverlays.SetLayer(0, 0.8);
+		m_zIngameOverlays.SetLayer(0, 0.8F);
 	}
 
 	//Level Completed

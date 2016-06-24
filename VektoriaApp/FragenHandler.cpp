@@ -1,7 +1,5 @@
 #include "FragenHandler.h"
 
-
-
 CFragenHandler::CFragenHandler()
 {
 }
@@ -11,42 +9,57 @@ CFragenHandler::~CFragenHandler()
 {
 }
 
-void CFragenHandler::Init(CFileHandler * fileHandlerPtr, CViewport * mzv, CTastaturGER * ptrtg) {
+void CFragenHandler::Init(CFileHandler * fileHandlerPtr, CViewport * mzv, CProfilHandler * ptrProfilhandler) {
 
+	ptrProfilHandler = ptrProfilhandler;
 	ptrFileHandler = fileHandlerPtr;
-	tger = ptrtg;
+	
 
 	mzv->AddOverlay(&m_zoFragenHandler);
-	m_zoFragenHandler.SetLayer(0.9F);
-
-	m_ziFrage.Init("textures\\spaceblue.jpg");
-	m_zoFrage.Init(&m_ziFrage, CFloatRect(0.0F, 0.7F, 1.0F, 0.3F));
-	m_zoFrage.SetLayer(0.8F);
-	m_zoFragenHandler.AddOverlay(&m_zoFrage);
-
-
-	m_ziAntwortzeile.Init("textures\\spaceblue.gif");
-	m_zoAntwortzeile.Init(&m_ziAntwortzeile, CFloatRect(0.0F, 0.2F, 1.0F, 0.2F));
-	m_zoAntwortzeile.SetLayer(0.7F);
-	m_zoFrage.AddOverlay(&m_zoAntwortzeile);
-
-	//topFrage.Init(&m_zoFrage, "fonts\\LucidaConsoleWhiteF.png", 0.3F, 0.1F, 1.0F, 0.02F);
-	//topAntwort.Init(&m_zoAntwortzeile, "fonts\\LucidaConsoleWhiteF.png", 0.3F, 0.0F, 1.0F, 0.02F);
+	m_zoFragenHandler.SetLayer(0.3F);
 
 	m_zoFragenHandler.SwitchOff();
 
 
+	
 	mzv->AddOverlay(&m_zoMultiFrage);
-	m_zoMultiFrage.SetLayer(0.9F);
+	m_zmMultiFrage.Init();
+	m_zmMultiFrage.LoadPreset("Glass");
+	m_zoMultiFrage.Init(&m_zmMultiFrage, CFloatRect(0.0F, -0.1F, 1.0F, 0.1F));
+	m_zoMultiFrage.SetTransparency(0.5F);
 
-	m_ziMultiFrage.Init("textures\\spaceblue.jpg");
-	m_zoMultiFrage.Init(&m_ziMultiFrage, CFloatRect(0.0F, 0.6F, 1.0F, 0.3F));
-	m_zoMultiFrage.SetLayer(0.8F);
+	mzv->AddOverlay(&m_zoMultiAntwort);
+	m_zmMultiAntwort.Init(); 
+	m_zmMultiAntwort.LoadPreset("Glass");
+	m_zoMultiAntwort.Init(&m_zmMultiAntwort, CFloatRect(0.0F, 1.0F, 1.0F, 0.2F));
+	m_zoMultiAntwort.SetTransparency(0.2F);
 
-	float fy = 0;
+	m_zoMultiFrage.SetLayer(0.3F);
+	m_zoMultiAntwort.SetLayer(0.3F);
 
-	topFrage.Init(&m_zoMultiFrage, "fonts\\Nasalization-rg-White.png", 0.01F, 0.0F, 1.5F, .04F);
-	for (int i = 0; i < 3; i++) {
+	float fx = 0.0F;
+	float fy = 0.0F;
+	float fLayer = 0.29F; 
+	 
+	//mzv->AddOverlay(&m_zoDummyAntwort);
+	//mzv->AddOverlay(&m_zoDummyFrage);
+
+	topFrage.Init(&m_zoDummyAntwort, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.06F, 1.5F, .04F, 99);
+
+	for (int i = 0; i < 4; i++) {
+
+		if (i == 1 || i == 3) { fx = 0.55F;}
+		if (i == 2) { fx = 0.0F; fy += 0.1; }
+
+		topAntwortmoegl[i].Init(&m_zoDummyFrage, "fonts\\Nasalization-rg-Red.png", 0.03F + fx,   fy, 1.5F, .04F, fLayer);
+		fLayer -= 0.001; 
+	}
+
+	
+
+
+
+	/*for (int i = 0; i < 3; i++) {
 
 		topFalscheAntworten[i].Init(&m_zoMultiFrage, "fonts\\Nasalization-rg-White.png", 0.01F, 0.08F + fy, 1.5F, .04F);
 		fy += 0.04F; 
@@ -54,41 +67,107 @@ void CFragenHandler::Init(CFileHandler * fileHandlerPtr, CViewport * mzv, CTasta
 	}
 	topAntwort.Init(&m_zoMultiFrage, "fonts\\Nasalization-rg-White.png", 0.01F, 0.08F + fy, 1.5F, .04F);
 
-	m_zoMultiFrage.SwitchOff();
+	m_zoMultiFrage.SwitchOff();*/
 
 }
 
-void CFragenHandler::Run() {
+
+void CFragenHandler::Run(float fTimeDelta) {
 
 	if (bStelleFragen) {
 	
+		
+		m_zoFragenHandler.SwitchOn(); 
 		m_zoMultiFrage.SwitchOn();
 		topFrage.WriteSavedString();
 
-		for (int i = 0; i < 3; i++) {
-			topFalscheAntworten[i].WriteSavedString();
-		
+		fadeDown(&m_zoMultiFrage, 0.0F, fTimeDelta);
+		fadeUp(&m_zoMultiAntwort, 0.8F, fTimeDelta);
+
+
+		for (int i = 0; i < 4; i++) {
+
+			topAntwortmoegl[i].WriteSavedString();
 		}
-	
-		topAntwort.WriteSavedString();
-
-
-
 		
+	}
+
+	if (bDoFadeOut) {
+
+		bool btemp = fadeUp(&m_zoMultiFrage, -0.1F, fTimeDelta);
+		bDoFadeOut = fadeDown(&m_zoMultiAntwort, 1.0F, fTimeDelta);
+		bDoFadeOut = bDoFadeOut && btemp;
+
+		if (!bDoFadeOut) {
+			m_zoMultiFrage.SwitchOff();
+		}
+
 	}
 
 	if (ptrFileHandler->IsFileSelected()) {
 		ReadFile();
 	}
 
+	if (bStarteVorbereitung) {
 
+		//map_ProfilHandlerLernpakete = ptrProfilHandler->GetMapPointer(); 
+		//bereiteFragenMapVor(); 
 
+	}
 
 }
+
+bool CFragenHandler::fadeDown(COverlay * ptrO, float yuntil, float fTimeDelta){
+
+	if (ptrO->GetRect().GetYPos() < yuntil) {
+
+		float fy = ptrO->GetRect().GetYPos();
+		CFloatRect rect = ptrO->GetRect();
+
+		std::string s = std::to_string(fTimeDelta);
+		ULDebug(stc.DoStringToChar(s));
+
+
+
+		fy += 0.001;
+
+		rect.SetYPos(fy);
+		ptrO->SetRect(rect);
+		
+		return true; 
+	}
+
+
+	return false; 
+}
+
+bool CFragenHandler::fadeUp(COverlay * ptrO, float yuntil, float fTimeDelta) {
+
+	if (ptrO->GetRect().GetYPos() >  yuntil) {
+
+		float fy = ptrO->GetRect().GetYPos();
+		CFloatRect rect = ptrO->GetRect();
+
+		std::string s = std::to_string(fTimeDelta);
+		ULDebug(stc.DoStringToChar(s));
+
+		fy -= 0.001;
+
+		rect.SetYPos(fy);
+		ptrO->SetRect(rect);
+
+		return true;
+	}
+
+
+	return false;
+}
+
 
 
 void CFragenHandler::ReadFile() {
 
+	sLernpaketname = ptrFileHandler->getSelectedFileDisplayName(); 
 
 	std::ifstream file(ptrFileHandler->getSelectedFilePath());
 	std::string s;
@@ -107,6 +186,12 @@ void CFragenHandler::ReadFile() {
 			
 				if (i == 0) {
 					s.erase(0, 1); 
+
+					for (int j = 0; j < s.length() && s[0] == ' '; j++) {
+
+						s.erase(0, 1);
+					}
+
 					sFragePuffer = s;
 					i = 1; 
 					break; 
@@ -132,13 +217,18 @@ void CFragenHandler::ReadFile() {
 					break;
 				}
 
-
-
 			case '!': 
 
 				if (i == 1) {
 
-					s.erase(0, 1); 
+					s.erase(0, 1);
+
+					for (int j = 0; j < s.length() && s[0] == ' '; j++) {
+
+						s.erase(0, 1);
+					}
+
+
 					sAntwortPuffer = s;
 					i = 2; 
 
@@ -160,7 +250,13 @@ void CFragenHandler::ReadFile() {
 
 				if (i == 2) {
 
-					s.erase(0, 1); 
+					s.erase(0, 1);
+
+					for (int j = 0; j < s.length() && s[0] == ' '; j++) {
+
+						s.erase(0, 1);
+					}
+
 					sFalscheAntwortePuffer[iAntworten] = s; 
 					iAntworten++;
 					if (iAntworten == 3) {
@@ -184,6 +280,12 @@ void CFragenHandler::ReadFile() {
 				if (i == 3) {
 
 					s.erase(0, 1);
+
+					for (int j = 0; j < s.length() && s[0] == ' '; j++) {
+
+						s.erase(0, 1);
+					}
+
 
 					try
 					{
@@ -248,11 +350,16 @@ void CFragenHandler::frageEinfuegen() {
 
 }
 
+bool CFragenHandler::IstAntwortRichtig(int i){
+
+	return i == iRichtigeAntwort ;
+
+}
+
 
 void CFragenHandler::insertTextFrage() {
 
-	Textfrage.setFrage(sFragePuffer);
-	Textfrage.SetAntwort(sAntwortPuffer);
+	
 
 	clearPuffer();
 
@@ -278,38 +385,38 @@ void CFragenHandler::clearPuffer() {
 
 void CFragenHandler::stelleFragen() { //niu
 
-	switch (i) {
+	//switch (i) {
 
-		case 0: topFrage.Write(Textfrage.getFrage());
-				tger->SwitchOn(); 
-				i++;
-				break;
+	//	case 0: topFrage.Write(Textfrage.getFrage());
+	//			tger->SwitchOn(); 
+	//			i++;
+	//			break;
 
-		case 1: if (!tger->IsOn()) {
+	//	case 1: if (!tger->IsOn()) {
 
-			if (Textfrage.vergleicheAntwort(tger->GetString())) { rifalsch = "richtig"; i++; break; }
-			else {
-				rifalsch = "falsch, richtig ist " + Textfrage.sAntwort; i++; break;
+	//		if (Textfrage.vergleicheAntwort(tger->GetString())) { rifalsch = "richtig"; i++; break; }
+	//		else {
+	//			rifalsch = "falsch, richtig ist " + Textfrage.sAntwort; i++; break;
 
-				
+	//			
 
-			}
-			
+	//		}
+	//		
 
-		}
-				else {
-					topAntwort.Write(tger->GetString());
+	//	}
+	//			else {
+	//				topAntwort.Write(tger->GetString());
 
-				}
-				break; 
+	//			}
+	//			break; 
 
-		case 2 : topAntwort.Write(rifalsch);
+	//	case 2 : topAntwort.Write(rifalsch);
 
-		
-			break; 
-	default:
-		break;
-	}
+	//	
+	//		break; 
+	//default:
+	//	break;
+	//}
 
 }
 
@@ -320,16 +427,32 @@ void CFragenHandler::BereiteFragevor() {
 	std::string s = map_fragen[iZuStellendeFrage]->getFrage();
 	topFrage.SetString(s);
 
-	for (int i = 0; i < 3; i++) {
+	//for (int i = 0; i < 3; i++) {
 
-		std::string s = map_fragen[iZuStellendeFrage]->getFalscheAntwort(i);
-		
+	//	std::string s = map_fragen[iZuStellendeFrage]->getFalscheAntwort(i);
+	//	topFalscheAntworten[i].SetString(s);
 
-		topFalscheAntworten[i].SetString(s);
+	//}
+
+	iRichtigeAntwort = rand() % 4; 
+
+	int j = 0; 
+
+	for (int i = 0; i < 4; i++) {
+
+		if (i == iRichtigeAntwort) {
+			topAntwortmoegl[i].SetString(map_fragen[iZuStellendeFrage]->getAntwort());
+		}
+		else {
+			topAntwortmoegl[i].SetString(map_fragen[iZuStellendeFrage]->getFalscheAntwort(j)); 
+			j++;
+		}
+
 
 	}
 
-	topAntwort.SetString(map_fragen[iZuStellendeFrage]->getAntwort());
+
+	//topAntwort.SetString(map_fragen[iZuStellendeFrage]->getAntwort());
 
 	iZuStellendeFrage++;
 
@@ -339,10 +462,26 @@ void CFragenHandler::BereiteFragevor() {
 void CFragenHandler::SetStelleFrage(bool b) {
 
 	if (!b) {
-		m_zoMultiFrage.SwitchOff(); 
+		bDoFadeOut = true; 
 
 	}
 
 	bStelleFragen = b; 
 
+}
+
+
+void CFragenHandler::bereiteFragenMapVor() {
+
+	bool bLernpaketVorhanden; 
+
+	MAP_sii::iterator it; 
+	it = map_ProfilHandlerLernpakete->find(sLernpaketname);
+
+	if (it != map_ProfilHandlerLernpakete->end()) {
+		bLernpaketVorhanden = true; 
+	}
+	else {
+		bLernpaketVorhanden = false; 
+	}
 }

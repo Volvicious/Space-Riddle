@@ -11,7 +11,7 @@ public:
 	~CHighscore();
 
 	void Init(CViewport * mvz); 
-	void Run(float fTime); 
+	void Run(float fTime, float fTimeDelta); 
 	void Start(float fTime); 
 	void Stop(); 
 	void Pause();
@@ -35,7 +35,7 @@ private:
 	float fTimeStart= 0.0F;
 
 	//Animationszeux
-	void changeAnimation(float fTime);
+	void changeAnimation(float fTime, float fTimeDelta);
 	CTextOutput topChange;
 	bool bDisplayChange;
 	float fTimeStartChange = 0.0F;

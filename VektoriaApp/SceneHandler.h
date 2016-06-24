@@ -72,19 +72,18 @@ private:
 	CIngameOverlays m_zIngameOverlays;
 
 	// Zeux von Chris
-	CMainMenu m_zHauptmenu;
+	CMainmenu m_zHauptmenu;
 
 	CTastaturGER m_zTastaturGer;
-	CTextOutput m_zTextoutput;
-
-	CTextOutput m_zTextoutputFrage;
+	
 	CFragenHandler m_zFragenHandler;
+	CProfilHandler m_zProfilhandler;
 
 	CFileHandler m_zFilehandlerLernpaket;
 	CFileHandler m_zFilehandlerProfil;
 
 	CExplorer m_zExplorerLernpaket;
-	CExplorer m_zExplorerProfil; 
+	CExplorer m_zExplorerProfil;
 
 	CMaus m_dMaus;
 	CDeviceKeyboard m_zKeyboard;
@@ -96,7 +95,9 @@ private:
 	CHighscore m_zHighscore; 
 
 	//Szenen
-	enum Szene{ Hauptmenü = 0, Meteoriten = 1, Fragen = 2, Verloren = 3, Pause = 4, Countdown = 5, LevelCompleted = 6, Highscore = 7, Intro = 8};
+	enum Szene{ PreHauptmenue = -1, Hauptmenü = 0, Meteoriten = 1, 
+		Fragen = 2, Verloren = 3, Pause = 4, Countdown = 5,
+		LevelCompleted = 6, Highscore = 7, Intro = 8};
 
 	//Lokale Variablen
 	float f_PosRaumschiffZ;

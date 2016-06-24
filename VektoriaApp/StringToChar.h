@@ -8,5 +8,7 @@ public:
 
 	char * DoStringToChar(std::string); 
 
+	std::string MachAllesKlein(std::string);
+
 };
 

@@ -15,6 +15,7 @@ public:
 	int getLevelNummer();
 
 	void setLebenAnzahl(int i); 
+
 	int getLebenAnzahl();
 
 	void Init(CViewport * mzv); 
