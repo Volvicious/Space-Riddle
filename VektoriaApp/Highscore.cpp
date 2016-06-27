@@ -35,7 +35,7 @@ void CHighscore::Run(float ftime, float fTimeDelta) {
 			changeString();
 		}
 
-		ULDebug("Highscore");
+		
 
 		topHighscore.WriteSavedString();
 		changeAnimation(ftime, fTimeDelta); 
@@ -117,7 +117,6 @@ void CHighscore::changeString() {
 
 	std::string s = "Score:" + std::to_string(iHighscore);
 	topHighscore.SetString(s);
-	//topHighscore.SetString(std::to_string(iHighscore));
 }
 
 void CHighscore::changeAnimation(float fTime, float fTimeDelta) {

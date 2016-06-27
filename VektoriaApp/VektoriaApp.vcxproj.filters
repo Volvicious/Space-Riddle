@@ -153,9 +153,6 @@
     <ClInclude Include="ProfilHandler.h">
       <Filter>Headerdateien\Chris</Filter>
     </ClInclude>
-    <ClInclude Include="ColorChange.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -259,9 +256,6 @@
     </ClCompile>
     <ClCompile Include="Highscore.cpp">
       <Filter>Quelldateien\Chris</Filter>
-    </ClCompile>
-    <ClCompile Include="ColorChange.cpp">
-      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

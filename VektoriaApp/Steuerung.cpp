@@ -67,7 +67,7 @@ int CSteuerung::StartGame(int iScene, CDeviceKeyboard * keyboard)
 int CSteuerung::PauseGame(int iScene, CDeviceKeyboard * keyboard)
 {
 	//Außer in Frage und Hauptmenue (wegen Eingabe)
-	if (keyboard->KeyDown(DIK_P)&& iScene != 0 && iScene != 2)
+	if (keyboard->KeyDown(DIK_P)&& iScene != 0 && iScene != 2 && iScene != 6)
 	{
 		if (iScene != 4)
 		{

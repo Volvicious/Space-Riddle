@@ -45,7 +45,7 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 		"..\\VektoriaApp\\profil", &m_zKeyboard); 
 
 	//Countdown-Animation
-	m_zAnimationCountdown.Init(viewPort, 4, "textures\\animation\\countdown", "jpg");
+	m_zAnimationCountdown.Init(viewPort, 4, "textures\\animation\\countdown", "png");
 	m_zAnimationCountdown.SetTime(0, 1000);
 	m_zAnimationCountdown.SetTime(1, 1000);
 	m_zAnimationCountdown.SetTime(2, 1000);
@@ -126,6 +126,9 @@ void SceneHandler::FrageTranslation()
 	f_PosRaumschiffX = 0.0F;
 
 	m_zFrageGrafik.Translate(f_PosRaumschiffZ, f_PosRaumschiffX, f_PosRaumschiffY);
+	
+	m_zFragenHandler.BereiteFragevor();
+	m_zFragenHandler.SetStelleFrage(true);
 }
 
 
@@ -193,8 +196,11 @@ void SceneHandler::SwitchScene()
 	bFirstTick = true;
 }
 
-void SceneHandler::FrageTick()
+void SceneHandler::FrageTick(float fTimeDelta)
 {
+
+	m_zFragenHandler.Run(fTimeDelta);
+
 	if (FrageSwitch == true)
 	{
 		FrageTranslation();
@@ -233,8 +239,20 @@ void SceneHandler::FrageTick()
 		
 
 		//Level Completed
+		//iScene = LevelCompleted;
+
 		iScene = LevelCompleted;
+		m_zFragenHandler.SetStelleFrage(false);
+		
+
+		
+	}
+
+	if (m_zFragenHandler.FadeOutBeendet()){
 		m_zIngameOverlays.SwitchOn(1);
+
+
+
 	}
 
 	//FirstTick
@@ -322,8 +340,13 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		{
 			m_zSound.SwitchSounds(0, 4);
 			PlaySoundOnce = false;
-			m_zAnimationCountdown.StartAnimation(); 
+			m_zAnimationCountdown.StartAnimation();
+			
+		
 		}
+
+		//m_zRaumschiff.Tick(fTimeDelta* m_fGeschwindigkeit);
+		//MeteoritenTick(fTimeDelta);
 
 		//iScene = m_zSteuerung.StartGame(iScene, &m_zKeyboard);
 
@@ -332,6 +355,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		if (m_zAnimationCountdown.IsFinished()) {
 			iScene = Meteoriten;
 			m_zHighscore.Start(fTimeDelta);
+			m_zLLA.SwitchOn();
 		}
 
 
@@ -390,7 +414,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		if (iScene == Fragen)
 		{
 			m_fGeschwindigkeit = -10.0f;
-			FrageTick();
+			FrageTick(fTimeDelta);
 		}
 
 
@@ -429,21 +453,28 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	//Level Completed
 	if (iScene == LevelCompleted)
 	{
-		//Cameraposition verändern
-		m_zc.setFristPerson(false);
-		m_zc.setOverlayCockpit()->SwitchOff();
+		m_zFragenHandler.Run(fTimeDelta); 
 
-		//Fragen hinter mir ausblenden
-		m_zFrageGrafik.SwitchOff();
+		if (m_zFragenHandler.FadeOutBeendet()){
 
-		//Wenn Leertaste gedrückt wird gehts weiter
-		iScene = m_zSteuerung.ContinueGame(iScene, &m_zKeyboard);
+			m_zIngameOverlays.SwitchOn(1);
+			//Cameraposition verändern
+			m_zc.setFristPerson(false);
+			m_zc.setOverlayCockpit()->SwitchOff();
 
-		//Switchscene
-		SwitchScene();
+			//Fragen hinter mir ausblenden
+			m_zFrageGrafik.SwitchOff();
 
-		//Meteoriten starten
-		MeteoritenSwitch = true;
+			//Wenn Leertaste gedrückt wird gehts weiter
+			iScene = m_zSteuerung.ContinueGame(iScene, &m_zKeyboard);
+
+			//Switchscene
+			SwitchScene();
+
+			//Meteoriten starten
+			MeteoritenSwitch = true;
+		}
+
 	}
 
 	if (iScene == Highscore)

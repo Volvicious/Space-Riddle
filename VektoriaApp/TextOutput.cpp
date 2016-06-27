@@ -28,7 +28,6 @@ void CTextOutput::Init(CViewport * ViewPortPtr, char * caPathFont, float fxPos, 
 
 void CTextOutput::Init(COverlay * ptroverlay, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, float iLayer) {
 
-	ULDebug("----------------Wird genutzt 2-----------");
 
 	ptrOverlay = ptroverlay; 
 	writingfont.Init(caPathFont, true);
@@ -41,21 +40,19 @@ void CTextOutput::Init(COverlay * ptroverlay, char * caPathFont, float fxPos, fl
 
 }
 
-void CTextOutput::Init(CWriting * Mainwriting, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, float iLayer) {
+void CTextOutput::Init(CViewport * PtrView, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, float iLayer) {
 
-	ULDebug("----------------Wird genutzt 2-----------");
 
 	writingfont.Init(caPathFont, true);
 	writingfont.RotateHue(3.5F);
 	writing.Init(CFloatRect(fxPos, fyPos, fxSize, fySize), 100, &writingfont);
 
 	writing.SetLayer(iLayer);
-	Mainwriting->AddWriting(&writing);
+	PtrView->AddWriting(&writing);
 
 }
 
 void CTextOutput::Init(COverlay * OverLayPtr, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize) {
-	ULDebug("----------------Wird genutzt 3-----------");
 
 	writingfont.Init(caPathFont, true);
 	writingfont.RotateHue(3.5F);
@@ -66,9 +63,7 @@ void CTextOutput::Init(COverlay * OverLayPtr, char * caPathFont, float fxPos, fl
 }
 
 void CTextOutput::Init(COverlay * OverLayPtr, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, int iVisibleChars_) {
-	ULDebug("----------------Wird genutzt 4-----------");
 
-	//writingfont.RotateHue(PI/1.6763904F);
 
 	iVisibleChars =  iVisibleChars_; 
 	bPrintMiddle = true; 
@@ -79,6 +74,22 @@ void CTextOutput::Init(COverlay * OverLayPtr, char * caPathFont, float fxPos, fl
 
 	OverLayPtr->AddWriting(&writing);
 }
+
+void CTextOutput::Init(CViewport * viewPort, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, int iVisibleChars_) {
+
+
+	iVisibleChars = iVisibleChars_;
+	bPrintMiddle = true;
+	writingfont.RotateHue(3.5F);
+
+	writingfont.Init(caPathFont, true);
+	writing.Init(CFloatRect(fxPos, fyPos, fxSize, fySize), 150, &writingfont);
+	writing.SetLayer(0.2F);
+
+	viewPort->AddWriting(&writing);
+}
+
+
 
 
 void CTextOutput::SwitchOn() {

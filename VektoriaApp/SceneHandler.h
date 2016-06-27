@@ -50,7 +50,7 @@ public:
 	void Tick(float fTimeDelta, float fTime);
 	void FrageTranslation();
 	void MeteoritenTick(float fTimeDelta);
-	void FrageTick();
+	void FrageTick(float fTimeDelta);
 	void SwitchScene();
 
 private:
