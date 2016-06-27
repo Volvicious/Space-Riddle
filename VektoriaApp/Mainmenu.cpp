@@ -3,12 +3,15 @@
 
 
 
-void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_, CExplorer * ptrExplorer_, CExplorer * ptrExplorerprof_, CProfilHandler * ptrProfilhandler)
+void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
+	CExplorer * ptrExplorer_, CExplorer * ptrExplorerprof_,
+	CProfilHandler * ptrProfilhandler, CHighscore * ptrHighscore)
 {
 	ptrExplorer = ptrExplorer_; //Lernpakete
 	ptrExplorerProfil = ptrExplorerprof_; //Name festlegen
 	ptrMaus = ptrMaus_;
 	ptrProfilHandler = ptrProfilhandler;
+	ptrHighScore = ptrHighscore; 
 
 	/// ALLES AB HIER IS JULIANS
 
@@ -23,6 +26,7 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_, CExplorer * ptrExpl
 
 
 	//Backbutton
+
 
 
 
@@ -339,11 +343,19 @@ void CMainmenu::menuTick()
 	if (ptrMaus->PickOverlayandLeftKlick(&m_zoHighscore))
 	{
 		m_zoMainmbackground.SwitchOff();
+		ptrHighScore->PreRunMenue();
 		m_zoHighscoreBackground.SwitchOn();
+		bHighscore = true; 
 		ULDebug("Bin hier drin: 5!!!");
+		
 		// Auflistung Hiscore
 		// Erstmal nur Template, rest wird mit CWRiting erstellt
 
+	}
+
+	if (bHighscore) {
+		ptrHighScore->RunHauptMenue();
+		//topTest.WriteSavedString(); 
 	}
 
 
@@ -392,6 +404,10 @@ void CMainmenu::menuTick()
 		m_zoOptionsBackground.SwitchOff();
 		m_zoSteuerungBackground.SwitchOff();
 		m_zoHighscoreBackground.SwitchOff();
+
+		bHighscore = false; 
+		ptrHighScore->SwitchMenueOff(); 
+
 		m_zoMainmbackground.SwitchOn();
 
 	}
@@ -404,7 +420,6 @@ void CMainmenu::menuTick()
 		ptrExplorer->SwitchOff();
 		m_zoMainmbackground.SwitchOn();
 		m_zoSteuerungBackground.SwitchOff();
-		ULDebug("Bin hier drin: 8!!!");
 
 	}
 	//------------------------------------------------------------------------------------------------------------------------------------

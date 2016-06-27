@@ -26,7 +26,7 @@ void CFragenHandler::Init(CFileHandler * fileHandlerPtr, CViewport * mzv, CProfi
 	m_zmMultiFrage.Init();
 	m_zmMultiFrage.LoadPreset("Glass");
 	m_zoMultiFrage.Init(&m_zmMultiFrage, CFloatRect(0.0F, -0.1F, 1.0F, 0.1F));
-	m_zoMultiFrage.SetTransparency(0.5F);
+	m_zoMultiFrage.SetTransparency(0.2F);
 
 	mzv->AddOverlay(&m_zoMultiAntwort);
 	m_zmMultiAntwort.Init(); 
@@ -57,18 +57,8 @@ void CFragenHandler::Init(CFileHandler * fileHandlerPtr, CViewport * mzv, CProfi
 		fLayer -= 0.001; 
 	}
 
-
-	fyWerteDown[0] = -0.1F; 
-	fyWerteDown[1] = 0.8F;
-	fyWerteDown[2] = 0.8F; 
-	fyWerteDown[3] = 0.9F; 
-	fyWerteDown[4] = 0.9F; 
-
-	fyWerteUp[0] = 0.026F;
-	fyWerteUp[1] = 1.1F;
-	fyWerteUp[2] = 1.1F;
-	fyWerteUp[3] = 1.2F;
-	fyWerteUp[4] = 1.2F;
+	//float Arrays befuellen
+	floatArraysNew();
 		
 	for (int i = 0; i < 5; i++){
 		fyWerteDownV[i] = fyWerteDown[i];
@@ -133,7 +123,8 @@ void CFragenHandler::Run(float fTimeDelta) {
 
 		if (!bDoFadeOut) {
 			SwitchOff();
-			bFadeOutbeendet = true; 
+			bFadeOutbeendet = true;
+			floatArraysNew(); 
 		}
 
 	}
@@ -605,5 +596,21 @@ void CFragenHandler::SwitchOff(){
 		topAntwortmoegl[i].SwitchOff();
 	}
 
+
+}
+
+void CFragenHandler::floatArraysNew() {
+
+	fyWerteDown[0] = -0.1F;
+	fyWerteDown[1] = 0.8F;
+	fyWerteDown[2] = 0.8F;
+	fyWerteDown[3] = 0.9F;
+	fyWerteDown[4] = 0.9F;
+
+	fyWerteUp[0] = 0.026F;
+	fyWerteUp[1] = 1.1F;
+	fyWerteUp[2] = 1.1F;
+	fyWerteUp[3] = 1.2F;
+	fyWerteUp[4] = 1.2F;
 
 }

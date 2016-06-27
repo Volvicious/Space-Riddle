@@ -137,6 +137,8 @@ private:
 
 	float fyWerteDownV[5];
 	float fyWerteUpV[5];
+	void floatArraysNew(); 
+
 
 };
 

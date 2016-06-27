@@ -16,7 +16,7 @@ void CHitbox::Init(CRaumschiff * raumschiff, CFrageGrafik * frage, CMeteorit * m
 	{
 		r[i].Init(CHVector(0.0f, 0.0f, 0.0f, 1.0f), CHVector(0.0f, 0.0f, -1.0f, 0.0f));
 		r[i].m_fMin = 0.0f;
-		r[i].m_fMax = 3.0f;
+		r[i].m_fMax = 1.0f;
 	}
 
 	for (int i = 0; i < 4; i++)

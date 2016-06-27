@@ -29,7 +29,7 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 
 	//Menu
 	m_zHauptmenu.menuInit(viewPort, &m_dMaus, &m_zExplorerLernpaket,
-		&m_zExplorerProfil, &m_zProfilhandler);
+		&m_zExplorerProfil, &m_zProfilhandler, &m_zHighscore);
 
 	//Lernpakete
 
@@ -427,6 +427,15 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	//Game Over
 	if (iScene == Verloren)
 	{
+		int iSceneSpeicher = iScene; 
+
+		if (FirstVerlorenTick) {
+
+			m_zHighscore.AddHighscore(m_zFilehandlerProfil.getSelectedFileDisplayName(),
+				m_zHighscore.GetHighscore());
+			FirstVerlorenTick = false; 
+		}
+
 		//Game Over
 		m_zIngameOverlays.SwitchOffAll();
 		m_zIngameOverlays.SwitchOn(2);
@@ -438,6 +447,10 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 		//Highscoreliste anzeigen
 		iScene = m_zSteuerung.Highscore(iScene, &m_zKeyboard);
+		if (iScene != iSceneSpeicher) {
+			FirstVerlorenTick = true; 
+		}
+
 	}
 
 	//Pause gedrückt

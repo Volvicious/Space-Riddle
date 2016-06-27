@@ -7,7 +7,7 @@
 #include "Maus.h"
 #include "TextOutput.h"
 #include "ProfilHandler.h"
-
+#include "Highscore.h"
 
 
 
@@ -21,7 +21,7 @@ public:
 	~CMainmenu(){};
 	void menuInit(CViewport * m_zv, CMaus * ptrMaus_, 
 		CExplorer * ptrExplorer_, CExplorer * ptrExplorerProf,
-		CProfilHandler * ptrProfilhandler);
+		CProfilHandler * ptrProfilhandler, CHighscore * ptrHighscore);
 	void menuTick();
 
 
@@ -129,7 +129,8 @@ public:
 
 	CExplorer * ptrExplorer;
 	CExplorer * ptrExplorerProfil; 
-	CProfilHandler * ptrProfilHandler; 
+	CProfilHandler * ptrProfilHandler;
+	CHighscore * ptrHighScore; 
 
 
 	//Hilfsvars
@@ -139,6 +140,7 @@ public:
 
 	bool bGo = false;
 
+	bool bHighscore = false;
 
 
 

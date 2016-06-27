@@ -114,7 +114,7 @@ private:
 	bool bFirstTick = true;
 
 	bool FirstSoundTick = true;
-
+	bool FirstVerlorenTick = true; 
 
 	int iLeben = 5;
 };

@@ -147,10 +147,10 @@
     <ClInclude Include="TextOutput.h">
       <Filter>Headerdateien\Chris</Filter>
     </ClInclude>
-    <ClInclude Include="Highscore.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="ProfilHandler.h">
+      <Filter>Headerdateien\Chris</Filter>
+    </ClInclude>
+    <ClInclude Include="Highscore.h">
       <Filter>Headerdateien\Chris</Filter>
     </ClInclude>
   </ItemGroup>

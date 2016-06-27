@@ -1,6 +1,7 @@
 #pragma once
 #include "Vektoria\Root.h"
 #include "TextOutput.h"
+#include "StringToChar.h"
 
 
 using namespace Vektoria;
@@ -18,7 +19,14 @@ public:
 	void GoOn(float fTime); 
 	
 	void Save();
+	void AddHighscore(std::string sName, int iScore);
 	void Load(); 
+
+	void PreRunMenue();
+	void RunHauptMenue();
+	void SwitchMenueOff(); 
+	void Sort(); 
+
 
 	void SetHighscore(int i); 
 	int GetHighscore(); 
@@ -54,6 +62,12 @@ private:
 	void changeString();
 
 	CStringToChar stc; 
+
+	std::vector<std::pair<std::string, int>>  * v_NamePunktZahl = new std::vector<std::pair<std::string, int>>;
+
+	CTextOutput aTextOutputsNamen[6]; 
+	CTextOutput aTextOutputInts[6];
+	
 
 };
 
