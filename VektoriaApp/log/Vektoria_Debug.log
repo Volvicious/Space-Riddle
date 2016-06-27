@@ -2,14 +2,6 @@
 Vektoria-Logfile
 
 ****************
-<<<<<<< HEAD
-Debug: findFiles: Start
-Debug: ----------------Wird genutzt 3-----------
-Debug: ----------------Wird genutzt 3-----------
-Debug: ----------------Wird genutzt 3-----------
-Debug: ----------------Wird genutzt 3-----------
-Debug: ----------------Wird genutzt 3-----------
-=======
 Ok:    Loaded enum eTranparencyKind of M: N (Value = 0)
 Ok:    Loading matrix mColor succeded
 Info:  Value::
@@ -142,7 +134,6 @@ Debug: ----------------Wird genutzt 1-----------
 Debug: ----------------Wird genutzt 1-----------
 Debug: ----------------Wird genutzt 1-----------
 Debug: ----------------Wird genutzt 1-----------
->>>>>>> remotes/origin/Chris_Raumschiff
 Ok:    Loaded enum eTranparencyKind of M: N (Value = 0)
 Ok:    Loading matrix mColor succeded
 Info:  Value::
@@ -286,7 +277,6 @@ Debug: ----------------Wird genutzt 1-----------
 Debug: ----------------Wird genutzt 1-----------
 Ok:    DirectSound initialized
 Ok:    Hierarchy checked.
-<<<<<<< HEAD
 Error: Cannot open WAV-File sounds\Ambient_Sounds\Theme_Short.wav
 Error: DirectSound: Loading WAV File failed.
 Ok:    1. sound (sounds\Ambient_Sounds\Ingame.wav) added as ambient
@@ -367,282 +357,11 @@ Error: Cannot open WAV-File sounds\Ambient_Sounds\Tastatur\00004.aiff
 Error: DirectSound: Loading WAV File failed.
 Error: Cannot open WAV-File sounds\Ambient_Sounds\Tastatur\00005.aiff
 Error: DirectSound: Loading WAV File failed.
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-=======
-Ok:    1. sound (sounds\Ambient_Sounds\Theme.wav) added as ambient
-Ok:    2. sound (sounds\Ambient_Sounds\Ingame.wav) added as ambient
-Ok:    3. sound (sounds\Ambient_Sounds\Game_Over.wav) added as ambient
-Ok:    4. sound (sounds\Small_Explosion.wav) added as ambient
-Ok:    5. sound (sounds\Countdown.wav) added as ambient
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออาฤ
-Error: DirectSound: Loading WAV File failed.
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออาฤ
-Error: DirectSound: Loading WAV File failed.
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออาฤ
-Error: DirectSound: Loading WAV File failed.
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออาฤ
-Error: DirectSound: Loading WAV File failed.
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ๘’ฤ
-Error: DirectSound: Loading WAV File failed.
 Debug: Bin hier!
 Debug: Bin hier drin: 1!!!
+Debug: Neues File muss angelegt werden.
+Debug: SaveStats
+Debug: ..\
 Debug: Bin hier drin: 2!!!
 Debug: Frage 1 wird eingefuegt!
 Debug: Frage 2 wird eingefuegt!
@@ -799,71 +518,54 @@ Debug: 0.0
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
 Debug: 0.0
 Debug:    
 Debug: 0.0
@@ -1021,205 +723,176 @@ Debug:
 Debug: 0.0
 Debug:    
 Debug: 0.0
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
 Debug:    
-Debug:    
-Debug:    
-Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
+Debug: 0.0
 Debug:    
 Debug:    
 Debug:    
@@ -1433,3312 +1106,22 @@ Debug:
 Debug:    
 Debug:    
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Kugel 4
 Debug:    
-Debug: Garnix
-Debug: StelleFrage
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug: Garnix
-Debug: StelleFrage
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Kugel 4
-Debug:    
-Debug: Garnix
-Debug: StelleFrage
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
-Debug:    
-Debug: 0.0
 Debug:    
 Debug:    
 Debug:    
@@ -5190,6 +1573,7 @@ Debug:
 Debug:    
 Debug:    
 Debug:    
+Debug: Kugel 2
 Debug:    
 Debug:    
 Debug:    
@@ -5643,9 +2027,4074 @@ Debug: 0.0
 Debug: 0.0
 Debug: 0.0
 Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Kugel 3
+Debug:    
+Debug: Garnix
+Debug: StelleFrage
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug:    
+Debug: Garnix
+Debug: StelleFrage
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
+Debug: 0.0
+Debug:    
 Debug: 0.0
 Warn:  Tried to detach child node from non-existent parent node.
->>>>>>> remotes/origin/Chris_Raumschiff
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
+Warn:  Tried to detach child node from non-existent parent node.
 Warn:  Tried to detach child node from non-existent parent node.
 Warn:  Tried to detach child node from non-existent parent node.
 Warn:  Tried to detach child node from non-existent parent node.
