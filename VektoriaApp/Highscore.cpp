@@ -15,7 +15,7 @@ CHighscore::~CHighscore()
 void CHighscore::Init(CViewport * mvz) {
 
 	topHighscore.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.01F, 2.0F, 0.02F);
-	topHighscore.SetString("0");
+	topHighscore.SetString("Score:0");
 
 	topChange.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.06F, 2.0F, 0.02F);
 	
@@ -115,7 +115,9 @@ void CHighscore::SubstractFromHighscore (int i) {
 
 void CHighscore::changeString() {
 
-	topHighscore.SetString(std::to_string(iHighscore));
+	std::string s = "Score:" + std::to_string(iHighscore);
+	topHighscore.SetString(s);
+	//topHighscore.SetString(std::to_string(iHighscore));
 }
 
 void CHighscore::changeAnimation(float fTime, float fTimeDelta) {

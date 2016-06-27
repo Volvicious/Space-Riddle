@@ -29,7 +29,7 @@ private:
 
 	int iLevelNummer; 
 	int iLebenAnzahl;
-	bool bIsOn = true; 
+	bool bIsOn = false; 
 
 	COverlay m_zoAnzeige; // Dummy
 

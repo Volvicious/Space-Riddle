@@ -2,6 +2,7 @@
 #include "Vektoria\Root.h"
 #include "TastaturGER.h"
 #include "StringToChar.h"
+#include "ColorChange.h"
 
 //----------------------------------
 //Grafische Darstellung von Text mit Workaround fuer Umlaute....
@@ -29,6 +30,11 @@ public:
 	
 	//Hängt Writing an Overlay an, ermöglicht die Übergabe des LayerWertes
 	void Init(COverlay * ptrOverlay, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, float iLayer);
+	
+	//Hängt Writing an Writing an.
+	void Init(CWriting * writing, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, float iLayer);
+
+
 
 	//an ein Overlay anhängen
 	void Init(COverlay * OverLayPtr, char* sPathFont, float fxPos, float fyPos, float fxSize, float fySize);
@@ -78,7 +84,7 @@ private:
 	void Workaround(std::string * s);
 	
 	 
-	
+	CColorChange CoCa; 
 
 };
 //

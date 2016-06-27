@@ -68,6 +68,8 @@
 #include "Hitbox.h"
 #include "LLAnzeige.h"
 #include "FrageGrafik.h"
+#include "Maus.h"
+
 
 using namespace Vektoria;
 
@@ -93,6 +95,9 @@ private:
 	CViewport m_zv;
 	CLightParallel m_zl;
 	SceneHandler m_zSceneHandler;
+	
+	//CMaus maus; 
+
 };
 
 

@@ -22,10 +22,10 @@ void CLLAnzeige::Init(CViewport * mzv) {
 	font.Init("fonts\\Nasalization-rg-Red.png", true);
 	writing.Init(CFloatRect(0.0F, 0.0F, 2.0F, 0.2F), 100, &font);
 	writing.RotateHue(PI / 4);
-	m_zoAnzeige.AddWriting(&writing);
+	//m_zoAnzeige.AddWriting(&writing);
 	
 
-	//top.Init(&m_zoAnzeige, "fonts\\Nasalization-rg-Red.png", 0.85F, 0.0F, 2.0F, .03F, 0.01F);
+	top.Init(&m_zoAnzeige, "fonts\\Nasalization-rg-Red.png", 0.85F, 0.0F, 2.0F, .03F, 0.01F);
 
 
 	for (int i = 0; i < 11; i++) {
@@ -59,6 +59,8 @@ void CLLAnzeige::Init(CViewport * mzv) {
 	//top.Init(mzv, "fonts\\Nasalization-rg-Red.png", 0.4F, 0.3F, 2.0F, .03F);
 
 	setLevelNummer(iLevelNummer);
+
+	m_zoAnzeige.SwitchOff(); 
 	
 	
 }
@@ -67,8 +69,8 @@ void CLLAnzeige::Run() {
 
 	if (bIsOn) {
 
-		writing.PrintF("Test");
-		//top.WriteSavedString();		
+		//writing.PrintF("Test");
+		top.WriteSavedString();		
 	}
 
 

@@ -37,9 +37,13 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	m_zSceneHandler.InitHitbox(&m_zs);
 	m_zSceneHandler.InitOverlays(&m_zv);
 
-	//Hitboxen
+	//Hitboxenhttp://ipm.avira.com/images/avira-logo-ipm-dark.jpg
 	m_zs.EnableAABBs();
 	m_zs.SetBVHExactCalculationOn();
+
+	//maus.Init(&m_zv, &m_zf);
+	//maus.SwitchOn();
+
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)
@@ -47,6 +51,8 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	// Hier die Echtzeit-Veränderungen einfügen:
 	//Aktualisiert alles
 	m_zSceneHandler.Tick(fTimeDelta, fTime);
+
+	//maus.Run(); 
 
 	m_zr.Tick(fTimeDelta);
 }

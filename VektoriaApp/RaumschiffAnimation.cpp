@@ -32,7 +32,7 @@ bool CRaumschiffAnimation::Run(CPlacement * ptrRaumschiff, CDeviceKeyboard * ptr
 				
 				float fDistance = sqrt((ptrRaumschiff->GetTranslation().GetX()*ptrRaumschiff->GetTranslation().GetX() + ptrRaumschiff->GetTranslation().GetY()*ptrRaumschiff->GetTranslation().GetY()));
 
-				if (fDistance < 12.5F) {
+				if (fDistance < 10.5F) {
 
 					bDoRotateA = !bDoRotateD;
 					fTimeGesA = 0.0F;
@@ -57,7 +57,7 @@ bool CRaumschiffAnimation::Run(CPlacement * ptrRaumschiff, CDeviceKeyboard * ptr
 
 				float fDistance = sqrt((ptrRaumschiff->GetTranslation().GetX()*ptrRaumschiff->GetTranslation().GetX() + ptrRaumschiff->GetTranslation().GetY()*ptrRaumschiff->GetTranslation().GetY()));
 
-				if (fDistance < 12.5F) {
+				if (fDistance < 10.5F) {
 
 					bDoRotateD = !bDoRotateA;
 					fTimeGesD = 0.0F;
@@ -89,7 +89,7 @@ bool CRaumschiffAnimation::DoingRotationA(CPlacement * ptrRaumischiffi, float fT
 	CHVector vec = ptrRaumischiffi->GetTranslation(); 
 
 	fRotate += 9.5 * fTimeDelta;
-	fvec -= 0.1F * fTimeDelta; 
+	fvec -= 0.08F * fTimeDelta; 
 
 	vec.SetX(vec.GetX() + fvec);
 

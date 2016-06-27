@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="CameraController.h" />
+    <ClInclude Include="ColorChange.h" />
     <ClInclude Include="Explorer.h" />
     <ClInclude Include="ExplorerProfil.h" />
     <ClInclude Include="FileFinder.h" />
@@ -179,8 +180,8 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="CameraController.cpp" />
+    <ClCompile Include="ColorChange.cpp" />
     <ClCompile Include="Explorer.cpp" />
-    <ClCompile Include="ExplorerProfil.cpp" />
     <ClCompile Include="FileFinder.cpp" />
     <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="FileReader.cpp" />

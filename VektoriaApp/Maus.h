@@ -38,7 +38,7 @@ private:
 	
 	
 	//Hilfsvar:
-	bool bOn = true; 
+	bool bOn = false; 
 
 	bool bKeyDown = true; 
 
