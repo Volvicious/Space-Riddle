@@ -143,7 +143,12 @@ void SceneHandler::MeteoritenTick(float fTimeDelta)
 		iLeben -= 1;
 
 		//Crashsound
-		m_zSound.Start(3);
+		if (m_zLLA.getLebenAnzahl() > 0)
+		{
+			m_zSound.randCrash();
+			m_zSound.randComment();
+			m_zSound.randGlassbreak();
+		}
 
 		//Nächster Meteorit
 		m_zMeteoriten.nextMeteor();
@@ -250,11 +255,10 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	{
 		//Todo: IF Animation zuende oder Leertaste
 		iScene = m_zSteuerung.Hauptmenue(iScene, &m_zKeyboard);
-	
 	}
 
-	if (iScene == PreHauptmenue) {
-
+	if (iScene == PreHauptmenue) 
+	{
 		m_zHauptmenu.SwitchOn();
 		m_dMaus.SwitchOn();
 		iScene = Hauptmenü;
@@ -263,9 +267,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	//Hauptmenü getickt
 	if (iScene == Hauptmenü)
 	{
-
-		
-		m_zSound.Loop(0);
+		m_zSound.SwitchSounds(25, 0, true);
 		m_dMaus.Run();
 		m_zExplorerLernpaket.Run();
 		m_zHauptmenu.menuTick();
@@ -286,11 +288,12 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	{
 		if (PlaySoundOnce == true)
 		{
-			m_zSound.SwitchSounds(0, 4);
+			m_zSound.SwitchSounds(0, 7);
 			PlaySoundOnce = false;
 		}
 
 		iScene = m_zSteuerung.StartGame(iScene, &m_zKeyboard);
+
 		if (iScene == 1)
 		{
 			m_zHighscore.Start(fTimeDelta);
@@ -303,14 +306,12 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	//Tick für Spiel
 	if (iScene == Meteoriten || iScene == Fragen) 
 	{
-		if (m_zKeyboard.KeyDown(DIK_F)) 
-		{
-			m_zHighscore.SubstractFromHighscore(3);
-		}
-
+		//Pause Loop ausmachen
+		m_zSound.Stop(6);
 
 		//Ingame Loop
-		m_zSound.SwitchSounds(4, 1, true);
+		m_zSound.Stop(7);
+		m_zSound.Loop(1);
 
 		//Ingame Overlays ausschalten
 		m_zIngameOverlays.SwitchOffAll();
@@ -374,6 +375,10 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		m_zIngameOverlays.SwitchOn(2);
 		m_zIngameOverlays.SetLayer(0, 0.9f);
 
+		//Sounds
+		m_zSound.SwitchSounds(1, 2, true);
+		m_zSound.Start(3);
+
 		//Highscoreliste anzeigen
 		iScene = m_zSteuerung.Highscore(iScene, &m_zKeyboard);
 	}
@@ -381,6 +386,11 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	//Pause gedrückt
 	if (iScene == Pause)
 	{
+		//Sounds
+		m_zSound.Pause(1);
+		m_zSound.Loop(6);
+
+		//Rest
 		m_zHighscore.Pause(); 
 		m_zSound.Pause(1);
 		m_zIngameOverlays.SwitchOn(0);
@@ -390,6 +400,14 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	//Level Completed
 	if (iScene == LevelCompleted)
 	{
+		//Sound
+		if (FirstSoundTick == true)
+		{		
+			m_zSound.Pause(1);
+			m_zSound.Start(9);
+			FirstSoundTick = false;
+		}
+
 		//Cameraposition verändern
 		m_zc.setFristPerson(false);
 		m_zc.setOverlayCockpit()->SwitchOff();
@@ -406,6 +424,8 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		//Meteoriten starten
 		MeteoritenSwitch = true;
 	}
+	else
+		FirstSoundTick = true;
 
 	if (iScene == Highscore)
 	{

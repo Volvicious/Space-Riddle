@@ -112,6 +112,8 @@ private:
 	bool bFirstPerson = true;
 	bool bFirstTick = true;
 
+	bool FirstSoundTick = true;
+
 	int nummer;
 
 	int iLeben = 10;

@@ -146,76 +146,57 @@ Debug: ----------------Wird genutzt 1-----------
 Debug: ----------------Wird genutzt 1-----------
 Ok:    DirectSound initialized
 Ok:    Hierarchy checked.
-Ok:    1. sound (sounds\Ambient_Sounds\Theme.wav) added as ambient
+Ok:    1. sound (sounds\Ambient_Sounds\Theme_Short.wav) added as ambient
 Ok:    2. sound (sounds\Ambient_Sounds\Ingame.wav) added as ambient
 Ok:    3. sound (sounds\Ambient_Sounds\Game_Over.wav) added as ambient
-Ok:    4. sound (sounds\Small_Explosion.wav) added as ambient
-Ok:    5. sound (sounds\Countdown.wav) added as ambient
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออฐข3
+Ok:    4. sound (sounds\Ambient_Sounds\Small_Explosion.wav) added as ambient
+Ok:    5. sound (sounds\Ambient_Sounds\Click.wav) added as ambient
+Error: Cannot open WAV-File sounds\Ambient_Sounds\.wav
 Error: DirectSound: Loading WAV File failed.
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออฐข3
+Ok:    6. sound (sounds\Ambient_Sounds\Pause_Ambient.wav) added as ambient
+Ok:    7. sound (sounds\Ambient_Sounds\Countdown.aiff) added as ambient
+Error: Cannot open WAV-File sounds\Ambient_Sounds\.wav
 Error: DirectSound: Loading WAV File failed.
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออฐข3
+Ok:    8. sound (sounds\Ambient_Sounds\Levelend.wav) added as ambient
+Ok:    9. sound (sounds\Ambient_Sounds\Creditsong.wav) added as ambient
+Ok:    10. sound (sounds\Ambient_Sounds\Kollisionskommentar\01.aiff) added as ambient
+Ok:    11. sound (sounds\Ambient_Sounds\Kollisionskommentar\02.aiff) added as ambient
+Ok:    12. sound (sounds\Ambient_Sounds\Kollisionskommentar\03.aiff) added as ambient
+Ok:    13. sound (sounds\Ambient_Sounds\Kollisionskommentar\04.aiff) added as ambient
+Ok:    14. sound (sounds\Ambient_Sounds\Kollisionskommentar\05.aiff) added as ambient
+Ok:    15. sound (sounds\Ambient_Sounds\Kollisionskommentar\06.aiff) added as ambient
+Ok:    16. sound (sounds\Ambient_Sounds\Kollisionskommentar\07.aiff) added as ambient
+Ok:    17. sound (sounds\Ambient_Sounds\Kollisionskommentar\08.aiff) added as ambient
+Ok:    18. sound (sounds\Ambient_Sounds\Kollisionskommentar\09.aiff) added as ambient
+Ok:    19. sound (sounds\Ambient_Sounds\Kollisionskommentar\10.aiff) added as ambient
+Ok:    20. sound (sounds\Ambient_Sounds\Kollisionskommentar\11.aiff) added as ambient
+Ok:    21. sound (sounds\Ambient_Sounds\Kollisionskommentar\12.aiff) added as ambient
+Ok:    22. sound (sounds\Ambient_Sounds\Kollisionskommentar\13.aiff) added as ambient
+Error: Cannot open WAV-File sounds\Ambient_Sounds\.wav
 Error: DirectSound: Loading WAV File failed.
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออฐข3
+Ok:    23. sound (sounds\Ambient_Sounds\Introvideosound.wav) added as ambient
+Ok:    24. sound (sounds\Ambient_Sounds\Glasbruch\001.aiff) added as ambient
+Ok:    25. sound (sounds\Ambient_Sounds\Glasbruch\002.aiff) added as ambient
+Ok:    26. sound (sounds\Ambient_Sounds\Glasbruch\003.aiff) added as ambient
+Ok:    27. sound (sounds\Ambient_Sounds\Glasbruch\004.aiff) added as ambient
+Ok:    28. sound (sounds\Ambient_Sounds\Glasbruch\005.aiff) added as ambient
+Ok:    29. sound (sounds\Ambient_Sounds\Kollision\0001.aiff) added as ambient
+Ok:    30. sound (sounds\Ambient_Sounds\Kollision\0002.aiff) added as ambient
+Ok:    31. sound (sounds\Ambient_Sounds\Kollision\0003.aiff) added as ambient
+Ok:    32. sound (sounds\Ambient_Sounds\Kollision\0004.aiff) added as ambient
+Ok:    33. sound (sounds\Ambient_Sounds\Kollision\0005.aiff) added as ambient
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Tastatur\00001.aiff
 Error: DirectSound: Loading WAV File failed.
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออhc3
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Tastatur\00002.aiff
 Error: DirectSound: Loading WAV File failed.
-Debug: Kugel 2
-Debug: Kugel 2
-Debug: Kugel 2
-Debug: Kugel 2
-Debug: Kugel 2
-Debug: Kugel 2
-Debug: Kugel 2
-Debug: Kugel 2
-Debug: Kugel 2
-Debug: Kugel 2
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Tastatur\00003.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Tastatur\00004.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Tastatur\00005.aiff
+Error: DirectSound: Loading WAV File failed.
 Debug: Garnix
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
+Debug: Garnix
 Warn:  Tried to detach child node from non-existent parent node.
 Warn:  Tried to detach child node from non-existent parent node.
 Warn:  Tried to detach child node from non-existent parent node.
