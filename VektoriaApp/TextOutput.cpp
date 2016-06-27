@@ -17,63 +17,79 @@ void CTextOutput::Init(CViewport * ViewPortPtr, char * caPathFont, float fxPos, 
 	
 	ULDebug("----------------Wird genutzt 1-----------");
 	writingfont.Init(caPathFont, true);
-
-	//writingfont.Fini();
-
+	writingfont.RotateHue(3.5F);
 	writing.Init(CFloatRect(fxPos, fyPos, fxSize, fySize), 100, &writingfont);
-	//writing.SetLayer(0.2F);
-	//writing.Fini();
+	writing.SetLayer(0.2F);
+	
+
 	ViewPortPtr->AddWriting(&writing);
 }
 
 
 void CTextOutput::Init(COverlay * ptroverlay, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, float iLayer) {
 
-	ULDebug("----------------Wird genutzt 2-----------");
 
 	ptrOverlay = ptroverlay; 
-
 	writingfont.Init(caPathFont, true);
-	writingfont.RotateHue(PI);
+	writingfont.RotateHue(3.5F);;
 	writing.Init(CFloatRect(fxPos, fyPos, fxSize, fySize), 100, &writingfont);
 	
-	//writing.SetLayer(0.2F);
+	writing.SetLayer(0.2F);
 	
 	ptrOverlay->AddWriting(&writing);
 
 }
 
-void CTextOutput::Init(COverlay * OverLayPtr, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize) {
-	ULDebug("----------------Wird genutzt 3-----------");
+void CTextOutput::Init(CViewport * PtrView, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, float iLayer) {
 
 
 	writingfont.Init(caPathFont, true);
-	//writingfont.RotateHue(.5F);
+	writingfont.RotateHue(3.5F);
+	writing.Init(CFloatRect(fxPos, fyPos, fxSize, fySize), 100, &writingfont);
 
+	writing.SetLayer(iLayer);
+	PtrView->AddWriting(&writing);
+
+}
+
+void CTextOutput::Init(COverlay * OverLayPtr, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize) {
+
+	writingfont.Init(caPathFont, true);
+	writingfont.RotateHue(3.5F);
 	writing.Init(CFloatRect(fxPos, fyPos, fxSize, fySize), 100 , &writingfont);
-	//writing.SetLayer(0.2F);
+	writing.SetLayer(0.2F);
 
 	OverLayPtr->AddWriting(&writing);
 }
 
 void CTextOutput::Init(COverlay * OverLayPtr, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, int iVisibleChars_) {
-	ULDebug("----------------Wird genutzt 4-----------");
-
 
 
 	iVisibleChars =  iVisibleChars_; 
 	bPrintMiddle = true; 
 
 	writingfont.Init(caPathFont, true);
-
-	writingfont.Fini();
-	
-
 	writing.Init(CFloatRect(fxPos, fyPos, fxSize, fySize), 150, &writingfont);
 	writing.SetLayer(0.2F);
 
 	OverLayPtr->AddWriting(&writing);
 }
+
+void CTextOutput::Init(CViewport * viewPort, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, int iVisibleChars_) {
+
+
+	iVisibleChars = iVisibleChars_;
+	bPrintMiddle = true;
+	writingfont.RotateHue(3.5F);
+
+	writingfont.Init(caPathFont, true);
+	writing.Init(CFloatRect(fxPos, fyPos, fxSize, fySize), 150, &writingfont);
+	writing.SetLayer(0.2F);
+
+	viewPort->AddWriting(&writing);
+}
+
+
 
 
 void CTextOutput::SwitchOn() {

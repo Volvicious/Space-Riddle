@@ -180,7 +180,6 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="Explorer.cpp" />
-    <ClCompile Include="ExplorerProfil.cpp" />
     <ClCompile Include="FileFinder.cpp" />
     <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="FileReader.cpp" />

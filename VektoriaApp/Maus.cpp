@@ -18,13 +18,11 @@ void CMaus::Init(CViewport * m_zv, CFrame * m_zf) {
 	m_zf->AddDeviceCursor(&m_zdCursor);
 	m_zv->AddOverlay(&m_zoCurser);
 	m_zoCurser.SetLayer(0.01F);
-	//m_zoCurser.SwitchOff();
+	m_zoCurser.SwitchOff();
 }
 
 void CMaus::Run() {
 	if (bOn) {
-
-		ULDebug("Ist an.");
 
 		float fx, fy;
 
@@ -43,6 +41,7 @@ void CMaus::Run() {
 
 
 void CMaus::SwitchOn() {
+	
 	m_zoCurser.SwitchOn();
 	bOn = true;
 	bKeyDown = true;
@@ -90,7 +89,9 @@ bool CMaus::PickOverlay(COverlay * ptro) {
 bool CMaus::PickOverlayOrWritingandLeftKlick(CWriting * ptrw) {
 	m_zoCurser.SwitchOff();
 	if (m_zdCursor.PickOverlayOrWriting() == ptrw && m_zdCursor.ButtonPressedLeft() && !bKeyDown) {
-		bKeyDown = true;
+	//if (m_zdCursor.PickWriting() == ptrw && m_zdCursor.ButtonPressedLeft() && !bKeyDown) {
+
+	bKeyDown = true;
 		
 		m_zoCurser.SwitchOn();
 			return true; 

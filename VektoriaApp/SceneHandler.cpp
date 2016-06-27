@@ -22,12 +22,14 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	m_zTastaturGer.Init(&m_zKeyboard, 9999, false);
 	
 	//Maus 
-	//m_dMaus.Init(viewPort, frame);
+	m_dMaus.Init(viewPort, frame);
 
 	//Fragen
+	m_zFragenHandler.Init(&m_zFilehandlerLernpaket, viewPort, &m_zProfilhandler);
 
 	//Menu
-	//m_zHauptmenu.menuInit(viewPort, &m_dMaus, &m_zExplorerLernpaket, &m_zExplorerProfil, &m_zProfilhandler);
+	m_zHauptmenu.menuInit(viewPort, &m_dMaus, &m_zExplorerLernpaket,
+		&m_zExplorerProfil, &m_zProfilhandler);
 
 	//Lernpakete
 
@@ -41,6 +43,22 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	m_zExplorerProfil.Init(viewPort, &m_dMaus, &m_zFilehandlerProfil,
 		"textures\\explorer\\menubild_profilmanager.jpg", "textures\\TextIcon.gif",
 		"..\\VektoriaApp\\profil", &m_zKeyboard); 
+
+	//Countdown-Animation
+	m_zAnimationCountdown.Init(viewPort, 4, "textures\\animation\\countdown", "png");
+	m_zAnimationCountdown.SetTime(0, 1000);
+	m_zAnimationCountdown.SetTime(1, 1000);
+	m_zAnimationCountdown.SetTime(2, 1000);
+	m_zAnimationCountdown.SetTime(3, 1000);
+
+	//Intro-Animation
+
+	m_zAnimationIntro.Init(viewPort, 5, "textures\\animation\\storyintro", "png");
+	m_zAnimationIntro.SetTime(0, 1000.0F);
+	m_zAnimationIntro.SetTime(1, 1000.0F);
+	m_zAnimationIntro.SetTime(2, 2000.F);
+	m_zAnimationIntro.SetTime(3, 1000.F);
+	m_zAnimationIntro.SetTime(4, 1000.F);
 
 
 	//Leben- & Levelanzeige
@@ -56,7 +74,7 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	m_fGeschwindigkeit = -40.0f;
 
 	//Szene setzen
-	iScene = Countdown;
+	iScene =  Intro;
 }
 
 void SceneHandler::InitMeteorits(CRoot * root, CScene * scene)
@@ -108,6 +126,9 @@ void SceneHandler::FrageTranslation()
 	f_PosRaumschiffX = 0.0F;
 
 	m_zFrageGrafik.Translate(f_PosRaumschiffZ, f_PosRaumschiffX, f_PosRaumschiffY);
+	
+	m_zFragenHandler.BereiteFragevor();
+	m_zFragenHandler.SetStelleFrage(true);
 }
 
 
@@ -190,6 +211,9 @@ void SceneHandler::SwitchScene()
 
 void SceneHandler::FrageTick(float fTimeDelta)
 {
+
+	m_zFragenHandler.Run(fTimeDelta);
+
 	if (FrageSwitch == true)
 	{
 		FrageTranslation();
@@ -231,9 +255,14 @@ void SceneHandler::FrageTick(float fTimeDelta)
 		
 
 		//Level Completed
+		//iScene = LevelCompleted;
+
 		iScene = LevelCompleted;
-		m_zIngameOverlays.SwitchOn(1);
+		m_zFragenHandler.SetStelleFrage(false);		
 	}
+
+	if (m_zFragenHandler.FadeOutBeendet())
+		m_zIngameOverlays.SwitchOn(1);
 
 	//FirstTick
 	bFirstTick = false;
@@ -253,12 +282,29 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 	if (iScene == Intro)
 	{
+		int iSceneSpeicher = iScene; 
+
 		//Todo: IF Animation zuende oder Leertaste
+
+		if (!bAnimationIntroStarted) 
+		{
+			m_zAnimationIntro.StartAnimation();
+			bAnimationIntroStarted = true; 
+		}
+
 		iScene = m_zSteuerung.Hauptmenue(iScene, &m_zKeyboard);
+
+		if (iSceneSpeicher != iScene) 
+			m_zAnimationIntro.StopAnimation(); 
+
+		m_zAnimationIntro.Run(fTime);
+		if (m_zAnimationIntro.IsFinished())
+			iScene = PreHauptmenue;
 	}
 
 	if (iScene == PreHauptmenue) 
 	{
+		ULDebug("Bin hier!");
 		m_zHauptmenu.SwitchOn();
 		m_dMaus.SwitchOn();
 		iScene = Hauptmenü;
@@ -270,6 +316,9 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		m_zSound.SwitchSounds(25, 0, true);
 		m_dMaus.Run();
 		m_zExplorerLernpaket.Run();
+		m_zProfilhandler.Run();
+		m_zExplorerProfil.Run(); 
+
 		m_zHauptmenu.menuTick();
 		m_zTastaturGer.Run();
 		m_zFragenHandler.Run(fTimeDelta);
@@ -290,15 +339,23 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		{
 			m_zSound.SwitchSounds(0, 7);
 			PlaySoundOnce = false;
+			m_zAnimationCountdown.StartAnimation();		
 		}
 
-		iScene = m_zSteuerung.StartGame(iScene, &m_zKeyboard);
+		//iScene = m_zSteuerung.StartGame(iScene, &m_zKeyboard);
 
-		if (iScene == 1)
+		m_zAnimationCountdown.Run(fTime);
+
+		if (m_zAnimationCountdown.IsFinished())
 		{
+			iScene = Meteoriten;
 			m_zHighscore.Start(fTimeDelta);
+			m_zLLA.SwitchOn();
 		}
 
+		/*if (iScene == 1) {
+			m_zHighscore.Start(fTimeDelta);
+		}*/
 
 		MeteoritenSwitch = true;
 	}
@@ -400,6 +457,8 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	//Level Completed
 	if (iScene == LevelCompleted)
 	{
+		m_zFragenHandler.Run(fTimeDelta); 
+
 		//Sound
 		if (FirstSoundTick == true)
 		{		
@@ -412,17 +471,26 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		m_zc.setFristPerson(false);
 		m_zc.setOverlayCockpit()->SwitchOff();
 
-		//Fragen hinter mir ausblenden
-		m_zFrageGrafik.SwitchOff();
+		if (m_zFragenHandler.FadeOutBeendet()){
 
-		//Wenn Leertaste gedrückt wird gehts weiter
-		iScene = m_zSteuerung.ContinueGame(iScene, &m_zKeyboard);
+			m_zIngameOverlays.SwitchOn(1);
+			//Cameraposition verändern
+			m_zc.setFristPerson(false);
+			m_zc.setOverlayCockpit()->SwitchOff();
 
-		//Switchscene
-		SwitchScene();
+			//Fragen hinter mir ausblenden
+			m_zFrageGrafik.SwitchOff();
 
-		//Meteoriten starten
-		MeteoritenSwitch = true;
+			//Wenn Leertaste gedrückt wird gehts weiter
+			iScene = m_zSteuerung.ContinueGame(iScene, &m_zKeyboard);
+
+			//Switchscene
+			SwitchScene();
+
+			//Meteoriten starten
+			MeteoritenSwitch = true;
+		}
+
 	}
 	else
 		FirstSoundTick = true;

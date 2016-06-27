@@ -38,8 +38,11 @@ public:
 	void BereiteFragevor();
 	void SetStelleFrage(bool b = false);
 	
+
 	bool IstAntwortRichtig(int i);
 
+	bool bFadeOutbeendet = false; 
+	bool FadeOutBeendet();
 
 private:
 
@@ -74,9 +77,19 @@ private:
 
 	std::vector <std::string> * ptrLinesFromFile; 
 
+	void SwitchOn();
+	void SwitchOff();
+	
+
+
 	//Hilfsvariabeln und Funktionen beim Ein und Ausblenden.
 	bool fadeDown(COverlay * ptrO, float yuntil,  float fTimeDelta);
 	bool fadeUp(COverlay * ptro, float yuntil, float fTimeDelta);
+	
+	bool fadeDown(CWriting * ptrW, float yuntil, float fTimeDelta, int iNummer);
+	bool fadeUp(CWriting * ptrW, float yuntil, float fTimeDelta, int iNummer);
+
+
 	bool bDoFadeOut = false; 
 	float m_fx = 0.0F;
 	float m_fy = 0.0F; 
@@ -88,7 +101,7 @@ private:
 	//Interne Hilfsfunktionen beim Einlesen
 	void insertTextFrage();
 	void frageEinfuegen();
-	void clearPuffer();  
+	void clearPuffer();
 
 	//Interne Hilfsvaris beim Einlesen der Fragen:
 	std::string sFragePuffer;											
@@ -116,6 +129,14 @@ private:
 
 	bool bStelleFragen = false;
 
+	
+
+
+	float fyWerteDown[5];
+	float fyWerteUp[5];
+
+	float fyWerteDownV[5];
+	float fyWerteUpV[5];
 
 };
 

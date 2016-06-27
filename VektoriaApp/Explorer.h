@@ -69,6 +69,8 @@ private:
 	
 
 	int igroesseArray;
+
+	CWriting MainTop; 
 	CTextOutput * aTextOutput;
 	COverlay * aOverlayTextIcon; 
 

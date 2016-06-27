@@ -29,11 +29,17 @@ public:
 	
 	//Hängt Writing an Overlay an, ermöglicht die Übergabe des LayerWertes
 	void Init(COverlay * ptrOverlay, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, float iLayer);
+	
+	//Hängt Writing an Writing an.
+	void Init(CViewport * ViewPortPtr, char * caPathFont, float fxPos, float fyPos, float fxSize, float fySize, float iLayer);
+
+
 
 	//an ein Overlay anhängen
 	void Init(COverlay * OverLayPtr, char* sPathFont, float fxPos, float fyPos, float fxSize, float fySize);
 	//zum "in der Mitte durcken"
 	void Init(COverlay * OverLayPtr, char* sPathFont, float fxPos, float fyPos, float fxSize, float fySize, int iVisibleChars);
+	void Init(CViewport * viewport, char* sPathFont, float fxPos, float fyPos, float fxSize, float fySize, int iVisibleChars);
 
 
 

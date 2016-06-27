@@ -89,8 +89,9 @@ private:
 	CDeviceKeyboard m_zKeyboard;
 
 	CLLAnzeige m_zLLA; 
-	CAnimation m_zAnimationIntroVideo; 
-	CAnimation m_zAnimation321; 
+	CAnimation m_zAnimationIntro;
+	bool bAnimationIntroStarted = false; 
+	CAnimation m_zAnimationCountdown; 
 
 	CHighscore m_zHighscore; 
 
@@ -114,8 +115,7 @@ private:
 
 	bool FirstSoundTick = true;
 
-	int nummer;
 
-	int iLeben = 10;
+	int iLeben = 5;
 };
 

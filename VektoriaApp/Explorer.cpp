@@ -14,7 +14,7 @@ CExplorer::~CExplorer()
 	
 }
 
-
+//Explorer ohne Eingabefunktion
 void CExplorer::Init(CViewport * m_zv, CMaus * ptrMaus_, CFileHandler * filehandlerPtr, char * caHintergrundBildPfad, char * caIconBildPfad, char * caOrdnerPfad) {
 
 	iTyp = 0; 
@@ -31,8 +31,7 @@ void CExplorer::Init(CViewport * m_zv, CMaus * ptrMaus_, CFileHandler * filehand
 	m_ziMainmbackground.Init(caHintergrundBildPfad);
 
 
-//	m_zoMainmbackground.InitFull(&m_ziMainmbackground);
-	m_zoMainmbackground.InitFull("textures//explorer//menubild_lernpaketexplorer.jpg");
+	m_zoMainmbackground.InitFull(&m_ziMainmbackground);
 
 	m_zoExplorer.AddOverlay(&m_zoMainmbackground);
 	m_zoMainmbackground.SetLayer(0.8F);
@@ -80,7 +79,10 @@ void CExplorer::Init(CViewport * m_zv, CMaus * ptrMaus_, CFileHandler * filehand
 			}
 		}
 
-		aTextOutput[iZaheler].Init(&aOverlayTextIcon[iZaheler], "fonts\\Nasalization-rg-Red.png", 0.05F, 0.00F, 2.5F, .06F); //Writing wird an das txt Icon angehängt.
+		//Ersetzt durch Bug seit Lib 3
+		//aTextOutput[iZaheler].Init(&aOverlayTextIcon[iZaheler], "fonts\\Nasalization-rg-Red.png", 0.05F, 0.00F, 2.5F, .06F); //Writing wird an das txt Icon angehängt.
+		aTextOutput[iZaheler].Init(m_zv, "fonts\\Nasalization-rg-Red.png", 0.47F, 0.36F + fZaehler, 2.5F, .04F); //Writing wird an das txt Icon angehängt.
+
 		aTextOutput[iZaheler].SetString(s);
 		
 
@@ -89,7 +91,7 @@ void CExplorer::Init(CViewport * m_zv, CMaus * ptrMaus_, CFileHandler * filehand
 
 	}
 
-	m_zoExplorer.SwitchOff();
+	SwitchOff();
 
 }
 
@@ -107,7 +109,7 @@ void CExplorer::Init(CViewport * m_zv, CMaus * ptrMaus_, CFileHandler * filehand
 
 	m_zoExplorer.SetLayer(0.9F);
 
-	topNamenEingabe.Init(&m_zoExplorer, "fonts\\Nasalization-rg-Red.png", 0.421F, 0.315F, 2.15F, 0.08F);
+	topNamenEingabe.Init(m_zv, "fonts\\Nasalization-rg-Red.png", 0.421F, 0.34F, 2.0F, 0.04F);
 
 	//Wird immer erzeugt.
 
@@ -129,7 +131,7 @@ void CExplorer::Init(CViewport * m_zv, CMaus * ptrMaus_, CFileHandler * filehand
 	m_ziBackButton.Init("textures\\Back.gif");
 	m_zoBackButton.Init(&m_ziBackButton, CFloatRect(0.78f, 0.85f, 0.15f, 0.06f));
 	m_zoExplorer.AddOverlay(&m_zoBackButton);
-	m_zoBackButton.SetLayer(0.5);
+	m_zoBackButton.SetLayer(0.2);
 
 	//Wird dynamisch erzeugt.
 
@@ -145,12 +147,14 @@ void CExplorer::Init(CViewport * m_zv, CMaus * ptrMaus_, CFileHandler * filehand
 	aOverlayTextIcon = new COverlay[igroesseArray];
 
 
+	m_zv->AddWriting(&MainTop);
+
 	for (std::set<std::string>::iterator iter = filefinder->getFiles()->begin(); iter != filefinder->getFiles()->end(); ++iter) {
 
 		std::string s = *iter;
 
-		aOverlayTextIcon[iZaheler].Init(&m_ziTextIcon, CFloatRect(0.42F, 0.5F + fZaehler, 0.04F, 0.05F), true);
-		aOverlayTextIcon[iZaheler].SetLayer(0.5F);
+		aOverlayTextIcon[iZaheler].Init(&m_ziTextIcon, CFloatRect(0.42F, 0.45F + fZaehler, 0.04F, 0.05F), true);
+		aOverlayTextIcon[iZaheler].SetLayer(0.2F);
 
 		m_zoExplorer.AddOverlay(&aOverlayTextIcon[iZaheler]);
 
@@ -163,7 +167,10 @@ void CExplorer::Init(CViewport * m_zv, CMaus * ptrMaus_, CFileHandler * filehand
 			}
 		}
 
-		aTextOutput[iZaheler].Init(&aOverlayTextIcon[iZaheler], "fonts\\Nasalization-rg-Red.png", 0.05F, 0.00F, 2.5F, .06F); //Writing wird an das txt Icon angehängt.
+		//aTextOutput[iZaheler].Init(&aOverlayTextIcon[iZaheler], "fonts\\Nasalization-rg-Red.png", 0.05F, 0.00F, 2.5F, .06F); //Writing wird an das txt Icon angehängt.
+		aTextOutput[iZaheler].Init(m_zv, "fonts\\Nasalization-rg-Red.png", 0.465F, 0.46F + fZaehler, 2.5F, .04F); //Writing wird an das txt Icon angehängt.
+
+		
 		aTextOutput[iZaheler].SetString(s);
 
 
@@ -172,7 +179,7 @@ void CExplorer::Init(CViewport * m_zv, CMaus * ptrMaus_, CFileHandler * filehand
 
 	}
 
-	m_zoExplorer.SwitchOff();
+	SwitchOff();
 
 }
 
@@ -183,20 +190,13 @@ void CExplorer::Run() {
 
 		if (iTyp == 1){
 
-			//m_zoMainmbackground.SetTransparency(fTransp);
-			m_zoMainmbackground.m_pmaterial->SetTransparency(0.8f);
-			m_zmMainmbackground.SetTransparency(0.8f);
-			
-			fTransp += 0.05F; 
-			
-			//ptrTastatur->Run(); 
 			TastaturGer.Run(); 
 			if (TastaturGer.GetString() != ""){
 				topNamenEingabe.SetString(TastaturGer.GetString());
 
 			}
 			else{
-				topNamenEingabe.SetString("Name eingeben oder wählen.");
+				topNamenEingabe.SetString("Name eingeben/wählen");
 			}
 			topNamenEingabe.WriteSavedString();
 
@@ -266,8 +266,7 @@ void CExplorer::Run() {
 
 
 		if (ptrMaus->PickOverlayandLeftKlick(&m_zoBackButton)){
-			ULDebug("Ich bin hier drin, in der Backzeile!");
-			m_zoExplorer.SwitchOff();
+			SwitchOff(); 
 			bmakeMenueOn = true;
 
 		}
@@ -279,15 +278,20 @@ void CExplorer::Run() {
 void CExplorer::SwitchOn() {
 
 	m_zoExplorer.SwitchOn();
-	ptrMaus->SwitchOff();
+	//ptrMaus->SwitchOff();
 	ptrMaus->SwitchOn();
 	bOn = true;
-	//
+	
+	//Fix seit Lib 3:
+	for (int i = 0; i < igroesseArray; i++) {
+		aTextOutput[i].SwitchOn();
+	}
 	
 	if (iTyp == 1) {
 
 		TastaturGer.SwitchOn();
 		TastaturGer.SetString("");
+		topNamenEingabe.SwitchOn(); 
 		topNamenEingabe.SetString("Name eingeben oder wählen.");
 
 	}
@@ -296,7 +300,18 @@ void CExplorer::SwitchOn() {
 
 void CExplorer::SwitchOff() {
 	m_zoExplorer.SwitchOff();
-	bOn = false; 
+	bOn = false;
+
+	if (iTyp == 1) {
+		topNamenEingabe.SwitchOff();
+	}
+
+	//Fix seit Lib 3:
+	for (int i = 0; i < igroesseArray; i++) {
+		aTextOutput[i].SwitchOff();
+	}
+
+
 }
 
 

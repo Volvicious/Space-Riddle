@@ -24,10 +24,11 @@ public:
 		CProfilHandler * ptrProfilhandler);
 	void menuTick();
 
+
 	void SwitchOn();
 	void SwitchOff();
 
-	bool getbGo(); 
+	bool getbGo();
 
 	//CDeviceCursor * GetCursorPtr(); 
 	//COverlay * GetCursorOverPtr();
@@ -52,18 +53,19 @@ public:
 	COverlay m_zoOptionsBackground;
 	CImage m_ziOptionsBackground;
 
-
+	COverlay m_zoBackButton;
+	CImage m_ziBackButton;
 
 	//Transparenzpickwerkzeuge
 
-	
+
 	COverlay m_zoName;
 	CMaterial m_zmName;
 
 
 	CMaterial m_zmLernPaket;
 	COverlay m_zoLernPaket;
-	
+
 	COverlay m_zoEinstellung;
 	CMaterial m_zmEinstellung;
 
@@ -76,17 +78,48 @@ public:
 	COverlay m_zoExit;
 	CMaterial m_zmExit;
 
-	CTextOutput m_zTOPProfil; 
-	CTextOutput m_zTOPLernpaket; 
+	CTextOutput m_zTOPProfil;
+	CTextOutput m_zTOPLernpaket;
 
+	//TransparenzpickwerkzeugeSteuerungsmenu
+
+	COverlay m_zoPickAntianilisingOn;
+	CMaterial m_zmPickAntianilisingOn;
+
+	COverlay m_zoPickAntianilisingOff;
+	CMaterial m_zmPickAntianilisingOff;
+
+	COverlay m_zoPickTonAn;
+	CMaterial m_zmPickTonAn;
+
+	COverlay m_zoPickTonAus;
+	CMaterial m_zmPickTonAus;
+
+	COverlay m_zoPickFullScreen;
+	CMaterial m_zmPickFullScreen;
+
+	COverlay m_zoPickWindowScreen;
+	CMaterial m_zmPickWindowScreen;
+
+	COverlay m_zoPickHighscore;
+	CMaterial m_zmPickHighscore;
 
 
 
 
 	// Steuerungsbuttons
 
-	COverlay m_zoBackButton;
-	CImage m_ziBackButton;
+	COverlay m_zoCredits;
+	CImage m_ziCredits;
+
+	COverlay m_zoCreditsBackground;
+	CImage m_ziCreditsBackground;
+
+	COverlay m_zoBackButton3;
+	CImage m_ziBackButton3;
+
+	COverlay m_zoBackButton2;
+	CImage m_ziBackButton2;
 
 	COverlay m_zoGoButton;
 	CImage m_ziGoButton;
@@ -95,15 +128,20 @@ public:
 	CMaus * ptrMaus;
 
 	CExplorer * ptrExplorer;
-	CExplorer * ptrExplorerProfil;
+	CExplorer * ptrExplorerProfil; 
 	CProfilHandler * ptrProfilHandler; 
-	
+
 
 	//Hilfsvars
 
-	bool bLernpaket = false; 
-	bool bProfil = false; 
-	
-	bool bGo = false; 
-	
+	bool bLernpaket = false;
+	bool bProfil = false;
+
+	bool bGo = false;
+
+
+
+
+
+
 };

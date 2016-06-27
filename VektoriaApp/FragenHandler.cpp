@@ -31,7 +31,7 @@ void CFragenHandler::Init(CFileHandler * fileHandlerPtr, CViewport * mzv, CProfi
 	mzv->AddOverlay(&m_zoMultiAntwort);
 	m_zmMultiAntwort.Init(); 
 	m_zmMultiAntwort.LoadPreset("Glass");
-	m_zoMultiAntwort.Init(&m_zmMultiAntwort, CFloatRect(0.0F, 1.0F, 1.0F, 0.2F));
+	m_zoMultiAntwort.Init(&m_zmMultiAntwort, CFloatRect(0.0F, 1.0F, 1.0F, 0.28F));
 	m_zoMultiAntwort.SetTransparency(0.2F);
 
 	m_zoMultiFrage.SetLayer(0.3F);
@@ -44,18 +44,36 @@ void CFragenHandler::Init(CFileHandler * fileHandlerPtr, CViewport * mzv, CProfi
 	//mzv->AddOverlay(&m_zoDummyAntwort);
 	//mzv->AddOverlay(&m_zoDummyFrage);
 
-	topFrage.Init(&m_zoDummyAntwort, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.06F, 1.5F, .04F, 99);
+	//topFrage.Init(mzv, "fonts\\Nasalization-rg-Red.png", 0.0F, -.04F, 1.5F, .04F, 99);
+	topFrage.Init(mzv, "fonts\\Nasalization-rg-Red.png", 0.0F, -0.2F, 1.5F, .04F, 99);
+	topFrage.SwitchOff();
 
 	for (int i = 0; i < 4; i++) {
 
 		if (i == 1 || i == 3) { fx = 0.55F;}
 		if (i == 2) { fx = 0.0F; fy += 0.1; }
 
-		topAntwortmoegl[i].Init(&m_zoDummyFrage, "fonts\\Nasalization-rg-Red.png", 0.03F + fx,   fy, 1.5F, .04F, fLayer);
+		topAntwortmoegl[i].Init(mzv, "fonts\\Nasalization-rg-Red.png", 0.03F + fx,   fy+0.8F, 1.5F, .04F, fLayer);
 		fLayer -= 0.001; 
 	}
 
-	
+
+	fyWerteDown[0] = -0.1F; 
+	fyWerteDown[1] = 0.8F;
+	fyWerteDown[2] = 0.8F; 
+	fyWerteDown[3] = 0.9F; 
+	fyWerteDown[4] = 0.9F; 
+
+	fyWerteUp[0] = 0.026F;
+	fyWerteUp[1] = 1.1F;
+	fyWerteUp[2] = 1.1F;
+	fyWerteUp[3] = 1.2F;
+	fyWerteUp[4] = 1.2F;
+		
+	for (int i = 0; i < 5; i++){
+		fyWerteDownV[i] = fyWerteDown[i];
+		fyWerteUpV[i] = fyWerteUp[i];
+	}
 
 
 
@@ -81,8 +99,22 @@ void CFragenHandler::Run(float fTimeDelta) {
 		m_zoMultiFrage.SwitchOn();
 		topFrage.WriteSavedString();
 
+		std::string s = topFrage.GetString();
+		ULDebug(stc.DoStringToChar(s));
+
+
 		fadeDown(&m_zoMultiFrage, 0.0F, fTimeDelta);
-		fadeUp(&m_zoMultiAntwort, 0.8F, fTimeDelta);
+		
+
+		fadeDown(topFrage.getWritingPtr(), 0.026F, fTimeDelta, 0);
+		
+		fadeUp(topAntwortmoegl[0].getWritingPtr(), 0.8F, fTimeDelta, 1);
+		fadeUp(topAntwortmoegl[1].getWritingPtr(), 0.8F, fTimeDelta, 2);
+		fadeUp(topAntwortmoegl[2].getWritingPtr(), 0.9F, fTimeDelta, 3);
+		fadeUp(topAntwortmoegl[3].getWritingPtr(), 0.9F, fTimeDelta, 4);
+
+
+		fadeUp(&m_zoMultiAntwort, 0.72F, fTimeDelta);
 
 
 		for (int i = 0; i < 4; i++) {
@@ -95,11 +127,13 @@ void CFragenHandler::Run(float fTimeDelta) {
 	if (bDoFadeOut) {
 
 		bool btemp = fadeUp(&m_zoMultiFrage, -0.1F, fTimeDelta);
+		bool btemp2 = fadeUp(topFrage.getWritingPtr(), -0.1F, fTimeDelta);
 		bDoFadeOut = fadeDown(&m_zoMultiAntwort, 1.0F, fTimeDelta);
-		bDoFadeOut = bDoFadeOut && btemp;
+		bDoFadeOut = bDoFadeOut || btemp || btemp2;
 
 		if (!bDoFadeOut) {
-			m_zoMultiFrage.SwitchOff();
+			SwitchOff();
+			bFadeOutbeendet = true; 
 		}
 
 	}
@@ -129,7 +163,7 @@ bool CFragenHandler::fadeDown(COverlay * ptrO, float yuntil, float fTimeDelta){
 
 
 
-		fy += 0.001;
+		fy += fTimeDelta*0.08F;
 
 		rect.SetYPos(fy);
 		ptrO->SetRect(rect);
@@ -151,7 +185,7 @@ bool CFragenHandler::fadeUp(COverlay * ptrO, float yuntil, float fTimeDelta) {
 		std::string s = std::to_string(fTimeDelta);
 		ULDebug(stc.DoStringToChar(s));
 
-		fy -= 0.001;
+		fy -= fTimeDelta*0.08F;
 
 		rect.SetYPos(fy);
 		ptrO->SetRect(rect);
@@ -163,6 +197,54 @@ bool CFragenHandler::fadeUp(COverlay * ptrO, float yuntil, float fTimeDelta) {
 	return false;
 }
 
+
+bool CFragenHandler::fadeDown(CWriting * ptrW, float yuntil, float fTimeDelta, int iNummer){
+
+	
+
+
+	if (fyWerteDownV[iNummer] < yuntil) {
+
+		
+		fyWerteDownV[iNummer] += fTimeDelta*0.08F;
+
+
+		CFloatRect rect = ptrW->GetRect();
+
+		rect.SetYPos(fyWerteDownV[iNummer]);
+		ptrW->SetRect(rect);
+
+
+		return true;
+	}
+
+
+	fyWerteUpV[iNummer] = fyWerteUp[iNummer];
+
+	return false;
+}
+
+bool CFragenHandler::fadeUp(CWriting * ptrW, float yuntil, float fTimeDelta, int iNummer) {
+
+	if (fyWerteUpV[iNummer] > yuntil) {
+
+
+		fyWerteUpV[iNummer] -= fTimeDelta*0.08F;
+
+
+		CFloatRect rect = ptrW->GetRect();
+
+		rect.SetYPos(fyWerteUpV[iNummer]);
+		ptrW->SetRect(rect);
+
+
+		return true;
+	}
+
+	fyWerteDownV[iNummer] = fyWerteDown[iNummer];
+
+	return false;
+}
 
 
 void CFragenHandler::ReadFile() {
@@ -453,6 +535,8 @@ void CFragenHandler::BereiteFragevor() {
 
 
 	//topAntwort.SetString(map_fragen[iZuStellendeFrage]->getAntwort());
+	topFrage.SwitchOn();
+
 
 	iZuStellendeFrage++;
 
@@ -462,12 +546,29 @@ void CFragenHandler::BereiteFragevor() {
 void CFragenHandler::SetStelleFrage(bool b) {
 
 	if (!b) {
-		bDoFadeOut = true; 
+		bDoFadeOut = true;
+		topFrage.SwitchOff(); 
+		
+		for (int i = 0; i < 4; i++){
+			topAntwortmoegl[i].SwitchOff();
+		}
+
+		bFadeOutbeendet = false;
+		ULDebug("StelleFrage");
+		
+	}
+	else{
+		SwitchOn();
+		bFadeOutbeendet = false;
 
 	}
 
 	bStelleFragen = b; 
 
+}
+
+bool CFragenHandler::FadeOutBeendet(){
+	return bFadeOutbeendet;
 }
 
 
@@ -484,4 +585,25 @@ void CFragenHandler::bereiteFragenMapVor() {
 	else {
 		bLernpaketVorhanden = false; 
 	}
+}
+
+void CFragenHandler::SwitchOn(){
+
+	topFrage.SwitchOn(); 
+	for (int i = 0; i < 4; i++){
+		topAntwortmoegl[i].SwitchOn(); 
+	}
+
+
+
+}
+
+
+void CFragenHandler::SwitchOff(){
+	topFrage.SwitchOff();
+	for (int i = 0; i < 4; i++){
+		topAntwortmoegl[i].SwitchOff();
+	}
+
+
 }
