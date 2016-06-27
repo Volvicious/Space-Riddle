@@ -1,5 +1,7 @@
 #pragma once
 #include "Vektoria\Root.h"
+#define AUDIOZ 40
+
 using namespace Vektoria;
 
 class CSound
@@ -16,18 +18,27 @@ public:
 	void Stop(int iSoundNummer);
 	void Pause(int iSoundNummer);
 	void Start(int iSoundNummer);
-	void SwitchSounds(int iAktuellerSound, int iNextSound, bool bLoop = false);
-	void StopAll();
 	void SetVolume(int iSoundNummer, float f);
+	void SetAllVolume(float f);
+	void SwitchSounds(int iCurrentSound, int iNextSound, bool loop = false);
+
+	void randCrash();
+	void randComment();
+	void randKeystroke();
+	void randGlassbreak();
 
 	void Fini();
 	
-	CAudio * getAudioPointr(int iSoundNummer);
+	CAudio*getAudioPointr(int iSoundNummer);
 
 private:
 
 	//Audio und Placement
-	CAudio audio[10];
+   
+	CAudio audio[AUDIOZ];
+	CPlacement placement;
+
+
 
 };
 

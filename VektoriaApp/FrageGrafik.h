@@ -10,6 +10,7 @@ public:
 
 	void Init(CRoot * root, CScene * scene);
 	void Translate(float f_posRaumschiff, float f_posX, float f_posY);
+	void Tick(float fTimeDelta);
 
 	void SwitchOff();
 	void SwitchOn();
@@ -30,6 +31,8 @@ private:
 	float fLeftposX;
 	float fLeftposY;
 	float fLeftposZ;
+
+	float rotation;
 
 	int iFrage;
 

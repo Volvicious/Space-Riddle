@@ -135,6 +135,12 @@ void CMeteorit::Tick(CPlacement * pRaumschiff, float fTimeDelta)
 				verschieben.SetY(pRaumschiff->GetTranslation().GetY());
 				verschieben.SetZ(m_zpMeteoriten[i].GetTranslation().GetZ());
 				m_zpMeteoriten[i].Translate(verschieben);
+				m_zpMeteoriten[i].SwitchOff();
+			}
+
+			if (m_zpMeteoriten[i].GetTranslation().GetZ() > pRaumschiff->GetTranslation().GetZ() - 250.0f)
+			{
+				m_zpMeteoriten[i].SwitchOn();
 			}
 		}
 	}
@@ -156,7 +162,7 @@ void CMeteorit::NewLevel(CPlacement * raumschiff)
 		float zi = i * -15.0F - 20.0f;
 
 		//Meteoriten verschieben
-		m_zpMeteoriten[i].TranslateDelta(xi, yi, raumschiff->GetTranslation().GetZ() + zi);
+		m_zpMeteoriten[i].Translate(xi, yi, raumschiff->GetTranslation().GetZ() + zi);
 	}
 
 	iCounter = 0;

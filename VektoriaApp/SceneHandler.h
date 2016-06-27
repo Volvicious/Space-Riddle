@@ -50,7 +50,7 @@ public:
 	void Tick(float fTimeDelta, float fTime);
 	void FrageTranslation();
 	void MeteoritenTick(float fTimeDelta);
-	void FrageTick();
+	void FrageTick(float fTimeDelta);
 	void SwitchScene();
 
 private:
@@ -112,7 +112,10 @@ private:
 	bool bFirstPerson = true;
 	bool bFirstTick = true;
 
+	bool FirstSoundTick = true;
 
-	int iLeben = 5;
+	int nummer;
+
+	int iLeben = 10;
 };
 

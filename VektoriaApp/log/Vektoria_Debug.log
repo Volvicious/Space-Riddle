@@ -2,8 +2,6 @@
 Vektoria-Logfile
 
 ****************
-Debug: ----------------Wird genutzt 1-----------
-Debug: ----------------Wird genutzt 1-----------
 Debug: findFiles: Start
 Debug: ----------------Wird genutzt 3-----------
 Debug: ----------------Wird genutzt 3-----------
@@ -147,20 +145,85 @@ Debug: ----------------Wird genutzt 1-----------
 Debug: ----------------Wird genutzt 1-----------
 Ok:    DirectSound initialized
 Ok:    Hierarchy checked.
-Ok:    1. sound (sounds\Ambient_Sounds\Theme.wav) added as ambient
-Ok:    2. sound (sounds\Ambient_Sounds\Ingame.wav) added as ambient
-Ok:    3. sound (sounds\Ambient_Sounds\Game_Over.wav) added as ambient
-Ok:    4. sound (sounds\Small_Explosion.wav) added as ambient
-Ok:    5. sound (sounds\Countdown.wav) added as ambient
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ8ฃ)("๎
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Theme_Short.wav
 Error: DirectSound: Loading WAV File failed.
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ8ฃ)h"๎
+Ok:    1. sound (sounds\Ambient_Sounds\Ingame.wav) added as ambient
+Ok:    2. sound (sounds\Ambient_Sounds\Game_Over.wav) added as ambient
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Small_Explosion.wav
 Error: DirectSound: Loading WAV File failed.
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ8ฃ)H$๎
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Click.wav
 Error: DirectSound: Loading WAV File failed.
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ8ฃ)$๎
+Error: Cannot open WAV-File sounds\Ambient_Sounds\.wav
 Error: DirectSound: Loading WAV File failed.
-Error: Cannot open WAV-File ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออจc)
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Pause_Ambient.wav
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Countdown.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\.wav
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Levelend.wav
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Creditsong.wav
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollisionskommentar\01.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollisionskommentar\02.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollisionskommentar\03.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollisionskommentar\04.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollisionskommentar\05.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollisionskommentar\06.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollisionskommentar\07.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollisionskommentar\08.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollisionskommentar\09.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollisionskommentar\10.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollisionskommentar\11.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollisionskommentar\12.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollisionskommentar\13.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\.wav
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Introvideosound.wav
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Glasbruch\001.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Glasbruch\002.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Glasbruch\003.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Glasbruch\004.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Glasbruch\005.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollision\0001.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollision\0002.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollision\0003.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollision\0004.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Kollision\0005.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Tastatur\00001.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Tastatur\00002.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Tastatur\00003.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Tastatur\00004.aiff
+Error: DirectSound: Loading WAV File failed.
+Error: Cannot open WAV-File sounds\Ambient_Sounds\Tastatur\00005.aiff
 Error: DirectSound: Loading WAV File failed.
 Debug: Highscore
 Debug: Highscore
@@ -420,294 +483,6 @@ Debug: Highscore
 Debug: Highscore
 Debug: Highscore
 Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Debug: Highscore
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
-Warn:  Tried to detach child node from non-existent parent node.
 Warn:  Tried to detach child node from non-existent parent node.
 Warn:  Tried to detach child node from non-existent parent node.
 Warn:  Tried to detach child node from non-existent parent node.
