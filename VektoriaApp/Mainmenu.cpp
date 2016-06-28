@@ -576,14 +576,10 @@ void CMainmenu::SwitchOn() {
 	ptrMaus->SwitchOn();
 	m_zTOPLernpaket.SwitchOn();
 	m_zTOPProfil.SwitchOn();
-	bLernpaket = false;
-	bProfil = false;
-	bGo = false;
-	bHighscore = false;
-	m_zTOPLernpaket.SetString("Lernpaket wählen");
-	m_zTOPProfil.SetString("Profil wählen");
+	
 
 }
+
 
 void CMainmenu::SwitchOff() {
 
@@ -594,6 +590,14 @@ void CMainmenu::SwitchOff() {
 
 }
 
+void CMainmenu::Reset() {
+	bLernpaket = false;
+	bProfil = false;
+	bGo = false;
+	bHighscore = false;
+	m_zTOPLernpaket.SetString("Lernpaket wählen");
+	m_zTOPProfil.SetString("Profil wählen");
+}
 
 //CDeviceCursor * CMainmenu::GetCursorPtr() {
 //

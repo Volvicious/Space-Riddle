@@ -310,6 +310,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 	if (iScene == PreHauptmenue) 
 	{
+		m_zHauptmenu.Reset(); 
 		m_zHauptmenu.SwitchOn();
 		m_dMaus.SwitchOn();
 		m_zLLA.setLebenAnzahl(10);

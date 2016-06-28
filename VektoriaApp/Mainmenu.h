@@ -27,6 +27,7 @@ public:
 
 	void SwitchOn();
 	void SwitchOff();
+	void Reset(); 
 
 	bool getbGo();
 
