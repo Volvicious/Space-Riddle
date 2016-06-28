@@ -13,7 +13,7 @@ CSkyDome::~CSkyDome()
 void CSkyDome::Init(CRoot * root, CScene * scene)
 {
 	//Material
-	m_zMaterial.MakeTextureSky("textures\\Skydome.png");
+	m_zMaterial.MakeTextureSky("textures\\Diagnose.jpg");
 
 	//Skydome init
 	m_zSkyDome.Init(250.0F, 250.0F, &m_zMaterial, true);

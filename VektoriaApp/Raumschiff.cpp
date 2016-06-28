@@ -28,7 +28,7 @@ void CRaumschiff::Init(CRoot * root,  CScene * scene)
 	m_zRaumschiff->SetMaterial(&m_zmRaumschiff);
 
 	//Material dem Root hinzufügen
-	root->AddMaterial(&m_zmRaumschiff);
+	//root->AddMaterial(&m_zmRaumschiff);
 
 	//Raumschiff dem Geo hinzufügen
 	m_zpRaumschiff.AddGeo(m_zRaumschiff);

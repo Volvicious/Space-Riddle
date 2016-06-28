@@ -422,10 +422,6 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		//HighScore
 		m_zHighscore.Run(fTime, fTimeDelta);
 
-		//Wenn das Leben auf 0 ist hat man verloren
-		/*if (m_zLLA.getLebenAnzahl() <= 0)
-			iScene = Verloren;*/
-	
 	} 
 	
 	//Game Over
@@ -459,6 +455,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		if (iScene != iSceneSpeicher) {
 			FirstVerlorenTick = true; 
 		}
+
 	}
 
 	//Pause gedrückt
