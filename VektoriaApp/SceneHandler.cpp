@@ -310,9 +310,13 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 	if (iScene == PreHauptmenue) 
 	{
-		ULDebug("Bin hier!");
 		m_zHauptmenu.SwitchOn();
 		m_dMaus.SwitchOn();
+		m_zLLA.setLebenAnzahl(10);
+		m_zLLA.SwitchOff(); 
+		m_zHighscore.SetHighscore(0);
+		m_zHighscore.Stop(); 
+
 		iScene = Hauptmenü;
 	}
 

@@ -238,7 +238,7 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 
 
 bool CMainmenu::getbGo() {
-	return bGo;
+	return bGo; 
 }
 
 void CMainmenu::menuTick()
@@ -294,7 +294,7 @@ void CMainmenu::menuTick()
 	// Pick Name
 	if (ptrMaus->PickOverlayandLeftKlick(&m_zoName))
 	{
-		ULDebug("Bin hier drin: 1!!!");
+		
 		m_zoMainmbackground.SwitchOff();
 		ptrExplorerProfil->SwitchOn();
 		//m_zoEinstellung.SwitchOff();
@@ -304,10 +304,9 @@ void CMainmenu::menuTick()
 	}
 
 	// Pick LernPaket
-	if (ptrMaus->PickOverlayandLeftKlick(&m_zoLernPaket))
+	if (ptrMaus->PickOverlayandLeftKlick(&m_zoLernPaket) && bProfil)
 	{
-		ULDebug("Bin hier drin: 2!!!");
-
+		
 		m_zoMainmbackground.SwitchOff();
 		ptrExplorer->SwitchOn();
 
@@ -378,7 +377,6 @@ void CMainmenu::menuTick()
 
 			bGo = true;
 			m_zoMainmbackground.SwitchOff();
-			ULDebug("Go Button");
 		}
 
 
@@ -578,6 +576,12 @@ void CMainmenu::SwitchOn() {
 	ptrMaus->SwitchOn();
 	m_zTOPLernpaket.SwitchOn();
 	m_zTOPProfil.SwitchOn();
+	bLernpaket = false;
+	bProfil = false;
+	bGo = false;
+	bHighscore = false;
+	m_zTOPLernpaket.SetString("Lernpaket wählen");
+	m_zTOPProfil.SetString("Profil wählen");
 
 }
 

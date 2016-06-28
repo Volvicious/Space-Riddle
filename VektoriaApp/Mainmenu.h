@@ -137,9 +137,7 @@ public:
 
 	bool bLernpaket = false;
 	bool bProfil = false;
-
 	bool bGo = false;
-
 	bool bHighscore = false;
 
 

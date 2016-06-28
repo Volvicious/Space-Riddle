@@ -28,7 +28,6 @@ std::set <std::string> * CFileFinder::getDirs() {
 
 void CFileFinder::findFiles(std::string sPath) { //Aus https://msdn.microsoft.com/en-us/library/windows/desktop/aa365200%28v=vs.85%29.aspx . fuer eigene Beduerfnisse angepasst.
 
-	ULDebug("findFiles: Start");
 	
 	m_sPath = sPath;
 	sPath += "\\*";
