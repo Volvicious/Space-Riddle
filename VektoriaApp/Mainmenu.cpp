@@ -233,7 +233,7 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoBackButton3.SetLayer(0.5);
 	m_zoBackButton3.SetTransparency(0.3);
 
-
+	SwitchOff(); 
 }
 
 

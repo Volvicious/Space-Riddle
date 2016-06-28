@@ -120,7 +120,7 @@ private:
 
 	//Fragen stelllen
 
-	int iZuStellendeFrage = 1; 
+	int iZuStellendeFrage = 555; 
 
 	//Hilfsfunktion:
 	CStringToChar stc;

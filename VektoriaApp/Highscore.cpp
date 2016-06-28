@@ -14,7 +14,7 @@ CHighscore::~CHighscore()
 
 void CHighscore::Init(CViewport * mvz) {
 
-	topHighscore.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.08F, 2.5F, 0.04F);
+	topHighscore.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.0F, 2.5F, 0.04F);
 	topHighscore.SetString("Score:0");
 
 	topChange.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.06F, 2.5F, 0.04F);
@@ -135,6 +135,7 @@ void CHighscore::Load() {
 
 	int i = 0;
 	bool b = true; 
+	v_NamePunktZahl->clear(); 
 
 	while (std::getline(file, s))
 	{
@@ -146,8 +147,13 @@ void CHighscore::Load() {
 				b = false; 
 			}
 			else {
-				iPufferNummer = std::stoi(s);
-				v_NamePunktZahl->push_back(std::pair<std::string, int>(sPufferName, iPufferNummer));
+				try{
+					iPufferNummer = std::stoi(s);
+					v_NamePunktZahl->push_back(std::pair<std::string, int>(sPufferName, iPufferNummer));
+				}
+				catch (const std::exception&){
+					ULDebug("Fehler Highscore");
+				}
 				b = true; 
 			}
 		}

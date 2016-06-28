@@ -227,33 +227,30 @@ void SceneHandler::FrageTick(float fTimeDelta)
 	//Drehen
 	m_zFrageGrafik.Tick(fTimeDelta);
 
+	int j = -1;
 	if (bFirstTick == false)
 	{
 		//Hitboxen
-		int j = m_zHitbox.HitboxFrage(&m_zRaumschiff, &m_zFrageGrafik);
+		j = m_zHitbox.HitboxFrage(&m_zRaumschiff, &m_zFrageGrafik);
 	}
 
 	//Die Hitbox darf nur einmal Kollidieren und nicht mehrmals
 	if (m_zHitbox.getCollision() == true)
 	{
 		//Überprüfen mit welcher Frage ich kollidiert bin
-		/*if (j > -1)
+		if (j > -1)
 		{
-			if(Fragenhandler.IsAntwortRichtig(j))
+			if(m_zFragenHandler.IstAntwortRichtig(j))
 			{
-				m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() + 3);
-				m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
-				iScene = LevelCompleted;
-				m_zIngameOverlays.SwitchOn(1);
+				m_zHighscore.AddToHighscore(20);
 			}
 			else
 			{
 				m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() - 3);
-				m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
 			}
-		}*/
+		}
 		
-
+		m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
 		//Level Completed
 		//iScene = LevelCompleted;
 

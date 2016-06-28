@@ -3,7 +3,7 @@
 -gibts nicht
 -or
 -uu
-$1
+$7
 
 
 #Logischer Operator für „und“? 

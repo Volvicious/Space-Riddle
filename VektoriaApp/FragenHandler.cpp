@@ -154,7 +154,7 @@ bool CFragenHandler::fadeDown(COverlay * ptrO, float yuntil, float fTimeDelta){
 
 
 
-		fy += fTimeDelta*0.08F;
+		fy += fTimeDelta*.9F;
 
 		rect.SetYPos(fy);
 		ptrO->SetRect(rect);
@@ -176,7 +176,7 @@ bool CFragenHandler::fadeUp(COverlay * ptrO, float yuntil, float fTimeDelta) {
 		std::string s = std::to_string(fTimeDelta);
 		ULDebug(stc.DoStringToChar(s));
 
-		fy -= fTimeDelta*0.08F;
+		fy -= fTimeDelta*.9F;
 
 		rect.SetYPos(fy);
 		ptrO->SetRect(rect);
@@ -197,7 +197,7 @@ bool CFragenHandler::fadeDown(CWriting * ptrW, float yuntil, float fTimeDelta, i
 	if (fyWerteDownV[iNummer] < yuntil) {
 
 		
-		fyWerteDownV[iNummer] += fTimeDelta*0.08F;
+		fyWerteDownV[iNummer] += fTimeDelta*.9F;
 
 
 		CFloatRect rect = ptrW->GetRect();
@@ -220,7 +220,7 @@ bool CFragenHandler::fadeUp(CWriting * ptrW, float yuntil, float fTimeDelta, int
 	if (fyWerteUpV[iNummer] > yuntil) {
 
 
-		fyWerteUpV[iNummer] -= fTimeDelta*0.08F;
+		fyWerteUpV[iNummer] -= fTimeDelta*.9F;
 
 
 		CFloatRect rect = ptrW->GetRect();
@@ -496,6 +496,13 @@ void CFragenHandler::stelleFragen() { //niu
 void CFragenHandler::BereiteFragevor() {
 
 
+
+	while (!map_fragen.count(iZuStellendeFrage)) {
+		iZuStellendeFrage++;
+		if (iZuStellendeFrage > 10000) {
+			iZuStellendeFrage = 0; 
+		}
+	}
 
 	std::string s = map_fragen[iZuStellendeFrage]->getFrage();
 	topFrage.SetString(s);
