@@ -60,6 +60,10 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	m_zAnimationIntro.SetTime(3, 1000.F);
 	m_zAnimationIntro.SetTime(4, 1000.F);
 
+	//Schaden-Animation
+	m_zAnimationSchaden.Init(viewPort, 1, "textures\\animation\\schaden", "png");
+	m_zAnimationSchaden.SetTime(0, 500.0F);
+	m_zAnimationSchaden.SetFadeInOut(0, 500.F);
 
 	//Leben- & Levelanzeige
 	m_zLLA.Init(viewPort);
@@ -115,6 +119,7 @@ void SceneHandler::InitFrageGrafik(CRoot * root, CScene * scene)
 void SceneHandler::InitOverlays(CViewport * viewport)
 {
 	m_zIngameOverlays.Init(viewport);
+	//m_zIngameOverlays.SetLayer(1, 1.2F);
 }
 
 #pragma endregion
@@ -135,6 +140,8 @@ void SceneHandler::FrageTranslation()
 
 void SceneHandler::MeteoritenTick(float fTimeDelta)
 {
+	 
+
 	if (MeteoritenSwitch == true)
 	{
 		//Kamerposition fixen
@@ -160,8 +167,7 @@ void SceneHandler::MeteoritenTick(float fTimeDelta)
 	{
 		m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() - 1);
 		//TODO: Animation
-
-		iLeben -= 1;
+		m_zAnimationSchaden.StartAnimation();
 
 		//Crashsound
 		if (m_zLLA.getLebenAnzahl() > 0)
@@ -267,6 +273,9 @@ void SceneHandler::FrageTick(float fTimeDelta)
 
 void SceneHandler::Tick(float fTimeDelta, float fTime)
 {	
+
+	m_zAnimationSchaden.Run(fTime);
+
 	//Spiel pausieren
 	int iSceneSpeicher = iScene;
 
@@ -409,16 +418,12 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		//HighScore
 		m_zHighscore.Run(fTime, fTimeDelta);
 
-		if (iLeben == 0)
-		{ 
-			iScene = Verloren;
-		}
+	
 
 		//Wenn das Leben auf 0 ist hat man verloren
-		//if (m_zLLA.getLebenAnzahl() <= 0)
-		//{
-		//	iScene = Verloren;
-		//}
+		if (m_zLLA.getLebenAnzahl() <= 0)
+			iScene = Verloren;
+	
 	} 
 	
 	//Game Over
@@ -508,6 +513,8 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	if (iScene == Highscore)
 	{
 		//Todo: Highscore Overlay anzeigen
-		iScene = m_zSteuerung.Hauptmenue(iScene, &m_zKeyboard);
+		m_zIngameOverlays.SwitchOffAll();
+		iScene = PreHauptmenue;
+		//iScene = m_zSteuerung.Hauptmenue(iScene, &m_zKeyboard);
 	}
 }

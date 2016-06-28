@@ -91,7 +91,8 @@ private:
 	CLLAnzeige m_zLLA; 
 	CAnimation m_zAnimationIntro;
 	bool bAnimationIntroStarted = false; 
-	CAnimation m_zAnimationCountdown; 
+	CAnimation m_zAnimationCountdown;
+	CAnimation m_zAnimationSchaden; 
 
 	CHighscore m_zHighscore; 
 
@@ -116,6 +117,6 @@ private:
 	bool FirstSoundTick = true;
 	bool FirstVerlorenTick = true; 
 
-	int iLeben = 5;
+	
 };
 

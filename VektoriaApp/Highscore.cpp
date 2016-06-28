@@ -14,7 +14,7 @@ CHighscore::~CHighscore()
 
 void CHighscore::Init(CViewport * mvz) {
 
-	topHighscore.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.0F, 2.5F, 0.04F);
+	topHighscore.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.0F, 2.F, 0.04F);
 	topHighscore.SetString("Score:0");
 
 	topChange.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.06F, 2.5F, 0.04F);
@@ -280,7 +280,7 @@ void CHighscore::changeAnimation(float fTime, float fTimeDelta) {
 	}
 	else {
 
-		if (fTime > fTimeStartChange + 1) {
+		if (fTime > fTimeStartChange + 1.5F) {
 			topChange.SetString("");
 		}
 
