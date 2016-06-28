@@ -52,8 +52,6 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	//Aktualisiert alles
 	m_zSceneHandler.Tick(fTimeDelta, fTime);
 
-	//maus.Run(); 
-
 	m_zr.Tick(fTimeDelta);
 }
 

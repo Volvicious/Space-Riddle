@@ -15,8 +15,6 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 
 	/// ALLES AB HIER IS JULIANS
 
-
-
 	////Maus 
 	//m_ziCurser.Init("textures\\cursor.gif");
 	//m_zoCurser.Init(&m_ziCurser, CFloatRect(0.5F, 0.5F, 0.02F, 0.02F),true);

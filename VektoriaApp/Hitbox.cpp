@@ -78,8 +78,6 @@ int CHitbox::HitboxFrage(CRaumschiff * raumschiff, CFrageGrafik * frage)
 						Kollision = true;
 						switch (i)
 						{
-						
-
 						case 0: OutputDebugString("Kugel 1"); return 0; 
 							break;
 						case 1: ULDebug("Kugel 2"); return 1; 

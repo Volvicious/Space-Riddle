@@ -140,8 +140,6 @@ void SceneHandler::FrageTranslation()
 
 void SceneHandler::MeteoritenTick(float fTimeDelta)
 {
-	 
-
 	if (MeteoritenSwitch == true)
 	{
 		//Kamerposition fixen
@@ -193,6 +191,10 @@ void SceneHandler::MeteoritenTick(float fTimeDelta)
 		FrageSwitch = true;
 	}
 
+	//Bla
+	if (m_zLLA.getLebenAnzahl() <= 0)
+		iScene = Verloren;
+
 	//Firsttick setzen
 	bFirstTick = false;
 }
@@ -217,7 +219,6 @@ void SceneHandler::SwitchScene()
 
 void SceneHandler::FrageTick(float fTimeDelta)
 {
-
 	m_zFragenHandler.Run(fTimeDelta);
 
 	if (FrageSwitch == true)
@@ -246,26 +247,24 @@ void SceneHandler::FrageTick(float fTimeDelta)
 		//Überprüfen mit welcher Frage ich kollidiert bin
 		if (j > -1)
 		{
-			if(m_zFragenHandler.IstAntwortRichtig(j))
-			{
+			if (m_zFragenHandler.IstAntwortRichtig(j))
 				m_zHighscore.AddToHighscore(20);
-			}
 			else
-			{
 				m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() - 3);
-			}
 		}
 		
+		//Level hochzählen
 		m_zLLA.setLevelNummer(m_zLLA.getLevelNummer() + 1);
-		//Level Completed
-		//iScene = LevelCompleted;
 
-		iScene = LevelCompleted;
+		//Keine Frage mehr stellen
 		m_zFragenHandler.SetStelleFrage(false);		
+
+		//bla
+		iScene = LevelCompleted;
 	}
 
-	if (m_zFragenHandler.FadeOutBeendet())
-		m_zIngameOverlays.SwitchOn(1);
+	/*if (m_zFragenHandler.FadeOutBeendet())
+		m_zIngameOverlays.SwitchOn(1);*/
 
 	//FirstTick
 	bFirstTick = false;
@@ -273,7 +272,6 @@ void SceneHandler::FrageTick(float fTimeDelta)
 
 void SceneHandler::Tick(float fTimeDelta, float fTime)
 {	
-
 	m_zAnimationSchaden.Run(fTime);
 
 	//Spiel pausieren
@@ -336,9 +334,10 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 		if (m_zHauptmenu.getbGo())
 		{
-			iScene = Countdown;
 			m_dMaus.SwitchOff();
 			m_zLLA.SwitchOn();
+			PlaySoundOnce = true;
+			iScene = Countdown;
 		}
 	}
 
@@ -359,15 +358,16 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 		if (m_zAnimationCountdown.IsFinished())
 		{
-			iScene = Meteoriten;
 			m_zHighscore.Start(fTimeDelta);
 			m_zLLA.SwitchOn();
+			iScene = Meteoriten;
 		}
 
 		/*if (iScene == 1) {
 			m_zHighscore.Start(fTimeDelta);
 		}*/
 
+		//Neue Meteoriten laden
 		MeteoritenSwitch = true;
 	}
 
@@ -419,21 +419,24 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 			FrageTick(fTimeDelta);
 		}
 
-
 		//HighScore
 		m_zHighscore.Run(fTime, fTimeDelta);
 
-	
-
 		//Wenn das Leben auf 0 ist hat man verloren
-		if (m_zLLA.getLebenAnzahl() <= 0)
-			iScene = Verloren;
+		/*if (m_zLLA.getLebenAnzahl() <= 0)
+			iScene = Verloren;*/
 	
 	} 
 	
 	//Game Over
 	if (iScene == Verloren)
 	{
+		//Fadeoutshit ausmachen
+		m_zIngameOverlays.SwitchOff(1);
+
+		//Cockpit ausmachen
+		m_zc.setOverlayCockpit()->SwitchOff();
+
 		int iSceneSpeicher = iScene; 
 
 		if (FirstVerlorenTick) {
@@ -444,9 +447,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		}
 
 		//Game Over
-		m_zIngameOverlays.SwitchOffAll();
 		m_zIngameOverlays.SwitchOn(2);
-		m_zIngameOverlays.SetLayer(0, 0.9f);
 
 		//Sounds
 		m_zSound.SwitchSounds(1, 2, true);
@@ -454,10 +455,10 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 		//Highscoreliste anzeigen
 		iScene = m_zSteuerung.Highscore(iScene, &m_zKeyboard);
+
 		if (iScene != iSceneSpeicher) {
 			FirstVerlorenTick = true; 
 		}
-
 	}
 
 	//Pause gedrückt
@@ -491,9 +492,11 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		m_zc.setFristPerson(false);
 		m_zc.setOverlayCockpit()->SwitchOff();
 
-		if (m_zFragenHandler.FadeOutBeendet()){
-
+		if (m_zFragenHandler.FadeOutBeendet())
+		{
+			//Level competed
 			m_zIngameOverlays.SwitchOn(1);
+
 			//Cameraposition verändern
 			m_zc.setFristPerson(false);
 			m_zc.setOverlayCockpit()->SwitchOff();
@@ -507,6 +510,10 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 			//Switchscene
 			SwitchScene();
 
+			//Szene wechseln wenn ausgefaded ist
+			if (m_zLLA.getLebenAnzahl() <= 0)
+				iScene = Verloren;
+
 			//Meteoriten starten
 			MeteoritenSwitch = true;
 		}
@@ -518,8 +525,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	if (iScene == Highscore)
 	{
 		//Todo: Highscore Overlay anzeigen
-		m_zIngameOverlays.SwitchOffAll();
+		m_zIngameOverlays.SwitchOff(2);
 		iScene = PreHauptmenue;
-		//iScene = m_zSteuerung.Hauptmenue(iScene, &m_zKeyboard);
 	}
 }
