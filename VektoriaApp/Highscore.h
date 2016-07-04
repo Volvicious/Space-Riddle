@@ -51,13 +51,13 @@ private:
 	float fTimeStartChange = 0.0F;
 	std::string sChange;
 
-	float fxPos = 0.0F; 
-	float fyPos = 0.06F; 
+	float fxPos = 0.4F; 
+	float fyPos = 0.05F; 
 	float fxSize = 0; 
 	float fySize = 0;
 
-	float fxEndSize = 2.0F;
-	float fyEndSize = .02F; 
+	float fxEndSize = 4.0F;
+	float fyEndSize = .4F; 
 
 	void changeString();
 

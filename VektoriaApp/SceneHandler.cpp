@@ -29,7 +29,7 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 
 	//Menu
 	m_zHauptmenu.menuInit(viewPort, &m_dMaus, &m_zExplorerLernpaket,
-		&m_zExplorerProfil, &m_zProfilhandler, &m_zHighscore);
+		&m_zExplorerProfil, &m_zProfilhandler, &m_zHighscore, &m_zSound);
 
 	//Lernpakete
 
@@ -53,12 +53,15 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 
 	//Intro-Animation
 
-	m_zAnimationIntro.Init(viewPort, 5, "textures\\animation\\storyintro", "png");
-	m_zAnimationIntro.SetTime(0, 1000.0F);
-	m_zAnimationIntro.SetTime(1, 1000.0F);
-	m_zAnimationIntro.SetTime(2, 2000.F);
-	m_zAnimationIntro.SetTime(3, 1000.F);
-	m_zAnimationIntro.SetTime(4, 1000.F);
+	m_zAnimationIntro.Init(viewPort, 8, "textures\\animation\\storyintro", "png");
+	m_zAnimationIntro.SetTime(0, 6000.0F);
+	m_zAnimationIntro.SetTime(1, 5000.0F);
+	m_zAnimationIntro.SetTime(2, 5000.F);
+	m_zAnimationIntro.SetTime(3, 4000.F);
+	m_zAnimationIntro.SetTime(4, 6000.F);
+	m_zAnimationIntro.SetTime(5, 6000.F);
+	m_zAnimationIntro.SetTime(6, 10000.F);
+	m_zAnimationIntro.SetTime(7, 13000.F);
 
 	//Schaden-Animation
 	m_zAnimationSchaden.Init(viewPort, 1, "textures\\animation\\schaden", "png");
@@ -72,7 +75,15 @@ void SceneHandler::Init(CViewport * viewPort, CScene * scene, CFrame * frame)
 	m_zHighscore.Init(viewPort);
 
 	//Sound
-	m_zSound.Init(scene);
+	try
+	{
+		m_zSound.Init(scene);
+	}
+	catch (const std::exception&)
+	{
+
+	}
+	
 
 	////Geschwindigkeit
 	m_fGeschwindigkeit = -40.0f;
@@ -274,6 +285,13 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 {	
 	m_zAnimationSchaden.Run(fTime);
 
+	if (m_zKeyboard.KeyDown(DIK_M)) {
+
+			m_zSound.Mute();
+		
+	}
+
+
 	//Spiel pausieren
 	int iSceneSpeicher = iScene;
 
@@ -290,20 +308,33 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 		//Todo: IF Animation zuende oder Leertaste
 
-		if (!bAnimationIntroStarted) 
-		{
+		CAudio * ptrIntro = m_zSound.getAudioPointr(25);
+
+		if (!bSoundIntroStarted) {
+
+			m_zSound.Start(25);
+			bSoundIntroStarted = false; 
+		}
+
+		if (!bAnimationIntroStarted && m_zSound.getAudioPointr(25)->IsOn()){
 			m_zAnimationIntro.StartAnimation();
 			bAnimationIntroStarted = true; 
 		}
 
 		iScene = m_zSteuerung.Hauptmenue(iScene, &m_zKeyboard);
 
-		if (iSceneSpeicher != iScene) 
+		if (iSceneSpeicher != iScene) {
 			m_zAnimationIntro.StopAnimation(); 
+		}
 
 		m_zAnimationIntro.Run(fTime);
-		if (m_zAnimationIntro.IsFinished())
+
+		if (m_zAnimationIntro.IsFinished()){
 			iScene = PreHauptmenue;
+		}
+
+		
+
 	}
 
 	if (iScene == PreHauptmenue) 
@@ -315,6 +346,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		m_zLLA.SwitchOff(); 
 		m_zHighscore.SetHighscore(0);
 		m_zHighscore.Stop(); 
+		m_zSound.Stop(25);
 
 		iScene = Hauptmenü;
 	}
@@ -322,7 +354,6 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 	//Hauptmenü getickt
 	if (iScene == Hauptmenü)
 	{
-		m_zSound.SwitchSounds(25, 0, true);
 		m_dMaus.Run();
 		m_zExplorerLernpaket.Run();
 		m_zProfilhandler.Run();

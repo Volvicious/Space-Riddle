@@ -96,7 +96,7 @@ void CFragenHandler::Run(float fTimeDelta) {
 		fadeDown(&m_zoMultiFrage, 0.0F, fTimeDelta);
 		
 
-		fadeDown(topFrage.getWritingPtr(), 0.026F, fTimeDelta, 0);
+		fadeDown(topFrage.getWritingPtr(), 0.05F, fTimeDelta, 0);
 		
 		fadeUp(topAntwortmoegl[0].getWritingPtr(), 0.8F, fTimeDelta, 1);
 		fadeUp(topAntwortmoegl[1].getWritingPtr(), 0.8F, fTimeDelta, 2);
@@ -156,6 +156,10 @@ bool CFragenHandler::fadeDown(COverlay * ptrO, float yuntil, float fTimeDelta){
 
 		fy += fTimeDelta*.9F;
 
+		if (fy > yuntil) {
+			fy = yuntil;
+		}
+
 		rect.SetYPos(fy);
 		ptrO->SetRect(rect);
 		
@@ -178,6 +182,10 @@ bool CFragenHandler::fadeUp(COverlay * ptrO, float yuntil, float fTimeDelta) {
 
 		fy -= fTimeDelta*.9F;
 
+		if (fy < yuntil) {
+			fy = yuntil;
+		}
+
 		rect.SetYPos(fy);
 		ptrO->SetRect(rect);
 
@@ -198,6 +206,10 @@ bool CFragenHandler::fadeDown(CWriting * ptrW, float yuntil, float fTimeDelta, i
 
 		
 		fyWerteDownV[iNummer] += fTimeDelta*.9F;
+
+		if (fyWerteDownV[iNummer] > yuntil) {
+			fyWerteDownV[iNummer] = yuntil;
+		}
 
 
 		CFloatRect rect = ptrW->GetRect();
@@ -221,6 +233,10 @@ bool CFragenHandler::fadeUp(CWriting * ptrW, float yuntil, float fTimeDelta, int
 
 
 		fyWerteUpV[iNummer] -= fTimeDelta*.9F;
+
+		if (fyWerteUpV[iNummer] < yuntil) {
+			fyWerteUpV[iNummer] = yuntil;
+		}
 
 
 		CFloatRect rect = ptrW->GetRect();

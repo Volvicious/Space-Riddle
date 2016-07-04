@@ -5,13 +5,15 @@
 
 void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	CExplorer * ptrExplorer_, CExplorer * ptrExplorerprof_,
-	CProfilHandler * ptrProfilhandler, CHighscore * ptrHighscore)
+	CProfilHandler * ptrProfilhandler, CHighscore * ptrHighscore,
+	CSound * ptrsound)
 {
 	ptrExplorer = ptrExplorer_; //Lernpakete
 	ptrExplorerProfil = ptrExplorerprof_; //Name festlegen
 	ptrMaus = ptrMaus_;
 	ptrProfilHandler = ptrProfilhandler;
 	ptrHighScore = ptrHighscore; 
+	ptrSound = ptrsound;
 
 	/// ALLES AB HIER IS JULIANS
 
@@ -25,15 +27,13 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 
 	//Backbutton
 
-
-
-
 	// Hauptmenü
 	m_ziMainmbackground.Init("textures\\menubild.jpg");
 	m_zoMainmbackground.InitFull(&m_ziMainmbackground);
 	m_zv->AddOverlay(&m_zoMainmbackground);
 	m_zoMainmbackground.SetLayer(0.9F);
 
+	overlays.push_back(&m_zoMainmbackground);
 
 	//Steuerungbackground
 	m_ziSteuerungBackground.Init("textures\\menubild_steuerung.jpg");
@@ -41,6 +41,8 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zv->AddOverlay(&m_zoSteuerungBackground);
 	m_zoSteuerungBackground.SetLayer(0.91F);
 	m_zoSteuerungBackground.SwitchOff();
+
+	overlays.push_back(&m_zoSteuerungBackground);
 
 
 	//Optionsbackground
@@ -50,12 +52,17 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoOptionsBackground.SetLayer(0.91F);
 	m_zoOptionsBackground.SwitchOff();
 
+	overlays.push_back(&m_zoOptionsBackground);
+
+
 	//Highscorebackground
 	m_ziHighscoreBackground.Init("textures\\menubild_Highscore.jpg");
 	m_zoHighscoreBackground.InitFull(&m_ziHighscoreBackground);
 	m_zv->AddOverlay(&m_zoHighscoreBackground);
 	m_zoHighscoreBackground.SetLayer(0.91F);
 	m_zoHighscoreBackground.SwitchOff();
+
+	overlays.push_back(&m_zoHighscoreBackground);
 
 
 	//PickName
@@ -65,6 +72,9 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoName.SetTransparency(0.5F);
 	m_zoName.SetLayer(0.4F);
 
+	overlays.push_back(&m_zoName);
+
+
 
 	////Picklernpacket
 	m_zmLernPaket.MakeTextureDiffuse("textures\\MenuAuswahl.gif");
@@ -72,6 +82,8 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoMainmbackground.AddOverlay(&m_zoLernPaket);
 	m_zmLernPaket.SetTransparency(0.5F);
 
+
+	overlays.push_back(&m_zoLernPaket);
 
 
 
@@ -82,6 +94,9 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoEinstellung.SetTransparency(0.5F);
 	m_zoEinstellung.SetLayer(0.4F);
 
+	overlays.push_back(&m_zoEinstellung);
+
+
 	//////Picksteuerung
 	m_zmSteuerung.MakeTextureDiffuse("textures\\MenuAuswahl.gif");
 	m_zoSteuerung.Init(&m_zmSteuerung, CFloatRect(0.41f, 0.602f, 0.4f, 0.06f));
@@ -89,12 +104,18 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoSteuerung.SetTransparency(0.5F);
 	m_zoSteuerung.SetLayer(0.4F);
 
+	overlays.push_back(&m_zoSteuerung);
+
+
 	//////PickHighscore
 	m_zmHiscore.MakeTextureDiffuse("textures\\MenuAuswahl.gif");
 	m_zoHighscore.Init(&m_zmHiscore, CFloatRect(0.41f, 0.718f, 0.4f, 0.06f));
 	m_zoMainmbackground.AddOverlay(&m_zoHighscore);
 	m_zoHighscore.SetTransparency(0.5F);
 	m_zoPickHighscore.SetLayer(0.4F);
+
+	overlays.push_back(&m_zoHighscore);
+
 
 
 	//////Pickexit 
@@ -104,12 +125,17 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoExit.SetTransparency(0.5F);
 	m_zoExit.SetLayer(0.4F);
 
+	overlays.push_back(&m_zoExit);
+
+
 	/////////Picksetting für Einstellungen
 	//Pick Antialising on
 	m_zmPickAntianilisingOn.MakeTextureDiffuse("textures\\MenuAuswahl.gif");
 	m_zoPickAntianilisingOn.Init(&m_zmPickAntianilisingOn, CFloatRect(0.67f, 0.46f, 0.05f, 0.06f));
 	m_zoOptionsBackground.AddOverlay(&m_zoPickAntianilisingOn);
 	m_zoPickAntianilisingOn.SetTransparency(0.5F);
+
+	overlays.push_back(&m_zoPickAntianilisingOn);
 
 
 	//Pick Antialising Off
@@ -118,6 +144,8 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoOptionsBackground.AddOverlay(&m_zoPickAntianilisingOff);
 	m_zoPickAntianilisingOff.SetTransparency(0.5F);
 	m_zoPickAntianilisingOff.SwitchOff();
+
+	overlays.push_back(&m_zoPickAntianilisingOff);
 
 
 
@@ -129,6 +157,9 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoPickTonAn.SetTransparency(0.5F);
 	m_zoPickTonAn.SwitchOn();
 
+	overlays.push_back(&m_zoPickTonAn);
+
+
 
 	//PickTonAus
 	m_zmPickTonAus.MakeTextureDiffuse("textures\\MenuAuswahl.gif");
@@ -136,6 +167,8 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoOptionsBackground.AddOverlay(&m_zoPickTonAus);
 	m_zoPickTonAus.SetTransparency(0.5F);
 	m_zoPickTonAus.SwitchOff();
+
+	overlays.push_back(&m_zoPickTonAus);
 
 
 
@@ -146,12 +179,16 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoPickWindowScreen.SetTransparency(0.5F);
 	m_zoPickWindowScreen.SwitchOff();
 
+	overlays.push_back(&m_zoPickWindowScreen);
+
 
 	//PickFullscreen
 	m_zmPickFullScreen.MakeTextureDiffuse("textures\\MenuAuswahl.gif");
 	m_zoPickFullScreen.Init(&m_zmPickFullScreen, CFloatRect(0.63f, 0.64f, 0.14f, 0.06f));
 	m_zoOptionsBackground.AddOverlay(&m_zoPickFullScreen);
 	m_zoPickFullScreen.SetTransparency(0.5F);
+
+	overlays.push_back(&m_zoPickFullScreen);
 
 
 
@@ -162,9 +199,7 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoPickHighscore.SetTransparency(0.5F);
 	m_zoPickHighscore.SwitchOn();
 
-
-
-
+	overlays.push_back(&m_zoPickHighscore);
 
 
 	// GoButton
@@ -175,6 +210,9 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoMainmbackground.AddOverlay(&m_zoGoButton);
 	m_zoGoButton.SetLayer(0.3F);
 	m_zoGoButton.SetTransparency(0.3F);
+
+	overlays.push_back(&m_zoGoButton);
+
 
 	// TextOutPuts
 
@@ -192,6 +230,9 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoOptionsBackground.AddOverlay(&m_zoBackButton2);
 	m_zoBackButton2.SetLayer(0.5F);
 	m_zoBackButton2.SwitchOn();
+
+	overlays.push_back(&m_zoBackButton2);
+
 
 	//Backbutton für Steuerung
 
@@ -213,14 +254,20 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoMainmbackground.AddOverlay(&m_zoCredits);
 	m_zoCredits.SetTransparency(0.6);
 	m_zoCredits.SetLayer(0.6);
+	m_zoCredits.SetName("Credits");
+
+	overlays.push_back(&m_zoCredits);
+
 
 
 	//Creditsbackground
 	m_ziCreditsBackground.Init("textures\\Credits_Background.jpg");
 	m_zoCreditsBackground.InitFull(&m_ziCreditsBackground);
-	m_zoMainmbackground.AddOverlay(&m_zoCreditsBackground);
+	m_zv->AddOverlay(&m_zoCreditsBackground);
 	m_zoCreditsBackground.SetLayer(0.89);
 	m_zoCreditsBackground.SwitchOff();
+
+	overlays.push_back(&m_zoCreditsBackground);
 
 
 
@@ -231,6 +278,9 @@ void CMainmenu::menuInit(CViewport * m_zv, CMaus * ptrMaus_,
 	m_zoBackButton3.SetLayer(0.5);
 	m_zoBackButton3.SetTransparency(0.3);
 
+	overlays.push_back(&m_zoBackButton3);
+
+
 	SwitchOff(); 
 }
 
@@ -239,8 +289,28 @@ bool CMainmenu::getbGo() {
 	return bGo; 
 }
 
-void CMainmenu::menuTick()
-{
+void CMainmenu::menuTick(){
+	
+
+	if (ptrMaus->getDevicePtr()->PickOverlay() && m_zoMainmbackground.IsOn()) {
+
+		bool b = false; 
+
+		for (std::vector<COverlay *>::iterator it = overlays.begin();
+		it != overlays.end(); it++) {
+			
+			if (ptrMaus->getDevicePtr()->PickOverlay() == *it) {
+				b = true;
+				break; 
+			}
+		}
+
+		if (!b) {
+			ptrMaus->getDevicePtr()->PickOverlay()->SwitchOff();
+		}
+	}
+
+
 
 	if (ptrExplorer->getMakeMenuOn()) {
 		SwitchOn();
@@ -281,10 +351,12 @@ void CMainmenu::menuTick()
 	if (ptrMaus->PickOverlayandLeftKlick(&m_zoCredits))
 	{
 		m_zoCreditsBackground.SwitchOn();
-		m_zoCredits.SwitchOff();
-		m_zoGoButton.SwitchOff();
 
 
+		SwitchOff(); 
+		ptrMaus->SwitchOn();
+		ptrSound->Stop(0);
+		ptrSound->Start(10);
 
 
 	}
@@ -386,9 +458,17 @@ void CMainmenu::menuTick()
 	if (ptrMaus->PickOverlayandLeftKlick(&m_zoBackButton3))
 	{
 
+		ptrSound->Stop(10);
+		ptrSound->Start(0);
+
 		m_zoCreditsBackground.SwitchOff();
-		m_zoMainmbackground.SwitchOn();
+
+		SwitchOn();
+		/*m_zoMainmbackground.SwitchOn();
+		m_zoCredits.SwitchOn();
 		m_zoGoButton.SwitchOn();
+		m_zTOPLernpaket.SwitchOn();
+		m_zTOPProfil.SwitchOn();*/
 
 	}
 
@@ -511,10 +591,14 @@ void CMainmenu::menuTick()
 	//TON  Aus speichern
 	if (ptrMaus->PickOverlayandLeftKlick(&m_zoPickTonAus))
 	{
+
+		
 		m_zoPickTonAus.SwitchOn();
 		m_zoPickTonAn.SwitchOff();
 
 	}
+
+
 
 	//Antianilising Aus Anzeigen wenn maus drüber fährt
 
@@ -574,6 +658,7 @@ void CMainmenu::SwitchOn() {
 	ptrMaus->SwitchOn();
 	m_zTOPLernpaket.SwitchOn();
 	m_zTOPProfil.SwitchOn();
+	ptrSound->Start(0);
 	
 
 }
@@ -585,6 +670,7 @@ void CMainmenu::SwitchOff() {
 	m_zoMainmbackground.SwitchOff();
 	m_zTOPLernpaket.SwitchOff();
 	m_zTOPProfil.SwitchOff();
+	ptrSound->Stop(0);
 
 }
 

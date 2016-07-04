@@ -17,12 +17,14 @@ void CHighscore::Init(CViewport * mvz) {
 	topHighscore.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.0F, 2.F, 0.04F);
 	topHighscore.SetString("Score:0");
 
-	topChange.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.06F, 2.5F, 0.04F);
+	topChange.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.4F, 0.1F, 2.5F, 0.04F);
 	
 	topChange.SetString("");
 
 	bOn = true;
 
+
+	//Fuer das Menue
 	float fy = 0.4F; 
 	for (int i = 0; i < 6; i++) {
 
@@ -82,7 +84,6 @@ void CHighscore::Pause() {
 	//fTimePauseSpeicher = fTimeStart;
 	fTimeStart = INT_MAX;
 
-	
 }
 
 void CHighscore::GoOn(float fTime) {
@@ -92,11 +93,19 @@ void CHighscore::GoOn(float fTime) {
 
 void CHighscore::AddHighscore(std::string sName, int iScore) {
 
+	if (v_NamePunktZahl->empty()) {
+		Load();
+	}
+
 	v_NamePunktZahl->push_back(std::pair<std::string, int>(sName, iScore));
 	Save();
 }
 
 void CHighscore::Save() {
+
+	if (v_NamePunktZahl->empty()) {
+		Load();
+	}
 
 	std::ofstream file("..\\VektoriaApp\\highscore\\highscore.txt");
 

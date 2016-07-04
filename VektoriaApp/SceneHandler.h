@@ -90,7 +90,8 @@ private:
 
 	CLLAnzeige m_zLLA; 
 	CAnimation m_zAnimationIntro;
-	bool bAnimationIntroStarted = false; 
+	bool bAnimationIntroStarted = false;
+	bool bSoundIntroStarted = false; 
 	CAnimation m_zAnimationCountdown;
 	CAnimation m_zAnimationSchaden; 
 
@@ -115,7 +116,8 @@ private:
 	bool bFirstTick = true;
 
 	bool FirstSoundTick = true;
-	bool FirstVerlorenTick = true; 
+	bool FirstVerlorenTick = true;
+	bool bMuted = false; 
 
 	
 };

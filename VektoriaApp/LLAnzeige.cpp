@@ -40,7 +40,7 @@ void CLLAnzeige::Init(CViewport * mzv) {
 		
 		LebensOverlays[i].Init(&LebensImages[i], CFloatRect(.85F, 0.0F, 0.15F, 0.1F));
 		m_zoAnzeige.AddOverlay(&LebensOverlays[i]);
-		LebensOverlays[i].SetLayer(0.18F);
+		LebensOverlays[i].SetLayer(0.21F);
 		LebensOverlays[i].SwitchOff();
 
 		

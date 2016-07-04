@@ -38,7 +38,7 @@ void CSound::Init(CScene * ptrscene){
 	audio[0].Fini();
 	ptrscene->AddAudio(&audio[0]);
 	audio[0].Loop();
-	
+
 	audio[1].Init("sounds\\Ambient_Sounds\\Ingame.wav");
 	audio[1].Fini();
 	ptrscene->AddAudio(&audio[1]);
@@ -141,7 +141,7 @@ void CSound::Init(CScene * ptrscene){
 
 	audio[26].Init("sounds\\Ambient_Sounds\\Glasbruch\\001.aiff");
 	audio[26].Fini();
-	ptrscene->AddAudio(&audio[26]); 
+	ptrscene->AddAudio(&audio[26]);
 
 	audio[27].Init("sounds\\Ambient_Sounds\\Glasbruch\\002.aiff");
 	audio[27].Fini();
@@ -195,11 +195,18 @@ void CSound::Init(CScene * ptrscene){
 	audio[39].Fini();
 	ptrscene->AddAudio(&audio[39]);
 
-	audio[40].Init("sounds\\Ambient_Sounds\\Tastatur\\00005.aiff");
-	audio[40].Fini();
-	ptrscene->AddAudio(&audio[40]);
+	//audio[40].Init("sounds\\Ambient_Sounds\\Tastatur\\00005.aiff");
+	//audio[40].Fini();
+	//ptrscene->AddAudio(&audio[40]);
+
+	for (int jj = 0; jj < AUDIOZ; jj++) {
+		LautstaerkeSpeicher[jj] = 1.0F;
+	}
+
 
 }
+
+
 
 CAudio*CSound::getAudioPointr(int iSoundNummer)
 {
@@ -227,7 +234,15 @@ void CSound::Pause(int iSoundNummer){
 
 void CSound::SetVolume(int iSoundNummer, float f)
 {
+	LautstaerkeSpeicher[iSoundNummer] = f; 
 	audio[iSoundNummer].SetVolume(f);
+}
+
+void CSound::SetAllVolume(float f) {
+
+	for (int i = 0; i < AUDIOZ; i++) {
+		audio[i].SetVolume(f * LautstaerkeSpeicher[i]);
+	}
 }
 
 void CSound::SwitchSounds(int iCurrentSound, int iNextSound, bool loop)
@@ -235,17 +250,30 @@ void CSound::SwitchSounds(int iCurrentSound, int iNextSound, bool loop)
 	audio[iCurrentSound].Pause();
 	audio[iNextSound].Start();
 
+	
+
 	if (loop == true)
 	{
 		audio[iNextSound].Loop();
 	}
 }
 
-void CSound::SetAllVolume(float f) {
+void CSound::Mute() {
 
-	for (int i = 0; i < AUDIOZ; i++) 
-	{
-		audio[i].SetVolume(f);
+	if (!bMute) {
+		for (int i = 0; i < AUDIOZ; i++) 
+		{
+			audio[i].SetVolume(0);
+			
+		}
+		bMute = true; 
+	}
+	else {
+		for (int i = 0; i < AUDIOZ; i++)
+		{
+			audio[i].SetVolume(LautstaerkeSpeicher[i]);
+		}
+		bMute = false; 
 	}
 
 }

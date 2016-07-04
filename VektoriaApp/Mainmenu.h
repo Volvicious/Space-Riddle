@@ -8,6 +8,7 @@
 #include "TextOutput.h"
 #include "ProfilHandler.h"
 #include "Highscore.h"
+#include "Sound.h"
 
 
 
@@ -21,7 +22,8 @@ public:
 	~CMainmenu(){};
 	void menuInit(CViewport * m_zv, CMaus * ptrMaus_, 
 		CExplorer * ptrExplorer_, CExplorer * ptrExplorerProf,
-		CProfilHandler * ptrProfilhandler, CHighscore * ptrHighscore);
+		CProfilHandler * ptrProfilhandler, CHighscore * ptrHighscore, 
+		CSound * ptrSound);
 	void menuTick();
 
 
@@ -132,6 +134,10 @@ public:
 	CExplorer * ptrExplorerProfil; 
 	CProfilHandler * ptrProfilHandler;
 	CHighscore * ptrHighScore; 
+	CSound * ptrSound; 
+
+
+	std::vector <COverlay *>  overlays; 
 
 
 	//Hilfsvars
