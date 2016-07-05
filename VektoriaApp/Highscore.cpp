@@ -40,7 +40,7 @@ void CHighscore::Init(CViewport * mvz) {
 		fy += 0.07F; 
 	}
 
-
+	SwitchIngameOff();
 
 }
 
@@ -66,6 +66,7 @@ void CHighscore::Run(float ftime, float fTimeDelta) {
 
 void CHighscore::Start(float fTime) {
 
+	SwitchIngameOn();
 	fTimeStart = fTime; 
 	bOn = true;
 }
@@ -189,6 +190,17 @@ void CHighscore::SwitchMenueOff() {
 		aTextOutputInts[i].SwitchOff();
 	}
 
+}
+
+void CHighscore::SwitchIngameOff() {
+	topHighscore.SwitchOff();
+	topChange.SwitchOff();
+}
+
+void CHighscore::SwitchIngameOn() {
+
+	topHighscore.SwitchOn(); 
+	topChange.SwitchOn();
 }
 
 void CHighscore::Sort() {

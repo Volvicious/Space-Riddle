@@ -11,10 +11,9 @@ CSteuerung::~CSteuerung()
 
 void CSteuerung::Tick(float fTimeDelta, CPlacement * placement, CDeviceKeyboard * keyboard)
 {
-	//Grenzen
-	SoftBorder(fTimeDelta, placement);
+	
 
-	//Special Animation
+	//Special Animation, sonst "Normale Lenkung"
 	if (! m_RAnimation.Run(placement, keyboard, fTimeDelta) ) {
 
 		if (keyboard->KeyPressed(DIK_W))
@@ -47,10 +46,27 @@ void CSteuerung::Tick(float fTimeDelta, CPlacement * placement, CDeviceKeyboard 
 		placement->RotateXDelta(pfvVertikal+0.05F);
 		placement->TranslateDelta(vec);
 	}
+	else{
 
-	//Geschwindigkeit reseten
-	//MaxTube(fTimeDelta, placement);
-	Inertia(fTimeDelta, placement);
+		if (keyboard->KeyPressed(DIK_D) && placement->GetTranslation().GetX() < MAX_TUBE)
+		{
+			pfvHorizontal = (20.0F) * fTimeDelta;
+		}
+
+		if (keyboard->KeyPressed(DIK_A) && placement->GetTranslation().GetX() > MIN_TUBE)
+		{
+			pfvHorizontal = -(20.0F) * fTimeDelta;
+		}
+
+
+	}
+
+
+	//Inertia jetzt in der If, weil wenn das Raumschiff auserhalb ist, sollte die Geschwindigkeit konstant auf "zurueckschieben" bleiben...
+	if (!SoftBorder(fTimeDelta, placement)){
+		Inertia(fTimeDelta, placement);
+	}
+
 	
 }
 
@@ -170,55 +186,32 @@ void CSteuerung::Inertia(float fTimeDelta, CPlacement * placement)
 	}
 }
 
-void CSteuerung::MaxTube(float fTimeDelta, CPlacement * placement)
-{
-	//Vertikal oben
-	if (placement->GetTranslation().GetY() >= MAX_TUBE && pfvVertikal > 0)
-	{
-		pfvVertikal = 0.0F;
-	}
 
-	//Vertikal unten
-	if (placement->GetTranslation().GetY() <= MIN_TUBE && pfvVertikal < 0)
-	{
-		pfvVertikal = 0.0F;
-	}
 
-	//Horizontal links
-	if (placement->GetTranslation().GetX() <= MIN_TUBE && pfvHorizontal < 0)
-	{
-		pfvHorizontal = 0.0F;
-	}
+bool CSteuerung::SoftBorder(float fTimeDelta, CPlacement * placement) {
 
-	//Horizontal rechts
-	if (placement->GetTranslation().GetX() >= MAX_TUBE && pfvHorizontal > 0)
-	{
-		pfvHorizontal = 0.0F;
-	}
-}
+	float fDistance = sqrt((placement->GetTranslation().GetX()*
+		placement->GetTranslation().GetX() + placement->GetTranslation().GetY()*
+		placement->GetTranslation().GetY()));
 
-void CSteuerung::SoftBorder(float fTimeDelta, CPlacement * placement) {
-
-	float fDistance = sqrt((placement->GetTranslation().GetX()*placement->GetTranslation().GetX() + placement->GetTranslation().GetY()*placement->GetTranslation().GetY()));
-
-	if (fDistance >= 15.0F && !bFadeSoft) 
-	{
+	if (fDistance >= 15.0F && !bFadeSoft) {
 		bFadeSoft = true;
-		fFadeVer = -pfvVertikal / 5; 
-		fFadeHor = -pfvHorizontal / 5;
+		fFadeVer = -pfvVertikal * 0.5F; 
+		fFadeHor = -pfvHorizontal * 0.5F;
+
 	}
 
-	if (bFadeSoft) 
-	{
+	if (bFadeSoft) {
 		
 		pfvVertikal = fFadeVer; 
 		pfvHorizontal = fFadeHor;
 
-		if (fDistance <= 15.0F) 
-		{
+		if (fDistance <= 14.8F) {
 			bFadeSoft = false; 
 		}
 
 	}
 	
+	return bFadeSoft;
+
 }

@@ -25,6 +25,8 @@ public:
 	void PreRunMenue();
 	void RunHauptMenue();
 	void SwitchMenueOff(); 
+	void SwitchIngameOff();
+	void SwitchIngameOn(); 
 	void Sort(); 
 
 

@@ -15,9 +15,8 @@ public:
 	~CSteuerung();
 
 	void Tick(float fTimeDelta, CPlacement * placement, CDeviceKeyboard * keyboard);
-	void MaxTube(float fTimeDelta, CPlacement * placement);
 	void Inertia(float fTimeDelta, CPlacement * placement);
-	void SoftBorder(float fTimeDelta, CPlacement * placement);
+	bool SoftBorder(float fTimeDelta, CPlacement * placement);
 
 	int PauseGame(int iScene, CDeviceKeyboard * keyboard);
 	int StartGame(int iScene, CDeviceKeyboard * keyboard);

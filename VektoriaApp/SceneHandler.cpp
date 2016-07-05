@@ -312,6 +312,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 
 		if (!bSoundIntroStarted) {
 
+			//m_zSound.SetVolume(25, 0.8F);
 			m_zSound.Start(25);
 			bSoundIntroStarted = false; 
 		}
@@ -343,10 +344,16 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 		m_zHauptmenu.SwitchOn();
 		m_dMaus.SwitchOn();
 		m_zLLA.setLebenAnzahl(10);
-		m_zLLA.SwitchOff(); 
+		m_zLLA.SwitchOff();
+
 		m_zHighscore.SetHighscore(0);
 		m_zHighscore.Stop(); 
+		m_zHighscore.SwitchIngameOff();
+
+
 		m_zSound.Stop(25);
+		m_zSound.Stop(2);
+
 
 		iScene = Hauptmenü;
 	}
@@ -392,6 +399,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 			m_zHighscore.Start(fTimeDelta);
 			m_zLLA.SwitchOn();
 			iScene = Meteoriten;
+			
 		}
 
 		/*if (iScene == 1) {
@@ -471,15 +479,17 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 			m_zHighscore.AddHighscore(m_zFilehandlerProfil.getSelectedFileDisplayName(),
 				m_zHighscore.GetHighscore());
 			FirstVerlorenTick = false; 
+
+			//Sounds
+			m_zSound.SwitchSounds(1, 2, true);
+			m_zSound.Start(3);
+
 		}
 
 		//Game Over
 		m_zIngameOverlays.SwitchOn(2);
 
-		//Sounds
-		m_zSound.SwitchSounds(1, 2, true);
-		m_zSound.Start(3);
-
+		
 		//Highscoreliste anzeigen
 		iScene = m_zSteuerung.Highscore(iScene, &m_zKeyboard);
 
