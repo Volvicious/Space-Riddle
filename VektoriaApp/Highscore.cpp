@@ -4,6 +4,7 @@
 
 CHighscore::CHighscore()
 {
+	
 }
 
 
@@ -14,10 +15,14 @@ CHighscore::~CHighscore()
 
 void CHighscore::Init(CViewport * mvz) {
 
+	
+
 	topHighscore.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.0F, 2.F, 0.04F);
 	topHighscore.SetString("Score:0");
 
-	topChange.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.4F, 0.1F, 2.5F, 0.04F);
+	//0.4, 0.1
+
+	topChange.Init(mvz, "fonts\\Nasalization-rg-Red.png", 0.0F, 0.0F, 2.5F, 0.04F, 38);
 	
 	topChange.SetString("");
 
@@ -67,6 +72,7 @@ void CHighscore::Run(float ftime, float fTimeDelta) {
 void CHighscore::Start(float fTime) {
 
 	SwitchIngameOn();
+
 	fTimeStart = fTime; 
 	bOn = true;
 }
@@ -134,6 +140,26 @@ void CHighscore::Save() {
 
 }
 
+
+void CHighscore::Delete() {
+
+	v_NamePunktZahl->clear();
+
+	std::ofstream file("..\\VektoriaApp\\highscore\\highscore.txt");
+	std::string s = "";
+	if (file.is_open()) {
+		file << s;
+	}
+
+	file.close();
+
+	for (int i = 0; i < 6; i++) {
+		aTextOutputInts[i].SetString("-");
+		aTextOutputsNamen[i].SetString("-");
+	}
+
+}
+
 void CHighscore::Load() {
 
 
@@ -178,9 +204,10 @@ void CHighscore::RunHauptMenue() {
 
 	for (int i = 0; i < 6; i++) {
 		aTextOutputInts[i].WriteSavedString();
-		aTextOutputsNamen[i].WriteSavedString(); 
+		aTextOutputsNamen[i].WriteSavedString();
+		//ULDebug(stc.DoStringToChar(aTextOutputsNamen[i].GetString()));
+
 	}
-	//ULDebug(stc.DoStringToChar(aTextOutputsNamen[0].GetString()));
 
 }
 
@@ -223,6 +250,8 @@ void CHighscore::Sort() {
 
 
 }
+
+
 
 void CHighscore::PreRunMenue() {
 	
@@ -276,6 +305,12 @@ void CHighscore::SubstractFromHighscore (int i) {
 	sChange += std::to_string(i);
 	bDisplayChange = true;
 
+}
+
+void CHighscore::DisplayTextIngame(std::string s) {
+
+	sChange = s; 
+	bDisplayChange = true; 
 }
 
 void CHighscore::changeString() {

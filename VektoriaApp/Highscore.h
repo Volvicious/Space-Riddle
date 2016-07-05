@@ -2,6 +2,7 @@
 #include "Vektoria\Root.h"
 #include "TextOutput.h"
 #include "StringToChar.h"
+#include <time.h>
 
 
 using namespace Vektoria;
@@ -21,19 +22,22 @@ public:
 	void Save();
 	void AddHighscore(std::string sName, int iScore);
 	void Load(); 
+	void Delete();
 
 	void PreRunMenue();
 	void RunHauptMenue();
 	void SwitchMenueOff(); 
 	void SwitchIngameOff();
 	void SwitchIngameOn(); 
-	void Sort(); 
+	void Sort();
+	
 
 
 	void SetHighscore(int i); 
 	int GetHighscore(); 
 	void AddToHighscore(int i);
 	void SubstractFromHighscore(int i);
+	void DisplayTextIngame(std::string Text);
 
 
 private: 
@@ -53,8 +57,8 @@ private:
 	float fTimeStartChange = 0.0F;
 	std::string sChange;
 
-	float fxPos = 0.4F; 
-	float fyPos = 0.05F; 
+	float fxPos = 0.0F; 
+	float fyPos = 0.0F; 
 	float fxSize = 0; 
 	float fySize = 0;
 

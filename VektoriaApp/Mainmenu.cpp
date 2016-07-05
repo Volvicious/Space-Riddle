@@ -312,6 +312,7 @@ void CMainmenu::menuTick(){
 
 
 
+
 	if (ptrExplorer->getMakeMenuOn()) {
 		SwitchOn();
 
@@ -346,6 +347,8 @@ void CMainmenu::menuTick(){
 	m_zoLernPaket.SwitchOn();
 	m_zoExit.SwitchOn();
 	m_zoSteuerung.SwitchOn();
+	
+
 
 	//PickCreits
 	if (ptrMaus->PickOverlayandLeftKlick(&m_zoCredits))
@@ -360,6 +363,12 @@ void CMainmenu::menuTick(){
 
 
 	}
+
+	//Highscore Loeschen
+	if (ptrMaus->PickOverlayandLeftKlick(&m_zoPickHighscore)) {
+		ptrHighScore->Delete();
+	}
+
 
 	// Pick Name
 	if (ptrMaus->PickOverlayandLeftKlick(&m_zoName))

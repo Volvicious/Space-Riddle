@@ -2,6 +2,8 @@
 
 CFragenHandler::CFragenHandler()
 {
+	std::srand(time(NULL));
+
 }
 
 
@@ -23,15 +25,13 @@ void CFragenHandler::Init(CFileHandler * fileHandlerPtr, CViewport * mzv, CProfi
 
 	
 	mzv->AddOverlay(&m_zoMultiFrage);
-	m_zmMultiFrage.Init();
-	m_zmMultiFrage.LoadPreset("Glass");
-	m_zoMultiFrage.Init(&m_zmMultiFrage, CFloatRect(0.0F, -0.1F, 1.0F, 0.1F));
+	m_ziMultiFrage.Init("textures\\grau.png");
+	m_zoMultiFrage.Init(&m_ziMultiFrage, CFloatRect(0.0F, -0.1F, 1.0F, 0.1F));
 	m_zoMultiFrage.SetTransparency(0.2F);
 
 	mzv->AddOverlay(&m_zoMultiAntwort);
-	m_zmMultiAntwort.Init(); 
-	m_zmMultiAntwort.LoadPreset("Glass");
-	m_zoMultiAntwort.Init(&m_zmMultiAntwort, CFloatRect(0.0F, 1.0F, 1.0F, 0.28F));
+	m_ziMultiAntwort.Init("textures\\grau.png");
+	m_zoMultiAntwort.Init(&m_ziMultiAntwort, CFloatRect(0.0F, 1.0F, 1.0F, 0.28F));
 	m_zoMultiAntwort.SetTransparency(0.2F);
 
 	m_zoMultiFrage.SetLayer(0.3F);
@@ -76,6 +76,8 @@ void CFragenHandler::Init(CFileHandler * fileHandlerPtr, CViewport * mzv, CProfi
 	topAntwort.Init(&m_zoMultiFrage, "fonts\\Nasalization-rg-White.png", 0.01F, 0.08F + fy, 1.5F, .04F);
 
 	m_zoMultiFrage.SwitchOff();*/
+
+
 
 }
 
@@ -413,8 +415,9 @@ void CFragenHandler::ReadFile() {
 	}
 
 	//bStelleFragen = true; 
-	ULDebug("Das einlesen der Fragen war von Erfolg gekrönt.");
-	ULDebug("Laenge der Map ist:  %i",map_fragen.size());
+	//ULDebug("Das einlesen der Fragen war von Erfolg gekrönt.");
+	//ULDebug("Laenge der Map ist:  %i",map_fragen.size());
+	iZuStellendeFrage = std::rand() % map_fragen.size()-1; 
 
 
 }
@@ -442,6 +445,12 @@ void CFragenHandler::frageEinfuegen() {
 bool CFragenHandler::IstAntwortRichtig(int i){
 
 	return i == iRichtigeAntwort ;
+
+}
+
+string CFragenHandler::GetRichtigeAntwort() {
+
+	return map_fragen[iZuStellendeFrage - 1]->getAntwort();
 
 }
 

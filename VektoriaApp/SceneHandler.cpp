@@ -258,10 +258,13 @@ void SceneHandler::FrageTick(float fTimeDelta)
 		//Überprüfen mit welcher Frage ich kollidiert bin
 		if (j > -1)
 		{
-			if (m_zFragenHandler.IstAntwortRichtig(j))
+			if (m_zFragenHandler.IstAntwortRichtig(j)) {
 				m_zHighscore.AddToHighscore(20);
-			else
+			}else{
 				m_zLLA.setLebenAnzahl(m_zLLA.getLebenAnzahl() - 3);
+				m_zHighscore.DisplayTextIngame(m_zFragenHandler.GetRichtigeAntwort());
+			}
+
 		}
 		
 		//Level hochzählen

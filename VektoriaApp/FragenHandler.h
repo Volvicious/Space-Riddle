@@ -40,6 +40,7 @@ public:
 	
 
 	bool IstAntwortRichtig(int i);
+	std::string GetRichtigeAntwort(); 
 
 	bool bFadeOutbeendet = false; 
 	bool FadeOutBeendet();
@@ -58,12 +59,12 @@ private:
 	
 	//Frageneinheit MultiFrage
 	COverlay m_zoMultiFrage; 
-	CMaterial m_zmMultiFrage;
+	CImage m_ziMultiFrage;
 
 	COverlay m_zoDummyAntwort;
 	COverlay m_zoDummyFrage; 
 	COverlay m_zoMultiAntwort; 
-	CMaterial m_zmMultiAntwort; 
+	CImage m_ziMultiAntwort; 
 
 
 	CTextOutput topFrage; 
@@ -73,7 +74,8 @@ private:
 	int iRichtigeAntwort = -1; 
 
 	std::string sLernpaketname; 
-	std::map <int, CFrage*> map_fragen; 
+	std::map <int, CFrage*> map_fragen;
+	std::vector<CFrage*> v_kritischeFragen; 
 
 	std::vector <std::string> * ptrLinesFromFile; 
 

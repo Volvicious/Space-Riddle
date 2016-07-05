@@ -1,0 +1,59 @@
+#Was bedeutet Haus auf Schwedisch?
+!hus
+-has
+-hes
+-haus
+$1
+!#Was bedeutet Wasser auf Schwedisch?
+!vatten
+-watten
+-water
+-wat
+$2
+#Was bedeutet Schuh auf schwedisch?
+!sko
+ska
+-sku
+-scho
+$3
+#Was bedeutet Fisch auf Schwedisch?
+!fisk
+-fish
+-fisch
+-fi
+$4
+#Was bedeutet Wolke auf schwedisch?
+!mold
+-muln
+-wolk
+-wulk
+$5
+#Was bedeutet öl auf deutsch?
+!Bier
+-Öl
+-Kinderpunsch
+-Apfelsaft
+$6 #Was bedeutet träd auf deutsch?
+!Baum
+-Maus
+-Holz
+-Sand
+$7
+#Was bedeutet hink auf Deutsch?
+!Eimer
+-Junge
+-Opa-
+Ratte
+$8
+#Was bedeutet pengar auf Deutsch?
+!Geld
+-Gold
+-Kohle
+-Sonne
+$9
+#Was bedeutet choklad auf deutsch?
+!Schokolade
+-Telefon
+-Tisch
+-Hund
+$10

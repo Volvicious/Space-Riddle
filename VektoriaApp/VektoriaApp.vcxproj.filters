@@ -120,9 +120,6 @@
     <ClInclude Include="StringToChar.h">
       <Filter>Headerdateien\Chris</Filter>
     </ClInclude>
-    <ClInclude Include="ExplorerProfil.h">
-      <Filter>Headerdateien\Chris</Filter>
-    </ClInclude>
     <ClInclude Include="FrageMulti.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>

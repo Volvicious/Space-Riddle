@@ -142,7 +142,6 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="CameraController.h" />
     <ClInclude Include="Explorer.h" />
-    <ClInclude Include="ExplorerProfil.h" />
     <ClInclude Include="FileFinder.h" />
     <ClInclude Include="FileHandler.h" />
     <ClInclude Include="FileReader.h" />

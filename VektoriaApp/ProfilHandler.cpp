@@ -111,7 +111,7 @@ void CProfilHandler::readFile() {
 						}
 						catch (const std::exception&)
 						{
-							ULDebug("Profilhandler: Fehler beim Konvertieren in int 1");
+							ULDebug("Profilhandler: Fehler beim Konvertieren in int!");
 						}
 
 					}
