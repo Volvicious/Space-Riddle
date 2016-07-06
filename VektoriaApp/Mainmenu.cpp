@@ -291,6 +291,8 @@ bool CMainmenu::getbGo() {
 
 void CMainmenu::menuTick(){
 	
+	
+
 
 	if (ptrMaus->getDevicePtr()->PickOverlay() && m_zoMainmbackground.IsOn()) {
 
@@ -359,10 +361,17 @@ void CMainmenu::menuTick(){
 		SwitchOff(); 
 		ptrMaus->SwitchOn();
 		ptrSound->Stop(0);
-		ptrSound->Start(10);
+		ptrSound->Loop(10);
 
 
 	}
+
+	if (ptrMaus->PickOverlayandLeftKlick(&m_zoPickTonAus) || ptrMaus->PickOverlayandLeftKlick(&m_zoPickTonAn)){
+
+		ptrSound->Mute(); 
+
+	}
+
 
 	//Highscore Loeschen
 	if (ptrMaus->PickOverlayandLeftKlick(&m_zoPickHighscore)) {
@@ -468,7 +477,7 @@ void CMainmenu::menuTick(){
 	{
 
 		ptrSound->Stop(10);
-		ptrSound->Start(0);
+		ptrSound->Loop(0);
 
 		m_zoCreditsBackground.SwitchOff();
 
@@ -667,7 +676,7 @@ void CMainmenu::SwitchOn() {
 	ptrMaus->SwitchOn();
 	m_zTOPLernpaket.SwitchOn();
 	m_zTOPProfil.SwitchOn();
-	ptrSound->Start(0);
+	ptrSound->Loop(0);
 	
 
 }

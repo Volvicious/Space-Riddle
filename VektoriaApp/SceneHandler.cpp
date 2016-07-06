@@ -288,7 +288,7 @@ void SceneHandler::Tick(float fTimeDelta, float fTime)
 {	
 	m_zAnimationSchaden.Run(fTime);
 
-	if (m_zKeyboard.KeyDown(DIK_M)) {
+	if (m_zKeyboard.KeyDown(DIK_M) && iScene != Hauptmenü) {
 
 			m_zSound.Mute();
 		
