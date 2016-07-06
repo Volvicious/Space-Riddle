@@ -366,7 +366,7 @@ void CMainmenu::menuTick(){
 
 	}
 
-	if (ptrMaus->PickOverlayandLeftKlick(&m_zoPickTonAus) || ptrMaus->PickOverlayandLeftKlick(&m_zoPickTonAn)){
+	if (ptrMaus->PickOverlayandLeftKlick(&m_zoPickTonAus) || ptrMaus->PickOverlayandLeftKlick(&m_zoPickTonAus)){
 
 		ptrSound->Mute(); 
 
