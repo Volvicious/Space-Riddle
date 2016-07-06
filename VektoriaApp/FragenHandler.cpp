@@ -416,7 +416,7 @@ void CFragenHandler::ReadFile() {
 
 	//bStelleFragen = true; 
 	//ULDebug("Das einlesen der Fragen war von Erfolg gekrönt.");
-	//ULDebug("Laenge der Map ist:  %i",map_fragen.size());
+	ULDebug("Laenge der Map ist:  %i",map_fragen.size());
 	iZuStellendeFrage = std::rand() % map_fragen.size()-1; 
 
 
